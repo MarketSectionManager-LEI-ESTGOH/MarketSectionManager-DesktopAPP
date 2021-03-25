@@ -16,5 +16,5 @@ This repository, has only the Desktop Part of the System.
 * **[Fábio Rodrigues](https://github.com/BladedLaner)** - *Administrator and Full Stack Developer*
 * **[João Duarte](https://github.com/jduarte98)** - *Administrator and Full Stack Developer*
 
-##Contact Us
+## Contact Us
 For more information please contact us [via email](mailto:marketsectionmanager@gmail.com).
