@@ -92,7 +92,7 @@ public class ConnectDB {
             conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
             PreparedStatement ps = conn.prepareStatement("SELECT nome FROM user WHERE nome = ?");
             ps.clearParameters();
-            ps.setString(1, "John ");
+            ps.setString(1, "John Doe");
 
             if(checkString(ps, "John Doe")){
                 System.out.println("yes");
