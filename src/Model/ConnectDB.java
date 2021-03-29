@@ -20,15 +20,13 @@ public class ConnectDB {
                 properties.load(input);
 
                 properties.getProperty("url");
-                properties.getProperty("user");
-                properties.getProperty("password");
+                properties.setProperty("user", Encryption.decryptDBProperties(properties.getProperty("user")));
+                properties.setProperty("password", Encryption.decryptDBProperties(properties.getProperty("password")));
                 properties.getProperty("autoReconnect");
                 properties.getProperty("useSSL");
             } catch ( IOException ex) {
                 ex.printStackTrace();
             }
-        } else {
-
         }
     }
 
@@ -86,13 +84,14 @@ public class ConnectDB {
 
     public static void main(String[] args) {
         //ISTO É APENAS UM TESTE AO FICHEIRO DAS PROPRIEDADES
+
         loadProperties();
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
             PreparedStatement ps = conn.prepareStatement("SELECT nome FROM user WHERE nome = ?");
             ps.clearParameters();
-            ps.setString(1, "John ");
+            ps.setString(1, "John Doe");
 
             if(checkString(ps, "John Doe")){
                 System.out.println("yes");
@@ -102,7 +101,6 @@ public class ConnectDB {
         } catch (Exception throwables) {
             throwables.printStackTrace();
         }
-
 
     }
 
