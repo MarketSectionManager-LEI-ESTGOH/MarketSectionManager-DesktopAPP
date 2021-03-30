@@ -16,12 +16,6 @@ public class User {
 
     }
 
-    public boolean checkLogin(){
-
-
-        return false;
-    }
-
     /**
      * Regista um novo utilizador apenas para teste.
      * @param aType
