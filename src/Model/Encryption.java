@@ -8,7 +8,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class Encryption {
 
-    private String saltStr = "MSM2021";
+    private static String saltStr = "MSM2021";
     private static int key = 27;
     Encryption(){
 
@@ -20,7 +20,7 @@ public class Encryption {
      * @param aToEncrypt
      * @return
      */
-    public String encrypt(String aToEncrypt){
+    public static String encrypt(String aToEncrypt){
         int iterations = 1000;
         char[] chars = aToEncrypt.toCharArray();
         byte[] salt = saltStr.getBytes();

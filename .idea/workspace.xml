@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c426f475-6751-44e9-812e-84efa4bbf5ca" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/User.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/Model/ConnectDB.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/Model/ConnectDB.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/ConnectDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ConnectDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Encryption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Encryption.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +33,20 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.CmdLnMainTest">
+    <configuration name="CmdLnMainTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="View.CmdLnMainTest" />
+      <module name="RepositoryClone" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="View.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="View.Main" />
       <module name="RepositoryClone" />
@@ -45,6 +62,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.CmdLnMainTest" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
