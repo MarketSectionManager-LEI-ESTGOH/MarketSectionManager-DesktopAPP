@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c426f475-6751-44e9-812e-84efa4bbf5ca" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/User.class" afterDir="false" />
-    </list>
+    <list default="true" id="c426f475-6751-44e9-812e-84efa4bbf5ca" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,12 +21,18 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../../../Stuff/TestFX" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Documents/Fontawesome Libs _ older/fontawesomefx-fontawesome-4.7.0-11.jar" />
     <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Application.CmdLnMainTest">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\joaod\Desktop\LEI\3ºAno\2º Semestre\Projeto\MarketSectionManager\Code\MarketSectionManager-DesktopAPP\src\View" />
+      <recent name="C:\Users\joaod\Desktop\LEI\3ºAno\2º Semestre\Projeto\MarketSectionManager\Code\MarketSectionManager-DesktopAPP\src\Images" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
     <configuration name="CmdLnMainTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="View.CmdLnMainTest" />
       <module name="RepositoryClone" />
@@ -57,8 +61,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CmdLnMainTest" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.CmdLnMainTest" />
       </list>
     </recent_temporary>
   </component>
