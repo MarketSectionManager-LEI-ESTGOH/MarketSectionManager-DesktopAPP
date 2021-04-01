@@ -15,9 +15,14 @@ public class Main extends Application{
     public static Controller.User u = new Controller.User();
     public TextField funcNumber = new TextField();
     public PasswordField funcPass = new PasswordField();
+    public Button loginBtn = new Button();
+    private Stage currentStage = null;
+
+
 
     @Override
     public void start(Stage loginScreen) throws Exception{
+
         Parent root = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
         loginScreen.setTitle("Market Section Manager");
         loginScreen.setScene(new Scene(root, 360, 275));
@@ -61,6 +66,11 @@ public class Main extends Application{
             int number = Integer.parseInt(funcNumber.getText());
             if(u.checkLogin(number, funcPass.getText())){
                 alerts(Alert.AlertType.INFORMATION,"Sucesso", "Bem Vindo!").showAndWait();
+                funcNumber.setText("");
+                funcPass.setText("");
+                currentStage = (Stage) loginBtn.getScene().getWindow();
+                currentStage.close();
+                new MainScreenController().start();
             }else{
                 alerts(Alert.AlertType.ERROR,"Credenciais Erradas", "O Número de Funcionário ou a Password estão errados, por favor tente novamente!").showAndWait();
                 funcNumber.setText("");
@@ -69,6 +79,7 @@ public class Main extends Application{
         }catch(NumberFormatException nfe){
             alerts(Alert.AlertType.ERROR,"ERRO", "O Campo Número de Funcionário apenas aceita números, por favor tente novamente!").showAndWait();
         }catch(Exception e){
+            System.out.println(e);
             alerts(Alert.AlertType.ERROR,"ERRO", "Aconteceu um erro insperado, por favor tente novamente!").showAndWait();
         }
     }
