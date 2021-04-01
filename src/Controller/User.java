@@ -52,9 +52,7 @@ public class User {
      * @return
      */
     public boolean checkLogin(int aNumInt, String aPassword){
-
         aPassword = Encryption.encrypt(aPassword);
-
         try {
             String stmt = "SELECT password FROM user WHERE num_interno = ?";
             PreparedStatement ps = ConnectDB.getConn().prepareStatement(stmt);
