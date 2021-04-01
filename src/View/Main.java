@@ -3,9 +3,6 @@ package View;
 import Model.ConnectDB;
 
 import javafx.scene.control.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -42,7 +39,6 @@ public class Main extends Application{
      * Apresenta uma cofirmação ao utilizador e se este clicar "Sim" o programa termina
      */
     public void closeProgram(){
-        System.out.println("closed pushed!!");
         Alert exitConfirmation = new Alert(Alert.AlertType.CONFIRMATION);
         exitConfirmation.setTitle("Confirmação de Saída");
         exitConfirmation.setHeaderText("Tem a certeza que pretende sair do programa?");
@@ -51,7 +47,6 @@ public class Main extends Application{
         exitConfirmation.getButtonTypes().setAll(yesBtn, noBtn);
         exitConfirmation.showAndWait();
         if(exitConfirmation.getResult().equals(yesBtn)){
-            System.out.println("é isto!!");
             System.exit(0);
         }
 
@@ -64,7 +59,6 @@ public class Main extends Application{
         ConnectDB.loadProperties();
         try{
             int number = Integer.parseInt(funcNumber.getText());
-            System.out.println("number::" + number + "\nfuncPass::"+ funcPass.getText());
             if(u.checkLogin(number, funcPass.getText())){
                 alerts(Alert.AlertType.INFORMATION,"Sucesso", "Bem Vindo!").showAndWait();
             }else{
