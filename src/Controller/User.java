@@ -9,11 +9,34 @@ import java.sql.SQLException;
 
 public class User {
 
-    private String username;
+    private String username, email;
     private int userID, userType;
 
     public User(){
 
+    }
+
+    public User(String aUsername, String aEmail, int aUserID, int aUserType){
+        username = aUsername;
+        email = aEmail;
+        userID = aUserID;
+        userType = aUserType;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public int getUserType() {
+        return userType;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     /**
@@ -51,7 +74,7 @@ public class User {
      * @param aPassword
      * @return
      */
-    public boolean checkLogin(int aNumInt, String aPassword){
+    public static boolean checkLogin(int aNumInt, String aPassword){
         aPassword = Encryption.encrypt(aPassword);
         try {
             String stmt = "SELECT password FROM user WHERE num_interno = ?";
@@ -64,6 +87,29 @@ public class User {
         return false;
     }
 
+    public static User createObjUser(int aUserID){
+        ConnectDB.loadProperties();
+        try{
+            String stmt = "SELECT tipo, nome, email FROM user WHERE num_interno = ?";
+            PreparedStatement ps = ConnectDB.getConn().prepareStatement(stmt);
+            ps.setInt(1, aUserID);
+            String data = ConnectDB.getUser(ps);
+            String dataSplit[] = data.split(":");
+            User u = new User(dataSplit[1], dataSplit[2], aUserID, Integer.parseInt(dataSplit[0]));
+            return u;
+        }catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return null;
+    }
 
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", userID=" + userID +
+                ", userType=" + userType +
+                '}';
+    }
 }

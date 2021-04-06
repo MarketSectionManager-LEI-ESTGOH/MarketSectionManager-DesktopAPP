@@ -1,5 +1,6 @@
 package View;
 
+import Controller.User;
 import Model.ConnectDB;
 
 import javafx.scene.control.*;
@@ -12,7 +13,7 @@ import javafx.stage.StageStyle;
 
 public class Main extends Application{
 
-    public static Controller.User u = new Controller.User();
+    public static Controller.User u;
     public TextField funcNumber = new TextField();
     public PasswordField funcPass = new PasswordField();
     public Button loginBtn = new Button();
@@ -64,12 +65,14 @@ public class Main extends Application{
         ConnectDB.loadProperties();
         try{
             int number = Integer.parseInt(funcNumber.getText());
-            if(u.checkLogin(number, funcPass.getText())){
+            if(Controller.User.checkLogin(number, funcPass.getText())){
                 alerts(Alert.AlertType.INFORMATION,"Sucesso", "Bem Vindo!").showAndWait();
                 funcNumber.setText("");
                 funcPass.setText("");
                 currentStage = (Stage) loginBtn.getScene().getWindow();
                 currentStage.close();
+                //Criar novo objeto utilizador
+                u = User.createObjUser(number);
                 new MainScreenController().start();
             }else{
                 alerts(Alert.AlertType.ERROR,"Credenciais Erradas", "O Número de Funcionário ou a Password estão errados, por favor tente novamente!").showAndWait();

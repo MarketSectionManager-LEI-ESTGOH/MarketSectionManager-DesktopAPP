@@ -3,6 +3,8 @@ package Model;
 import java.io.*;
 import java.sql.*;
 import java.sql.DriverManager;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 public class ConnectDB {
@@ -60,7 +62,6 @@ public class ConnectDB {
      * @return  true se strings forem iguais / false se strings forem diferentes ou ocorrer erros
      */
     public static boolean checkString(PreparedStatement aPs, String toCheck){
-        conn = null;
         ResultSet rs = null;
         boolean found = false;
 
@@ -103,7 +104,6 @@ public class ConnectDB {
      * @return  retorna a string ou null se ocorrerem erros
      */
     public static String getString(PreparedStatement aPs){
-        conn = null;
         ResultSet rs = null;
         String value = null;
 
@@ -143,13 +143,51 @@ public class ConnectDB {
         return null;
     }
 
+    public static String getUser(PreparedStatement aPs){
+        String userData = "";
+        ResultSet rs = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            rs = aPs.executeQuery();
+            while(rs.next()){
+                userData = rs.getInt("tipo")+":"+rs.getString("nome")+":"+rs.getString("email");
+            }
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println("!! SQL Exception !!\n"+e);
+            e.printStackTrace();
+            return null;
+        } catch (ClassNotFoundException e) {
+            System.out.println("!! Class Not Found. Unable to load Database Drive !!\n"+e);
+            return null;
+        } catch (IllegalAccessException e) {
+            System.out.println("!! Illegal Access !!\n"+e);
+            return null;
+        } catch (InstantiationException e) {
+            System.out.println("!! Class Not Instanciaded !!\n"+e);
+            return null;
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                    return userData;
+                } catch (Exception e) {
+                    System.out.println("!! Exception closing DB connection !!\n"+e);
+                    return null;
+                }
+            }
+        } // end of finally
+        return null;
+    }
+
     /**
      * função para inserção de dados na BD
      * @param aStatement  PreparedStatement a executar
      * @return  true se ocorreu com sucesso / false se decorreram erros
      */
     public static boolean insertIntoTable(PreparedStatement aStatement){
-        conn = null;
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
