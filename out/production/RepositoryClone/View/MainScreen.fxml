@@ -23,8 +23,8 @@
                   <Image url="@../Images/user.png" />
                </image>
             </ImageView>
-            <Button fx:id="editProfileBtn" layoutX="66.0" layoutY="27.0" mnemonicParsing="false" onAction="#editProfile" prefHeight="25.0" prefWidth="68.0" text="Button" />
-            <Button fx:id="logoutBtn" layoutX="141.0" layoutY="20.0" mnemonicParsing="false" onAction="#logout" prefHeight="38.0" prefWidth="45.0" text="Button" />
+            <Button fx:id="editProfileBtn" layoutX="60.0" layoutY="15.0" mnemonicParsing="false" onAction="#editProfile" prefHeight="47.0" prefWidth="68.0" styleClass="editProfileBTN" stylesheets="@../CSS/mainScreenStyles.css" text="Editar &#10;Perfil" textFill="WHITE" />
+            <Button fx:id="logoutBtn" layoutX="154.0" layoutY="23.0" mnemonicParsing="false" onAction="#logout" prefHeight="32.0" prefWidth="32.0" styleClass="logoutBTN" stylesheets="@../CSS/mainScreenStyles.css" />
          </children>
       </Pane>
    </children>

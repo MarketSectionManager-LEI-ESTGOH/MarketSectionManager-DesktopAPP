@@ -65,8 +65,7 @@ public class Main extends Application{
         try{
             int number = Integer.parseInt(funcNumber.getText());
             if(Controller.User.checkLogin(number, funcPass.getText())){
-                funcNumber.setText("");
-                funcPass.setText("");
+                cleanFields();
                 currentStage = (Stage) loginBtn.getScene().getWindow();
 
                 //Criar novo objeto utilizador

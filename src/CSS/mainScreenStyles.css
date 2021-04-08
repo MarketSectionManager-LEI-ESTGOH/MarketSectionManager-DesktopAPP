@@ -5,3 +5,14 @@
 .profileBox{
     -fx-background-color: gray;
 }
+
+.editProfileBTN{
+    -fx-background-color: gray;
+    -fx-border-color:gray;
+}
+
+.logoutBTN{
+    -fx-background-color: gray;
+    -fx-background-image: url('media/logout.png');
+    -fx-border-color:gray;
+}
