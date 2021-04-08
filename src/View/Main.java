@@ -66,25 +66,38 @@ public class Main extends Application{
         try{
             int number = Integer.parseInt(funcNumber.getText());
             if(Controller.User.checkLogin(number, funcPass.getText())){
-                alerts(Alert.AlertType.INFORMATION,"Sucesso", "Bem Vindo!").showAndWait();
                 funcNumber.setText("");
                 funcPass.setText("");
                 currentStage = (Stage) loginBtn.getScene().getWindow();
-                currentStage.close();
+
                 //Criar novo objeto utilizador
                 u = User.createObjUser(number);
-                new MainScreenController().start();
+                if(u.getUserType() == 1){
+                    cleanFields();
+                    currentStage.close();
+                    new MainScreenController().start();
+                }else {
+                    alerts(Alert.AlertType.ERROR,"Login Inválido","Este programa apenas permite o acesso a Administradores, pelo que a sua conta não tem permissão para fazer Login no mesmo!").showAndWait();
+                    u = null;
+                    cleanFields();
+                }
             }else{
                 alerts(Alert.AlertType.ERROR,"Credenciais Erradas", "O Número de Funcionário ou a Password estão errados, por favor tente novamente!").showAndWait();
-                funcNumber.setText("");
-                funcPass.setText("");
+                cleanFields();
             }
         }catch(NumberFormatException nfe){
             alerts(Alert.AlertType.ERROR,"ERRO", "O Campo Número de Funcionário apenas aceita números, por favor tente novamente!").showAndWait();
+            cleanFields();
         }catch(Exception e){
             System.out.println(e);
-            alerts(Alert.AlertType.ERROR,"ERRO", "Aconteceu um erro insperado, por favor tente novamente!").showAndWait();
+            alerts(Alert.AlertType.ERROR,"ERRO", "Aconteceu um erro inesperado, por favor tente novamente!").showAndWait();
+            cleanFields();
         }
+    }
+
+    private final void cleanFields(){
+        funcNumber.setText("");
+        funcPass.setText("");
     }
 
     /**
@@ -97,7 +110,8 @@ public class Main extends Application{
     private Alert alerts(Alert.AlertType aAlertType, String aTitle, String aText){
         Alert generalAlert = new Alert(aAlertType);
         generalAlert.setTitle(aTitle);
-        generalAlert.setHeaderText(aText);
+        generalAlert.setHeaderText("Aconteceu um Erro: ");
+        generalAlert.setContentText(aText);
         return generalAlert;
     }
 
