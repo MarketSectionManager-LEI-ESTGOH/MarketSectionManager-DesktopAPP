@@ -8,7 +8,15 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import javax.xml.soap.Text;
+
 public class MainScreenController {
+
+    public Button editProfileBtn = new Button();
+    public Button logoutBtn = new Button();
+
+
+
 
     public void start() throws Exception{
         Stage MainScreen = new Stage();
@@ -19,7 +27,16 @@ public class MainScreenController {
         MainScreen.setResizable(false);
         MainScreen.centerOnScreen();
         MainScreen.show();
+        //editProfileBtn.setText(View.Main.u.getUsername());
     }
 
-   
+
+    public void editProfile(){
+        System.out.println("edit profile btn clicked");
+
+    }
+
+    public void logout(){
+        System.out.println("logout btn clicked");
+    }
 }

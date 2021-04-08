@@ -23,7 +23,6 @@ public class Main extends Application{
 
     @Override
     public void start(Stage loginScreen) throws Exception{
-
         Parent root = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
         loginScreen.setTitle("Market Section Manager");
         loginScreen.setScene(new Scene(root, 360, 275));
