@@ -14,6 +14,7 @@ public class MainScreenController {
 
     public Button editProfileBtn = new Button();
     public Button logoutBtn = new Button();
+    private Stage currentStage = null;
 
 
 
@@ -27,7 +28,6 @@ public class MainScreenController {
         MainScreen.setResizable(false);
         MainScreen.centerOnScreen();
         MainScreen.show();
-        //editProfileBtn.setText(View.Main.u.getUsername());
     }
 
 
@@ -36,7 +36,12 @@ public class MainScreenController {
 
     }
 
-    public void logout(){
+    public void logout() throws Exception{
         System.out.println("logout btn clicked");
+        currentStage = (Stage) logoutBtn.getScene().getWindow();
+        currentStage.close();
+        View.Main.u = null;
+        new Main().start(new Stage());
+
     }
 }
