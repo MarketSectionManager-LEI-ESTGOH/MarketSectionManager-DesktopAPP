@@ -10,6 +10,8 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MainScreenController">
    <children>
       <Pane prefHeight="553.0" prefWidth="200.0" styleClass="sideBar" stylesheets="@../CSS/mainScreenStyles.css">
@@ -72,7 +74,14 @@
                </font>
             </Label>
             <Label layoutX="303.0" layoutY="73.0" text="Tipo de Utilizador:" textFill="WHITE" />
-            <ComboBox fx:id="userTypeCombo" layoutX="303.0" layoutY="90.0" prefWidth="150.0" promptText="Tipo Ut." />
+            <ComboBox fx:id="userTypeCombo" layoutX="303.0" layoutY="90.0" prefWidth="150.0" promptText="Tipo Ut." >
+               <items>
+                  <FXCollections fx:factory="observableArrayList">
+                     <String fx:value="Funcionário" />
+                     <String fx:value="Administrador" />
+                  </FXCollections>
+               </items>
+            </ComboBox>
             <Label layoutX="303.0" layoutY="129.0" text="Nome do Utilizador:" textFill="WHITE" />
             <TextField fx:id="userNameTF" layoutX="304.0" layoutY="146.0" prefHeight="25.0" prefWidth="150.0" promptText="Nome" />
             <Label layoutX="303.0" layoutY="179.0" text="Número Interno:" textFill="WHITE" />

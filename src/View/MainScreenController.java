@@ -1,15 +1,14 @@
 package View;
 
+import Model.ConnectDB;
 import javafx.scene.control.*;
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
-import javax.xml.soap.Text;
+import javax.swing.*;
 
 public class MainScreenController {
 
@@ -61,11 +60,40 @@ public class MainScreenController {
 
     public void addUser(){
         System.out.println("add user btn clicked!!");
+            try {
+                ConnectDB.loadProperties();
+                if(View.Main.u.registerUser(userTypeCombo.getSelectionModel().getSelectedIndex(), userNameTF.getText(), Integer.parseInt(userNumberTF.getText()), userPassPF.getText(), userEmailTF.getText())){
+                    alerts(Alert.AlertType.INFORMATION,"SUCESSO","Utilizador inserido com sucesso!").showAndWait();
+                }
+                clearUserRegistrationFileds();
+            }catch(NumberFormatException nfe){
+                alerts(Alert.AlertType.INFORMATION,"ERRO","O campo número de funcionário apenas aceita números").showAndWait();
+                clearUserRegistrationFileds();
+            }catch(Exception e){
+                alerts(Alert.AlertType.INFORMATION,"ERRO","Aconteceu um erro inesperado, por favor tente novamente!").showAndWait();
+                clearUserRegistrationFileds();
+            }
 
     }
 
-    public void collapse(){
-        registerPane.setVisible(false);
+    private void clearUserRegistrationFileds(){
+        userTypeCombo.getSelectionModel().select(-1);
+        userNameTF.setText("");
+        userNumberTF.setText("");
+        userPassPF.setText("");
+        userEmailTF.setText("");
+    }
 
+    private Alert alerts(Alert.AlertType aAlertType, String aTitle, String aText){
+        Alert generalAlert = new Alert(aAlertType);
+        generalAlert.setTitle(aTitle);
+        generalAlert.setHeaderText(aTitle);
+        generalAlert.setContentText(aText);
+        return generalAlert;
+    }
+
+    public void collapse(){
+        clearUserRegistrationFileds();
+        registerPane.setVisible(false);
     }
 }
