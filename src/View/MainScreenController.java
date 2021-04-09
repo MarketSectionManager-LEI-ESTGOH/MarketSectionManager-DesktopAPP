@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -15,6 +16,15 @@ public class MainScreenController {
     public Button editProfileBtn = new Button();
     public Button logoutBtn = new Button();
     private Stage currentStage = null;
+    public Button registerBTN = new Button();
+    public Pane registerPane = new Pane();
+    public Button addUserBtn = new Button();
+    public Button collapseBtn = new Button();
+    public ComboBox userTypeCombo = new ComboBox();
+    public TextField userNameTF = new TextField();
+    public TextField userNumberTF = new TextField();
+    public TextField userEmailTF = new TextField();
+    public PasswordField userPassPF = new PasswordField();
 
 
 
@@ -37,11 +47,25 @@ public class MainScreenController {
     }
 
     public void logout() throws Exception{
-        System.out.println("logout btn clicked");
         currentStage = (Stage) logoutBtn.getScene().getWindow();
         currentStage.close();
         View.Main.u = null;
         new Main().start(new Stage());
+
+    }
+
+    public void register(){
+        System.out.println("register btn clicked!!");
+        registerPane.setVisible(true);
+    }
+
+    public void addUser(){
+        System.out.println("add user btn clicked!!");
+
+    }
+
+    public void collapse(){
+        registerPane.setVisible(false);
 
     }
 }

@@ -12,7 +12,19 @@
 }
 
 .logoutBTN{
-    -fx-background-color: gray;
+    -fx-background-color: #808080;
     -fx-background-image: url('media/logout.png');
     -fx-border-color:gray;
+}
+
+.sideBarButton{
+    -fx-background-color: rgb(44, 44, 44);
+    -fx-background-image: url('media/arrow.png');
+    -fx-text-fill: white;
+}
+
+.collapseButton{
+    -fx-background-color: #808080;
+    -fx-border-color: #808080;
+    -fx-background-image: url('media/collapse.png'); 
 }
