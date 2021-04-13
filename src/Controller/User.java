@@ -49,9 +49,7 @@ public class User {
      * @return
      */
     public boolean registerUser(int aType, String aUsername, int aNumInt, String aPassword, String aEmail){
-
         aPassword = Encryption.encrypt(aPassword);
-
         try {
             String stmt = "INSERT INTO user (tipo, nome, num_interno, password, email) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement ps = ConnectDB.getConn().prepareStatement(stmt);
@@ -64,7 +62,6 @@ public class User {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
         return false;
     }
 
