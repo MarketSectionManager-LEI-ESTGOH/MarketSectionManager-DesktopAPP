@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="b202d016-7088-46b1-abd8-e6153df629dd" name="Default Changelist" comment="">
+    <list default="true" id="a9e362ec-f529-4a5e-892f-52b954c803f1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/View/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/View/Main.class" afterDir="false" />
     </list>
-=======
-    <list default="true" id="90e3e82e-8f2a-4ee8-9257-e7f9ca2c2474" name="Default Changelist" comment="" />
->>>>>>> fe53dee1e653a7f97b6a9c1cf8c78baf41ab37c7
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,7 +12,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1qtDYHTKS5SB8x5IqgzLUMWECUd" />
+  <component name="ProjectId" id="1qvzbFMNo9Hws2Dpceb6HQZo911" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -26,34 +21,14 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
   </component>
-  <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="View.Main" />
-      <module name="RepositoryClone" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="View.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Main" />
-      </list>
-    </recent_temporary>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="b202d016-7088-46b1-abd8-e6153df629dd" name="Default Changelist" comment="" />
-      <created>1617890040317</created>
+      <changelist id="a9e362ec-f529-4a5e-892f-52b954c803f1" name="Default Changelist" comment="" />
+      <created>1617893789512</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1617890040317</updated>
+      <updated>1617893789512</updated>
     </task>
     <servers />
   </component>
