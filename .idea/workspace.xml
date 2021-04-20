@@ -1,22 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="bb926949-93cf-497a-8c94-7706b0acdb5c" name="Default Changelist" comment="">
+    <list default="true" id="7071d962-3401-412b-82f3-afefe7c9dd59" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/JavaFX_LIB.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/JavaFX_LIB.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/ConnectDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ConnectDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/MainScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/MainScreen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/MainScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/MainScreenController.java" afterDir="false" />
     </list>
-=======
-    <list default="true" id="a9e362ec-f529-4a5e-892f-52b954c803f1" name="Default Changelist" comment="" />
->>>>>>> 38e61306e4d016db8d280da043bf06722621b39e
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1r7HO6fy2309MYCQqpEt0hbMl6V" />
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="1rR38wP6FAz4lrz3wRAtHgJJOky" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -24,6 +43,11 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Documents/javafx-16/javafx-sdk-16/lib" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.JavaFX" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -48,12 +72,16 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="bb926949-93cf-497a-8c94-7706b0acdb5c" name="Default Changelist" comment="" />
-      <created>1618320175191</created>
+      <changelist id="7071d962-3401-412b-82f3-afefe7c9dd59" name="Default Changelist" comment="" />
+      <created>1618924921041</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1618320175191</updated>
+      <updated>1618924921041</updated>
     </task>
     <servers />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
