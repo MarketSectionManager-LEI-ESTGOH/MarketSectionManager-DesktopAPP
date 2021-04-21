@@ -1,10 +1,14 @@
 package View;
 
+import Controller.User;
 import Model.ConnectDB;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -16,6 +20,7 @@ public class MainScreenController {
     public Button logoutBtn = new Button();
     private Stage currentStage = null;
     public Button registerBTN = new Button();
+    public Button editBTN = new Button();
     public Pane registerPane = new Pane();
     public Button addUserBtn = new Button();
     public Button collapseBtn = new Button();
@@ -24,8 +29,27 @@ public class MainScreenController {
     public TextField userNumberTF = new TextField();
     public TextField userEmailTF = new TextField();
     public PasswordField userPassPF = new PasswordField();
+    public Pane allUsersPane = new Pane();
+    public Button collapseBtn1 = new Button();
+    @FXML
+    public TableView<User> table_users;
+    @FXML
+    public TableColumn<User, String> tipo_tb_users;
+    @FXML
+    public TableColumn<User, String> nome_tb_users;
+    @FXML
+    public TableColumn<User, Integer> numint_tb_users;
+    @FXML
+    public TableColumn<User, String> email_tb_users;
+
+    ObservableList<User> listUsers;
 
 
+    /**
+     * Referencia apresnetação de dados: 20/04/2021
+     * https://www.youtube.com/watch?v=tw_NXq08NUE
+     *
+     */
 
 
     public void start() throws Exception{
@@ -54,8 +78,23 @@ public class MainScreenController {
     }
 
     public void register(){
+        collapse();
         System.out.println("register btn clicked!!");
         registerPane.setVisible(true);
+    }
+
+    public void usersTable(){
+        collapse();
+        System.out.println("usersTable Edit btn clicked!!");
+
+        tipo_tb_users.setCellValueFactory(new PropertyValueFactory<User, String>("userTypeConv"));
+        nome_tb_users.setCellValueFactory(new PropertyValueFactory<User, String>("username"));
+        email_tb_users.setCellValueFactory(new PropertyValueFactory<User, String>("email"));
+        numint_tb_users.setCellValueFactory(new PropertyValueFactory<User, Integer>("userID"));
+
+        listUsers = ConnectDB.getAllUsers();
+        table_users.setItems(listUsers);
+        allUsersPane.setVisible(true);
     }
 
     public void addUser(){
@@ -95,5 +134,8 @@ public class MainScreenController {
     public void collapse(){
         clearUserRegistrationFileds();
         registerPane.setVisible(false);
+        allUsersPane.setVisible(false);
     }
+
+
 }

@@ -1,5 +1,9 @@
 package Model;
 
+import Controller.User;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.io.*;
 import java.sql.*;
 import java.sql.DriverManager;
@@ -219,6 +223,57 @@ public class ConnectDB {
             }
         } // end of finally
         return false;
+    }
+
+    public static ObservableList<User> getAllUsers(){
+        String userData = "";
+        ResultSet rs = null;
+
+        ObservableList<User> list = FXCollections.observableArrayList();
+
+        String stmt = "Select id, tipo, nome, num_interno, email from user";
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            PreparedStatement aPs = ConnectDB.getConn().prepareStatement(stmt);
+
+            rs = aPs.executeQuery();
+            while(rs.next()){
+                list.add(new User( rs.getString("nome"), rs.getString("email"), rs.getInt("num_interno"), rs.getInt("tipo")));
+            }
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println("!! SQL Exception !!\n"+e);
+            e.printStackTrace();
+            return null;
+        } catch (ClassNotFoundException e) {
+            System.out.println("!! Class Not Found. Unable to load Database Drive !!\n"+e);
+            return null;
+
+        } catch (IllegalAccessException e) {
+            System.out.println("!! Illegal Access !!\n"+e);
+            return null;
+
+        } catch (InstantiationException e) {
+            System.out.println("!! Class Not Instanciaded !!\n"+e);
+            return null;
+
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                    return list;
+
+                } catch (Exception e) {
+                    System.out.println("!! Exception closing DB connection !!\n"+e);
+                    return null;
+
+                }
+            }
+        } // end of finally
+        return null;
+
     }
 
 }

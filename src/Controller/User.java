@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class User {
 
-    private String username, email;
+    private String username, email, userTypeConv;
     private int userID, userType;
 
     public User(){
@@ -21,6 +21,17 @@ public class User {
         email = aEmail;
         userID = aUserID;
         userType = aUserType;
+        switch (userType){
+            case 0:
+                userTypeConv = "Funcionário";
+                break;
+            case 1:
+                userTypeConv = "Administrador";
+                break;
+            default:
+                userTypeConv = "NDF";
+                break;
+        }
     }
 
     public int getUserID() {
@@ -30,6 +41,8 @@ public class User {
     public int getUserType() {
         return userType;
     }
+
+    public String getUserTypeConv() { return userTypeConv;}
 
     public String getEmail() {
         return email;
