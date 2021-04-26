@@ -71,8 +71,9 @@ public class ConnectDB {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-
-            conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            if(conn == null){
+                conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            }
             rs = aPs.executeQuery();
             while(rs.next()){
                 String value = rs.getString(1);
@@ -80,7 +81,6 @@ public class ConnectDB {
                     found = true;
                 }
             }
-            conn.close();
         } catch (SQLException e) {
             System.out.println("!! SQL Exception !!\n"+e);
             e.printStackTrace();
@@ -91,7 +91,6 @@ public class ConnectDB {
         } finally {
             if (conn != null) {
                 try {
-                    conn.close();
                     return found;
                 } catch (Exception e) {
                     System.out.println("!! Exception closing DB connection !!\n"+e);
@@ -114,12 +113,13 @@ public class ConnectDB {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
 
-            conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            if(conn == null){
+                conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            }
             rs = aPs.executeQuery();
             while(rs.next()){
                 value = rs.getString(1);
             }
-            conn.close();
         } catch (SQLException e) {
             System.out.println("!! SQL Exception !!\n"+e);
             e.printStackTrace();
@@ -136,7 +136,6 @@ public class ConnectDB {
         } finally {
             if (conn != null) {
                 try {
-                    conn.close();
                     return value;
                 } catch (Exception e) {
                     System.out.println("!! Exception closing DB connection !!\n"+e);
@@ -153,12 +152,13 @@ public class ConnectDB {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
 
-            conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            if(conn == null){
+                conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            }
             rs = aPs.executeQuery();
             while(rs.next()){
                 userData = rs.getInt("tipo")+":"+rs.getString("nome")+":"+rs.getString("email");
             }
-            conn.close();
         } catch (SQLException e) {
             System.out.println("!! SQL Exception !!\n"+e);
             e.printStackTrace();
@@ -175,7 +175,6 @@ public class ConnectDB {
         } finally {
             if (conn != null) {
                 try {
-                    conn.close();
                     return userData;
                 } catch (Exception e) {
                     System.out.println("!! Exception closing DB connection !!\n"+e);
@@ -196,7 +195,9 @@ public class ConnectDB {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
-            conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            if(conn == null){
+                conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            }
             int result = aStatement.executeUpdate();
             if(result == 1){
                 System.out.println("**Inserido na Tabela com Sucesso**");
@@ -214,7 +215,6 @@ public class ConnectDB {
         } finally {
             if (conn != null) {
                 try {
-                    conn.close();
                     return true;
                 } catch (Exception e) {
                     System.out.println("!! Exception closing DB connection !!\n"+e);
@@ -235,14 +235,15 @@ public class ConnectDB {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
 
-            conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            if(conn == null){
+                conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            }
             PreparedStatement aPs = ConnectDB.getConn().prepareStatement(stmt);
 
             rs = aPs.executeQuery();
             while(rs.next()){
                 list.add(new User( rs.getString("nome"), rs.getString("email"), rs.getInt("num_interno"), rs.getInt("tipo")));
             }
-            conn.close();
         } catch (SQLException e) {
             System.out.println("!! SQL Exception !!\n"+e);
             e.printStackTrace();
@@ -262,13 +263,10 @@ public class ConnectDB {
         } finally {
             if (conn != null) {
                 try {
-                    conn.close();
                     return list;
-
                 } catch (Exception e) {
                     System.out.println("!! Exception closing DB connection !!\n"+e);
                     return null;
-
                 }
             }
         } // end of finally

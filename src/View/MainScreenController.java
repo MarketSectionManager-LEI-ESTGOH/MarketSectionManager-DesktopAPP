@@ -3,6 +3,8 @@ package View;
 import Controller.User;
 import Model.ConnectDB;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.fxml.FXMLLoader;
@@ -41,6 +43,8 @@ public class MainScreenController {
     public TableColumn<User, Integer> numint_tb_users;
     @FXML
     public TableColumn<User, String> email_tb_users;
+    public Button RemoveUserBtn;
+    public TextField searchTextField;
 
     ObservableList<User> listUsers;
 
@@ -48,6 +52,9 @@ public class MainScreenController {
     /**
      * Referencia apresnetação de dados: 20/04/2021
      * https://www.youtube.com/watch?v=tw_NXq08NUE
+     *
+     * Referencia filtro de pesquisa: 26/04/2021
+     * https://www.youtube.com/watch?v=FeTrcNBVWtg
      *
      */
 
@@ -93,7 +100,34 @@ public class MainScreenController {
         numint_tb_users.setCellValueFactory(new PropertyValueFactory<User, Integer>("userID"));
 
         listUsers = ConnectDB.getAllUsers();
-        table_users.setItems(listUsers);
+        FilteredList<User> filteredData = new FilteredList<>(listUsers, b -> true);
+        searchTextField.textProperty().addListener((observable, oldValue, newValue) ->{
+            filteredData.setPredicate(User ->{
+                if(newValue == null || newValue.isEmpty()){
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if(User.getUsername().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if(String.valueOf(User.getUserID()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if(User.getUserTypeConv().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                }else if(User.getEmail().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                }else{
+                    return false;
+                }
+            });
+        });
+
+        SortedList<User> sortedData = new SortedList<>(filteredData);
+
+        sortedData.comparatorProperty().bind(table_users.comparatorProperty());
+
+        table_users.setItems(sortedData);
         allUsersPane.setVisible(true);
     }
 
