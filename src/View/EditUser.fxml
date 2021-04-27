@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
@@ -14,9 +15,12 @@
       <Text layoutX="35.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome:" />
       <TextField fx:id="emailTextField" layoutX="79.0" layoutY="150.0" prefHeight="25.0" prefWidth="373.0" />
       <Text layoutX="37.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" />
-      <Button fx:id="CancelBtn" layoutX="390.0" layoutY="195.0" mnemonicParsing="false" text="Cancelar" />
-      <Button fx:id="udpateBtn" layoutX="313.0" layoutY="195.0" mnemonicParsing="false" text="Atualizar" />
-      <RadioButton fx:id="funcRadioBtn" layoutX="79.0" layoutY="66.0" mnemonicParsing="false" text="Funcionário" />
-      <RadioButton fx:id="adminRadioBtn" layoutX="187.0" layoutY="66.0" mnemonicParsing="false" text="Administrador" />
+      <Button fx:id="CancelBtn" layoutX="390.0" layoutY="195.0" mnemonicParsing="false" onAction="#handleCloseButtonAction" text="Cancelar" />
+      <Button fx:id="udpateBtn" layoutX="313.0" layoutY="195.0" mnemonicParsing="false" onAction="#handleUpdateButtonAction" text="Atualizar" />
+      <RadioButton fx:id="funcRadioBtn" layoutX="79.0" layoutY="66.0" mnemonicParsing="false" text="Funcionário">
+         <toggleGroup>
+            <ToggleGroup fx:id="typeGroup" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="adminRadioBtn" layoutX="187.0" layoutY="66.0" mnemonicParsing="false" text="Administrador" toggleGroup="$typeGroup" />
    </children>
 </AnchorPane>

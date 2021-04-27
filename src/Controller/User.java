@@ -6,6 +6,8 @@ import Model.Encryption;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class User {
 
@@ -111,6 +113,37 @@ public class User {
             throwables.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     *Check if email exists in DB
+     * true = exists, false = is free
+     * @param aEmail
+     * @return
+     */
+    public static boolean checkEmailExists(String aEmail){
+        try {
+            String stmt = "SELECT email FROM user WHERE email = ?";
+            PreparedStatement ps = ConnectDB.getConn().prepareStatement(stmt);
+            ps.setString(1, aEmail);
+            return ConnectDB.checkString(ps, aEmail);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return true;
+    }
+
+    /**
+     * Check if emails is correct
+     * https://howtodoinjava.com/java/regex/java-regex-validate-email-address/
+     * @param aEmail
+     * @return
+     */
+    public static boolean checkEmail(String aEmail){
+        String regex = "^(.+)@(.+)[\\w]$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(aEmail);
+        return matcher.matches();
     }
 
     @Override
