@@ -2,10 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eac06cb8-75b6-4ce5-8622-061c7082357d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/out/production/RepositoryClone/View/AddUser.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/AddUser.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/EditUser.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/EditUser.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/EditUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/EditUserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/Model/ConnectDB.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/Model/ConnectDB.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/View/MainScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/View/MainScreen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/View/MainScreenController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/View/MainScreenController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/View/MainScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/View/MainScreenController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/MainScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/MainScreen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/MainScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/MainScreenController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
