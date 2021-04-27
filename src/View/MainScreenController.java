@@ -35,6 +35,7 @@ public class MainScreenController {
     public TextField userNumberTF = new TextField();
     public TextField userEmailTF = new TextField();
     public PasswordField userPassPF = new PasswordField();
+    public PasswordField userPassConfPF = new PasswordField();
     public Pane allUsersPane = new Pane();
     public Button collapseBtn1 = new Button();
     @FXML
@@ -57,7 +58,7 @@ public class MainScreenController {
 
 
     /**
-     * Referencia apresnetação de dados: 20/04/2021
+     * Referencia apresentação de dados: 20/04/2021
      * https://www.youtube.com/watch?v=tw_NXq08NUE
      *
      * Referencia filtro de pesquisa: 26/04/2021
@@ -92,9 +93,20 @@ public class MainScreenController {
     }
 
     public void register(){
-        collapse();
         System.out.println("register btn clicked!!");
-        registerPane.setVisible(true);
+        try{
+            //EditUserController.setThisUser(listUsers.get(index));
+            //System.out.println(listUsers.get(index).getUserID());
+            Stage AddStage = new Stage();
+            Parent rootAddStage = FXMLLoader.load(getClass().getResource("AddUser.fxml"));
+            AddStage.setScene(new Scene(rootAddStage));
+            AddStage.setTitle("Adicionar Utilizador");
+            AddStage.setResizable(false);
+            AddStage.centerOnScreen();
+            AddStage.show();
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 
     public void usersTable(){
@@ -142,8 +154,13 @@ public class MainScreenController {
         System.out.println("add user btn clicked!!");
             try {
                 ConnectDB.loadProperties();
-                if(View.Main.u.registerUser(userTypeCombo.getSelectionModel().getSelectedIndex(), userNameTF.getText(), Integer.parseInt(userNumberTF.getText()), userPassPF.getText(), userEmailTF.getText())){
-                    alerts(Alert.AlertType.INFORMATION,"SUCESSO","Utilizador inserido com sucesso!").showAndWait();
+                if((userPassPF.getText() == userPassConfPF.getText()) && (userTypeCombo.getSelectionModel().getSelectedIndex() != -1)){
+
+
+                if(View.Main.u.registerUser(userTypeCombo.getSelectionModel().getSelectedIndex(), userNameTF.getText(), Integer.parseInt(userNumberTF.getText()), userPassPF.getText(), userEmailTF.getText())) {
+                            alerts(Alert.AlertType.INFORMATION, "SUCESSO", "Utilizador inserido com sucesso!").showAndWait();
+                        } }else{
+                    System.out.println("erro - pass igual");
                 }
                 clearUserRegistrationFileds();
             }catch(NumberFormatException nfe){
