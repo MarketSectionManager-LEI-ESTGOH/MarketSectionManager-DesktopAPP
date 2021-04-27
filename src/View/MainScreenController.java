@@ -5,7 +5,10 @@ import Model.ConnectDB;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,6 +18,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import javax.swing.*;
+import java.awt.event.MouseEvent;
 
 public class MainScreenController {
 
@@ -45,8 +49,11 @@ public class MainScreenController {
     public TableColumn<User, String> email_tb_users;
     public Button RemoveUserBtn;
     public TextField searchTextField;
+    public Button EditUserBtn;
 
     ObservableList<User> listUsers;
+    private int index = -1;
+    protected static User selectedUser = null;
 
 
     /**
@@ -171,5 +178,29 @@ public class MainScreenController {
         allUsersPane.setVisible(false);
     }
 
+    public void getSelected(javafx.scene.input.MouseEvent mouseEvent) {
+        index = table_users.getSelectionModel().getSelectedIndex();
+        if(index <= -1){
+            return;
+        }
+        EditUserBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try{
+                    EditUserController.setThisUser(listUsers.get(index));
+                    System.out.println(listUsers.get(index).getUserID());
+                    Stage EditStage = new Stage();
+                    Parent root = FXMLLoader.load(getClass().getResource("EditUser.fxml"));
+                    EditStage.setScene(new Scene(root));
+                    EditStage.setTitle("Editar "+nome_tb_users.getCellData(index));
+                    EditStage.setResizable(false);
+                    EditStage.centerOnScreen();
+                    EditStage.show();
+                }catch (Exception e){
+                    System.out.println(e);
+                }
 
+            }
+        });
+    }
 }
