@@ -99,6 +99,18 @@ public class User {
         return false;
     }
 
+    public static boolean removeUserFromDB(User toRemove){
+        try {
+            String stmt = "DELETE FROM user WHERE num_interno = ?";
+            PreparedStatement ps = ConnectDB.getConn().prepareStatement(stmt);
+            ps.setInt(1, toRemove.getUserID());
+            return ConnectDB.removeFromDB(ps);
+        }catch (Exception e){
+
+        }
+        return false;
+    }
+
     public static User createObjUser(int aUserID){
         ConnectDB.loadProperties();
         try{

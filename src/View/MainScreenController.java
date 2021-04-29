@@ -8,7 +8,6 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,8 +16,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-import javax.swing.*;
-import java.awt.event.MouseEvent;
+
+import java.util.Optional;
 
 public class MainScreenController {
 
@@ -181,7 +180,7 @@ public class MainScreenController {
         userEmailTF.setText("");
     }
 
-    private Alert alerts(Alert.AlertType aAlertType, String aTitle, String aText){
+    protected static Alert alerts(Alert.AlertType aAlertType, String aTitle, String aText){
         Alert generalAlert = new Alert(aAlertType);
         generalAlert.setTitle(aTitle);
         generalAlert.setHeaderText(aTitle);
@@ -205,7 +204,6 @@ public class MainScreenController {
             public void handle(ActionEvent event) {
                 try{
                     EditUserController.setThisUser(listUsers.get(index));
-                    System.out.println(listUsers.get(index).getUserID());
                     Stage EditStage = new Stage();
                     Parent root = FXMLLoader.load(getClass().getResource("EditUser.fxml"));
                     EditStage.setScene(new Scene(root));
@@ -213,6 +211,38 @@ public class MainScreenController {
                     EditStage.setResizable(false);
                     EditStage.centerOnScreen();
                     EditStage.show();
+                }catch (Exception e){
+                    System.out.println(e);
+                }
+
+            }
+        });
+        RemoveUserBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try{
+                    User selected = listUsers.get(index);
+                    if(selected.getUserID() == Main.u.getUserID()){
+                        alerts(Alert.AlertType.ERROR, "Falha ao remover", "Não pode remover a conta que está" +
+                                " a utilizar.").showAndWait();
+                    }else{
+                        System.out.println(selected.getUserID());
+                        Optional<ButtonType> result = alerts(Alert.AlertType.CONFIRMATION, "Remover "+selected.getUsername(), "Tem a certeza que" +
+                                " quer remover o utilizador "+selected.getUsername()+" com o número interno "+selected.getUserID()
+                                +"?").showAndWait();
+                        if(!result.isPresent()){
+
+                        }else if(result.get() == ButtonType.OK){
+                            if(User.removeUserFromDB(selected)){
+                                alerts(Alert.AlertType.INFORMATION, "Removido com sucesso", "Utilizador "+selected.getUsername()
+                                        +" removido com sucesso.").showAndWait();
+                            }else{
+                                alerts(Alert.AlertType.ERROR, "Falha ao remover", "Algo correu mal...").showAndWait();
+                            }
+                        }else if(result.get() == ButtonType.CANCEL){
+
+                        }
+                    }
                 }catch (Exception e){
                     System.out.println(e);
                 }

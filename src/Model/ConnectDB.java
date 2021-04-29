@@ -225,6 +225,91 @@ public class ConnectDB {
         return false;
     }
 
+    /**
+     * função para inserção de dados na BD
+     * @param aStatement  PreparedStatement a executar
+     * @return  true se ocorreu com sucesso / false se decorreram erros
+     */
+    public static boolean removeFromDB(PreparedStatement aStatement){
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+
+            if(conn == null){
+                conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            }
+            int result = aStatement.executeUpdate();
+            if(result == 1){
+                System.out.println("**Eliminado da Tabela com Sucesso**");
+            }else{
+                System.out.println("**Ocorreu um erro a Eliminar da Tabela**");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("!! SQL Exception !!\n"+e);
+            e.printStackTrace();
+            return false;
+        } catch (ClassNotFoundException e) {
+            System.out.println("!! Class Not Found. Unable to load Database Drive !!\n"+e);
+            return false;
+        } finally {
+            if (conn != null) {
+                try {
+                    return true;
+                } catch (Exception e) {
+                    System.out.println("!! Exception closing DB connection !!\n"+e);
+                    return false;
+                }
+            }
+        } // end of finally
+        return false;
+    }
+
+    /**
+     * função para atualizar dados na BD
+     * @param aStatement  PreparedStatement a executar
+     * @return  true se ocorreu com sucesso / false se decorreram erros
+     */
+    public static boolean updateDB(PreparedStatement aStatement){
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+
+            if(conn == null){
+                conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            }
+            int result = aStatement.executeUpdate();
+            if(result == 1){
+                System.out.println("**Atualizado na Tabela com Sucesso**");
+                return true;
+            }else{
+                System.out.println("**Ocorreu um erro a Atualizar na Tabela**");
+                return false;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("!! SQL Exception !!\n"+e);
+            e.printStackTrace();
+            return false;
+        } catch (ClassNotFoundException e) {
+            System.out.println("!! Class Not Found. Unable to load Database Drive !!\n"+e);
+            return false;
+        } finally {
+            if (conn != null) {
+                try {
+                    return true;
+                } catch (Exception e) {
+                    System.out.println("!! Exception closing DB connection !!\n"+e);
+                    return false;
+                }
+            }
+        } // end of finally
+    }
+
+    /**
+     * função para obter lista com todos os utilizadores
+     * @return
+     */
     public static ObservableList<User> getAllUsers(){
         String userData = "";
         ResultSet rs = null;

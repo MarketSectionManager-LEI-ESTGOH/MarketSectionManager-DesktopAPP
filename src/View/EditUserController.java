@@ -1,15 +1,13 @@
 package View;
 
 import Controller.User;
+import Model.ConnectDB;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.awt.event.ActionEvent;
+import java.sql.PreparedStatement;
 
 public class EditUserController{
 
@@ -75,13 +73,68 @@ public class EditUserController{
 
         if(!newEmail.equalsIgnoreCase(currentEmail)){
             if(User.checkEmailExists(newEmail)){
-                System.out.println("Email ja existe");
+                MainScreenController.alerts(Alert.AlertType.ERROR, "Email em uso", "Este email já está em " +
+                        "uso por outro utilizador.").showAndWait();
             }else{
                 if(User.checkEmail(newEmail)){
-                    System.out.println("Cool shit");
+                    try {
+                        String stmt = "UPDATE user SET tipo = ?, nome = ?, email = ? WHERE num_interno = ?";
+                        PreparedStatement ps = ConnectDB.getConn().prepareStatement(stmt);
+                        if(funcRadioBtn.isSelected()){
+                            ps.setInt(1,0);
+                        }else if(adminRadioBtn.isSelected()){
+                            ps.setInt(1,1);
+                        }else{
+                            int n = Integer.parseInt(null);
+                            ps.setInt(1, n);
+                        }
+                        ps.setString(2, nameTextField.getText());
+                        ps.setString(3, emailTextField.getText());
+                        ps.setInt(4, thisUser.getUserID());
+                        if(ConnectDB.updateDB(ps)){
+                            MainScreenController.alerts(Alert.AlertType.INFORMATION, "Atualizado com sucesso",
+                                    "O utilizador foi atualizado com sucesso.").showAndWait();
+                            Stage stage = (Stage) CancelBtn.getScene().getWindow();
+                            stage.close();
+                        }else{
+                            MainScreenController.alerts(Alert.AlertType.ERROR, "Algo correu mal...",
+                                    "Algo correu mal, Sem sucesso ao atualizar.").showAndWait();
+                        }
+                    }catch (Exception e){
+                        MainScreenController.alerts(Alert.AlertType.ERROR, "Algo correu mal...",
+                                "Algo correu mal, Sem sucesso ao atualizar. "+e).showAndWait();
+                    }
                 }else{
-                    System.out.println("Email invalido");
+                    MainScreenController.alerts(Alert.AlertType.ERROR, "Email errado", "Não segue o formato " +
+                            "correto de email.").showAndWait();
                 }
+            }
+        }else{
+            try {
+                String stmt = "UPDATE user SET tipo = ?, nome = ? WHERE num_interno = ?";
+                PreparedStatement ps = ConnectDB.getConn().prepareStatement(stmt);
+                if(funcRadioBtn.isSelected()){
+                    ps.setInt(1,0);
+                }else if(adminRadioBtn.isSelected()){
+                    ps.setInt(1,1);
+                }else{
+                    int n = Integer.parseInt(null);
+                    ps.setInt(1, n);
+                }
+                ps.setString(2, nameTextField.getText());
+                ps.setInt(3, thisUser.getUserID());
+                if(ConnectDB.updateDB(ps)){
+                    MainScreenController.alerts(Alert.AlertType.INFORMATION, "Atualizado com sucesso",
+                            "O utilizador foi atualizado com sucesso.").showAndWait();
+                    Stage stage = (Stage) CancelBtn.getScene().getWindow();
+                    stage.close();
+                }else{
+                    MainScreenController.alerts(Alert.AlertType.ERROR, "Algo correu mal...",
+                            "Algo correu mal, Sem sucesso ao atualizar.").showAndWait();
+                }
+            }catch (Exception e){
+                MainScreenController.alerts(Alert.AlertType.ERROR, "Algo correu mal...",
+                        "Algo correu mal, Sem sucesso ao atualizar. "+e).showAndWait();
             }
         }
 
