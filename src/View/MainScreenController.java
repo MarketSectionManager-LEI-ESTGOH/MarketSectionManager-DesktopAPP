@@ -1,5 +1,6 @@
 package View;
 
+import Controller.Product;
 import Controller.User;
 import Model.ConnectDB;
 import javafx.collections.ObservableList;
@@ -17,6 +18,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 public class MainScreenController {
@@ -52,8 +54,34 @@ public class MainScreenController {
     public Button EditUserBtn;
 
     ObservableList<User> listUsers;
+    ObservableList<Product> listProducts;
     private int index = -1;
     protected static User selectedUser = null;
+
+
+    public Pane productsPane;
+
+    @FXML
+    public TableView<Product> productTable;
+    @FXML
+    public TableColumn<Product, Integer> numIntProfuctsCol;
+    @FXML
+    public TableColumn<Product, String> productNameCol;
+    @FXML
+    public TableColumn<Product, Integer> freshProductCol;
+    @FXML
+    public TableColumn<Product, Float> priceProductCol;
+    @FXML
+    public TableColumn<Product, Integer> vendaProductCol;
+    @FXML
+    public TableColumn<Product, BigDecimal> eanProductCol;
+    @FXML
+    public TableColumn<Product, String> brandProductCol;
+
+    public Button RemoveProductBtn;
+    public TextField searchProductTextField;
+    public Button EditProductBtn;
+    public Button addProductBtn;
 
 
     /**
@@ -149,6 +177,55 @@ public class MainScreenController {
         allUsersPane.setVisible(true);
     }
 
+    public void productsTable(){
+        collapse();
+        System.out.println("products Edit btn clicked!!");
+
+        numIntProfuctsCol.setCellValueFactory(new PropertyValueFactory<Product, Integer>("num_int"));
+        productNameCol.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+        freshProductCol.setCellValueFactory(new PropertyValueFactory<Product, Integer>("fresh"));
+        priceProductCol.setCellValueFactory(new PropertyValueFactory<Product, Float>("price"));
+        vendaProductCol.setCellValueFactory(new PropertyValueFactory<Product, Integer>("venda"));
+        eanProductCol.setCellValueFactory(new PropertyValueFactory<Product, BigDecimal>("ean"));
+        brandProductCol.setCellValueFactory(new PropertyValueFactory<Product, String>("brand"));
+
+
+        listProducts = ConnectDB.getAllProducts();
+        FilteredList<Product> filteredData = new FilteredList<>(listProducts, b -> true);
+        searchTextField.textProperty().addListener((observable, oldValue, newValue) ->{
+            filteredData.setPredicate(Product ->{
+                if(newValue == null || newValue.isEmpty()){
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if(Product.getName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if(String.valueOf(Product.getNum_int()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if(String.valueOf(Product.getVenda()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if(String.valueOf(Product.getPrice()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if(String.valueOf(Product.getEan()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if(Product.getBrand().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+        });
+
+        SortedList<Product> sortedData = new SortedList<>(filteredData);
+
+        sortedData.comparatorProperty().bind(productTable.comparatorProperty());
+
+        productTable.setItems(sortedData);
+        productsPane.setVisible(true);
+    }
+
     public void addUser(){
         System.out.println("add user btn clicked!!");
             try {
@@ -192,6 +269,7 @@ public class MainScreenController {
         clearUserRegistrationFileds();
         registerPane.setVisible(false);
         allUsersPane.setVisible(false);
+        productsPane.setVisible(false);
     }
 
     public void getSelected(javafx.scene.input.MouseEvent mouseEvent) {

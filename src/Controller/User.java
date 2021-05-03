@@ -3,7 +3,6 @@ package Controller;
 import Model.ConnectDB;
 import Model.Encryption;
 
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.regex.Matcher;

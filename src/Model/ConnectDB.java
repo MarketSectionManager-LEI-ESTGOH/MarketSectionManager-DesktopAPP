@@ -1,5 +1,6 @@
 package Model;
 
+import Controller.Product;
 import Controller.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -7,8 +8,6 @@ import javafx.collections.ObservableList;
 import java.io.*;
 import java.sql.*;
 import java.sql.DriverManager;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 
 public class ConnectDB {
@@ -328,6 +327,59 @@ public class ConnectDB {
             rs = aPs.executeQuery();
             while(rs.next()){
                 list.add(new User( rs.getString("nome"), rs.getString("email"), rs.getInt("num_interno"), rs.getInt("tipo")));
+            }
+        } catch (SQLException e) {
+            System.out.println("!! SQL Exception !!\n"+e);
+            e.printStackTrace();
+            return null;
+        } catch (ClassNotFoundException e) {
+            System.out.println("!! Class Not Found. Unable to load Database Drive !!\n"+e);
+            return null;
+
+        } catch (IllegalAccessException e) {
+            System.out.println("!! Illegal Access !!\n"+e);
+            return null;
+
+        } catch (InstantiationException e) {
+            System.out.println("!! Class Not Instanciaded !!\n"+e);
+            return null;
+
+        } finally {
+            if (conn != null) {
+                try {
+                    return list;
+                } catch (Exception e) {
+                    System.out.println("!! Exception closing DB connection !!\n"+e);
+                    return null;
+                }
+            }
+        } // end of finally
+        return null;
+
+    }
+
+    /**
+     * função para obter lista com todos os utilizadores
+     * @return
+     */
+    public static ObservableList<Product> getAllProducts(){
+        String userData = "";
+        ResultSet rs = null;
+
+        ObservableList<Product> list = FXCollections.observableArrayList();
+
+        String stmt = "Select n_interno, nome, fresco, preco, venda, ean, marca from produto";
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            if(conn == null){
+                conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            }
+            PreparedStatement aPs = ConnectDB.getConn().prepareStatement(stmt);
+
+            rs = aPs.executeQuery();
+            while(rs.next()){
+                list.add(new Product(rs.getInt("n_interno"), rs.getString("nome"), rs.getInt("fresco"), rs.getFloat("preco"), rs.getInt("venda"), rs.getBigDecimal("ean"), rs.getString("marca")));
             }
         } catch (SQLException e) {
             System.out.println("!! SQL Exception !!\n"+e);
