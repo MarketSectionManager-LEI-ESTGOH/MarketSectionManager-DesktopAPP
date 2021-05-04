@@ -4,6 +4,7 @@ import Controller.ArcaFrigorifica;
 import Controller.Product;
 import Controller.User;
 import Model.ConnectDB;
+import Model.Encryption;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -20,8 +21,14 @@ import javafx.stage.Stage;
 
 
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.util.Optional;
+
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.Date;
 
 public class MainScreenController {
 
@@ -54,16 +61,12 @@ public class MainScreenController {
     public Button RemoveUserBtn;
     public TextField searchTextField;
     public Button EditUserBtn;
-
     ObservableList<User> listUsers;
     ObservableList<Product> listProducts;
     ObservableList<ArcaFrigorifica> listArcas;
     private int index = -1;
     protected static User selectedUser = null;
-
-
     public Pane productsPane;
-
     @FXML
     public TableView<Product> productTable;
     @FXML
@@ -78,14 +81,11 @@ public class MainScreenController {
     public TableColumn<Product, BigDecimal> eanProductCol;
     @FXML
     public TableColumn<Product, String> brandProductCol;
-
     public Button RemoveProductBtn;
     public TextField searchProductTextField;
     public Button EditProductBtn;
     public Button addProductBtn;
-
     public Pane arcasPane;
-
     @FXML
     public TableView<ArcaFrigorifica> arcasTable;
     @FXML
@@ -106,12 +106,17 @@ public class MainScreenController {
     public TableColumn<ArcaFrigorifica, BigDecimal> idFuncArcaCol;
     @FXML
     public TableColumn<ArcaFrigorifica, String> nomeFuncArcaCol;
-
-
     public Button RemoveArcaBtn;
     public TextField searchArcaTextField;
     public Button EditArcaBtn;
     public Button addArcaBtn;
+    public Button insertArcaInDB;
+    public TextField refrigeratorDesign;
+    public TextField refrigeratorNumber;
+    public TextField refrigeratorManufacturer;
+    public TextField refrigeratorMaxTemp;
+    public TextField refrigeratorMinTemp;
+    private static DateFormat timstampRefrigerator = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");
 
     /**
      * Referencia apresentação de dados: 20/04/2021
@@ -417,5 +422,62 @@ public class MainScreenController {
 
             }
         });
+    }
+
+
+
+    public void showAddRefrigerator(){
+        System.out.println("add refrigerator btn clicked!!");
+        try{
+            Stage AddRefrigerator = new Stage();
+            Parent rootAddRefrigerator = FXMLLoader.load(getClass().getResource("AddRefrigerator.fxml"));
+            AddRefrigerator.setScene(new Scene(rootAddRefrigerator));
+            AddRefrigerator.setTitle("Adicionar Arca Frigorifica");
+            AddRefrigerator.setResizable(false);
+            AddRefrigerator.centerOnScreen();
+            AddRefrigerator.show();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void insertRefrigerator(){
+        System.out.println("insert refrigerator in db button clicked!");
+        if((!refrigeratorDesign.getText().toString().isEmpty()) && (!refrigeratorNumber.getText().toString().isEmpty())
+                && (!refrigeratorManufacturer.getText().toString().isEmpty())
+                && (!refrigeratorMaxTemp.getText().toString().isEmpty())
+                && (!refrigeratorMinTemp.getText().toString().isEmpty())){
+            if(Float.valueOf(refrigeratorMaxTemp.getText()) < Float.valueOf(refrigeratorMinTemp.getText())){
+                alerts(Alert.AlertType.ERROR, "ERRO", "A temperatura máxima não pode ser mais baixa que a temperatura mínima!").showAndWait();
+            }else {
+                if (registerRefrigerator(Integer.parseInt(refrigeratorNumber.getText()), refrigeratorDesign.getText(), refrigeratorManufacturer.getText(),
+                        timstampRefrigerator.format(new Date()), Float.parseFloat(refrigeratorMinTemp.getText()), Float.parseFloat(refrigeratorMaxTemp.getText()))) {
+                    alerts(Alert.AlertType.INFORMATION, "SUCESSO", "A Arca Frigorifica foi inserida com sucesso!").showAndWait();
+                } else {
+                    alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um erro ao inserir a Arca Frigorifica, por favor tente novamente!").showAndWait();
+                }
+            }
+        }else{
+            alerts(Alert.AlertType.ERROR, "ERRO", "Todos os Campos são de Preenchimento Obrigatório.\n Prencha todos os campos e tente novamente!").showAndWait();
+        }
+
+
+    }
+
+    public static boolean registerRefrigerator(int aNumber, String aDesignation, String aManufacturer, String aInsertionDate, float aMinTemp, float aMaxTemp){
+        try {
+            String stmt = "INSERT INTO area_frigorifica (numero, designacao, fabricante, d_t_adicao, tem_min, tem_max) VALUES (?, ?, ?, ?, ?, ?)";
+            PreparedStatement ps = ConnectDB.getConn().prepareStatement(stmt);
+            ps.setInt(1, aNumber);
+            ps.setString(2,aDesignation);
+            ps.setString(3, aManufacturer);
+            ps.setString(4, aInsertionDate);
+            ps.setFloat(5, aMinTemp);
+            ps.setFloat(6, aMaxTemp);
+            return ConnectDB.insertIntoTable(ps);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
     }
 }

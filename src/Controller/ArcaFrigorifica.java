@@ -1,7 +1,12 @@
 package Controller;
 
+import Model.ConnectDB;
+
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 
 public class ArcaFrigorifica {
 
@@ -22,6 +27,7 @@ public class ArcaFrigorifica {
         userLimp = aUserLimp;
         userName = aUserName;
     }
+
 
     public int getNumero() {
         return numero;

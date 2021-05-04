@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MainScreenController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MainScreenController">
    <children>
       <Pane prefHeight="553.0" prefWidth="200.0" styleClass="sideBar" stylesheets="@../CSS/mainScreenStyles.css">
          <children>
@@ -21,32 +21,23 @@
             </ImageView>
             <Pane layoutY="55.0" prefHeight="135.0" prefWidth="200.0" styleClass="sideBar" stylesheets="@../CSS/mainScreenStyles.css">
                <children>
-                  <Label layoutX="13.0" layoutY="-1.0" prefHeight="17.0" prefWidth="182.0" text="ÁREAS CONTROLADAS" textFill="WHITE" />
-                  <Button layoutX="13.0" layoutY="23.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="182.0" stylesheets="@../CSS/mainScreenStyles.css" text="Adicionar" />
-                  <Button layoutX="14.0" layoutY="55.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="182.0" text="Editar" />
-                  <Button layoutX="14.0" layoutY="86.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="182.0" text="Visualizar" />
+                  <Button layoutX="13.0" layoutY="23.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="182.0" stylesheets="@../CSS/mainScreenStyles.css" text="Fornecedores" />
+                  <Button layoutX="14.0" layoutY="55.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="182.0" text="Áreas Controladas" />
                </children>
             </Pane>
             <Pane layoutY="179.0" prefHeight="135.0" prefWidth="200.0" styleClass="sideBar" stylesheets="@../CSS/mainScreenStyles.css">
                <children>
-                  <Label layoutX="14.0" layoutY="-2.0" prefHeight="17.0" prefWidth="182.0" text="ARCAS FRIGORIFICAS" textFill="WHITE" />
-                  <Button layoutX="13.0" layoutY="23.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="182.0" text="Adicionar" />
-                  <Button layoutX="14.0" layoutY="55.0" mnemonicParsing="false" onAction="#arcasTable" prefHeight="25.0" prefWidth="182.0" text="Editar" />
-                  <Button layoutX="14.0" layoutY="86.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="182.0" text="Visualizar" />
+                  <Button layoutX="14.0" layoutY="55.0" mnemonicParsing="false" onAction="#arcasTable" prefHeight="25.0" prefWidth="182.0" text="Arcas Frigorificas" />
                </children>
             </Pane>
             <Pane layoutY="294.0" prefHeight="135.0" prefWidth="200.0" styleClass="sideBar" stylesheets="@../CSS/mainScreenStyles.css">
                <children>
-                  <Label layoutX="14.0" layoutY="-1.0" prefHeight="17.0" prefWidth="182.0" text="PRODUTOS" textFill="WHITE" />
-                  <Button layoutX="13.0" layoutY="23.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="182.0" text="Adicionar" />
-                  <Button fx:id="editProducts" layoutX="14.0" layoutY="55.0" mnemonicParsing="false" onAction="#productsTable" prefHeight="25.0" prefWidth="182.0" text="Editar" />
-                  <Button layoutX="14.0" layoutY="86.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="182.0" text="Visualizar" />
+                  <Button fx:id="editProducts" layoutX="14.0" layoutY="55.0" mnemonicParsing="false" onAction="#productsTable" prefHeight="25.0" prefWidth="182.0" text="Produtos" />
                </children>
             </Pane>
             <Pane layoutY="411.0" prefHeight="135.0" prefWidth="200.0" styleClass="sideBar" stylesheets="@../CSS/mainScreenStyles.css">
                <children>
-                  <Label layoutX="14.0" layoutY="-1.0" prefHeight="17.0" prefWidth="182.0" text="UTILIZADORES" textFill="WHITE" />
-                  <Button fx:id="editBTN" layoutX="14.0" layoutY="55.0" mnemonicParsing="false" onAction="#usersTable" prefHeight="25.0" prefWidth="182.0" text="Editar" />
+                  <Button fx:id="editBTN" layoutX="14.0" layoutY="55.0" mnemonicParsing="false" onAction="#usersTable" prefHeight="25.0" prefWidth="182.0" text="Utilizadores" />
                </children>
             </Pane>
          </children>
@@ -147,7 +138,7 @@
             </Label>
             <TextField fx:id="searchArcaTextField" layoutX="72.0" layoutY="60.0" />
             <Button fx:id="EditArcaBtn" layoutX="867.0" layoutY="522.0" mnemonicParsing="false" text="Editar" textAlignment="CENTER" />
-            <Button fx:id="addArcaBtn" layoutX="792.0" layoutY="522.0" mnemonicParsing="false" onAction="#register" prefHeight="25.0" prefWidth="68.0" text="Adicionar" />
+            <Button fx:id="addArcaBtn" layoutX="792.0" layoutY="522.0" mnemonicParsing="false" onAction="#showAddRefrigerator" prefHeight="25.0" prefWidth="68.0" text="Adicionar" />
          </children>
       </Pane>
    </children>
