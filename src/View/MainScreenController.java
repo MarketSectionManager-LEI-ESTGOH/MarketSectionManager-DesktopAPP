@@ -228,24 +228,29 @@ public class MainScreenController {
 
     public void addUser(){
         System.out.println("add user btn clicked!!");
-            try {
-                ConnectDB.loadProperties();
-                if((userPassPF.getText() == userPassConfPF.getText()) && (userTypeCombo.getSelectionModel().getSelectedIndex() != -1)){
-
-
-                if(View.Main.u.registerUser(userTypeCombo.getSelectionModel().getSelectedIndex(), userNameTF.getText(), Integer.parseInt(userNumberTF.getText()), userPassPF.getText(), userEmailTF.getText())) {
-                            alerts(Alert.AlertType.INFORMATION, "SUCESSO", "Utilizador inserido com sucesso!").showAndWait();
-                        } }else{
-                    System.out.println("erro - pass igual");
+        ConnectDB.loadProperties();
+        if(userTypeCombo.getSelectionModel().getSelectedIndex() != -1){
+            if(userPassPF.getText().equals(userPassConfPF.getText())){
+                if(User.checkEmail(userEmailTF.getText())){
+                    if(!User.checkEmailExists(userEmailTF.getText())){
+                        if(View.Main.u.registerUser(userTypeCombo.getSelectionModel().getSelectedIndex(), userNameTF.getText(), Integer.parseInt(userNumberTF.getText()), userPassPF.getText(), userEmailTF.getText())){
+                            alerts(Alert.AlertType.INFORMATION,"SUCESSO","O " + userTypeCombo.getSelectionModel().getSelectedItem() + " (" + userNumberTF.getText() + ") - " + userNameTF.getText() + " foi introduzido com sucesso!").showAndWait();
+                        }else{
+                            alerts(Alert.AlertType.ERROR, "ERRO", "Erro ao introduzir o utilizador, por favor tente novamente!").showAndWait();
+                        }
+                        clearUserRegistrationFileds();
+                    }else{
+                        alerts(Alert.AlertType.ERROR, "ERRO", "O Email introduzido já está em uso!").showAndWait();
+                    }
+                }else{
+                    alerts(Alert.AlertType.ERROR, "ERRO", "O Email introduzido não é válido!\nPor favor introduza o email no formato [nome]@[servidor].[domínio]\n(Ex.: john.doe@msm.com)").showAndWait();
                 }
-                clearUserRegistrationFileds();
-            }catch(NumberFormatException nfe){
-                alerts(Alert.AlertType.INFORMATION,"ERRO","O campo número de funcionário apenas aceita números").showAndWait();
-                clearUserRegistrationFileds();
-            }catch(Exception e){
-                alerts(Alert.AlertType.INFORMATION,"ERRO","Aconteceu um erro inesperado, por favor tente novamente!").showAndWait();
-                clearUserRegistrationFileds();
+            }else{
+                alerts(Alert.AlertType.ERROR, "ERRO", "As Palavras Passe não Coíncidem, por favor tente novamente!").showAndWait();
             }
+        }else{
+            alerts(Alert.AlertType.ERROR, "ERRO", "O tipo de utilizador é de preenchimento obrigatório!").showAndWait();
+        }
 
     }
 
