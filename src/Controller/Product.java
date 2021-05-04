@@ -1,13 +1,12 @@
 package Controller;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 
 public class Product {
 
     private int num_int, fresh, venda;
     private BigDecimal ean;
-    private String name, brand;
+    private String name, brand, freshString;
     private float price;
 
     public Product(){
@@ -22,6 +21,12 @@ public class Product {
         venda = aVenda;
         ean = aEAN;
         brand = aBrand;
+        if(fresh == 1){
+            freshString = "Sim";
+            ean = null;
+        }else if(fresh == 0){
+            freshString = "Não";
+        }
     }
 
     public void setNum_int(int num_int) {
@@ -80,5 +85,7 @@ public class Product {
         return price;
     }
 
-
+    public String getFreshString() {
+        return freshString;
+    }
 }

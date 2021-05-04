@@ -31,7 +31,7 @@
                <children>
                   <Label layoutX="14.0" layoutY="-2.0" prefHeight="17.0" prefWidth="182.0" text="ARCAS FRIGORIFICAS" textFill="WHITE" />
                   <Button layoutX="13.0" layoutY="23.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="182.0" text="Adicionar" />
-                  <Button layoutX="14.0" layoutY="55.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="182.0" text="Editar" />
+                  <Button layoutX="14.0" layoutY="55.0" mnemonicParsing="false" onAction="#arcasTable" prefHeight="25.0" prefWidth="182.0" text="Editar" />
                   <Button layoutX="14.0" layoutY="86.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="182.0" text="Visualizar" />
                </children>
             </Pane>
@@ -101,11 +101,10 @@
                <columns>
                   <TableColumn fx:id="numIntProfuctsCol" prefWidth="115.0" text="Número Interno" />
                   <TableColumn fx:id="productNameCol" prefWidth="266.0" text="Nome" />
-                  <TableColumn fx:id="freshProductCol" prefWidth="75.0" text="Fresco" />
-                  <TableColumn fx:id="priceProductCol" minWidth="0.0" prefWidth="95.0" text="Preço" />
-                  <TableColumn fx:id="vendaProductCol" prefWidth="105.0" text="Venda" />
-                  <TableColumn fx:id="eanProductCol" maxWidth="500.0" prefWidth="119.0" text="EAN" />
-                  <TableColumn fx:id="brandProductCol" prefWidth="198.0" text="Marca" />
+                  <TableColumn fx:id="freshProductCol" prefWidth="98.0" text="Fresco" />
+                  <TableColumn fx:id="priceProductCol" minWidth="0.0" prefWidth="89.0" text="Preço" />
+                  <TableColumn fx:id="eanProductCol" maxWidth="500.0" prefWidth="173.0" text="EAN" />
+                  <TableColumn fx:id="brandProductCol" prefWidth="232.0" text="Marca" />
                </columns>
             </TableView>
             <Button fx:id="RemoveProductBtn" layoutX="921.0" layoutY="522.0" mnemonicParsing="false" text="Remover" textAlignment="CENTER" />
@@ -117,6 +116,38 @@
             <TextField fx:id="searchProductTextField" layoutX="72.0" layoutY="60.0" />
             <Button fx:id="EditProductBtn" layoutX="867.0" layoutY="522.0" mnemonicParsing="false" text="Editar" textAlignment="CENTER" />
             <Button fx:id="addProductBtn" layoutX="792.0" layoutY="522.0" mnemonicParsing="false" onAction="#register" prefHeight="25.0" prefWidth="68.0" text="Adicionar" />
+         </children>
+      </Pane>
+      <Pane fx:id="arcasPane" layoutX="200.0" prefHeight="628.0" prefWidth="1059.0" style="-fx-background-color: #808080;" visible="false">
+         <children>
+            <Label layoutX="406.0" layoutY="15.0" text="ARCAS FRIGORÍFICAS" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="collapseBtn" layoutX="914.0" layoutY="15.0" mnemonicParsing="false" onAction="#collapse" prefHeight="27.0" prefWidth="32.0" styleClass="collapseButton" stylesheets="@../CSS/mainScreenStyles.css" />
+            <TableView fx:id="arcasTable" layoutX="11.0" layoutY="96.0" onMouseClicked="#getSelected" prefHeight="414.0" prefWidth="974.0">
+               <columns>
+                  <TableColumn fx:id="numArcaCol" prefWidth="75.0" text="Número" />
+                  <TableColumn fx:id="designArcaCol" prefWidth="112.0" text="Designação" />
+                  <TableColumn fx:id="fabricanteArcaCol" minWidth="8.0" prefWidth="98.0" text="Fabricante" />
+                  <TableColumn fx:id="dataAdicArcaCol" prefWidth="99.0" text="Data de Adição" />
+                  <TableColumn fx:id="tempMinArcaCol" minWidth="0.0" prefWidth="96.0" text="Temp. Mínima" />
+                  <TableColumn fx:id="tempMaxArcaCol" prefWidth="105.0" text="Temp. Máxima" />
+                  <TableColumn fx:id="ultimaLimpArcaCol" prefWidth="143.0" text="Ultima Limpeza" />
+                  <TableColumn fx:id="idFuncArcaCol" prefWidth="86.0" text="ID Func. Limp." />
+                  <TableColumn fx:id="nomeFuncArcaCol" prefWidth="159.0" text="Nome Func. Limp." />
+               </columns>
+            </TableView>
+            <Button fx:id="RemoveArcaBtn" layoutX="921.0" layoutY="522.0" mnemonicParsing="false" text="Remover" textAlignment="CENTER" />
+            <Label layoutX="14.0" layoutY="64.0" text="Procurar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <TextField fx:id="searchArcaTextField" layoutX="72.0" layoutY="60.0" />
+            <Button fx:id="EditArcaBtn" layoutX="867.0" layoutY="522.0" mnemonicParsing="false" text="Editar" textAlignment="CENTER" />
+            <Button fx:id="addArcaBtn" layoutX="792.0" layoutY="522.0" mnemonicParsing="false" onAction="#register" prefHeight="25.0" prefWidth="68.0" text="Adicionar" />
          </children>
       </Pane>
    </children>

@@ -1,5 +1,6 @@
 package Model;
 
+import Controller.ArcaFrigorifica;
 import Controller.Product;
 import Controller.User;
 import javafx.collections.FXCollections;
@@ -359,7 +360,7 @@ public class ConnectDB {
     }
 
     /**
-     * função para obter lista com todos os utilizadores
+     * função para obter lista com todos os produtos
      * @return
      */
     public static ObservableList<Product> getAllProducts(){
@@ -380,6 +381,59 @@ public class ConnectDB {
             rs = aPs.executeQuery();
             while(rs.next()){
                 list.add(new Product(rs.getInt("n_interno"), rs.getString("nome"), rs.getInt("fresco"), rs.getFloat("preco"), rs.getInt("venda"), rs.getBigDecimal("ean"), rs.getString("marca")));
+            }
+        } catch (SQLException e) {
+            System.out.println("!! SQL Exception !!\n"+e);
+            e.printStackTrace();
+            return null;
+        } catch (ClassNotFoundException e) {
+            System.out.println("!! Class Not Found. Unable to load Database Drive !!\n"+e);
+            return null;
+
+        } catch (IllegalAccessException e) {
+            System.out.println("!! Illegal Access !!\n"+e);
+            return null;
+
+        } catch (InstantiationException e) {
+            System.out.println("!! Class Not Instanciaded !!\n"+e);
+            return null;
+
+        } finally {
+            if (conn != null) {
+                try {
+                    return list;
+                } catch (Exception e) {
+                    System.out.println("!! Exception closing DB connection !!\n"+e);
+                    return null;
+                }
+            }
+        } // end of finally
+        return null;
+
+    }
+
+    /**
+     * função para obter lista com todos as arcas
+     * @return
+     */
+    public static ObservableList<ArcaFrigorifica> getAllArcas(){
+        String userData = "";
+        ResultSet rs = null;
+
+        ObservableList<ArcaFrigorifica> list = FXCollections.observableArrayList();
+
+        String stmt = "Select numero, designacao, fabricante, d_t_adicao, tem_min, tem_max, d_t_limpeza, user_limpeza, user.nome from area_frigorifica LEFT JOIN user ON user_limpeza = user.num_interno;";
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            if(conn == null){
+                conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            }
+            PreparedStatement aPs = ConnectDB.getConn().prepareStatement(stmt);
+
+            rs = aPs.executeQuery();
+            while(rs.next()){
+                list.add(new ArcaFrigorifica(rs.getInt("numero"), rs.getString("designacao"), rs.getString("fabricante"), rs.getDate("d_t_adicao"), rs.getFloat("tem_min"), rs.getFloat("tem_max"), rs.getDate("d_t_limpeza"), rs.getBigDecimal("user_limpeza"), rs.getString("user.nome")));
             }
         } catch (SQLException e) {
             System.out.println("!! SQL Exception !!\n"+e);

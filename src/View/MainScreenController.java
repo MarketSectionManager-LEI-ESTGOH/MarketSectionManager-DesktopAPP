@@ -1,5 +1,6 @@
 package View;
 
+import Controller.ArcaFrigorifica;
 import Controller.Product;
 import Controller.User;
 import Model.ConnectDB;
@@ -19,6 +20,7 @@ import javafx.stage.Stage;
 
 
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.util.Optional;
 
 public class MainScreenController {
@@ -55,6 +57,7 @@ public class MainScreenController {
 
     ObservableList<User> listUsers;
     ObservableList<Product> listProducts;
+    ObservableList<ArcaFrigorifica> listArcas;
     private int index = -1;
     protected static User selectedUser = null;
 
@@ -68,11 +71,9 @@ public class MainScreenController {
     @FXML
     public TableColumn<Product, String> productNameCol;
     @FXML
-    public TableColumn<Product, Integer> freshProductCol;
+    public TableColumn<Product, String> freshProductCol;
     @FXML
     public TableColumn<Product, Float> priceProductCol;
-    @FXML
-    public TableColumn<Product, Integer> vendaProductCol;
     @FXML
     public TableColumn<Product, BigDecimal> eanProductCol;
     @FXML
@@ -83,6 +84,34 @@ public class MainScreenController {
     public Button EditProductBtn;
     public Button addProductBtn;
 
+    public Pane arcasPane;
+
+    @FXML
+    public TableView<ArcaFrigorifica> arcasTable;
+    @FXML
+    public TableColumn<ArcaFrigorifica, Integer> numArcaCol;
+    @FXML
+    public TableColumn<ArcaFrigorifica, String> designArcaCol;
+    @FXML
+    public TableColumn<ArcaFrigorifica, String> fabricanteArcaCol;
+    @FXML
+    public TableColumn<ArcaFrigorifica, Date> dataAdicArcaCol;
+    @FXML
+    public TableColumn<ArcaFrigorifica, Float> tempMinArcaCol;
+    @FXML
+    public TableColumn<ArcaFrigorifica, Float> tempMaxArcaCol;
+    @FXML
+    public TableColumn<ArcaFrigorifica, Date> ultimaLimpArcaCol;
+    @FXML
+    public TableColumn<ArcaFrigorifica, BigDecimal> idFuncArcaCol;
+    @FXML
+    public TableColumn<ArcaFrigorifica, String> nomeFuncArcaCol;
+
+
+    public Button RemoveArcaBtn;
+    public TextField searchArcaTextField;
+    public Button EditArcaBtn;
+    public Button addArcaBtn;
 
     /**
      * Referencia apresentação de dados: 20/04/2021
@@ -183,16 +212,15 @@ public class MainScreenController {
 
         numIntProfuctsCol.setCellValueFactory(new PropertyValueFactory<Product, Integer>("num_int"));
         productNameCol.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
-        freshProductCol.setCellValueFactory(new PropertyValueFactory<Product, Integer>("fresh"));
+        freshProductCol.setCellValueFactory(new PropertyValueFactory<Product, String>("freshString"));
         priceProductCol.setCellValueFactory(new PropertyValueFactory<Product, Float>("price"));
-        vendaProductCol.setCellValueFactory(new PropertyValueFactory<Product, Integer>("venda"));
         eanProductCol.setCellValueFactory(new PropertyValueFactory<Product, BigDecimal>("ean"));
         brandProductCol.setCellValueFactory(new PropertyValueFactory<Product, String>("brand"));
 
 
         listProducts = ConnectDB.getAllProducts();
         FilteredList<Product> filteredData = new FilteredList<>(listProducts, b -> true);
-        searchTextField.textProperty().addListener((observable, oldValue, newValue) ->{
+        searchProductTextField.textProperty().addListener((observable, oldValue, newValue) ->{
             filteredData.setPredicate(Product ->{
                 if(newValue == null || newValue.isEmpty()){
                     return true;
@@ -204,13 +232,13 @@ public class MainScreenController {
                     return true;
                 } else if(String.valueOf(Product.getNum_int()).indexOf(lowerCaseFilter) != -1) {
                     return true;
-                } else if(String.valueOf(Product.getVenda()).indexOf(lowerCaseFilter) != -1) {
-                    return true;
                 } else if(String.valueOf(Product.getPrice()).indexOf(lowerCaseFilter) != -1) {
                     return true;
                 } else if(String.valueOf(Product.getEan()).indexOf(lowerCaseFilter) != -1) {
                     return true;
                 } else if(Product.getBrand().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if(Product.getFreshString().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
                 } else {
                     return false;
@@ -224,6 +252,62 @@ public class MainScreenController {
 
         productTable.setItems(sortedData);
         productsPane.setVisible(true);
+    }
+
+    public void arcasTable(){
+        collapse();
+        System.out.println("arcas Edit btn clicked!!");
+
+        numArcaCol.setCellValueFactory(new PropertyValueFactory<ArcaFrigorifica, Integer>("numero"));
+        designArcaCol.setCellValueFactory(new PropertyValueFactory<ArcaFrigorifica, String>("designacao"));
+        fabricanteArcaCol.setCellValueFactory(new PropertyValueFactory<ArcaFrigorifica, String>("fabricante"));
+        dataAdicArcaCol.setCellValueFactory(new PropertyValueFactory<ArcaFrigorifica, Date>("addDate"));
+        tempMinArcaCol.setCellValueFactory(new PropertyValueFactory<ArcaFrigorifica, Float>("tempMin"));
+        tempMaxArcaCol.setCellValueFactory(new PropertyValueFactory<ArcaFrigorifica, Float>("tempMax"));
+        ultimaLimpArcaCol.setCellValueFactory(new PropertyValueFactory<ArcaFrigorifica, Date>("limpDate"));
+        idFuncArcaCol.setCellValueFactory(new PropertyValueFactory<ArcaFrigorifica, BigDecimal>("userLimp"));
+        nomeFuncArcaCol.setCellValueFactory(new PropertyValueFactory<ArcaFrigorifica, String>("userName"));
+
+        listArcas = ConnectDB.getAllArcas();
+        FilteredList<ArcaFrigorifica> filteredData = new FilteredList<>(listArcas, b -> true);
+        searchArcaTextField.textProperty().addListener((observable, oldValue, newValue) ->{
+            filteredData.setPredicate(ArcaFrigorifica ->{
+                if(newValue == null || newValue.isEmpty()){
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if(ArcaFrigorifica.getDesignacao().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if(String.valueOf(ArcaFrigorifica.getNumero()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if(String.valueOf(ArcaFrigorifica.getTempMax()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if(String.valueOf(ArcaFrigorifica.getTempMin()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if(ArcaFrigorifica.getFabricante().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if(String.valueOf(ArcaFrigorifica.getAddDate()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if(String.valueOf(ArcaFrigorifica.getLimpDate()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if(String.valueOf(ArcaFrigorifica.getUserLimp()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if(ArcaFrigorifica.getUserName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+            } else {
+                    return false;
+                }
+            });
+        });
+
+        SortedList<ArcaFrigorifica> sortedData = new SortedList<>(filteredData);
+
+        sortedData.comparatorProperty().bind(arcasTable.comparatorProperty());
+
+        arcasTable.setItems(sortedData);
+        arcasPane.setVisible(true);
     }
 
     public void addUser(){
@@ -270,6 +354,7 @@ public class MainScreenController {
         registerPane.setVisible(false);
         allUsersPane.setVisible(false);
         productsPane.setVisible(false);
+        arcasPane.setVisible(false);
     }
 
     public void getSelected(javafx.scene.input.MouseEvent mouseEvent) {
