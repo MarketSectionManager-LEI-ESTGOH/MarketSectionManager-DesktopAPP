@@ -3,15 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="eac06cb8-75b6-4ce5-8622-061c7082357d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/ArcaFrigorifica.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/ArcaFrigorifica.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/Product.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/Model/ConnectDB.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/Model/ConnectDB.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/View/MainScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/View/MainScreen.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/View/MainScreenController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/View/MainScreenController$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/View/MainScreenController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/View/MainScreenController$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/View/MainScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/View/MainScreenController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ArcaFrigorifica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ArcaFrigorifica.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Area.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Area.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/ConnectDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ConnectDB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/MainScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/MainScreen.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/MainScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/MainScreenController.java" afterDir="false" />
@@ -31,6 +28,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1rkVGEAhaUxUceRfabq0kGRw69C" />
   <component name="ProjectViewState">

@@ -1,8 +1,6 @@
 package View;
 
-import Controller.ArcaFrigorifica;
-import Controller.Product;
-import Controller.User;
+import Controller.*;
 import Model.ConnectDB;
 import Model.Encryption;
 import javafx.collections.ObservableList;
@@ -64,6 +62,8 @@ public class MainScreenController {
     ObservableList<User> listUsers;
     ObservableList<Product> listProducts;
     ObservableList<ArcaFrigorifica> listArcas;
+    ObservableList<Fornecedor> listFornecedores;
+    ObservableList<Area> listAreasCont;
     private int index = -1;
     protected static User selectedUser = null;
     public Pane productsPane;
@@ -117,6 +117,36 @@ public class MainScreenController {
     public TextField refrigeratorMaxTemp;
     public TextField refrigeratorMinTemp;
     private static DateFormat timstampRefrigerator = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");
+    @FXML
+    private Pane fornecedoresPane;
+    @FXML
+    public TableView<Fornecedor> fornecedoresTable;
+    @FXML
+    public TableColumn<Fornecedor, String> identFornCol;
+    @FXML
+    public TableColumn<Fornecedor, String> nomeFornCol;
+    @FXML
+    public TableColumn<Fornecedor, Integer> contactoFornCol;
+    @FXML
+    public TableColumn<Fornecedor, String> emailFornCol;
+    @FXML
+    public TableColumn<Fornecedor, String> moradaFornCol;
+    public Button RemoveForncedorBtn;
+    public TextField searchFornecedorTextField;
+    public Button EditFornecedorBtn;
+    public Button addFornecedorBtn;
+    @FXML
+    private Pane areasControladasPane;
+    @FXML
+    public TableView<Area> areasContTable;
+    @FXML
+    public TableColumn<Area, Integer> numeroAreaContCol;
+    @FXML
+    public TableColumn<Area, String> desginacaoAreaContCol;
+    public Button removeAreaContBtn;
+    public TextField searchAreasContTextField;
+    public Button editAreaContBtn;
+    public Button addAreasCiontBtn;
 
     /**
      * Referencia apresentação de dados: 20/04/2021
@@ -315,6 +345,85 @@ public class MainScreenController {
         arcasPane.setVisible(true);
     }
 
+    public void fornecedorTable(){
+        collapse();
+        System.out.println("fornecedores btn clicked!!");
+
+        identFornCol.setCellValueFactory(new PropertyValueFactory<Fornecedor, String>("identificador"));
+        nomeFornCol.setCellValueFactory(new PropertyValueFactory<Fornecedor, String>("nome"));
+        contactoFornCol.setCellValueFactory(new PropertyValueFactory<Fornecedor, Integer>("contacto"));
+        emailFornCol.setCellValueFactory(new PropertyValueFactory<Fornecedor, String>("email"));
+        moradaFornCol.setCellValueFactory(new PropertyValueFactory<Fornecedor, String>("morada"));
+
+        listFornecedores = ConnectDB.getAllFornecedores();
+        FilteredList<Fornecedor> filteredData = new FilteredList<>(listFornecedores, b -> true);
+        searchFornecedorTextField.textProperty().addListener((observable, oldValue, newValue) ->{
+            filteredData.setPredicate(Fornecedor ->{
+                if(newValue == null || newValue.isEmpty()){
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if(Fornecedor.getIdentificador().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if(String.valueOf(Fornecedor.getContacto()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if(Fornecedor.getNome().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if(Fornecedor.getEmail().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if(Fornecedor.getMorada().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+        });
+
+        SortedList<Fornecedor> sortedData = new SortedList<>(filteredData);
+
+        sortedData.comparatorProperty().bind(fornecedoresTable.comparatorProperty());
+
+        fornecedoresTable.setItems(sortedData);
+        fornecedoresPane.setVisible(true);
+    }
+
+    public void areasControladasTable(){
+        collapse();
+        System.out.println("areas controladas btn clicked!!");
+
+        numeroAreaContCol.setCellValueFactory(new PropertyValueFactory<Area, Integer>("numero"));
+        desginacaoAreaContCol.setCellValueFactory(new PropertyValueFactory<Area, String>("designacao"));
+
+        listAreasCont = ConnectDB.getAllAreasCont();
+        FilteredList<Area> filteredData = new FilteredList<>(listAreasCont, b -> true);
+        searchAreasContTextField.textProperty().addListener((observable, oldValue, newValue) ->{
+            filteredData.setPredicate(Area ->{
+                if(newValue == null || newValue.isEmpty()){
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if(Area.getDesignacao().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if(String.valueOf(Area.getNumero()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+        });
+
+        SortedList<Area> sortedData = new SortedList<>(filteredData);
+
+        sortedData.comparatorProperty().bind(areasContTable.comparatorProperty());
+
+        areasContTable.setItems(sortedData);
+        areasControladasPane.setVisible(true);
+    }
+
     public void addUser(){
         System.out.println("add user btn clicked!!");
         ConnectDB.loadProperties();
@@ -372,6 +481,12 @@ public class MainScreenController {
         }
         if(arcasPane != null) {
             arcasPane.setVisible(false);
+        }
+        if(fornecedoresPane != null) {
+            fornecedoresPane.setVisible(false);
+        }
+        if(areasControladasPane != null) {
+            areasControladasPane.setVisible(false);
         }
     }
 

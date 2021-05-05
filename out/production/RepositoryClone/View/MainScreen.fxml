@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MainScreenController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MainScreenController">
    <children>
       <Pane prefHeight="553.0" prefWidth="200.0" styleClass="sideBar" stylesheets="@../CSS/mainScreenStyles.css">
          <children>
@@ -21,8 +21,8 @@
             </ImageView>
             <Pane layoutY="55.0" prefHeight="135.0" prefWidth="200.0" styleClass="sideBar" stylesheets="@../CSS/mainScreenStyles.css">
                <children>
-                  <Button layoutX="13.0" layoutY="23.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="182.0" stylesheets="@../CSS/mainScreenStyles.css" text="Fornecedores" />
-                  <Button layoutX="14.0" layoutY="55.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="182.0" text="Áreas Controladas" />
+                  <Button layoutX="13.0" layoutY="23.0" mnemonicParsing="false" onAction="#fornecedorTable" prefHeight="25.0" prefWidth="182.0" stylesheets="@../CSS/mainScreenStyles.css" text="Fornecedores" />
+                  <Button layoutX="14.0" layoutY="55.0" mnemonicParsing="false" onAction="#areasControladasTable" prefHeight="25.0" prefWidth="182.0" text="Áreas Controladas" />
                </children>
             </Pane>
             <Pane layoutY="179.0" prefHeight="135.0" prefWidth="200.0" styleClass="sideBar" stylesheets="@../CSS/mainScreenStyles.css">
@@ -139,6 +139,59 @@
             <TextField fx:id="searchArcaTextField" layoutX="72.0" layoutY="60.0" />
             <Button fx:id="EditArcaBtn" layoutX="867.0" layoutY="522.0" mnemonicParsing="false" text="Editar" textAlignment="CENTER" />
             <Button fx:id="addArcaBtn" layoutX="792.0" layoutY="522.0" mnemonicParsing="false" onAction="#showAddRefrigerator" prefHeight="25.0" prefWidth="68.0" text="Adicionar" />
+         </children>
+      </Pane>
+      <Pane fx:id="fornecedoresPane" layoutX="200.0" prefHeight="628.0" prefWidth="1059.0" style="-fx-background-color: #808080;" visible="false">
+         <children>
+            <Label layoutX="422.0" layoutY="15.0" text="FORNECEDORES" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="collapseBtn" layoutX="914.0" layoutY="15.0" mnemonicParsing="false" onAction="#collapse" prefHeight="27.0" prefWidth="32.0" styleClass="collapseButton" stylesheets="@../CSS/mainScreenStyles.css" />
+            <TableView fx:id="fornecedoresTable" layoutX="11.0" layoutY="96.0" onMouseClicked="#getSelected" prefHeight="414.0" prefWidth="974.0">
+               <columns>
+                  <TableColumn fx:id="identFornCol" prefWidth="94.0" text="Identificador" />
+                  <TableColumn fx:id="nomeFornCol" prefWidth="191.0" text="Nome" />
+                  <TableColumn fx:id="contactoFornCol" prefWidth="127.0" text="Contacto" />
+                  <TableColumn fx:id="emailFornCol" prefWidth="250.0" text="Email" />
+                  <TableColumn fx:id="moradaFornCol" prefWidth="311.0" text="Morada" />
+               </columns>
+            </TableView>
+            <Button fx:id="RemoveForncedorBtn" layoutX="921.0" layoutY="522.0" mnemonicParsing="false" text="Remover" textAlignment="CENTER" />
+            <Label layoutX="14.0" layoutY="64.0" text="Procurar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <TextField fx:id="searchFornecedorTextField" layoutX="72.0" layoutY="60.0" />
+            <Button fx:id="EditFornecedorBtn" layoutX="867.0" layoutY="522.0" mnemonicParsing="false" text="Editar" textAlignment="CENTER" />
+            <Button fx:id="addFornecedorBtn" layoutX="792.0" layoutY="522.0" mnemonicParsing="false" onAction="#showAddRefrigerator" prefHeight="25.0" prefWidth="68.0" text="Adicionar" />
+         </children>
+      </Pane>
+      <Pane fx:id="areasControladasPane" layoutX="200.0" prefHeight="628.0" prefWidth="1059.0" style="-fx-background-color: #808080;" visible="false">
+         <children>
+            <Label layoutX="401.0" layoutY="15.0" text="ÁREAS CONTROLADAS" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="collapseBtn" layoutX="914.0" layoutY="15.0" mnemonicParsing="false" onAction="#collapse" prefHeight="27.0" prefWidth="32.0" styleClass="collapseButton" stylesheets="@../CSS/mainScreenStyles.css" />
+            <TableView fx:id="areasContTable" layoutX="11.0" layoutY="96.0" onMouseClicked="#getSelected" prefHeight="414.0" prefWidth="974.0">
+               <columns>
+                  <TableColumn fx:id="numeroAreaContCol" prefWidth="209.0" text="Número" />
+                  <TableColumn fx:id="desginacaoAreaContCol" prefWidth="764.0" text="Designação" />
+               </columns>
+            </TableView>
+            <Button fx:id="removeAreaContBtn" layoutX="921.0" layoutY="522.0" mnemonicParsing="false" text="Remover" textAlignment="CENTER" />
+            <Label layoutX="14.0" layoutY="64.0" text="Procurar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <TextField fx:id="searchAreasContTextField" layoutX="72.0" layoutY="60.0" />
+            <Button fx:id="editAreaContBtn" layoutX="867.0" layoutY="522.0" mnemonicParsing="false" text="Editar" textAlignment="CENTER" />
+            <Button fx:id="addAreasCiontBtn" layoutX="792.0" layoutY="522.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Adicionar" />
          </children>
       </Pane>
    </children>

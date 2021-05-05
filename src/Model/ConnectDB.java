@@ -1,8 +1,6 @@
 package Model;
 
-import Controller.ArcaFrigorifica;
-import Controller.Product;
-import Controller.User;
+import Controller.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -434,6 +432,112 @@ public class ConnectDB {
             rs = aPs.executeQuery();
             while(rs.next()){
                 list.add(new ArcaFrigorifica(rs.getInt("numero"), rs.getString("designacao"), rs.getString("fabricante"), rs.getDate("d_t_adicao"), rs.getFloat("tem_min"), rs.getFloat("tem_max"), rs.getDate("d_t_limpeza"), rs.getBigDecimal("user_limpeza"), rs.getString("user.nome")));
+            }
+        } catch (SQLException e) {
+            System.out.println("!! SQL Exception !!\n"+e);
+            e.printStackTrace();
+            return null;
+        } catch (ClassNotFoundException e) {
+            System.out.println("!! Class Not Found. Unable to load Database Drive !!\n"+e);
+            return null;
+
+        } catch (IllegalAccessException e) {
+            System.out.println("!! Illegal Access !!\n"+e);
+            return null;
+
+        } catch (InstantiationException e) {
+            System.out.println("!! Class Not Instanciaded !!\n"+e);
+            return null;
+
+        } finally {
+            if (conn != null) {
+                try {
+                    return list;
+                } catch (Exception e) {
+                    System.out.println("!! Exception closing DB connection !!\n"+e);
+                    return null;
+                }
+            }
+        } // end of finally
+        return null;
+
+    }
+
+    /**
+     * função para obter lista com todos os fornecedores
+     * @return
+     */
+    public static ObservableList<Fornecedor> getAllFornecedores(){
+        String userData = "";
+        ResultSet rs = null;
+
+        ObservableList<Fornecedor> list = FXCollections.observableArrayList();
+
+        String stmt = "Select identificador, nome, contacto, email, morada from fornecedor;";
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            if(conn == null){
+                conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            }
+            PreparedStatement aPs = ConnectDB.getConn().prepareStatement(stmt);
+
+            rs = aPs.executeQuery();
+            while(rs.next()){
+                list.add(new Fornecedor(rs.getString("identificador"), rs.getString("nome"), rs.getInt("contacto"), rs.getString("email"), rs.getString("morada")));
+            }
+        } catch (SQLException e) {
+            System.out.println("!! SQL Exception !!\n"+e);
+            e.printStackTrace();
+            return null;
+        } catch (ClassNotFoundException e) {
+            System.out.println("!! Class Not Found. Unable to load Database Drive !!\n"+e);
+            return null;
+
+        } catch (IllegalAccessException e) {
+            System.out.println("!! Illegal Access !!\n"+e);
+            return null;
+
+        } catch (InstantiationException e) {
+            System.out.println("!! Class Not Instanciaded !!\n"+e);
+            return null;
+
+        } finally {
+            if (conn != null) {
+                try {
+                    return list;
+                } catch (Exception e) {
+                    System.out.println("!! Exception closing DB connection !!\n"+e);
+                    return null;
+                }
+            }
+        } // end of finally
+        return null;
+
+    }
+
+    /**
+     * função para obter lista com todos os areas controladas
+     * @return
+     */
+    public static ObservableList<Area> getAllAreasCont(){
+        String userData = "";
+        ResultSet rs = null;
+
+        ObservableList<Area> list = FXCollections.observableArrayList();
+
+        String stmt = "Select numero, designacao from area;";
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            if(conn == null){
+                conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            }
+            PreparedStatement aPs = ConnectDB.getConn().prepareStatement(stmt);
+
+            rs = aPs.executeQuery();
+            while(rs.next()){
+                list.add(new Area(rs.getInt("numero"), rs.getString("designacao")));
             }
         } catch (SQLException e) {
             System.out.println("!! SQL Exception !!\n"+e);
