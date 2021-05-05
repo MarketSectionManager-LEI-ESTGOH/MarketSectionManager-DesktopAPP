@@ -361,10 +361,18 @@ public class MainScreenController {
 
     public void collapse(){
         clearUserRegistrationFileds();
-        registerPane.setVisible(false);
-        allUsersPane.setVisible(false);
-        productsPane.setVisible(false);
-        arcasPane.setVisible(false);
+        if(registerPane != null){
+            registerPane.setVisible(false);
+        }
+        if(allUsersPane != null) {
+            allUsersPane.setVisible(false);
+        }
+        if(productsPane != null) {
+            productsPane.setVisible(false);
+        }
+        if(arcasPane != null) {
+            arcasPane.setVisible(false);
+        }
     }
 
     public void getSelected(javafx.scene.input.MouseEvent mouseEvent) {
@@ -453,6 +461,7 @@ public class MainScreenController {
                 if (registerRefrigerator(Integer.parseInt(refrigeratorNumber.getText()), refrigeratorDesign.getText(), refrigeratorManufacturer.getText(),
                         timstampRefrigerator.format(new Date()), Float.parseFloat(refrigeratorMinTemp.getText()), Float.parseFloat(refrigeratorMaxTemp.getText()))) {
                     alerts(Alert.AlertType.INFORMATION, "SUCESSO", "A Arca Frigorifica foi inserida com sucesso!").showAndWait();
+                    clearRefrigeratorFields();
                 } else {
                     alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um erro ao inserir a Arca Frigorifica, por favor tente novamente!").showAndWait();
                 }
@@ -460,8 +469,14 @@ public class MainScreenController {
         }else{
             alerts(Alert.AlertType.ERROR, "ERRO", "Todos os Campos são de Preenchimento Obrigatório.\n Prencha todos os campos e tente novamente!").showAndWait();
         }
+    }
 
-
+    private void clearRefrigeratorFields(){
+        refrigeratorManufacturer.setText("");
+        refrigeratorMinTemp.setText("");
+        refrigeratorMaxTemp.setText("");
+        refrigeratorNumber.setText("");
+        refrigeratorDesign.setText("");
     }
 
     public static boolean registerRefrigerator(int aNumber, String aDesignation, String aManufacturer, String aInsertionDate, float aMinTemp, float aMaxTemp){
