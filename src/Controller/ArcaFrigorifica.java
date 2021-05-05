@@ -28,6 +28,17 @@ public class ArcaFrigorifica {
         userName = aUserName;
     }
 
+    public static boolean removeRefrigeratorFromDB(ArcaFrigorifica toRemove){
+        try {
+            String stmt = "DELETE FROM area_frigorifica WHERE numero = ?";
+            PreparedStatement ps = ConnectDB.getConn().prepareStatement(stmt);
+            ps.setInt(1, toRemove.getNumero());
+            return ConnectDB.removeFromDB(ps);
+        }catch (Exception e){
+
+        }
+        return false;
+    }
 
     public int getNumero() {
         return numero;

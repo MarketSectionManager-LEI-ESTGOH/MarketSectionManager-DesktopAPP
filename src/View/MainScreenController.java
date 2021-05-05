@@ -460,6 +460,7 @@ public class MainScreenController {
         userNameTF.setText("");
         userNumberTF.setText("");
         userPassPF.setText("");
+        userPassConfPF.setText("");
         userEmailTF.setText("");
     }
 
@@ -612,5 +613,64 @@ public class MainScreenController {
             throwables.printStackTrace();
         }
         return false;
+    }
+
+    /**
+     * Editar ou Remover Arcas
+     * @param mouseEvent
+     */
+    public void getSelectedRefrigerator(javafx.scene.input.MouseEvent mouseEvent) {
+        System.out.println("in getSelectedRefrigerator");
+        index = arcasTable.getSelectionModel().getSelectedIndex();
+        if(index <= -1){
+            return;
+        }
+        EditArcaBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("edit refrigerator btn clicked!");
+                try{
+                    EditRefrigeratorController.setThisRefrigerator(listArcas.get(index));
+                    Stage EditStage = new Stage();
+                    Parent root = FXMLLoader.load(getClass().getResource("EditRefrigerator.fxml"));
+                    EditStage.setScene(new Scene(root));
+                    EditStage.setTitle("Editar Arca  " + designArcaCol.getCellData(index));
+                    EditStage.setResizable(false);
+                    EditStage.centerOnScreen();
+                    EditStage.show();
+                }catch (Exception e){
+                    System.out.println(e);
+                }
+
+            }
+        });
+        RemoveArcaBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try{
+                    ArcaFrigorifica selected = listArcas.get(index);
+
+                        System.out.println(selected.getNumero());
+                        Optional<ButtonType> result = alerts(Alert.AlertType.CONFIRMATION, "Remover "+selected.getDesignacao(), "Tem a certeza que" +
+                                " quer remover a Arca Frigorifica "+selected.getDesignacao()+" com o número interno "+selected.getNumero()
+                                +"?").showAndWait();
+                        if(!result.isPresent()){
+                        }else if(result.get() == ButtonType.OK){
+                            if(ArcaFrigorifica.removeRefrigeratorFromDB(selected)){
+                                alerts(Alert.AlertType.INFORMATION, "Removido com sucesso", "Arca Frigorifica "+selected.getDesignacao()
+                                        +" removida com sucesso.").showAndWait();
+                            }else{
+                                alerts(Alert.AlertType.ERROR, "Falha ao remover", "Algo correu mal...").showAndWait();
+                            }
+                        }else if(result.get() == ButtonType.CANCEL){
+
+                        }
+
+                }catch (Exception e){
+                    System.out.println(e);
+                }
+
+            }
+        });
     }
 }

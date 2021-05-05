@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="491.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.EditRefrigeratorController">
+   <children>
+      <Text layoutX="62.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Designação:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
+      <TextField fx:id="designTF" layoutX="62.0" layoutY="31.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="329.0" />
+      <Text layoutX="62.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Número:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
+      <TextField fx:id="numberTF" layoutX="62.0" layoutY="78.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="161.0" />
+      <Text layoutX="227.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fabricante:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
+      <TextField fx:id="fabTF" layoutX="227.0" layoutY="78.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="161.0" />
+      <Text layoutX="62.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Temperatura Máxima:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
+      <Text layoutX="227.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Temperatura Mínima:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
+      <TextField fx:id="tMaxTF" layoutX="62.0" layoutY="128.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="161.0" />
+      <TextField fx:id="tMinTF" layoutX="227.0" layoutY="128.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="161.0" />
+      <Button fx:id="editBTN" layoutX="155.0" layoutY="168.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleUpdateButtonAction" prefHeight="40.0" prefWidth="114.0" text="Editar" />
+      <Button fx:id="cancelBTN" layoutX="277.0" layoutY="168.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleCloseButtonAction" prefHeight="40.0" prefWidth="114.0" text="Cancelar" />
+   </children>
+</AnchorPane>

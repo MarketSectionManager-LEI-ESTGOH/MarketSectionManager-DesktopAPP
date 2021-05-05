@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MainScreenController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MainScreenController">
    <children>
       <Pane prefHeight="553.0" prefWidth="200.0" styleClass="sideBar" stylesheets="@../CSS/mainScreenStyles.css">
          <children>
@@ -117,7 +117,7 @@
                </font>
             </Label>
             <Button fx:id="collapseBtn" layoutX="914.0" layoutY="15.0" mnemonicParsing="false" onAction="#collapse" prefHeight="27.0" prefWidth="32.0" styleClass="collapseButton" stylesheets="@../CSS/mainScreenStyles.css" />
-            <TableView fx:id="arcasTable" layoutX="11.0" layoutY="96.0" onMouseClicked="#getSelected" prefHeight="414.0" prefWidth="974.0">
+            <TableView fx:id="arcasTable" layoutX="11.0" layoutY="96.0" onMouseClicked="#getSelectedRefrigerator" prefHeight="414.0" prefWidth="974.0">
                <columns>
                   <TableColumn fx:id="numArcaCol" prefWidth="75.0" text="Número" />
                   <TableColumn fx:id="designArcaCol" prefWidth="112.0" text="Designação" />
