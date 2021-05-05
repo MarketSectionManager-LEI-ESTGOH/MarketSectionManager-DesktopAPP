@@ -329,8 +329,11 @@ public class MainScreenController {
                     return true;
                 } else if(String.valueOf(ArcaFrigorifica.getUserLimp()).indexOf(lowerCaseFilter) != -1) {
                     return true;
-                } else if(ArcaFrigorifica.getUserName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                    return true;
+                } else if(ArcaFrigorifica.getUserName() != null){
+                    if(ArcaFrigorifica.getUserName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                        return true;
+                    }
+                    return false;
             } else {
                     return false;
                 }
