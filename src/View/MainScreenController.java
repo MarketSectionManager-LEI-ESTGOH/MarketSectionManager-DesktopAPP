@@ -494,6 +494,10 @@ public class MainScreenController {
         }
     }
 
+    /**
+     * Retorna utilizador escolhido da tabela.
+     * @param mouseEvent
+     */
     public void getSelected(javafx.scene.input.MouseEvent mouseEvent) {
         index = table_users.getSelectionModel().getSelectedIndex();
         if(index <= -1){
@@ -666,6 +670,62 @@ public class MainScreenController {
 
                         }
 
+                }catch (Exception e){
+                    System.out.println(e);
+                }
+
+            }
+        });
+    }
+
+
+    /**
+     * Retorna utilizador escolhido da tabela.
+     * @param mouseEvent
+     */
+    public void getSelectedArea(javafx.scene.input.MouseEvent mouseEvent) {
+        index = areasContTable.getSelectionModel().getSelectedIndex();
+        if(index <= -1){
+            return;
+        }
+        editAreaContBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try{
+                    EditAreaController.setThisArea(listAreasCont.get(index));
+                    Stage EditStage = new Stage();
+                    Parent root = FXMLLoader.load(getClass().getResource("EditArea.fxml"));
+                    EditStage.setScene(new Scene(root));
+                    EditStage.setTitle("Editar "+listAreasCont.get(index).getNumero());
+                    EditStage.setResizable(false);
+                    EditStage.centerOnScreen();
+                    EditStage.show();
+                }catch (Exception e){
+                    System.out.println(e);
+                }
+
+            }
+        });
+        removeAreaContBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try{
+                    Area selected = listAreasCont.get(index);
+                    Optional<ButtonType> result = alerts(Alert.AlertType.CONFIRMATION, "Remover "+selected.getNumero(), "Tem a certeza que" +
+                            " quer remover a Area Controlada "+selected.getNumero()+" com a designação "+selected.getDesignacao()
+                            +"?").showAndWait();
+                    if(!result.isPresent()){
+
+                    }else if(result.get() == ButtonType.OK){
+                        if(Area.removeAreaFromDB(selected)){
+                            alerts(Alert.AlertType.INFORMATION, "Removido com sucesso", "Àrea Controlada "+selected.getNumero()
+                                    +" removido com sucesso.").showAndWait();
+                        }else{
+                            alerts(Alert.AlertType.ERROR, "Falha ao remover", "Algo correu mal...").showAndWait();
+                        }
+                    }else if(result.get() == ButtonType.CANCEL){
+
+                    }
                 }catch (Exception e){
                     System.out.println(e);
                 }

@@ -1,5 +1,9 @@
 package Controller;
 
+import Model.ConnectDB;
+
+import java.sql.PreparedStatement;
+
 public class Area {
 
     private int numero;
@@ -24,5 +28,17 @@ public class Area {
 
     public void setDesignacao(String designacao) {
         this.designacao = designacao;
+    }
+
+    public static boolean removeAreaFromDB(Area toRemove){
+        try {
+            String stmt = "DELETE FROM area WHERE numero = ?";
+            PreparedStatement ps = ConnectDB.getConn().prepareStatement(stmt);
+            ps.setInt(1, toRemove.getNumero());
+            return ConnectDB.removeFromDB(ps);
+        }catch (Exception e){
+
+        }
+        return false;
     }
 }
