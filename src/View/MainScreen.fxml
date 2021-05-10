@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MainScreenController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MainScreenController">
    <children>
       <Pane prefHeight="553.0" prefWidth="200.0" styleClass="sideBar" stylesheets="@../CSS/mainScreenStyles.css">
          <children>
@@ -191,7 +191,7 @@
             </Label>
             <TextField fx:id="searchAreasContTextField" layoutX="72.0" layoutY="60.0" />
             <Button fx:id="editAreaContBtn" layoutX="867.0" layoutY="522.0" mnemonicParsing="false" text="Editar" textAlignment="CENTER" />
-            <Button fx:id="addAreasCiontBtn" layoutX="792.0" layoutY="522.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Adicionar" />
+            <Button fx:id="addAreasContBtn" layoutX="792.0" layoutY="522.0" mnemonicParsing="false" onAction="#showAddControlledArea" prefHeight="25.0" prefWidth="68.0" text="Adicionar" />
          </children>
       </Pane>
    </children>

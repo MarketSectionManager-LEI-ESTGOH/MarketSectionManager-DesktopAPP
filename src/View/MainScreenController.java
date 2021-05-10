@@ -146,7 +146,13 @@ public class MainScreenController {
     public Button removeAreaContBtn;
     public TextField searchAreasContTextField;
     public Button editAreaContBtn;
-    public Button addAreasCiontBtn;
+    public Button addAreasContBtn;
+    public Button addCAComponentsBTN;
+    public Button addCABTN;
+    @FXML
+    private TextField addCANumberTF;
+    @FXML
+    private TextField addCADesignTF;
 
     /**
      * Referencia apresentação de dados: 20/04/2021
@@ -732,5 +738,66 @@ public class MainScreenController {
 
             }
         });
+    }
+
+
+    public void showAddControlledArea(){
+        System.out.println("add controlled area btn clicked!!");
+        try{
+            Stage AddControlledArea = new Stage();
+            Parent rootAddControlledArea = FXMLLoader.load(getClass().getResource("AddControlledArea.fxml"));
+            AddControlledArea.setScene(new Scene(rootAddControlledArea));
+            AddControlledArea.setTitle("Adicionar Área Controlada");
+            AddControlledArea.setResizable(false);
+            AddControlledArea.centerOnScreen();
+            AddControlledArea.show();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void insertControlledArea(){
+        System.out.println(" -- @ insertControllerArea() --");
+        try{
+            int areaNumber = -1;
+            if(!addCANumberTF.getText().isEmpty()){
+                areaNumber = Integer.parseInt(addCANumberTF.getText());
+                if(!addCADesignTF.getText().isEmpty()){
+                    if(registerControlledArea(areaNumber, addCADesignTF.getText())){
+                        alerts(Alert.AlertType.INFORMATION, "SUCESSO", " A Área Controlada " + addCADesignTF.getText() + " com o Número Interno " + areaNumber + "\nfoi inserida com sucesso!").showAndWait();
+                        cleanControlledAreaFields();
+                    }else{
+                        alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um erro inseperado, por favor tente novamente!").showAndWait();
+                    }
+                }else{
+                    System.out.println("design empty");
+                    alerts(Alert.AlertType.ERROR, "ERRO", "A Designação da Área Controlada é de Preenchimento Obrigatório!").showAndWait();
+                }
+            }else{
+                System.out.println("number empty");
+                alerts(Alert.AlertType.ERROR, "ERRO", "O número da Área Controlada é de Preenchimento Obrigatório!").showAndWait();
+            }
+        }catch(Exception e){
+            alerts(Alert.AlertType.ERROR, "ERRO", "Algo correu mal, por favor tente novamente! \n\n " + e).showAndWait();
+
+        }
+    }
+
+    private void cleanControlledAreaFields(){
+        addCANumberTF.setText("");
+        addCADesignTF.setText("");
+    }
+
+    private boolean registerControlledArea(int aNumber, String aDesign){
+        try {
+            String stmt = "INSERT INTO area (numero, designacao) VALUES (?, ?)";
+            PreparedStatement ps = ConnectDB.getConn().prepareStatement(stmt);
+            ps.setInt(1, aNumber);
+            ps.setString(2,aDesign);
+            return ConnectDB.insertIntoTable(ps);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
     }
 }
