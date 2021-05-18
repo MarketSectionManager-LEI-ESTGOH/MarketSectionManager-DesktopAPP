@@ -8,49 +8,61 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MainScreenController">
    <children>
-      <Pane prefHeight="553.0" prefWidth="200.0" styleClass="sideBar" stylesheets="@../CSS/mainScreenStyles.css">
+      <Pane prefHeight="621.0" prefWidth="200.0" styleClass="sideBar" stylesheets="@../CSS/mainScreenStyles.css">
          <children>
-            <ImageView fitHeight="121.0" fitWidth="200.0" layoutY="-28.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="101.0" fitWidth="200.0" layoutX="11.0" onMouseClicked="#collapse" pickOnBounds="true" preserveRatio="true" x="3.335" y="0.001">
                <image>
                   <Image url="@../Images/MSM_main_logo.png" />
                </image>
             </ImageView>
-            <Pane layoutY="55.0" prefHeight="135.0" prefWidth="200.0" styleClass="sideBar" stylesheets="@../CSS/mainScreenStyles.css">
-               <children>
-                  <Button layoutX="13.0" layoutY="23.0" mnemonicParsing="false" onAction="#fornecedorTable" prefHeight="25.0" prefWidth="182.0" stylesheets="@../CSS/mainScreenStyles.css" text="Fornecedores" />
-                  <Button layoutX="14.0" layoutY="55.0" mnemonicParsing="false" onAction="#areasControladasTable" prefHeight="25.0" prefWidth="182.0" text="Áreas Controladas" />
-               </children>
-            </Pane>
-            <Pane layoutY="179.0" prefHeight="135.0" prefWidth="200.0" styleClass="sideBar" stylesheets="@../CSS/mainScreenStyles.css">
-               <children>
-                  <Button layoutX="14.0" layoutY="55.0" mnemonicParsing="false" onAction="#arcasTable" prefHeight="25.0" prefWidth="182.0" text="Arcas Frigorificas" />
-               </children>
-            </Pane>
-            <Pane layoutY="294.0" prefHeight="135.0" prefWidth="200.0" styleClass="sideBar" stylesheets="@../CSS/mainScreenStyles.css">
-               <children>
-                  <Button fx:id="editProducts" layoutX="14.0" layoutY="55.0" mnemonicParsing="false" onAction="#productsTable" prefHeight="25.0" prefWidth="182.0" text="Produtos" />
-               </children>
-            </Pane>
-            <Pane layoutY="411.0" prefHeight="135.0" prefWidth="200.0" styleClass="sideBar" stylesheets="@../CSS/mainScreenStyles.css">
-               <children>
-                  <Button fx:id="editBTN" layoutX="14.0" layoutY="55.0" mnemonicParsing="false" onAction="#usersTable" prefHeight="25.0" prefWidth="182.0" text="Utilizadores" />
-               </children>
-            </Pane>
-         </children>
-      </Pane>
-      <Pane layoutY="550.0" prefHeight="77.0" prefWidth="200.0" styleClass="profileBox" stylesheets="@../CSS/mainScreenStyles.css">
-         <children>
-            <ImageView fitHeight="38.0" fitWidth="43.0" layoutX="18.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+            <Button layoutX="15.0" layoutY="182.0" mnemonicParsing="false" onAction="#fornecedorTable" prefHeight="32.0" prefWidth="126.0" stylesheets="@../CSS/mainScreenStyles.css" text="Fornecedores" />
+            <Button layoutX="15.0" layoutY="146.0" mnemonicParsing="false" onAction="#areasControladasTable" prefHeight="32.0" prefWidth="126.0" text="Áreas Controladas" />
+            <Button layoutX="14.0" layoutY="109.0" mnemonicParsing="false" onAction="#arcasTable" prefHeight="32.0" prefWidth="126.0" text="Arcas Frigorificas" />
+            <Button fx:id="editProducts" layoutX="15.0" layoutY="258.0" mnemonicParsing="false" onAction="#productsTable" prefHeight="32.0" prefWidth="126.0" text="Produtos" />
+            <Button fx:id="editBTN" layoutX="15.0" layoutY="220.0" mnemonicParsing="false" onAction="#usersTable" prefHeight="32.0" prefWidth="126.0" text="Utilizadores" />
+            <ImageView fitHeight="38.0" fitWidth="43.0" layoutX="19.0" layoutY="564.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Images/user.png" />
+                  <Image url="@../Images/user_icon-icons.com_57997.png" />
                </image>
             </ImageView>
-            <Button fx:id="editProfileBtn" layoutX="56.0" mnemonicParsing="false" onAction="#editProfile" prefHeight="47.0" prefWidth="68.0" styleClass="editProfileBTN" stylesheets="@../CSS/mainScreenStyles.css" text="Editar &#10;Perfil" textFill="WHITE" />
-            <Button fx:id="logoutBtn" layoutX="150.0" layoutY="8.0" mnemonicParsing="false" onAction="#logout" prefHeight="32.0" prefWidth="32.0" styleClass="logoutBTN" stylesheets="@../CSS/mainScreenStyles.css" />
+            <Button fx:id="editProfileBtn" layoutX="57.0" layoutY="560.0" mnemonicParsing="false" onAction="#editProfile" prefHeight="47.0" prefWidth="68.0" styleClass="editProfileBTN" stylesheets="@../CSS/mainScreenStyles.css" text="Editar &#10;Perfil" textFill="WHITE" />
+            <Line endX="100.0" layoutX="99.0" layoutY="551.0" startX="-100.0" stroke="#39ffdb" />
+            <Line endX="100.0" layoutX="101.0" layoutY="98.0" startX="-100.0" stroke="#39ffdb" />
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="134.0" layoutY="566.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../CSS/media/LogOff.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="49.0" layoutX="147.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/650998-200.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="49.0" layoutX="147.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/select-area_icon-icons.com_69919.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="49.0" layoutX="147.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/3289576-individual-man-people-person_107097.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="49.0" layoutX="148.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/user_icon-icons.com_57997.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="49.0" layoutX="147.0" layoutY="255.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/products_new_cube_product_design_icon_153845.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <Pane fx:id="allUsersPane" layoutX="200.0" prefHeight="628.0" prefWidth="1059.0" style="-fx-background-color: #808080;" visible="false">

@@ -20,8 +20,12 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 
+<<<<<<< Updated upstream
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+=======
+import javax.swing.text.html.ImageView;
+>>>>>>> Stashed changes
 import java.math.BigDecimal;
 
 import java.sql.PreparedStatement;
@@ -35,7 +39,7 @@ import java.util.Date;
 public class MainScreenController{
 
     public Button editProfileBtn = new Button();
-    public Button logoutBtn = new Button();
+   // public ImageView logoutBtn = new ImageView();
     private Stage currentStage = null;
     public Button registerBTN = new Button();
     public Button editBTN = new Button();
@@ -188,7 +192,7 @@ public class MainScreenController{
     }
 
     public void logout() throws Exception{
-        currentStage = (Stage) logoutBtn.getScene().getWindow();
+        currentStage = (Stage) editProfileBtn.getScene().getWindow();
         currentStage.close();
         View.Main.u = null;
         new Main().start(new Stage());
@@ -504,6 +508,7 @@ public class MainScreenController{
     }
 
     public void collapse(){
+        System.out.println("home (collapse) clicked!");
         clearUserRegistrationFileds();
         if(registerPane != null){
             registerPane.setVisible(false);
