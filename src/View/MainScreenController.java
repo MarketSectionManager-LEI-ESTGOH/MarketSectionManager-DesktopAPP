@@ -3,6 +3,8 @@ package View;
 import Controller.*;
 import Model.ConnectDB;
 import Model.Encryption;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -18,6 +20,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.math.BigDecimal;
 
 import java.sql.PreparedStatement;
@@ -28,7 +32,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Date;
 
-public class MainScreenController {
+public class MainScreenController{
 
     public Button editProfileBtn = new Button();
     public Button logoutBtn = new Button();
@@ -154,6 +158,8 @@ public class MainScreenController {
     @FXML
     private TextField addCADesignTF;
 
+    private static boolean firstUserRun = false;
+
     /**
      * Referencia apresentação de dados: 20/04/2021
      * https://www.youtube.com/watch?v=tw_NXq08NUE
@@ -240,11 +246,31 @@ public class MainScreenController {
         });
 
         SortedList<User> sortedData = new SortedList<>(filteredData);
-
         sortedData.comparatorProperty().bind(table_users.comparatorProperty());
 
         table_users.setItems(sortedData);
         allUsersPane.setVisible(true);
+
+        if(!firstUserRun){
+            table_users.focusedProperty().addListener(new ChangeListener<Boolean>()
+            {
+                boolean refresh = false;
+                @Override
+                public void changed(ObservableValue<? extends Boolean> ov, Boolean onHidden, Boolean onShown)
+                {
+                    if(onHidden){
+                        refresh = true;
+                    }else if(onShown){
+                        if(refresh == true){
+                            usersTable();
+                            refresh = false;
+                        }
+                    }
+                }
+
+            });
+            firstUserRun = true;
+        }
     }
 
     public void productsTable(){
@@ -458,7 +484,6 @@ public class MainScreenController {
         }else{
             alerts(Alert.AlertType.ERROR, "ERRO", "O tipo de utilizador é de preenchimento obrigatório!").showAndWait();
         }
-
     }
 
     private void clearUserRegistrationFileds(){
