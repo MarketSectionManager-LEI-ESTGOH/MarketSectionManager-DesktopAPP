@@ -3,11 +3,14 @@ package View;
 import Controller.User;
 import Model.ConnectDB;
 
+import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -114,6 +117,18 @@ public class Main extends Application {
         generalAlert.setHeaderText("Aconteceu um Erro: ");
         generalAlert.setContentText(aText);
         return generalAlert;
+    }
+
+    public void detectEnterPressed(KeyEvent ke){
+        funcPass.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent ke) {
+                if (ke.getCode().equals(KeyCode.ENTER)) {
+                    System.out.println("enter pressed!");
+                    login();
+                }
+            }
+        });
     }
 
 }
