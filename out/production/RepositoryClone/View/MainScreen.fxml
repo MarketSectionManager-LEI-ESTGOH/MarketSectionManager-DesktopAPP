@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainScreenController">
    <children>
@@ -24,7 +25,7 @@
             <Button layoutX="15.0" layoutY="146.0" mnemonicParsing="false" onAction="#areasControladasTable" prefHeight="32.0" prefWidth="126.0" text="Áreas Controladas" />
             <Button layoutX="14.0" layoutY="109.0" mnemonicParsing="false" onAction="#arcasTable" prefHeight="32.0" prefWidth="126.0" text="Arcas Frigorificas" />
             <Button fx:id="editProducts" layoutX="15.0" layoutY="258.0" mnemonicParsing="false" onAction="#productsTable" prefHeight="32.0" prefWidth="126.0" text="Produtos" />
-            <Button fx:id="editBTN" layoutX="15.0" layoutY="220.0" mnemonicParsing="false" onAction="#usersTable" prefHeight="32.0" prefWidth="126.0" text="Utilizadores" />
+            <Button fx:id="editBTN" layoutX="15.0" layoutY="220.0" mnemonicParsing="false" onAction="#showUsersTable" prefHeight="32.0" prefWidth="126.0" text="Utilizadores" />
             <ImageView fitHeight="38.0" fitWidth="43.0" layoutX="19.0" layoutY="564.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/user_icon-icons.com_57997.png" />
@@ -65,33 +66,6 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="allUsersPane" layoutX="200.0" prefHeight="628.0" prefWidth="1059.0" style="-fx-background-color: #808080;" visible="false">
-         <children>
-            <Label layoutX="412.0" layoutY="15.0" text="UTILIZADORES" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <Button fx:id="collapseBtn1" layoutX="914.0" layoutY="15.0" mnemonicParsing="false" onAction="#collapse" prefHeight="27.0" prefWidth="32.0" styleClass="collapseButton" stylesheets="@../CSS/mainScreenStyles.css" />
-            <TableView fx:id="table_users" layoutX="11.0" layoutY="96.0" onMouseClicked="#getSelected" prefHeight="414.0" prefWidth="974.0">
-              <columns>
-                <TableColumn fx:id="tipo_tb_users" maxWidth="150.0" prefWidth="115.0" text="Tipo" />
-                  <TableColumn fx:id="nome_tb_users" maxWidth="400.0" prefWidth="298.0" text="Nome" />
-                  <TableColumn fx:id="numint_tb_users" maxWidth="150.0" prefWidth="138.0" text="Número Interno" />
-                  <TableColumn fx:id="email_tb_users" maxWidth="500.0" minWidth="0.0" prefWidth="422.0" text="E-mail" />
-              </columns>
-            </TableView>
-            <Button fx:id="RemoveUserBtn" layoutX="921.0" layoutY="522.0" mnemonicParsing="false" text="Remover" textAlignment="CENTER" />
-            <Label layoutX="14.0" layoutY="64.0" text="Procurar" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <TextField fx:id="searchTextField" layoutX="72.0" layoutY="60.0" />
-            <Button fx:id="EditUserBtn" layoutX="867.0" layoutY="522.0" mnemonicParsing="false" text="Editar" textAlignment="CENTER" />
-            <Button fx:id="registerBTN" layoutX="792.0" layoutY="522.0" mnemonicParsing="false" onAction="#register" prefHeight="25.0" prefWidth="68.0" text="Adicionar" />
-         </children>
-      </Pane>
       <Pane fx:id="productsPane" layoutX="200.0" prefHeight="628.0" prefWidth="1059.0" style="-fx-background-color: #808080;" visible="false">
          <children>
             <Label layoutX="432.0" layoutY="15.0" text="PRODUTOS" textAlignment="CENTER" textFill="WHITE">
@@ -118,7 +92,7 @@
             </Label>
             <TextField fx:id="searchProductTextField" layoutX="72.0" layoutY="60.0" />
             <Button fx:id="EditProductBtn" layoutX="867.0" layoutY="522.0" mnemonicParsing="false" text="Editar" textAlignment="CENTER" />
-            <Button fx:id="addProductBtn" layoutX="792.0" layoutY="522.0" mnemonicParsing="false" onAction="#register" prefHeight="25.0" prefWidth="68.0" text="Adicionar" />
+            <Button fx:id="addProductBtn" layoutX="792.0" layoutY="522.0" mnemonicParsing="false"  prefHeight="25.0" prefWidth="68.0" text="Adicionar" />
          </children>
       </Pane>
       <Pane fx:id="arcasPane" layoutX="200.0" prefHeight="628.0" prefWidth="1059.0" style="-fx-background-color: #808080;" visible="false">
@@ -128,7 +102,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="collapseBtn" layoutX="914.0" layoutY="15.0" mnemonicParsing="false" onAction="#collapse" prefHeight="27.0" prefWidth="32.0" styleClass="collapseButton" stylesheets="@../CSS/mainScreenStyles.css" />
+            <Button fx:id="collapseBthn" layoutX="914.0" layoutY="15.0" mnemonicParsing="false" onAction="#collapse" prefHeight="27.0" prefWidth="32.0" styleClass="collapseButton" stylesheets="@../CSS/mainScreenStyles.css" />
             <TableView fx:id="arcasTable" layoutX="11.0" layoutY="96.0" onMouseClicked="#getSelectedRefrigerator" prefHeight="414.0" prefWidth="974.0">
                <columns>
                   <TableColumn fx:id="numArcaCol" prefWidth="75.0" text="Número" />
@@ -204,6 +178,11 @@
             <TextField fx:id="searchAreasContTextField" layoutX="72.0" layoutY="60.0" />
             <Button fx:id="editAreaContBtn" layoutX="867.0" layoutY="522.0" mnemonicParsing="false" text="Editar" textAlignment="CENTER" />
             <Button fx:id="addAreasContBtn" layoutX="792.0" layoutY="522.0" mnemonicParsing="false" onAction="#showAddControlledArea" prefHeight="25.0" prefWidth="68.0" text="Adicionar" />
+         </children>
+      </Pane>
+      <Pane fx:id="sec" layoutX="200.0" prefHeight="628.0" prefWidth="1059.0">
+         <children>
+            <Text layoutX="342.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="pane to receive the load fxml " />
          </children>
       </Pane>
    </children>

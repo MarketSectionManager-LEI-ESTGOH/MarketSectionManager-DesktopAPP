@@ -69,7 +69,7 @@ public class Main extends Application {
         ConnectDB.loadProperties();
         try {
             int number = Integer.parseInt(funcNumber.getText());
-            if (User.checkLogin(number, funcPass.getText())) {
+            if (Model.User.checkLogin(number, funcPass.getText())) {
                 cleanFields();
                 currentStage = (Stage) loginBtn.getScene().getWindow();
 
