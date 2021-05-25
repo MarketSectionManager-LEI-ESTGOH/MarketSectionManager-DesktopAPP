@@ -1,6 +1,6 @@
-package View;
+package Controller;
 
-import Controller.User;
+import Model.User;
 import Model.ConnectDB;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;

@@ -1,6 +1,6 @@
-package View;
+package Controller;
 
-import Controller.Area;
+import Model.Area;
 import Model.ConnectDB;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;

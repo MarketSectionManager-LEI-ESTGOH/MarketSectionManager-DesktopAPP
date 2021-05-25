@@ -1,7 +1,4 @@
-package Controller;
-
-import Model.ConnectDB;
-import Model.Encryption;
+package Model;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -156,6 +153,8 @@ public class User {
         Matcher matcher = pattern.matcher(aEmail);
         return matcher.matches();
     }
+
+    public static void aa(){}
 
 
     @Override

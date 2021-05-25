@@ -1,11 +1,9 @@
-package View;
+package Controller;
 
-import Controller.ArcaFrigorifica;
-import Controller.User;
+import Model.ArcaFrigorifica;
 import Model.ConnectDB;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.sql.PreparedStatement;

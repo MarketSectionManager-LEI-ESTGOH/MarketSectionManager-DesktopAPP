@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="eac06cb8-75b6-4ce5-8622-061c7082357d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Area.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Area.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/MainScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/MainScreen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/MainScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/MainScreenController.java" afterDir="false" />
-    </list>
+    <list default="true" id="eac06cb8-75b6-4ce5-8622-061c7082357d" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,17 +40,21 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\LEI\2semestre\Projeto\RepositoryClone\src\View" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="Controller" />
+      <recent name="Model" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="View" />
     </key>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="View.Main" />
+      <option name="MAIN_CLASS_NAME" value="Controller.Main" />
       <module name="RepositoryClone" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="View.*" />
+          <option name="PATTERN" value="Controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>

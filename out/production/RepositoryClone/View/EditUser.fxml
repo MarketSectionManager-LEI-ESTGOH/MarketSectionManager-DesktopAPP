@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="491.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.EditUserController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="491.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EditUserController">
    <children>
       <Text layoutX="35.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo:" />
       <Text fx:id="text_ID" layoutX="35.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Número Interno:" />

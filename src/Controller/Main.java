@@ -1,6 +1,6 @@
-package View;
+package Controller;
 
-import Controller.User;
+import Model.User;
 import Model.ConnectDB;
 
 import javafx.event.EventHandler;
@@ -16,7 +16,7 @@ import javafx.stage.StageStyle;
 
 public class Main extends Application {
 
-    public static Controller.User u;
+    public static User u;
     public TextField funcNumber = new TextField();
     public PasswordField funcPass = new PasswordField();
     public Button loginBtn = new Button();
@@ -25,7 +25,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage loginScreen) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/View/LoginScreen.fxml"));
         loginScreen.setTitle("Market Section Manager");
         loginScreen.setScene(new Scene(root, 360, 275));
         loginScreen.initStyle(StageStyle.UNDECORATED);
@@ -69,7 +69,7 @@ public class Main extends Application {
         ConnectDB.loadProperties();
         try {
             int number = Integer.parseInt(funcNumber.getText());
-            if (Controller.User.checkLogin(number, funcPass.getText())) {
+            if (User.checkLogin(number, funcPass.getText())) {
                 cleanFields();
                 currentStage = (Stage) loginBtn.getScene().getWindow();
 

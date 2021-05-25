@@ -1,6 +1,5 @@
 package Model;
 
-import Controller.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

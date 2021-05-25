@@ -1,8 +1,6 @@
-package View;
+package Controller;
 
-import Controller.*;
-import Model.ConnectDB;
-import Model.Encryption;
+import Model.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -20,17 +18,10 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 
-<<<<<<< Updated upstream
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-=======
-import javax.swing.text.html.ImageView;
->>>>>>> Stashed changes
 import java.math.BigDecimal;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -74,6 +65,7 @@ public class MainScreenController{
     ObservableList<Area> listAreasCont;
     private int index = -1;
     protected static User selectedUser = null;
+    public User tt = null;
     public Pane productsPane;
     @FXML
     public TableView<Product> productTable;
@@ -176,7 +168,7 @@ public class MainScreenController{
 
     public void start() throws Exception{
         Stage MainScreen = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
         MainScreen.setTitle("Market Section Manager");
         MainScreen.setScene(new Scene(root, 1200, 602));
         //MainScreen.initStyle(StageStyle.UNDECORATED);
@@ -194,7 +186,7 @@ public class MainScreenController{
     public void logout() throws Exception{
         currentStage = (Stage) editProfileBtn.getScene().getWindow();
         currentStage.close();
-        View.Main.u = null;
+        Main.u = null;
         new Main().start(new Stage());
 
     }
@@ -205,7 +197,7 @@ public class MainScreenController{
             //EditUserController.setThisUser(listUsers.get(index));
             //System.out.println(listUsers.get(index).getUserID());
             Stage AddStage = new Stage();
-            Parent rootAddStage = FXMLLoader.load(getClass().getResource("AddUser.fxml"));
+            Parent rootAddStage = FXMLLoader.load(getClass().getResource("/View/AddUser.fxml"));
             AddStage.setScene(new Scene(rootAddStage));
             AddStage.setTitle("Adicionar Utilizador");
             AddStage.setResizable(false);
@@ -470,7 +462,7 @@ public class MainScreenController{
             if(userPassPF.getText().equals(userPassConfPF.getText())){
                 if(User.checkEmail(userEmailTF.getText())){
                     if(!User.checkEmailExists(userEmailTF.getText())){
-                        if(View.Main.u.registerUser(userTypeCombo.getSelectionModel().getSelectedIndex(), userNameTF.getText(), Integer.parseInt(userNumberTF.getText()), userPassPF.getText(), userEmailTF.getText())){
+                        if(Main.u.registerUser(userTypeCombo.getSelectionModel().getSelectedIndex(), userNameTF.getText(), Integer.parseInt(userNumberTF.getText()), userPassPF.getText(), userEmailTF.getText())){
                             alerts(Alert.AlertType.INFORMATION,"SUCESSO","O " + userTypeCombo.getSelectionModel().getSelectedItem() + " (" + userNumberTF.getText() + ") - " + userNameTF.getText() + " foi introduzido com sucesso!").showAndWait();
                         }else{
                             alerts(Alert.AlertType.ERROR, "ERRO", "Erro ao introduzir o utilizador, por favor tente novamente!").showAndWait();
@@ -545,7 +537,7 @@ public class MainScreenController{
                 try{
                     EditUserController.setThisUser(listUsers.get(index));
                     Stage EditStage = new Stage();
-                    Parent root = FXMLLoader.load(getClass().getResource("EditUser.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource("/View/EditUser.fxml"));
                     EditStage.setScene(new Scene(root));
                     EditStage.setTitle("Editar "+nome_tb_users.getCellData(index));
                     EditStage.setResizable(false);
@@ -597,7 +589,7 @@ public class MainScreenController{
         System.out.println("add refrigerator btn clicked!!");
         try{
             Stage AddRefrigerator = new Stage();
-            Parent rootAddRefrigerator = FXMLLoader.load(getClass().getResource("AddRefrigerator.fxml"));
+            Parent rootAddRefrigerator = FXMLLoader.load(getClass().getResource("/View/AddRefrigerator.fxml"));
             AddRefrigerator.setScene(new Scene(rootAddRefrigerator));
             AddRefrigerator.setTitle("Adicionar Arca Frigorifica");
             AddRefrigerator.setResizable(false);
@@ -672,7 +664,7 @@ public class MainScreenController{
                 try{
                     EditRefrigeratorController.setThisRefrigerator(listArcas.get(index));
                     Stage EditStage = new Stage();
-                    Parent root = FXMLLoader.load(getClass().getResource("EditRefrigerator.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource("/View/EditRefrigerator.fxml"));
                     EditStage.setScene(new Scene(root));
                     EditStage.setTitle("Editar Arca  " + designArcaCol.getCellData(index));
                     EditStage.setResizable(false);
@@ -730,7 +722,7 @@ public class MainScreenController{
                 try{
                     EditAreaController.setThisArea(listAreasCont.get(index));
                     Stage EditStage = new Stage();
-                    Parent root = FXMLLoader.load(getClass().getResource("EditArea.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource("/View/EditArea.fxml"));
                     EditStage.setScene(new Scene(root));
                     EditStage.setTitle("Editar "+listAreasCont.get(index).getNumero());
                     EditStage.setResizable(false);
@@ -775,7 +767,7 @@ public class MainScreenController{
         System.out.println("add controlled area btn clicked!!");
         try{
             Stage AddControlledArea = new Stage();
-            Parent rootAddControlledArea = FXMLLoader.load(getClass().getResource("AddControlledArea.fxml"));
+            Parent rootAddControlledArea = FXMLLoader.load(getClass().getResource("/View/AddControlledArea.fxml"));
             AddControlledArea.setScene(new Scene(rootAddControlledArea));
             AddControlledArea.setTitle("Adicionar Área Controlada");
             AddControlledArea.setResizable(false);

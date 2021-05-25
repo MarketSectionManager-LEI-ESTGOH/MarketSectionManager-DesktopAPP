@@ -1,12 +1,8 @@
-package Controller;
-
-import Model.ConnectDB;
+package Model;
 
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Timestamp;
 
 public class ArcaFrigorifica {
 

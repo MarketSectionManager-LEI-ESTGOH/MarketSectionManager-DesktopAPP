@@ -1,6 +1,4 @@
-package Controller;
-
-import Model.ConnectDB;
+package Model;
 
 import java.sql.PreparedStatement;
 
