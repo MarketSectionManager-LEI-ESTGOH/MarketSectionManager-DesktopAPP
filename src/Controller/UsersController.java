@@ -45,9 +45,6 @@ public class UsersController {
         usersTable();
     }
 
-
-
-
     /**
      * Retorna utilizador escolhido da tabela.
      * @param mouseEvent

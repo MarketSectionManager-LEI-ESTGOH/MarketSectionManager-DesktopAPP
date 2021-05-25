@@ -49,25 +49,7 @@ public class MainScreenController{
     private Pane receivedPane;
 
     protected static User selectedUser = null;
-    public Pane productsPane;
-    @FXML
-    public TableView<Product> productTable;
-    @FXML
-    public TableColumn<Product, Integer> numIntProfuctsCol;
-    @FXML
-    public TableColumn<Product, String> productNameCol;
-    @FXML
-    public TableColumn<Product, String> freshProductCol;
-    @FXML
-    public TableColumn<Product, Float> priceProductCol;
-    @FXML
-    public TableColumn<Product, BigDecimal> eanProductCol;
-    @FXML
-    public TableColumn<Product, String> brandProductCol;
-    public Button RemoveProductBtn;
-    public TextField searchProductTextField;
-    public Button EditProductBtn;
-    public Button addProductBtn;
+
 
     @FXML
     private Pane fornecedoresPane;
@@ -105,7 +87,6 @@ public class MainScreenController{
     private TextField addCANumberTF;
     @FXML
     private TextField addCADesignTF;
-    ObservableList<Product> listProducts;
 
     ObservableList<Fornecedor> listFornecedores;
     ObservableList<Area> listAreasCont;
@@ -152,53 +133,7 @@ public class MainScreenController{
 
 
 
-    public void productsTable(){
-        collapse();
-        System.out.println("products Edit btn clicked!!");
 
-        numIntProfuctsCol.setCellValueFactory(new PropertyValueFactory<Product, Integer>("num_int"));
-        productNameCol.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
-        freshProductCol.setCellValueFactory(new PropertyValueFactory<Product, String>("freshString"));
-        priceProductCol.setCellValueFactory(new PropertyValueFactory<Product, Float>("price"));
-        eanProductCol.setCellValueFactory(new PropertyValueFactory<Product, BigDecimal>("ean"));
-        brandProductCol.setCellValueFactory(new PropertyValueFactory<Product, String>("brand"));
-
-
-        listProducts = ConnectDB.getAllProducts();
-        FilteredList<Product> filteredData = new FilteredList<>(listProducts, b -> true);
-        searchProductTextField.textProperty().addListener((observable, oldValue, newValue) ->{
-            filteredData.setPredicate(Product ->{
-                if(newValue == null || newValue.isEmpty()){
-                    return true;
-                }
-
-                String lowerCaseFilter = newValue.toLowerCase();
-
-                if(Product.getName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                } else if(String.valueOf(Product.getNum_int()).indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                } else if(String.valueOf(Product.getPrice()).indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                } else if(String.valueOf(Product.getEan()).indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                } else if(Product.getBrand().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                } else if(Product.getFreshString().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                } else {
-                    return false;
-                }
-            });
-        });
-
-        SortedList<Product> sortedData = new SortedList<>(filteredData);
-
-        sortedData.comparatorProperty().bind(productTable.comparatorProperty());
-
-        productTable.setItems(sortedData);
-        productsPane.setVisible(true);
-    }
 
 
 
@@ -354,6 +289,17 @@ public class MainScreenController{
         }
     }
 
+    public void showProductsTable(){
+        try {
+            Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/ProductsPane.fxml"));
+            receivedPane.getChildren().add(newLoadedPane);
+            receivedPane.setVisible(true);
+        }catch(Exception e ){
+            System.out.println("erro o loader " + e);
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Retorna utilizador escolhido da tabela.
      * @param mouseEvent
@@ -469,8 +415,6 @@ public class MainScreenController{
         }
         return false;
     }
-
-
 
 
 

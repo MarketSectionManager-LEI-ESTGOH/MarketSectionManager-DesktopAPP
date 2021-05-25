@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainScreenController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainScreenController">
    <children>
       <Pane prefHeight="621.0" prefWidth="200.0" styleClass="sideBar" stylesheets="@../CSS/mainScreenStyles.css">
          <children>
@@ -24,7 +24,7 @@
             <Button layoutX="15.0" layoutY="182.0" mnemonicParsing="false" onAction="#fornecedorTable" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" stylesheets="@../CSS/mainScreenStyles.css" text="Fornecedores" />
             <Button layoutX="15.0" layoutY="146.0" mnemonicParsing="false" onAction="#areasControladasTable" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" stylesheets="@../CSS/mainScreenStyles.css" text="Áreas Controladas" />
             <Button layoutX="14.0" layoutY="109.0" mnemonicParsing="false" onAction="#showRefrigeratorsTable" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" stylesheets="@../CSS/mainScreenStyles.css" text="Arcas Frigorificas" />
-            <Button fx:id="editProducts" layoutX="15.0" layoutY="258.0" mnemonicParsing="false" onAction="#productsTable" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" text="Produtos" />
+            <Button fx:id="editProducts" layoutX="15.0" layoutY="258.0" mnemonicParsing="false" onAction="#showProductsTable" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" text="Produtos" />
             <Button fx:id="editBTN" layoutX="15.0" layoutY="220.0" mnemonicParsing="false" onAction="#showUsersTable" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" text="Utilizadores" />
             <ImageView fitHeight="38.0" fitWidth="43.0" layoutX="19.0" layoutY="564.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -64,35 +64,6 @@
                   <Image url="@../Images/products_new_cube_product_design_icon_153845.png" />
                </image>
             </ImageView>
-         </children>
-      </Pane>
-      <Pane fx:id="productsPane" layoutX="200.0" prefHeight="628.0" prefWidth="1059.0" style="-fx-background-color: #808080;" visible="false">
-         <children>
-            <Label layoutX="432.0" layoutY="15.0" text="PRODUTOS" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <Button fx:id="collapseBtn" layoutX="914.0" layoutY="15.0" mnemonicParsing="false" onAction="#collapse" prefHeight="27.0" prefWidth="32.0" styleClass="collapseButton" stylesheets="@../CSS/mainScreenStyles.css" />
-            <TableView fx:id="productTable" layoutX="11.0" layoutY="96.0" onMouseClicked="#getSelected" prefHeight="414.0" prefWidth="974.0">
-               <columns>
-                  <TableColumn fx:id="numIntProfuctsCol" prefWidth="115.0" text="Número Interno" />
-                  <TableColumn fx:id="productNameCol" prefWidth="266.0" text="Nome" />
-                  <TableColumn fx:id="freshProductCol" prefWidth="98.0" text="Fresco" />
-                  <TableColumn fx:id="priceProductCol" minWidth="0.0" prefWidth="89.0" text="Preço" />
-                  <TableColumn fx:id="eanProductCol" maxWidth="500.0" prefWidth="173.0" text="EAN" />
-                  <TableColumn fx:id="brandProductCol" prefWidth="232.0" text="Marca" />
-               </columns>
-            </TableView>
-            <Button fx:id="RemoveProductBtn" layoutX="921.0" layoutY="522.0" mnemonicParsing="false" text="Remover" textAlignment="CENTER" />
-            <Label layoutX="14.0" layoutY="64.0" text="Procurar" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <TextField fx:id="searchProductTextField" layoutX="72.0" layoutY="60.0" />
-            <Button fx:id="EditProductBtn" layoutX="867.0" layoutY="522.0" mnemonicParsing="false" text="Editar" textAlignment="CENTER" />
-            <Button fx:id="addProductBtn" layoutX="792.0" layoutY="522.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Adicionar" />
          </children>
       </Pane>
       <Pane fx:id="fornecedoresPane" layoutX="200.0" prefHeight="628.0" prefWidth="1059.0" style="-fx-background-color: #808080;" visible="false">

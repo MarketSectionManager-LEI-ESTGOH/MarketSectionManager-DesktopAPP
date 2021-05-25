@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="eac06cb8-75b6-4ce5-8622-061c7082357d" name="Default Changelist" comment="" />
+    <list default="true" id="eac06cb8-75b6-4ce5-8622-061c7082357d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Controller/ProdutosController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/ProductsPane.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/MainScreenController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/MainScreenController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/MainScreenController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/MainScreenController$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/MainScreenController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/MainScreenController$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/MainScreenController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/MainScreenController$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/MainScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/MainScreenController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/UsersController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/UsersController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/UsersController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/UsersController$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/UsersController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/UsersController$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/UsersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/UsersController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/Model/ConnectDB.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/Model/ConnectDB.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/View/MainScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/View/MainScreen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/MainScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MainScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/UsersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UsersController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/MainScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/MainScreen.fxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,8 +28,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -34,7 +52,10 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/View" />
+    <property name="settings.editor.selected.configurable" value="preferences.JavaFX" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -62,6 +83,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
@@ -76,7 +108,26 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1619432087870</updated>
+      <workItem from="1621954225248" duration="2580000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
