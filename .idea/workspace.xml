@@ -2,22 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eac06cb8-75b6-4ce5-8622-061c7082357d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Controller/ProdutosController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/ProductsPane.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/SectionController$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/SectionController$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/SectionController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/RepositoryClone/View/SectionsPane.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/SectionController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/SectionsPane.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/MainScreenController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/MainScreenController$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/MainScreenController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/MainScreenController$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/MainScreenController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/MainScreenController$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/MainScreenController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/MainScreenController$4.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/MainScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/MainScreenController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/UsersController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/UsersController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/UsersController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/UsersController$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/UsersController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/UsersController$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/UsersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/UsersController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/Model/ConnectDB.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/Model/ConnectDB.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/View/MainScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/View/MainScreen.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/MainScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MainScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UsersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UsersController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/MainScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/MainScreen.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -108,7 +105,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1619432087870</updated>
-      <workItem from="1621954225248" duration="2580000" />
+      <workItem from="1621954225248" duration="2610000" />
     </task>
     <servers />
   </component>

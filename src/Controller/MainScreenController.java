@@ -1,8 +1,6 @@
 package Controller;
 
 import Model.*;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -16,21 +14,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
-
 import java.math.BigDecimal;
-
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.Date;
 
 public class MainScreenController{
 
     public Button editProfileBtn = new Button();
-   // public ImageView logoutBtn = new ImageView();
     private Stage currentStage = null;
     public Button registerBTN = new Button();
     public Button editBTN = new Button();
@@ -69,6 +60,7 @@ public class MainScreenController{
     public TextField searchFornecedorTextField;
     public Button EditFornecedorBtn;
     public Button addFornecedorBtn;
+<<<<<<< HEAD
     @FXML
     private Pane areasControladasPane;
     @FXML
@@ -88,11 +80,11 @@ public class MainScreenController{
     @FXML
     private TextField addCADesignTF;
 
+=======
+    ObservableList<Product> listProducts;
+>>>>>>> 51a59d75000115288e9af2732776ce974b1192f7
     ObservableList<Fornecedor> listFornecedores;
-    ObservableList<Area> listAreasCont;
     private int index = -1;
-
-
 
     /**
      * Referencia apresentação de dados: 20/04/2021
@@ -102,8 +94,6 @@ public class MainScreenController{
      * https://www.youtube.com/watch?v=FeTrcNBVWtg
      *
      */
-
-
     public void start() throws Exception{
         Stage MainScreen = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
@@ -114,7 +104,6 @@ public class MainScreenController{
         MainScreen.centerOnScreen();
         MainScreen.show();
     }
-
 
     public void editProfile(){
         System.out.println("edit profile btn clicked");
@@ -129,11 +118,60 @@ public class MainScreenController{
 
     }
 
+<<<<<<< HEAD
 
 
 
 
 
+=======
+    public void productsTable(){
+        collapse();
+        System.out.println("products Edit btn clicked!!");
+
+        numIntProfuctsCol.setCellValueFactory(new PropertyValueFactory<Product, Integer>("num_int"));
+        productNameCol.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+        freshProductCol.setCellValueFactory(new PropertyValueFactory<Product, String>("freshString"));
+        priceProductCol.setCellValueFactory(new PropertyValueFactory<Product, Float>("price"));
+        eanProductCol.setCellValueFactory(new PropertyValueFactory<Product, BigDecimal>("ean"));
+        brandProductCol.setCellValueFactory(new PropertyValueFactory<Product, String>("brand"));
+
+        listProducts = ConnectDB.getAllProducts();
+        FilteredList<Product> filteredData = new FilteredList<>(listProducts, b -> true);
+        searchProductTextField.textProperty().addListener((observable, oldValue, newValue) ->{
+            filteredData.setPredicate(Product ->{
+                if(newValue == null || newValue.isEmpty()){
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if(Product.getName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if(String.valueOf(Product.getNum_int()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if(String.valueOf(Product.getPrice()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if(String.valueOf(Product.getEan()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if(Product.getBrand().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if(Product.getFreshString().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+        });
+
+        SortedList<Product> sortedData = new SortedList<>(filteredData);
+
+        sortedData.comparatorProperty().bind(productTable.comparatorProperty());
+
+        productTable.setItems(sortedData);
+        productsPane.setVisible(true);
+    }
+>>>>>>> 51a59d75000115288e9af2732776ce974b1192f7
 
 
 
@@ -181,38 +219,7 @@ public class MainScreenController{
         fornecedoresPane.setVisible(true);
     }
 
-    public void areasControladasTable(){
-        collapse();
-        System.out.println("areas controladas btn clicked!!");
 
-        numeroAreaContCol.setCellValueFactory(new PropertyValueFactory<Area, Integer>("numero"));
-        desginacaoAreaContCol.setCellValueFactory(new PropertyValueFactory<Area, String>("designacao"));
-
-        listAreasCont = ConnectDB.getAllAreasCont();
-        FilteredList<Area> filteredData = new FilteredList<>(listAreasCont, b -> true);
-        searchAreasContTextField.textProperty().addListener((observable, oldValue, newValue) ->{
-            filteredData.setPredicate(Area ->{
-                if(newValue == null || newValue.isEmpty()){
-                    return true;
-                }
-
-                String lowerCaseFilter = newValue.toLowerCase();
-
-                if(Area.getDesignacao().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                } else if(String.valueOf(Area.getNumero()).indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                } else {
-                    return false;
-                }
-            });
-        });
-
-        SortedList<Area> sortedData = new SortedList<>(filteredData);
-        sortedData.comparatorProperty().bind(areasContTable.comparatorProperty());
-        areasContTable.setItems(sortedData);
-        areasControladasPane.setVisible(true);
-    }
 
     public void addUser(){
         System.out.println("add user btn clicked!!");
@@ -264,7 +271,6 @@ public class MainScreenController{
         if(receivedPane != null){
             receivedPane.setVisible(false);
         }
-
     }
 
     public void showUsersTable(){
@@ -289,6 +295,7 @@ public class MainScreenController{
         }
     }
 
+<<<<<<< HEAD
     public void showProductsTable(){
         try {
             Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/ProductsPane.fxml"));
@@ -404,20 +411,24 @@ public class MainScreenController{
     }
 
     private boolean registerControlledArea(int aNumber, String aDesign){
+=======
+    public void showControlledAreasTable(){
+>>>>>>> 51a59d75000115288e9af2732776ce974b1192f7
         try {
-            String stmt = "INSERT INTO area (numero, designacao) VALUES (?, ?)";
-            PreparedStatement ps = ConnectDB.getConn().prepareStatement(stmt);
-            ps.setInt(1, aNumber);
-            ps.setString(2,aDesign);
-            return ConnectDB.insertIntoTable(ps);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/SectionsPane.fxml"));
+            receivedPane.getChildren().add(newLoadedPane);
+            receivedPane.setVisible(true);
+        }catch(Exception e ){
+            System.out.println("erro o loader " + e);
+            e.printStackTrace();
         }
-        return false;
     }
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 51a59d75000115288e9af2732776ce974b1192f7
     //WHY FORNECEDORES AND PRODUTOS USE THE getSelected dos users???                         TEMOS DE VER DISTO PÁ!
 
     @FXML
