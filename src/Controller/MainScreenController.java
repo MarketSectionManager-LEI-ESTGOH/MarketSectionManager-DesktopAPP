@@ -1,8 +1,6 @@
 package Controller;
 
 import Model.*;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -16,21 +14,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
-
 import java.math.BigDecimal;
-
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.Date;
 
 public class MainScreenController{
 
     public Button editProfileBtn = new Button();
-   // public ImageView logoutBtn = new ImageView();
     private Stage currentStage = null;
     public Button registerBTN = new Button();
     public Button editBTN = new Button();
@@ -87,31 +78,9 @@ public class MainScreenController{
     public TextField searchFornecedorTextField;
     public Button EditFornecedorBtn;
     public Button addFornecedorBtn;
-    @FXML
-    private Pane areasControladasPane;
-    @FXML
-    public TableView<Area> areasContTable;
-    @FXML
-    public TableColumn<Area, Integer> numeroAreaContCol;
-    @FXML
-    public TableColumn<Area, String> desginacaoAreaContCol;
-    public Button removeAreaContBtn;
-    public TextField searchAreasContTextField;
-    public Button editAreaContBtn;
-    public Button addAreasContBtn;
-    public Button addCAComponentsBTN;
-    public Button addCABTN;
-    @FXML
-    private TextField addCANumberTF;
-    @FXML
-    private TextField addCADesignTF;
     ObservableList<Product> listProducts;
-
     ObservableList<Fornecedor> listFornecedores;
-    ObservableList<Area> listAreasCont;
     private int index = -1;
-
-
 
     /**
      * Referencia apresentação de dados: 20/04/2021
@@ -121,8 +90,6 @@ public class MainScreenController{
      * https://www.youtube.com/watch?v=FeTrcNBVWtg
      *
      */
-
-
     public void start() throws Exception{
         Stage MainScreen = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
@@ -133,7 +100,6 @@ public class MainScreenController{
         MainScreen.centerOnScreen();
         MainScreen.show();
     }
-
 
     public void editProfile(){
         System.out.println("edit profile btn clicked");
@@ -148,10 +114,6 @@ public class MainScreenController{
 
     }
 
-
-
-
-
     public void productsTable(){
         collapse();
         System.out.println("products Edit btn clicked!!");
@@ -162,7 +124,6 @@ public class MainScreenController{
         priceProductCol.setCellValueFactory(new PropertyValueFactory<Product, Float>("price"));
         eanProductCol.setCellValueFactory(new PropertyValueFactory<Product, BigDecimal>("ean"));
         brandProductCol.setCellValueFactory(new PropertyValueFactory<Product, String>("brand"));
-
 
         listProducts = ConnectDB.getAllProducts();
         FilteredList<Product> filteredData = new FilteredList<>(listProducts, b -> true);
@@ -246,38 +207,7 @@ public class MainScreenController{
         fornecedoresPane.setVisible(true);
     }
 
-    public void areasControladasTable(){
-        collapse();
-        System.out.println("areas controladas btn clicked!!");
 
-        numeroAreaContCol.setCellValueFactory(new PropertyValueFactory<Area, Integer>("numero"));
-        desginacaoAreaContCol.setCellValueFactory(new PropertyValueFactory<Area, String>("designacao"));
-
-        listAreasCont = ConnectDB.getAllAreasCont();
-        FilteredList<Area> filteredData = new FilteredList<>(listAreasCont, b -> true);
-        searchAreasContTextField.textProperty().addListener((observable, oldValue, newValue) ->{
-            filteredData.setPredicate(Area ->{
-                if(newValue == null || newValue.isEmpty()){
-                    return true;
-                }
-
-                String lowerCaseFilter = newValue.toLowerCase();
-
-                if(Area.getDesignacao().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                } else if(String.valueOf(Area.getNumero()).indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                } else {
-                    return false;
-                }
-            });
-        });
-
-        SortedList<Area> sortedData = new SortedList<>(filteredData);
-        sortedData.comparatorProperty().bind(areasContTable.comparatorProperty());
-        areasContTable.setItems(sortedData);
-        areasControladasPane.setVisible(true);
-    }
 
     public void addUser(){
         System.out.println("add user btn clicked!!");
@@ -329,7 +259,6 @@ public class MainScreenController{
         if(receivedPane != null){
             receivedPane.setVisible(false);
         }
-
     }
 
     public void showUsersTable(){
@@ -354,125 +283,16 @@ public class MainScreenController{
         }
     }
 
-    /**
-     * Retorna utilizador escolhido da tabela.
-     * @param mouseEvent
-     */
-    public void getSelectedArea(javafx.scene.input.MouseEvent mouseEvent) {
-        index = areasContTable.getSelectionModel().getSelectedIndex();
-        if(index <= -1){
-            return;
-        }
-        editAreaContBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                try{
-                    EditAreaController.setThisArea(listAreasCont.get(index));
-                    Stage EditStage = new Stage();
-                    Parent root = FXMLLoader.load(getClass().getResource("/View/EditArea.fxml"));
-                    EditStage.setScene(new Scene(root));
-                    EditStage.setTitle("Editar "+listAreasCont.get(index).getNumero());
-                    EditStage.setResizable(false);
-                    EditStage.centerOnScreen();
-                    EditStage.show();
-                }catch (Exception e){
-                    System.out.println(e);
-                }
-
-            }
-        });
-        removeAreaContBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                try{
-                    Area selected = listAreasCont.get(index);
-                    Optional<ButtonType> result = alerts(Alert.AlertType.CONFIRMATION, "Remover "+selected.getNumero(), "Tem a certeza que" +
-                            " quer remover a Area Controlada "+selected.getNumero()+" com a designação "+selected.getDesignacao()
-                            +"?").showAndWait();
-                    if(!result.isPresent()){
-
-                    }else if(result.get() == ButtonType.OK){
-                        if(Area.removeAreaFromDB(selected)){
-                            alerts(Alert.AlertType.INFORMATION, "Removido com sucesso", "Àrea Controlada "+selected.getNumero()
-                                    +" removido com sucesso.").showAndWait();
-                        }else{
-                            alerts(Alert.AlertType.ERROR, "Falha ao remover", "Algo correu mal...").showAndWait();
-                        }
-                    }else if(result.get() == ButtonType.CANCEL){
-
-                    }
-                }catch (Exception e){
-                    System.out.println(e);
-                }
-
-            }
-        });
-    }
-
-
-    public void showAddControlledArea(){
-        System.out.println("add controlled area btn clicked!!");
-        try{
-            Stage AddControlledArea = new Stage();
-            Parent rootAddControlledArea = FXMLLoader.load(getClass().getResource("/View/AddControlledArea.fxml"));
-            AddControlledArea.setScene(new Scene(rootAddControlledArea));
-            AddControlledArea.setTitle("Adicionar Área Controlada");
-            AddControlledArea.setResizable(false);
-            AddControlledArea.centerOnScreen();
-            AddControlledArea.show();
-        }catch (Exception e){
-            System.out.println(e);
-        }
-    }
-
-    public void insertControlledArea(){
-        System.out.println(" -- @ insertControllerArea() --");
-        try{
-            int areaNumber = -1;
-            if(!addCANumberTF.getText().isEmpty()){
-                areaNumber = Integer.parseInt(addCANumberTF.getText());
-                if(!addCADesignTF.getText().isEmpty()){
-                    if(registerControlledArea(areaNumber, addCADesignTF.getText())){
-                        alerts(Alert.AlertType.INFORMATION, "SUCESSO", " A Área Controlada " + addCADesignTF.getText() + " com o Número Interno " + areaNumber + "\nfoi inserida com sucesso!").showAndWait();
-                        cleanControlledAreaFields();
-                    }else{
-                        alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um erro inseperado, por favor tente novamente!").showAndWait();
-                    }
-                }else{
-                    System.out.println("design empty");
-                    alerts(Alert.AlertType.ERROR, "ERRO", "A Designação da Área Controlada é de Preenchimento Obrigatório!").showAndWait();
-                }
-            }else{
-                System.out.println("number empty");
-                alerts(Alert.AlertType.ERROR, "ERRO", "O número da Área Controlada é de Preenchimento Obrigatório!").showAndWait();
-            }
-        }catch(Exception e){
-            alerts(Alert.AlertType.ERROR, "ERRO", "Algo correu mal, por favor tente novamente! \n\n " + e).showAndWait();
-
-        }
-    }
-
-    private void cleanControlledAreaFields(){
-        addCANumberTF.setText("");
-        addCADesignTF.setText("");
-    }
-
-    private boolean registerControlledArea(int aNumber, String aDesign){
+    public void showControlledAreasTable(){
         try {
-            String stmt = "INSERT INTO area (numero, designacao) VALUES (?, ?)";
-            PreparedStatement ps = ConnectDB.getConn().prepareStatement(stmt);
-            ps.setInt(1, aNumber);
-            ps.setString(2,aDesign);
-            return ConnectDB.insertIntoTable(ps);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/SectionsPane.fxml"));
+            receivedPane.getChildren().add(newLoadedPane);
+            receivedPane.setVisible(true);
+        }catch(Exception e ){
+            System.out.println("erro o loader " + e);
+            e.printStackTrace();
         }
-        return false;
     }
-
-
-
-
 
     //WHY FORNECEDORES AND PRODUTOS USE THE getSelected dos users???                         TEMOS DE VER DISTO PÁ!
 
