@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="eac06cb8-75b6-4ce5-8622-061c7082357d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/MainScreenController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/MainScreenController$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/MainScreenController$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/MainScreenController$4.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/MainScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/Controller/MainScreenController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RepositoryClone/View/MainScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RepositoryClone/View/MainScreen.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/MainScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MainScreenController.java" afterDir="false" />
@@ -20,8 +16,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -75,6 +71,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
@@ -92,6 +99,7 @@
       <workItem from="1621954225248" duration="2610000" />
       <workItem from="1621957293791" duration="678000" />
       <workItem from="1621958011106" duration="90000" />
+      <workItem from="1621958519400" duration="598000" />
     </task>
     <servers />
   </component>

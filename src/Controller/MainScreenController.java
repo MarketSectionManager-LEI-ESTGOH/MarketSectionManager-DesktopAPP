@@ -1,15 +1,11 @@
 package Controller;
 
 import Model.*;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -31,31 +27,9 @@ public class MainScreenController{
     @FXML
     private Pane receivedPane;
 
-    @FXML
-    private Pane fornecedoresPane;
-    @FXML
-    public TableView<Fornecedor> fornecedoresTable;
-    @FXML
-    public TableColumn<Fornecedor, String> identFornCol;
-    @FXML
-    public TableColumn<Fornecedor, String> nomeFornCol;
-    @FXML
-    public TableColumn<Fornecedor, Integer> contactoFornCol;
-    @FXML
-    public TableColumn<Fornecedor, String> emailFornCol;
-    @FXML
-    public TableColumn<Fornecedor, String> moradaFornCol;
-    public Button RemoveForncedorBtn;
-    public TextField searchFornecedorTextField;
-    public Button EditFornecedorBtn;
-    public Button addFornecedorBtn;
-
     public Button addCAComponentsBTN;
     public Button addCABTN;
 
-
-    ObservableList<Fornecedor> listFornecedores;
-    private int index = -1;
 
     /**
      * Referencia apresentação de dados: 20/04/2021
@@ -87,51 +61,6 @@ public class MainScreenController{
         Main.u = null;
         new Main().start(new Stage());
 
-    }
-
-
-    public void fornecedorTable(){
-        collapse();
-        System.out.println("fornecedores btn clicked!!");
-
-        identFornCol.setCellValueFactory(new PropertyValueFactory<Fornecedor, String>("identificador"));
-        nomeFornCol.setCellValueFactory(new PropertyValueFactory<Fornecedor, String>("nome"));
-        contactoFornCol.setCellValueFactory(new PropertyValueFactory<Fornecedor, Integer>("contacto"));
-        emailFornCol.setCellValueFactory(new PropertyValueFactory<Fornecedor, String>("email"));
-        moradaFornCol.setCellValueFactory(new PropertyValueFactory<Fornecedor, String>("morada"));
-
-        listFornecedores = ConnectDB.getAllFornecedores();
-        FilteredList<Fornecedor> filteredData = new FilteredList<>(listFornecedores, b -> true);
-        searchFornecedorTextField.textProperty().addListener((observable, oldValue, newValue) ->{
-            filteredData.setPredicate(Fornecedor ->{
-                if(newValue == null || newValue.isEmpty()){
-                    return true;
-                }
-
-                String lowerCaseFilter = newValue.toLowerCase();
-
-                if(Fornecedor.getIdentificador().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                } else if(String.valueOf(Fornecedor.getContacto()).indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                } else if(Fornecedor.getNome().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                } else if(Fornecedor.getEmail().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                } else if(Fornecedor.getMorada().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                } else {
-                    return false;
-                }
-            });
-        });
-
-        SortedList<Fornecedor> sortedData = new SortedList<>(filteredData);
-
-        sortedData.comparatorProperty().bind(fornecedoresTable.comparatorProperty());
-
-        fornecedoresTable.setItems(sortedData);
-        fornecedoresPane.setVisible(true);
     }
 
     public void addUser(){
@@ -222,6 +151,17 @@ public class MainScreenController{
     public void showControlledAreasTable(){
         try {
             Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/SectionsPane.fxml"));
+            receivedPane.getChildren().add(newLoadedPane);
+            receivedPane.setVisible(true);
+        }catch(Exception e ){
+            System.out.println("erro o loader " + e);
+            e.printStackTrace();
+        }
+    }
+
+    public void showFornecedoresTable(){
+        try {
+            Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/FornecedoresPane.fxml"));
             receivedPane.getChildren().add(newLoadedPane);
             receivedPane.setVisible(true);
         }catch(Exception e ){
