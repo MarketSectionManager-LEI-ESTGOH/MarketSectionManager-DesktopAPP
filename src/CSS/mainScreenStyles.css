@@ -16,9 +16,9 @@
 }
 
 .sideBarButton{
-    -fx-background-color: rgb(44, 44, 44);
-    -fx-background-image: url('media/arrow.png');
-    -fx-text-fill: white;
+    -fx-background-color: #253437;
+    -fx-text-fill: #f8fafb;
+     -fx-border-color: #6bbfa3;
 }
 
 .collapseButton{

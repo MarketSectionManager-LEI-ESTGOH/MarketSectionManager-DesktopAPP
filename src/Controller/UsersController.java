@@ -30,10 +30,13 @@ public class UsersController {
     private TableColumn<Model.User, Integer> numint_tb_users;
     @FXML
     private TableColumn<Model.User, String> email_tb_users;
-    public Button RemoveUserBtn;
-    public TextField searchTextField;
-    public Button EditUserBtn;
-    ObservableList<User> listUsers;
+    @FXML
+    private Button RemoveUserBtn;
+    @FXML
+    private TextField searchTextField;
+    @FXML
+    private Button EditUserBtn;
+    private ObservableList<User> listUsers;
     private static boolean firstUserRun = false;
     private int index = -1;
 
@@ -43,7 +46,7 @@ public class UsersController {
     }
 
 
-    public void collapse(){}
+
 
     /**
      * Retorna utilizador escolhido da tabela.
@@ -107,7 +110,6 @@ public class UsersController {
     }
 
     public void usersTable(){
-        collapse();
         System.out.println("usersTable Edit btn clicked!!");
         try {
             System.out.println("-------------------------- no try ---------------------------");
@@ -145,7 +147,6 @@ public class UsersController {
         sortedData.comparatorProperty().bind(table_users.comparatorProperty());
 
         table_users.setItems(sortedData);
-        //allUsersPane.setVisible(true);        SUBSTITUIR PELO FXML LOADER!???????!?!!?!?!??!?!?!??!
 
         if(!firstUserRun){
             table_users.focusedProperty().addListener(new ChangeListener<Boolean>()
@@ -172,8 +173,6 @@ public class UsersController {
     public void register(){
         System.out.println("register btn clicked!!");
         try{
-            //EditUserController.setThisUser(listUsers.get(index));
-            //System.out.println(listUsers.get(index).getUserID());
             Stage AddStage = new Stage();
             Parent rootAddStage = FXMLLoader.load(getClass().getResource("/View/AddUser.fxml"));
             AddStage.setScene(new Scene(rootAddStage));

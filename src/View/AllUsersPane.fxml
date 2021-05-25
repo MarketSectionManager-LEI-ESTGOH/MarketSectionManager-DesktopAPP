@@ -15,7 +15,6 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="collapseBtn1" layoutX="914.0" layoutY="15.0" mnemonicParsing="false" onAction="#collapse" prefHeight="27.0" prefWidth="32.0" styleClass="collapseButton" stylesheets="@../CSS/mainScreenStyles.css" />
       <TableView fx:id="table_users" layoutX="11.0" layoutY="96.0" onMouseClicked="#getSelected" prefHeight="414.0" prefWidth="974.0">
          <columns>
             <TableColumn fx:id="tipo_tb_users" maxWidth="150.0" prefWidth="115.0" text="Tipo" />
