@@ -74,7 +74,7 @@
                </font>
             </Label>
             <Button fx:id="collapseBtn" layoutX="914.0" layoutY="15.0" mnemonicParsing="false" onAction="#collapse" prefHeight="27.0" prefWidth="32.0" styleClass="collapseButton" stylesheets="@../CSS/mainScreenStyles.css" />
-            <TableView fx:id="fornecedoresTable" layoutX="11.0" layoutY="96.0" onMouseClicked="#getSelected" prefHeight="414.0" prefWidth="974.0">
+            <TableView fx:id="fornecedoresTable" layoutX="11.0" layoutY="96.0" prefHeight="414.0" prefWidth="974.0">
                <columns>
                   <TableColumn fx:id="identFornCol" prefWidth="94.0" text="Identificador" />
                   <TableColumn fx:id="nomeFornCol" prefWidth="191.0" text="Nome" />
