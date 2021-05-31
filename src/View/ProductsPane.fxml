@@ -34,5 +34,6 @@
       <TextField fx:id="searchProductTextField" layoutX="72.0" layoutY="60.0" />
       <Button fx:id="EditProductBtn" layoutX="867.0" layoutY="522.0" mnemonicParsing="false" text="Editar" textAlignment="CENTER" />
       <Button fx:id="addProductBtn" layoutX="792.0" layoutY="522.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Adicionar" />
+      <Button layoutX="921.0" layoutY="60.0" mnemonicParsing="false" onMouseClicked="#productsTable" text="Atualizar" />
    </children>
 </Pane>

@@ -132,15 +132,19 @@ public class ProdutosController {
 
                 if(Product.getName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
-                } else if(String.valueOf(Product.getNum_int()).indexOf(lowerCaseFilter) != -1) {
+                }  if(String.valueOf(Product.getNum_int()).indexOf(lowerCaseFilter) != -1) {
                     return true;
-                } else if(String.valueOf(Product.getPrice()).indexOf(lowerCaseFilter) != -1) {
+                }  if(String.valueOf(Product.getPrice()).indexOf(lowerCaseFilter) != -1) {
                     return true;
-                } else if(String.valueOf(Product.getEan()).indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                } else if(Product.getBrand().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                } else if(Product.getFreshString().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                }  if(Product.getEan() != null){
+                    if(String.valueOf(Product.getEan()).indexOf(lowerCaseFilter) != -1) {
+                        return true;
+                    }
+                }  if(Product.getBrand() != null){
+                    if(Product.getBrand().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                        return true;
+                    }
+                } if(Product.getFreshString().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
                 } else {
                     return false;

@@ -1,6 +1,8 @@
 package Controller;
 
 import Model.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +25,8 @@ public class MainScreenController{
     public TextField userEmailTF = new TextField();
     public PasswordField userPassPF = new PasswordField();
     public PasswordField userPassConfPF = new PasswordField();
+
+    private boolean firstUserRun = false;
 
     @FXML
     private Pane receivedPane;
@@ -118,8 +122,10 @@ public class MainScreenController{
     public void showUsersTable(){
         try {
             Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/AllUsersPane.fxml"));
+
             receivedPane.getChildren().add(newLoadedPane);
             receivedPane.setVisible(true);
+
         }catch(Exception e ){
             System.out.println("erro o loader " + e);
             e.printStackTrace();

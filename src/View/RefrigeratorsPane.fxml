@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="arcasPane" prefHeight="628.0" prefWidth="1059.0" style="-fx-background-color: #808080;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RefrigeratorController">
+<Pane fx:id="arcasPane" prefHeight="628.0" prefWidth="1059.0" style="-fx-background-color: #808080;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RefrigeratorController">
    <children>
       <Label layoutX="406.0" layoutY="15.0" text="ARCAS FRIGORÍFICAS" textAlignment="CENTER" textFill="WHITE">
          <font>
@@ -37,5 +37,6 @@
       <TextField fx:id="searchArcaTextField" layoutX="72.0" layoutY="60.0" />
       <Button fx:id="EditArcaBtn" layoutX="867.0" layoutY="522.0" mnemonicParsing="false" text="Editar" textAlignment="CENTER" />
       <Button fx:id="addArcaBtn" layoutX="792.0" layoutY="522.0" mnemonicParsing="false" onAction="#showAddRefrigerator" prefHeight="25.0" prefWidth="68.0" text="Adicionar" />
+      <Button layoutX="921.0" layoutY="60.0" mnemonicParsing="false" onMouseClicked="#arcasTable" text="Atualizar" />
    </children>
 </Pane>

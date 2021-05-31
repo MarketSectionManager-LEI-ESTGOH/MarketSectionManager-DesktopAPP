@@ -128,11 +128,11 @@ public class UsersController {
 
                 if(User.getUsername().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
-                } else if(String.valueOf(User.getUserID()).indexOf(lowerCaseFilter) != -1) {
+                }  if(String.valueOf(User.getUserID()).indexOf(lowerCaseFilter) != -1) {
                     return true;
-                } else if(User.getUserTypeConv().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                }  if(User.getUserTypeConv().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
-                }else if(User.getEmail().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                } if(User.getEmail().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
                 }else{
                     return false;
@@ -145,6 +145,7 @@ public class UsersController {
 
         table_users.setItems(sortedData);
 
+        /* AUTO REFRESH ANTIGO
         if(!firstUserRun){
             table_users.focusedProperty().addListener(new ChangeListener<Boolean>()
             {
@@ -155,17 +156,21 @@ public class UsersController {
                     if(onHidden){
                         refresh = true;
                     }else if(onShown){
-                        if(refresh == true){
-                            usersTable();
-                            refresh = false;
+                        if(searchTextField.getText() == null){
+                            if(refresh == true){
+                                System.out.println("REFRESH");
+                                usersTable();
+                                refresh = false;
+                            }
                         }
                     }
                 }
 
             });
             firstUserRun = true;
-        }
+        }*/
     }
+
 
     public void register(){
         System.out.println("register btn clicked!!");
@@ -180,5 +185,9 @@ public class UsersController {
         }catch (Exception e){
             System.out.println(e);
         }
+    }
+
+    public TableView<User> getTable_users() {
+        return table_users;
     }
 }

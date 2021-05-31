@@ -65,7 +65,7 @@ public class SectionController {
 
                 if(Area.getDesignacao().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
-                } else if(String.valueOf(Area.getNumero()).indexOf(lowerCaseFilter) != -1) {
+                } if(String.valueOf(Area.getNumero()).indexOf(lowerCaseFilter) != -1) {
                     return true;
                 } else {
                     return false;

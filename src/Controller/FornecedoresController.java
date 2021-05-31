@@ -41,6 +41,10 @@ public class FornecedoresController {
     ObservableList<Fornecedor> listFornecedores;
     private int index = -1;
 
+    @FXML
+    protected void initialize(){
+        fornecedorTable();
+    }
 
     public void fornecedorTable(){
         System.out.println("fornecedores btn clicked!!");
@@ -63,13 +67,13 @@ public class FornecedoresController {
 
                 if(Fornecedor.getIdentificador().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
-                } else if(String.valueOf(Fornecedor.getContacto()).indexOf(lowerCaseFilter) != -1) {
+                }  if(String.valueOf(Fornecedor.getContacto()).indexOf(lowerCaseFilter) != -1) {
                     return true;
-                } else if(Fornecedor.getNome().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                }  if(Fornecedor.getNome().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
-                } else if(Fornecedor.getEmail().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                }  if(Fornecedor.getEmail().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
-                } else if(Fornecedor.getMorada().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                }  if(Fornecedor.getMorada().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
                 } else {
                     return false;

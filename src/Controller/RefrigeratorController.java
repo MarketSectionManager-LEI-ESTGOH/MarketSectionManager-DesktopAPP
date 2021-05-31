@@ -90,28 +90,34 @@ public class RefrigeratorController {
 
                 if(ArcaFrigorifica.getDesignacao().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
-                } else if(String.valueOf(ArcaFrigorifica.getNumero()).indexOf(lowerCaseFilter) != -1) {
+                }  if(String.valueOf(ArcaFrigorifica.getNumero()).indexOf(lowerCaseFilter) != -1) {
                     return true;
-                } else if(String.valueOf(ArcaFrigorifica.getTempMax()).indexOf(lowerCaseFilter) != -1) {
+                }  if(String.valueOf(ArcaFrigorifica.getTempMax()).indexOf(lowerCaseFilter) != -1) {
                     return true;
-                } else if(String.valueOf(ArcaFrigorifica.getTempMin()).indexOf(lowerCaseFilter) != -1) {
+                }  if(String.valueOf(ArcaFrigorifica.getTempMin()).indexOf(lowerCaseFilter) != -1) {
                     return true;
-                } else if(ArcaFrigorifica.getFabricante().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                }  if(ArcaFrigorifica.getFabricante().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
-                } else if(String.valueOf(ArcaFrigorifica.getAddDate()).indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                } else if(String.valueOf(ArcaFrigorifica.getLimpDate()).indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                } else if(String.valueOf(ArcaFrigorifica.getUserLimp()).indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                } else if(ArcaFrigorifica.getUserName() != null){
+                } if(String.valueOf(ArcaFrigorifica.getAddDate()) != null){
+                    if(String.valueOf(ArcaFrigorifica.getAddDate()).indexOf(lowerCaseFilter) != -1) {
+                        return true;
+                    }
+                }  if(String.valueOf(ArcaFrigorifica.getLimpDate()) != null){
+                    if(String.valueOf(ArcaFrigorifica.getLimpDate()).indexOf(lowerCaseFilter) != -1) {
+                        return true;
+                    }
+                }  if(String.valueOf(ArcaFrigorifica.getUserLimp()) != null){
+                    if(String.valueOf(ArcaFrigorifica.getUserLimp()).indexOf(lowerCaseFilter) != -1) {
+                        return true;
+                    }
+                }  if(ArcaFrigorifica.getUserName() != null){
                     if(ArcaFrigorifica.getUserName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                         return true;
                     }
-                    return false;
                 } else {
                     return false;
                 }
+                return false;
             });
         });
 
