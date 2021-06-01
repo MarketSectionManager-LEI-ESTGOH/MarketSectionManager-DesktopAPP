@@ -88,4 +88,8 @@ public class Product {
     public String getFreshString() {
         return freshString;
     }
+
+    public static boolean checkNumInt(int aNum){
+        return ConnectDB.checkProductNumIt(aNum);
+    }
 }

@@ -565,7 +565,48 @@ public class ConnectDB {
             }
         } // end of finally
         return null;
+    }
 
+
+    /**
+     * função para overificar se determinado número interno existe
+     * @return
+     */
+    public static boolean checkProductNumIt(int aNumInt){
+        ResultSet rs = null;
+        String stmt = "Select n_interno from produto";
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            if(conn == null){
+                conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            }
+            PreparedStatement aPs = ConnectDB.getConn().prepareStatement(stmt);
+
+            rs = aPs.executeQuery();
+            while(rs.next()){
+                if(rs.getInt("n_interno") == aNumInt){
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("!! SQL Exception !!\n"+e);
+            e.printStackTrace();
+            return true;
+        } catch (ClassNotFoundException e) {
+            System.out.println("!! Class Not Found. Unable to load Database Drive !!\n"+e);
+            return true;
+
+        } catch (IllegalAccessException e) {
+            System.out.println("!! Illegal Access !!\n"+e);
+            return true;
+
+        } catch (InstantiationException e) {
+            System.out.println("!! Class Not Instanciaded !!\n"+e);
+            return true;
+
+        }
+        return false;
     }
 
 }
