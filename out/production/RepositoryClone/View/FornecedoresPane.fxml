@@ -15,7 +15,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TableView fx:id="fornecedoresTable" layoutX="11.0" layoutY="96.0" prefHeight="414.0" prefWidth="974.0">
+      <TableView fx:id="fornecedoresTable" layoutX="11.0" layoutY="96.0" onMouseClicked="#getSelected" prefHeight="414.0" prefWidth="974.0">
          <columns>
             <TableColumn fx:id="identFornCol" prefWidth="94.0" text="Identificador" />
             <TableColumn fx:id="nomeFornCol" prefWidth="191.0" text="Nome" />
@@ -32,7 +32,7 @@
       </Label>
       <TextField fx:id="searchFornecedorTextField" layoutX="72.0" layoutY="60.0" />
       <Button fx:id="EditFornecedorBtn" layoutX="867.0" layoutY="522.0" mnemonicParsing="false" text="Editar" textAlignment="CENTER" />
-      <Button fx:id="addFornecedorBtn" layoutX="792.0" layoutY="522.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Adicionar" />
+      <Button fx:id="addFornecedorBtn" layoutX="792.0" layoutY="522.0" mnemonicParsing="false" onAction="#registerForn" prefHeight="25.0" prefWidth="68.0" text="Adicionar" />
       <Button layoutX="921.0" layoutY="60.0" mnemonicParsing="false" onMouseClicked="#fornecedorTable" text="Atualizar" />
    </children>
 </Pane>

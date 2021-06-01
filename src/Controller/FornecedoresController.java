@@ -2,16 +2,22 @@ package Controller;
 
 import Model.ConnectDB;
 import Model.Fornecedor;
+import Model.User;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+
+import java.util.Optional;
 
 public class FornecedoresController {
 
@@ -87,6 +93,78 @@ public class FornecedoresController {
 
         fornecedoresTable.setItems(sortedData);
         fornecedoresPane.setVisible(true);
+    }
+
+    /**
+     * Retorna fornecedor escolhido da tabela.
+     * @param mouseEvent
+     */
+    public void getSelected(javafx.scene.input.MouseEvent mouseEvent) {
+        index = fornecedoresTable.getSelectionModel().getSelectedIndex();
+        if(index <= -1){
+            return;
+        }
+        EditFornecedorBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try{
+                    EditFornecedorController.setThisForn(listFornecedores.get(index));
+                    Stage EditStage = new Stage();
+                    Parent root = FXMLLoader.load(getClass().getResource("/View/EditFornecedor.fxml"));
+                    EditStage.setScene(new Scene(root));
+                    EditStage.setTitle("Editar "+nomeFornCol.getCellData(index));
+                    EditStage.setResizable(false);
+                    EditStage.centerOnScreen();
+                    EditStage.show();
+                }catch (Exception e){
+                    System.out.println(e);
+                }
+
+            }
+        });
+        RemoveForncedorBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try{
+                    Fornecedor selected = listFornecedores.get(index);
+
+                    Optional<ButtonType> result = MainScreenController.alerts(Alert.AlertType.CONFIRMATION, "Remover "+selected.getNome(), "Tem a certeza que" +
+                            " quer remover o fornecedor "+selected.getNome()+" com o identifcador"+selected.getIdentificador()
+                            +"?").showAndWait();
+                    if(!result.isPresent()){
+
+                    }else if(result.get() == ButtonType.OK){
+                        if(Fornecedor.removeFornFromDB(selected)){
+                            MainScreenController.alerts(Alert.AlertType.INFORMATION, "Removido com sucesso", "Fornecedor "+selected.getNome()
+                                    +" removido com sucesso.").showAndWait();
+                        }else{
+                            MainScreenController.alerts(Alert.AlertType.ERROR, "Falha ao remover", "Algo correu mal...").showAndWait();
+                        }
+                    }else if(result.get() == ButtonType.CANCEL){
+
+                    }
+
+                }catch (Exception e){
+                    System.out.println(e);
+                }
+
+            }
+        });
+    }
+
+    public void registerForn(){
+        System.out.println("register Fornecedor btn clicked!!");
+        try{
+            Stage AddStage = new Stage();
+            Parent rootAddStage = FXMLLoader.load(getClass().getResource("/View/AddFornecedor.fxml"));
+            AddStage.setScene(new Scene(rootAddStage));
+            AddStage.setTitle("Adicionar Fornecedor");
+            AddStage.setResizable(false);
+            AddStage.centerOnScreen();
+            AddStage.show();
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 
 }
