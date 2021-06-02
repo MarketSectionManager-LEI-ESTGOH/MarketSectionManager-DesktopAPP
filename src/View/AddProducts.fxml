@@ -22,9 +22,8 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Text>
-      <Spinner fx:id="productPriceNS" amountToStepBy=".1" initialValue="0" layoutX="81.0" layoutY="85.0" max="9999999.9999999" maxHeight="-Infinity" maxWidth="-Infinity" min="0.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="161.0">
-          
-      </Spinner>
+      <Spinner fx:id="productPriceNS" amountToStepBy=".01" initialValue="0" layoutX="81.0" layoutY="85.0" max="9999999.9999999" maxHeight="-Infinity" maxWidth="-Infinity" min="0.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="161.0"/>
+
       <Text layoutX="253.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EAN">
          <font>
             <Font name="System Bold" size="12.0" />
