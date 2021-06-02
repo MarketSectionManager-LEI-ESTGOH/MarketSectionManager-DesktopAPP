@@ -1,9 +1,13 @@
 package Controller;
 
+import Model.ConnectDB;
 import Model.Product;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.math.BigInteger;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Random;
 
 
@@ -64,7 +68,21 @@ public class AddProductsController {
                     }
                     if(((freshState == 0) && (contEan)) || ((freshState == 1) && (contEan))){
                         if(!productBrandTF.getText().isEmpty()){
-                            //add
+                            boolean whileControl = true;
+                            int generatedNumInt = -1;
+                            while(whileControl){
+                                generatedNumInt = new Random().nextInt(9999999);
+                                whileControl = Product.checkNumInt(generatedNumInt);
+                                System.out.println("no while\n geberated: " + generatedNumInt);
+                            }
+                            try{
+                                if(registerProduct(generatedNumInt,productNameTF.getText(),freshState,productPriceNS.getValue(), productEANTF.getText(),productBrandTF.getText())){
+                                    MainScreenController.alerts(Alert.AlertType.INFORMATION,"Sucesso na Inserção de Produto!", "O produto " + productNameTF.getText() + " da Marca "
+                                                                + productBrandTF.getText() + " com o EAN " + productEANTF.getText() + " foi guarado com o Número Interno " + generatedNumInt).showAndWait();
+                                }
+                            }catch(Exception e){
+                                e.printStackTrace();
+                            }
                         }else{
                             MainScreenController.alerts(Alert.AlertType.ERROR, "Campo de Preenchimento Obriogatório Vazio!", "O Campo \"Marca\" é de preenchimeto obrigatório!").showAndWait();
                         }
@@ -80,19 +98,24 @@ public class AddProductsController {
         }else{
             MainScreenController.alerts(Alert.AlertType.ERROR, "Campo de Preenchimento Obrigaótio Vazio!", "O Nome do Produto é de Preenchimento Obrigatório!").showAndWait();
         }
+    }
 
 
-
-
-
-
-        boolean whileControl = true;
-        int generatedNumInt = -1;
-        while(whileControl){
-            generatedNumInt = new Random().nextInt(9999999);
-            whileControl = Product.checkNumInt(generatedNumInt);
-            System.out.println("no while\n geberated: " + generatedNumInt);
+    public static boolean registerProduct(int aNumber, String aName, int aFresco, double aPreco, String aEAN, String aMarca){
+        try {
+            String stmt = "INSERT INTO produto (n_interno, nome, fresco, preco, ean, marca) VALUES (?, ?, ?, ?, ?, ?)";
+            PreparedStatement ps = ConnectDB.getConn().prepareStatement(stmt);
+            ps.setInt(1, aNumber);
+            ps.setString(2,aName);
+            ps.setInt(3, aFresco);
+            ps.setDouble(4, aPreco);
+            ps.setString(5, aEAN);
+            ps.setString(6, aMarca);
+            return ConnectDB.insertIntoTable(ps);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
+        return false;
     }
 
     public void eanFieldControl(){
