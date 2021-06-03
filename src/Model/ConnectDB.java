@@ -662,6 +662,110 @@ public class ConnectDB {
 
     }
 
+    /**
+     * função para obter lista com todos os utilizadores
+     * @return
+     */
+    public static ObservableList<Rastreabilidade> getAllRastToVal(){
+        String userData = "";
+        ResultSet rs = null;
 
+        ObservableList<Rastreabilidade> list = FXCollections.observableArrayList();
+
+        String stmt = "SELECT rastreabilidade.id, lote, d_t_entrada, origem, produto.nome, user.nome, fornecedor.nome FROM rastreabilidade LEFT JOIN produto on rastreabilidade.produto_id = produto.id LEFT JOIN user on rastreabilidade.user_id = user.id LEFT JOIN fornecedor on rastreabilidade.fornecedor_id = fornecedor.id WHERE assinado_user IS NULL";
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            if(conn == null){
+                conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            }
+            PreparedStatement aPs = ConnectDB.getConn().prepareStatement(stmt);
+
+            rs = aPs.executeQuery();
+            while(rs.next()){
+                list.add(new Rastreabilidade(rs.getInt(1), rs.getInt(2), rs.getDate(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
+            }
+        } catch (SQLException e) {
+            System.out.println("!! SQL Exception !!\n"+e);
+            e.printStackTrace();
+            return null;
+        } catch (ClassNotFoundException e) {
+            System.out.println("!! Class Not Found. Unable to load Database Drive !!\n"+e);
+            return null;
+
+        } catch (IllegalAccessException e) {
+            System.out.println("!! Illegal Access !!\n"+e);
+            return null;
+
+        } catch (InstantiationException e) {
+            System.out.println("!! Class Not Instanciaded !!\n"+e);
+            return null;
+
+        } finally {
+            if (conn != null) {
+                try {
+                    return list;
+                } catch (Exception e) {
+                    System.out.println("!! Exception closing DB connection !!\n"+e);
+                    return null;
+                }
+            }
+        } // end of finally
+        return null;
+
+    }
+
+    /**
+     * função para obter lista com todos os utilizadores
+     * @return
+     */
+    public static ObservableList<Temperatura> getAllTempToVal(){
+        String userData = "";
+        ResultSet rs = null;
+
+        ObservableList<Temperatura> list = FXCollections.observableArrayList();
+
+        String stmt = "SELECT temperatura.id, area_frigorifica.designacao, temperatura, data_hora, user.nome FROM `temperatura` LEFT JOIN area_frigorifica ON temperatura.area_frigorifica_id = area_frigorifica.numero LEFT JOIN user on temperatura.user_id = user.id WHERE assinado IS NULL";
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            if(conn == null){
+                conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            }
+            PreparedStatement aPs = ConnectDB.getConn().prepareStatement(stmt);
+
+            rs = aPs.executeQuery();
+            while(rs.next()){
+                list.add(new Temperatura(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDate(4), rs.getString(5)));
+            }
+        } catch (SQLException e) {
+            System.out.println("!! SQL Exception !!\n"+e);
+            e.printStackTrace();
+            return null;
+        } catch (ClassNotFoundException e) {
+            System.out.println("!! Class Not Found. Unable to load Database Drive !!\n"+e);
+            return null;
+
+        } catch (IllegalAccessException e) {
+            System.out.println("!! Illegal Access !!\n"+e);
+            return null;
+
+        } catch (InstantiationException e) {
+            System.out.println("!! Class Not Instanciaded !!\n"+e);
+            return null;
+
+        } finally {
+            if (conn != null) {
+                try {
+                    return list;
+                } catch (Exception e) {
+                    System.out.println("!! Exception closing DB connection !!\n"+e);
+                    return null;
+                }
+            }
+        } // end of finally
+        return null;
+
+    }
 
 }
