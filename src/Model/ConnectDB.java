@@ -377,7 +377,7 @@ public class ConnectDB {
 
             rs = aPs.executeQuery();
             while(rs.next()){
-                list.add(new Product(rs.getInt("n_interno"), rs.getString("nome"), rs.getInt("fresco"), rs.getFloat("preco"), rs.getInt("venda"), rs.getBigDecimal("ean"), rs.getString("marca")));
+                list.add(new Product(rs.getInt("n_interno"), rs.getString("nome"), rs.getInt("fresco"), rs.getFloat("preco"), rs.getInt("venda"), rs.getString("ean"), rs.getString("marca")));
             }
         } catch (SQLException e) {
             System.out.println("!! SQL Exception !!\n"+e);

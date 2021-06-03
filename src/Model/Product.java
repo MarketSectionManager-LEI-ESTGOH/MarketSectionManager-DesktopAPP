@@ -1,19 +1,19 @@
 package Model;
 
 import java.math.BigDecimal;
+import java.sql.PreparedStatement;
 
 public class Product {
 
     private int num_int, fresh, venda;
-    private BigDecimal ean;
-    private String name, brand, freshString;
+    private String name, brand, freshString, ean;
     private float price;
 
     public Product(){
 
     }
 
-    public Product(int aNumInt, String aName, int aFresh, float aPrice, int aVenda, BigDecimal aEAN, String aBrand){
+    public Product(int aNumInt, String aName, int aFresh, float aPrice, int aVenda, String aEAN, String aBrand){
         num_int = aNumInt;
         name = aName;
         fresh = aFresh;
@@ -41,7 +41,7 @@ public class Product {
         this.venda = venda;
     }
 
-    public void setEan(BigDecimal ean) {
+    public void setEan(String ean) {
         this.ean = ean;
     }
 
@@ -69,7 +69,7 @@ public class Product {
         return venda;
     }
 
-    public BigDecimal getEan() {
+    public String getEan() {
         return ean;
     }
 
@@ -87,6 +87,18 @@ public class Product {
 
     public String getFreshString() {
         return freshString;
+    }
+
+    public static boolean removeProductFromDB(Product toRemove){
+        try {
+            String stmt = "DELETE FROM produto WHERE n_interno = ?";
+            PreparedStatement ps = ConnectDB.getConn().prepareStatement(stmt);
+            ps.setInt(1, toRemove.getNum_int());
+            return ConnectDB.removeFromDB(ps);
+        }catch (Exception e){
+
+        }
+        return false;
     }
 
     public static boolean checkNumInt(int aNum){

@@ -17,6 +17,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 public class ProdutosController {
     @FXML
@@ -30,7 +31,7 @@ public class ProdutosController {
     @FXML
     private TableColumn<Model.Product, Float> priceProductCol;
     @FXML
-    private TableColumn<Model.Product, BigDecimal> eanProductCol;
+    private TableColumn<Model.Product, String> eanProductCol;
     @FXML
     private TableColumn<Model.Product, String> brandProductCol;
     @FXML
@@ -80,14 +81,14 @@ public class ProdutosController {
             @Override
             public void handle(ActionEvent event) {
                 try{
-                    /*EditUserController.setThisUser(listProducts.get(index));
+                    EditProductController.setThisProduct(listProducts.get(index));
                     Stage EditStage = new Stage();
-                    Parent root = FXMLLoader.load(getClass().getResource("/View/EditUser.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource("/View/EditProduct.fxml"));
                     EditStage.setScene(new Scene(root));
-                    EditStage.setTitle("Editar "+nome_tb_users.getCellData(index));
+                    EditStage.setTitle("Editar " + productNameCol.getCellData(index));
                     EditStage.setResizable(false);
                     EditStage.centerOnScreen();
-                    EditStage.show();*/
+                    EditStage.show();
                 }catch (Exception e){
                     System.out.println(e);
                 }
@@ -98,28 +99,26 @@ public class ProdutosController {
             @Override
             public void handle(ActionEvent event) {
                 try{
-                    /*User selected = listProducts.get(index);
-                    if(selected.getUserID() == Main.u.getUserID()){
-                        MainScreenController.alerts(Alert.AlertType.ERROR, "Falha ao remover", "Não pode remover a conta que está" +
-                                " a utilizar.").showAndWait();
-                    }else{
-                        System.out.println(selected.getUserID());
-                        Optional<ButtonType> result = MainScreenController.alerts(Alert.AlertType.CONFIRMATION, "Remover "+selected.getUsername(), "Tem a certeza que" +
-                                " quer remover o utilizador "+selected.getUsername()+" com o número interno "+selected.getUserID()
-                                +"?").showAndWait();
-                        if(!result.isPresent()){
+                    Product selected = listProducts.get(index);
 
+
+                        System.out.println(selected.getNum_int() + " - " + selected.getName());
+                        Optional<ButtonType> result = MainScreenController.alerts(Alert.AlertType.CONFIRMATION, "Remover "+selected.getNum_int(),
+                                                                                     "Tem a certeza que quer remover o Produto  ("  +selected.getNum_int()+")"
+                                                                                    +selected.getEan() + " - " + selected.getName()+ "?").showAndWait();
+                        if(!result.isPresent()){
                         }else if(result.get() == ButtonType.OK){
-                            if(User.removeUserFromDB(selected)){
-                                MainScreenController.alerts(Alert.AlertType.INFORMATION, "Removido com sucesso", "Utilizador "+selected.getUsername()
-                                        +" removido com sucesso.").showAndWait();
+                            if(Product.removeProductFromDB(selected)){
+                                MainScreenController.alerts(Alert.AlertType.INFORMATION, "Removido com Sucesso "+selected.getNum_int(),
+                                        "Produto  ("  +selected.getNum_int()+")"
+                                                +selected.getEan() + " - " + selected.getName()+ " Removido com Sucesso!").showAndWait();
                             }else{
                                 MainScreenController.alerts(Alert.AlertType.ERROR, "Falha ao remover", "Algo correu mal...").showAndWait();
                             }
                         }else if(result.get() == ButtonType.CANCEL){
 
                         }
-                    }*/
+
                 }catch (Exception e){
                     System.out.println(e);
                 }
@@ -136,7 +135,7 @@ public class ProdutosController {
             productNameCol.setCellValueFactory(new PropertyValueFactory<Model.Product, String>("name"));
             freshProductCol.setCellValueFactory(new PropertyValueFactory<Model.Product, String>("freshString"));
             priceProductCol.setCellValueFactory(new PropertyValueFactory<Model.Product, Float>("price"));
-            eanProductCol.setCellValueFactory(new PropertyValueFactory<Model.Product, BigDecimal>("ean"));
+            eanProductCol.setCellValueFactory(new PropertyValueFactory<Model.Product, String>("ean"));
             brandProductCol.setCellValueFactory(new PropertyValueFactory<Model.Product, String>("brand"));
         }catch (Exception w){
             System.out.println("------------------------ exception ----------------------"); w.printStackTrace();System.out.println("------------------------ exception ----------------------");

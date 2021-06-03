@@ -1,17 +1,16 @@
 package Controller;
 
+import Model.ArcaFrigorifica;
 import Model.ConnectDB;
 import Model.Product;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
-import java.math.BigInteger;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.Random;
 
-
-public class AddProductsController {
+public class EditProductController {
     @FXML
     private TextField productNameTF;
     @FXML
@@ -23,15 +22,55 @@ public class AddProductsController {
     @FXML
     private RadioButton productFreshYESRB;
     @FXML
+    private ToggleGroup typeGroup;
+    @FXML
     private RadioButton productFreshNORB;
+    @FXML
+    private Button editProductBTN;
+    @FXML
+    private TextField productNumIntTF;
+    private static Product thisProduct = null;
+
+    protected static void setThisProduct(Product aThisProduct) {
+        thisProduct = aThisProduct;
+    }
 
     @FXML
     protected void initialize(){
-        productFreshNORB.setSelected(false);
-        productFreshYESRB.setSelected(false);
+        System.out.println("edit product initialize");
+        productNumIntTF.setEditable(false);
+        productNumIntTF.setText(String.valueOf(String.valueOf(thisProduct.getNum_int())));
+        productNameTF.setText(thisProduct.getName());
+        if(thisProduct.getFresh() == 1){
+            productFreshYESRB.setSelected(true);
+            productFreshNORB.setSelected(false);
+            productEANTF.setDisable(true);
+        }else if(thisProduct.getFresh() == 0){
+            productFreshYESRB.setSelected(false);
+            productFreshNORB.setSelected(true);
+        }else{
+            productFreshYESRB.setSelected(false);
+            productFreshNORB.setSelected(false);
+        }
+        productEANTF.setText(thisProduct.getEan());
+        productBrandTF.setText(thisProduct.getBrand());
+
+        productPriceNS.getEditor().setText(String.valueOf(thisProduct.getPrice()));
     }
 
-    public void addProduct(){
+
+    public void eanFieldControl(){
+        if(productFreshYESRB.isSelected()){
+            productEANTF.setEditable(false);
+            productEANTF.setText("");
+            productEANTF.setDisable(true);
+        }else if(productFreshNORB.isSelected()){
+            productEANTF.setEditable(true);
+            productEANTF.setDisable(false);
+        }
+    }
+
+    public void editProduct(){
         boolean cont = true;
         boolean contEan = true;
         int freshState = -1;
@@ -75,14 +114,27 @@ public class AddProductsController {
                                 whileControl = Product.checkNumInt(generatedNumInt);
                                 System.out.println("no while\n geberated: " + generatedNumInt);
                             }
-                            try{
-                                if(registerProduct(generatedNumInt,productNameTF.getText(),freshState,productPriceNS.getValue(), productEANTF.getText(),productBrandTF.getText())){
-                                    MainScreenController.alerts(Alert.AlertType.INFORMATION,"Sucesso na Inserção de Produto!", "O produto " + productNameTF.getText() + " da Marca "
-                                                                + productBrandTF.getText() + " com o EAN " + productEANTF.getText() + " foi guarado com o Número Interno " + generatedNumInt).showAndWait();
+                            try {
+                                String stmt = "UPDATE produto SET nome = ?, fresco = ?, preco = ?, ean = ?, marca = ? WHERE n_interno = ?";
+                                PreparedStatement ps = ConnectDB.getConn().prepareStatement(stmt);
+                                ps.setString(1, productNameTF.getText());
+                                ps.setInt(2, freshState);
+                                ps.setDouble(3, productPriceNS.getValue());
+                                ps.setString(4, productEANTF.getText());
+                                ps.setString(5, productBrandTF.getText());
+                                ps.setInt(6, thisProduct.getNum_int());
+                                if(ConnectDB.updateDB(ps)){
+                                    MainScreenController.alerts(Alert.AlertType.INFORMATION, "Atualizado com sucesso",
+                                            "O Produto foi atualizado com sucesso.").showAndWait();
+                                    Stage stage = (Stage) editProductBTN.getScene().getWindow();
+                                    stage.close();
+                                }else{
+                                    MainScreenController.alerts(Alert.AlertType.ERROR, "Algo correu mal...",
+                                            "Algo correu mal, Sem sucesso ao atualizar.").showAndWait();
                                 }
-                            }catch(Exception e){
-                                e.printStackTrace();
-                                MainScreenController.alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um erro inesperado, por favor tente novamente!").showAndWait();
+                            }catch (Exception e){
+                                MainScreenController.alerts(Alert.AlertType.ERROR, "Algo correu mal...",
+                                        "Algo correu mal, Sem sucesso ao atualizar. "+e).showAndWait();
                             }
                         }else{
                             MainScreenController.alerts(Alert.AlertType.ERROR, "Campo de Preenchimento Obriogatório Vazio!", "O Campo \"Marca\" é de preenchimeto obrigatório!").showAndWait();
@@ -100,37 +152,5 @@ public class AddProductsController {
             MainScreenController.alerts(Alert.AlertType.ERROR, "Campo de Preenchimento Obrigaótio Vazio!", "O Nome do Produto é de Preenchimento Obrigatório!").showAndWait();
         }
     }
-
-
-    public static boolean registerProduct(int aNumber, String aName, int aFresco, double aPreco, String aEAN, String aMarca){
-        try {
-            String stmt = "INSERT INTO produto (n_interno, nome, fresco, preco, ean, marca) VALUES (?, ?, ?, ?, ?, ?)";
-            PreparedStatement ps = ConnectDB.getConn().prepareStatement(stmt);
-            ps.setInt(1, aNumber);
-            ps.setString(2,aName);
-            ps.setInt(3, aFresco);
-            ps.setDouble(4, aPreco);
-            ps.setString(5, aEAN);
-            ps.setString(6, aMarca);
-            return ConnectDB.insertIntoTable(ps);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return false;
-    }
-
-    public void eanFieldControl(){
-        if(productFreshYESRB.isSelected()){
-            productEANTF.setEditable(false);
-            productEANTF.setText("");
-            productEANTF.setDisable(true);
-        }else if(productFreshNORB.isSelected()){
-            productEANTF.setEditable(true);
-            productEANTF.setDisable(false);
-        }
-    }
-
-
-
 
 }
