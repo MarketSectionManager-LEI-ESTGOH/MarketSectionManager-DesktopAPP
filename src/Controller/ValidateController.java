@@ -116,6 +116,7 @@ public class ValidateController {
         if(success){
             MainScreenController.alerts(Alert.AlertType.INFORMATION, "Atualizado com sucesso",
                     "Registos validados com sucesso.").showAndWait();
+            limpezasTable();
         }else if (error){
             MainScreenController.alerts(Alert.AlertType.ERROR, "Algo correu mal...",
                     "Algo correu mal, Sem sucesso a validar.").showAndWait();

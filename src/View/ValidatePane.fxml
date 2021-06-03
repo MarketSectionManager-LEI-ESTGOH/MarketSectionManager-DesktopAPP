@@ -61,21 +61,21 @@
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab text="Temperaturas">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <TableView fx:id="temperaturasTable" prefHeight="372.0" prefWidth="974.0">
-                           <columns>
-                              <TableColumn prefWidth="75.0" text="C1" />
-                              <TableColumn prefWidth="75.0" text="C2" />
-                           </columns>
-                        </TableView>
-                        <Button fx:id="validarBtn" layoutX="845.0" layoutY="384.0" mnemonicParsing="false" text="Validar Temperaturas" />
-                     </children>
-                  </AnchorPane>
-               </content>
-            </Tab>
+        <Tab text="Temperaturas">
+           <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                 <children>
+                    <TableView fx:id="temperaturasTable" prefHeight="372.0" prefWidth="974.0">
+                       <columns>
+                          <TableColumn prefWidth="75.0" text="C1" />
+                          <TableColumn prefWidth="75.0" text="C2" />
+                       </columns>
+                    </TableView>
+                    <Button fx:id="validarBtn" layoutX="845.0" layoutY="384.0" mnemonicParsing="false" text="Validar Temperaturas" />
+                 </children>
+              </AnchorPane>
+           </content>
+        </Tab>
         </tabs>
       </TabPane>
    </children>
