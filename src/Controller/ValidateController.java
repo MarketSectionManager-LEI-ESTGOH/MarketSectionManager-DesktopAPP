@@ -2,7 +2,8 @@ package Controller;
 
 import Model.ConnectDB;
 import Model.Limpeza;
-import javafx.collections.FXCollections;
+import Model.Rastreabilidade;
+import Model.Temperatura;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -10,17 +11,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.sql.Array;
 import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ValidateController {
 
@@ -49,25 +42,91 @@ public class ValidateController {
     private TableColumn<Limpeza, CheckBox> validarLimpCol;
 
     @FXML
-    private TableView<?> rastreabilidadeTable;
+    private TableView<Rastreabilidade> rastreabilidadeTable;
 
     @FXML
-    private TableView<?> temperaturasTable;
+    private TableColumn<Rastreabilidade, Integer> loteRastCol;
+
+    @FXML
+    private TableColumn<Rastreabilidade, Date> dataEntRastCol;
+
+    @FXML
+    private TableColumn<Rastreabilidade, String> origemRastCol;
+
+    @FXML
+    private TableColumn<Rastreabilidade, String> produtoRastCol;
+
+    @FXML
+    private TableColumn<Rastreabilidade, String> userRastCol;
+
+    @FXML
+    private TableColumn<Rastreabilidade, String> fornRastCol;
+
+    @FXML
+    private TableColumn<Rastreabilidade, CheckBox> validateRastCol;
+
+    @FXML
+    private Button validarRastreabilidadeBtn;
+
+    @FXML
+    private TableView<Temperatura> temperaturasTable;
+
+    @FXML
+    private TableColumn<Temperatura, String> areaTempCol;
+
+    @FXML
+    private TableColumn<Temperatura, Integer> tempTempCol;
+
+    @FXML
+    private TableColumn<Temperatura, Date> timestampTempCol;
+
+    @FXML
+    private TableColumn<Temperatura, String> userTempCol;
+
+    @FXML
+    private TableColumn<Temperatura, CheckBox> validateTemCol;
+
+    @FXML
+    private Button validarTempBtn;
 
     @FXML
     private Button validarBtn;
 
     private ObservableList<Limpeza> listLimpezas;
+    private ObservableList<Rastreabilidade> listRastreabilidade;
+    private ObservableList<Temperatura> listTemperatura;
 
     private int index = -1;
 
     @FXML
     protected void initialize(){
         limpezasTable();
+        rastreabilidadeTable();
+        temperaturasTable();
     }
 
     /**
-     * Apresenta tabela com checkbox
+     * Apresenta tabela rastreabilidade com checkbox
+     * https://www.youtube.com/watch?v=aE3XwpHOeG8&list=PL2EKpjm0bX4IWJ1ErhQZgrLPVgyqeP3L5&index=7
+     *
+     */
+    public void rastreabilidadeTable(){
+        loteRastCol.setCellValueFactory(new PropertyValueFactory<Model.Rastreabilidade, Integer>("lote"));
+        dataEntRastCol.setCellValueFactory(new PropertyValueFactory<Model.Rastreabilidade, Date>("dataEntrada"));
+        origemRastCol.setCellValueFactory(new PropertyValueFactory<Model.Rastreabilidade, String>("origem"));
+        produtoRastCol.setCellValueFactory(new PropertyValueFactory<Model.Rastreabilidade, String>("produto"));
+        userRastCol.setCellValueFactory(new PropertyValueFactory<Model.Rastreabilidade, String>("utilizador"));
+        fornRastCol.setCellValueFactory(new PropertyValueFactory<Model.Rastreabilidade, String>("fornecedor"));
+        validateRastCol.setCellValueFactory(new PropertyValueFactory<Model.Rastreabilidade, CheckBox>("validate"));
+
+        listRastreabilidade = ConnectDB.getAllRastToVal();
+
+        rastreabilidadeTable.setItems(listRastreabilidade);
+
+    }
+
+    /**
+     * Apresenta tabela limpezas com checkbox
      * https://www.youtube.com/watch?v=aE3XwpHOeG8&list=PL2EKpjm0bX4IWJ1ErhQZgrLPVgyqeP3L5&index=7
      *
      */
@@ -82,6 +141,24 @@ public class ValidateController {
         listLimpezas = ConnectDB.getAllLimpToVal();
 
         limpezasTable.setItems(listLimpezas);
+
+    }
+
+    /**
+     * Apresenta tabela temperaturas com checkbox
+     * https://www.youtube.com/watch?v=aE3XwpHOeG8&list=PL2EKpjm0bX4IWJ1ErhQZgrLPVgyqeP3L5&index=7
+     *
+     */
+    public void temperaturasTable(){
+        areaTempCol.setCellValueFactory(new PropertyValueFactory<Model.Temperatura, String>("areaFrig"));
+        tempTempCol.setCellValueFactory(new PropertyValueFactory<Model.Temperatura, Integer>("temperatura"));
+        timestampTempCol.setCellValueFactory(new PropertyValueFactory<Model.Temperatura, Date>("dataHora"));
+        userTempCol.setCellValueFactory(new PropertyValueFactory<Model.Temperatura, String>("utilizador"));
+        validateTemCol.setCellValueFactory(new PropertyValueFactory<Model.Temperatura, CheckBox>("validate"));
+
+        listTemperatura = ConnectDB.getAllTempToVal();
+
+        temperaturasTable.setItems(listTemperatura);
 
     }
 
@@ -123,4 +200,81 @@ public class ValidateController {
         }
 
     }
+
+    /**
+     * Valida as rows selecionadas nas Rastreabilidade
+     * @param mouseEvent
+     */
+    public void validateSelectedRast(MouseEvent mouseEvent) {
+        boolean success = false, error = false;
+
+        for(Rastreabilidade l : listRastreabilidade){
+            if(l.getValidate().isSelected()){
+                try {
+                    String stmt = "UPDATE rastreabilidade SET assinado_user = (SELECT id FROM user WHERE num_interno = ?) WHERE id = ? ";
+
+                    PreparedStatement ps = ConnectDB.getConn().prepareStatement(stmt);
+                    ps.setInt(1, Main.u.getUserID());
+                    ps.setInt(2, l.getId());
+                    if(ConnectDB.updateDB(ps)){
+                        success = true;
+                    }else{
+                        error = true;
+                    }
+                }catch (Exception e){
+                    MainScreenController.alerts(Alert.AlertType.ERROR, "Algo correu mal...",
+                            "Algo correu mal, Sem sucesso a validar. "+e).showAndWait();
+                }
+            }
+        }
+
+        if(success){
+            MainScreenController.alerts(Alert.AlertType.INFORMATION, "Atualizado com sucesso",
+                    "Registos validados com sucesso.").showAndWait();
+            rastreabilidadeTable();
+        }else if (error){
+            MainScreenController.alerts(Alert.AlertType.ERROR, "Algo correu mal...",
+                    "Algo correu mal, Sem sucesso a validar.").showAndWait();
+        }
+
+    }
+
+    /**
+     * Valida as rows selecionadas nas Temperaturas
+     * @param mouseEvent
+     */
+    public void validateSelectedTemp(MouseEvent mouseEvent) {
+        boolean success = false, error = false;
+
+        for(Temperatura l : listTemperatura){
+            if(l.getValidate().isSelected()){
+                try {
+                    String stmt = "UPDATE temperatura SET assinado = (SELECT id FROM user WHERE num_interno = ?) WHERE id = ? ";
+
+                    PreparedStatement ps = ConnectDB.getConn().prepareStatement(stmt);
+                    ps.setInt(1, Main.u.getUserID());
+                    ps.setInt(2, l.getId());
+                    if(ConnectDB.updateDB(ps)){
+                        success = true;
+                    }else{
+                        error = true;
+                    }
+                }catch (Exception e){
+                    MainScreenController.alerts(Alert.AlertType.ERROR, "Algo correu mal...",
+                            "Algo correu mal, Sem sucesso a validar. "+e).showAndWait();
+                }
+            }
+        }
+
+        if(success){
+            MainScreenController.alerts(Alert.AlertType.INFORMATION, "Atualizado com sucesso",
+                    "Registos validados com sucesso.").showAndWait();
+            temperaturasTable();
+        }else if (error){
+            MainScreenController.alerts(Alert.AlertType.ERROR, "Algo correu mal...",
+                    "Algo correu mal, Sem sucesso a validar.").showAndWait();
+        }
+
+    }
+
 }
