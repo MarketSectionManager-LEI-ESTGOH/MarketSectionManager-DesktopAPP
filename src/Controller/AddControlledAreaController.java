@@ -1,11 +1,15 @@
 package Controller;
 
+import Model.Componente;
 import Model.ConnectDB;
+import Model.Limpeza;
+import Model.Rastreabilidade;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -17,6 +21,20 @@ public class AddControlledAreaController {
     private TextField addCANumberTF;
     @FXML
     private TextField addCADesignTF;
+    @FXML
+    private TableView<Componente> compsTbl;
+    @FXML
+    private TableColumn<Componente, Integer> compID;
+    @FXML
+    private TableColumn<Componente, String> compColumn;
+    @FXML
+    private TableColumn<Componente, CheckBox> chekColumn;
+    private ObservableList<Componente> listComponentes;
+
+    @FXML
+    protected void initialize(){
+        componentesTable();
+    }
 
     public void insertControlledArea(){
         System.out.println(" -- @ insertControllerArea() --");
@@ -61,5 +79,18 @@ public class AddControlledAreaController {
             throwables.printStackTrace();
         }
         return false;
+    }
+
+    /**
+     * Apresenta tabela componetes com checkbox
+     * https://www.youtube.com/watch?v=aE3XwpHOeG8&list=PL2EKpjm0bX4IWJ1ErhQZgrLPVgyqeP3L5&index=7
+     *
+     */
+    public void componentesTable(){
+        compID.setCellValueFactory(new PropertyValueFactory<Componente, Integer>("id"));
+        compColumn.setCellValueFactory(new PropertyValueFactory<Componente, String>("nome"));
+        chekColumn.setCellValueFactory(new PropertyValueFactory<Componente, CheckBox>("check"));
+        listComponentes = ConnectDB.getAllComponents();
+        compsTbl.setItems(listComponentes);
     }
 }
