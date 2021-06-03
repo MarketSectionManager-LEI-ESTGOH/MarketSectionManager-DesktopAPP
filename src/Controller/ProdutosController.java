@@ -9,8 +9,13 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+
 import java.math.BigDecimal;
 
 public class ProdutosController {
@@ -44,6 +49,23 @@ public class ProdutosController {
     protected void initialize(){
         productsTable();
     }
+
+
+    public void showAddProduct(){
+        System.out.println("add prod btn clicked!!");
+        try{
+            Stage AddProduct = new Stage();
+            Parent rootAddProdut = FXMLLoader.load(getClass().getResource("/View/AddProducts.fxml"));
+            AddProduct.setScene(new Scene(rootAddProdut));
+            AddProduct.setTitle("Adicionar Produto");
+            AddProduct.setResizable(false);
+            AddProduct.centerOnScreen();
+            AddProduct.show();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
 
     /**
      * Retorna produto escolhido da tabela.

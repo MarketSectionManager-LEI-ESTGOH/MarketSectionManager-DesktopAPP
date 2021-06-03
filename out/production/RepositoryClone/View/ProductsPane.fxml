@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="productsPane" prefHeight="628.0" prefWidth="1059.0" style="-fx-background-color: #808080;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProdutosController">
+<Pane fx:id="productsPane" prefHeight="628.0" prefWidth="1059.0" style="-fx-background-color: #808080;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProdutosController">
    <children>
       <Label layoutX="432.0" layoutY="15.0" text="PRODUTOS" textAlignment="CENTER" textFill="WHITE">
          <font>
@@ -33,7 +33,7 @@
       </Label>
       <TextField fx:id="searchProductTextField" layoutX="72.0" layoutY="60.0" />
       <Button fx:id="EditProductBtn" layoutX="867.0" layoutY="522.0" mnemonicParsing="false" text="Editar" textAlignment="CENTER" />
-      <Button fx:id="addProductBtn" layoutX="792.0" layoutY="522.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Adicionar" />
+      <Button fx:id="addProductBtn" layoutX="792.0" layoutY="522.0" mnemonicParsing="false" onAction="#showAddProduct" prefHeight="25.0" prefWidth="68.0" text="Adicionar" />
       <Button layoutX="921.0" layoutY="60.0" mnemonicParsing="false" onMouseClicked="#productsTable" text="Atualizar" />
    </children>
 </Pane>

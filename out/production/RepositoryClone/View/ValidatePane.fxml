@@ -11,7 +11,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
+<<<<<<< HEAD
 <Pane prefHeight="628.0" prefWidth="1059.0" style="-fx-background-color: #808080;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ValidateController">
+=======
+<Pane prefHeight="628.0" prefWidth="1059.0" style="-fx-background-color: #808080;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UsersController">
+>>>>>>> 44f849002f685ad5293e985b9ce7e0986283ee6f
    <children>
       <Label layoutX="443.0" layoutY="14.0" text="VALIDAÇÕES" textAlignment="CENTER" textFill="WHITE">
          <font>
@@ -24,13 +28,19 @@
          </font>
       </Label>
       <TextField fx:id="searchTextField" layoutX="72.0" layoutY="60.0" />
+<<<<<<< HEAD
       <Button layoutX="921.0" layoutY="60.0" mnemonicParsing="false" onMouseClicked="#limpezasTable" text="Atualizar" />
       <TabPane layoutX="14.0" layoutY="106.0" prefHeight="439.0" prefWidth="974.0" tabClosingPolicy="UNAVAILABLE">
+=======
+      <Button layoutX="921.0" layoutY="60.0" mnemonicParsing="false" onMouseClicked="#usersTable" text="Atualizar" />
+      <TabPane layoutX="14.0" layoutY="106.0" prefHeight="399.0" prefWidth="974.0" tabClosingPolicy="UNAVAILABLE">
+>>>>>>> 44f849002f685ad5293e985b9ce7e0986283ee6f
         <tabs>
           <Tab text="Limpezas">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
+<<<<<<< HEAD
                         <TableView fx:id="limpezasTable" prefHeight="372.0" prefWidth="974.0">
                            <columns>
                               <TableColumn fx:id="areaLimpCol" prefWidth="170.0" text="Area" />
@@ -42,6 +52,17 @@
                            </columns>
                         </TableView>
                         <Button fx:id="validarLimpezasBtn" layoutX="869.0" layoutY="384.0" mnemonicParsing="false" onMouseClicked="#validateSelected" text="Validar Limpezas" />
+=======
+                        <TableView prefHeight="372.0" prefWidth="974.0">
+                           <columns>
+                              <TableColumn prefWidth="170.0" text="Area" />
+                              <TableColumn minWidth="3.0" prefWidth="266.0" text="Componente" />
+                              <TableColumn prefWidth="213.0" text="Data Limpeza" />
+                              <TableColumn prefWidth="228.0" text="Efetuado por" />
+                              <TableColumn prefWidth="95.0" text="Validar" />
+                           </columns>
+                        </TableView>
+>>>>>>> 44f849002f685ad5293e985b9ce7e0986283ee6f
                      </children>
                   </AnchorPane>
             </content>
@@ -50,13 +71,20 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
+<<<<<<< HEAD
                         <TableView fx:id="rastreabilidadeTable" prefHeight="372.0" prefWidth="974.0">
+=======
+                        <TableView prefHeight="372.0" prefWidth="974.0">
+>>>>>>> 44f849002f685ad5293e985b9ce7e0986283ee6f
                            <columns>
                               <TableColumn prefWidth="75.0" text="C1" />
                               <TableColumn prefWidth="75.0" text="C2" />
                            </columns>
                         </TableView>
+<<<<<<< HEAD
                         <Button fx:id="validarRastreabilidadeBtn" layoutX="836.0" layoutY="384.0" mnemonicParsing="false" text="Validar Rastreabilidade" />
+=======
+>>>>>>> 44f849002f685ad5293e985b9ce7e0986283ee6f
                      </children>
                   </AnchorPane>
             </content>
@@ -65,13 +93,20 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
+<<<<<<< HEAD
                         <TableView fx:id="temperaturasTable" prefHeight="372.0" prefWidth="974.0">
+=======
+                        <TableView prefHeight="372.0" prefWidth="974.0">
+>>>>>>> 44f849002f685ad5293e985b9ce7e0986283ee6f
                            <columns>
                               <TableColumn prefWidth="75.0" text="C1" />
                               <TableColumn prefWidth="75.0" text="C2" />
                            </columns>
                         </TableView>
+<<<<<<< HEAD
                         <Button fx:id="validarBtn" layoutX="845.0" layoutY="384.0" mnemonicParsing="false" text="Validar Temperaturas" />
+=======
+>>>>>>> 44f849002f685ad5293e985b9ce7e0986283ee6f
                      </children>
                   </AnchorPane>
                </content>
