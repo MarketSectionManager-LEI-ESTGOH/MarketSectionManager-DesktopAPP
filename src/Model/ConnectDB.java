@@ -568,4 +568,59 @@ public class ConnectDB {
 
     }
 
+    /**
+     * função para obter lista com todos os utilizadores
+     * @return
+     */
+    public static ObservableList<Limpeza> getAllLimpToVal(){
+        String userData = "";
+        ResultSet rs = null;
+
+        ObservableList<Limpeza> list = FXCollections.observableArrayList();
+
+        String stmt = "SELECT limpeza.id, area.designacao, componentes.designacao as 'componente', data, user.nome, user.num_interno FROM limpeza LEFT JOIN area_componentes on limpeza.area_componentes_id = area_componentes.id LEFT JOIN area on area.id = area_componentes.area_id LEFT JOIN componentes on componentes.id = area_componentes.componentes_id left join user on limpeza.user_id = user.id WHERE limpeza.assinatura IS NULL and limpeza.data_assinatura IS NULL";
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            if(conn == null){
+                conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            }
+            PreparedStatement aPs = ConnectDB.getConn().prepareStatement(stmt);
+
+            rs = aPs.executeQuery();
+            while(rs.next()){
+                list.add(new Limpeza(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getString(5), rs.getInt(6)));
+            }
+        } catch (SQLException e) {
+            System.out.println("!! SQL Exception !!\n"+e);
+            e.printStackTrace();
+            return null;
+        } catch (ClassNotFoundException e) {
+            System.out.println("!! Class Not Found. Unable to load Database Drive !!\n"+e);
+            return null;
+
+        } catch (IllegalAccessException e) {
+            System.out.println("!! Illegal Access !!\n"+e);
+            return null;
+
+        } catch (InstantiationException e) {
+            System.out.println("!! Class Not Instanciaded !!\n"+e);
+            return null;
+
+        } finally {
+            if (conn != null) {
+                try {
+                    return list;
+                } catch (Exception e) {
+                    System.out.println("!! Exception closing DB connection !!\n"+e);
+                    return null;
+                }
+            }
+        } // end of finally
+        return null;
+
+    }
+
+
+
 }

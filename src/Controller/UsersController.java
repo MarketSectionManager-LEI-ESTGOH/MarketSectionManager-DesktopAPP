@@ -37,7 +37,6 @@ public class UsersController {
     @FXML
     private Button EditUserBtn;
     private ObservableList<User> listUsers;
-    private static boolean firstUserRun = false;
     private int index = -1;
 
     @FXML

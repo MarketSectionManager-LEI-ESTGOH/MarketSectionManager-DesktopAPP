@@ -59,6 +59,7 @@
                   <Image url="@../Images/products_new_cube_product_design_icon_153845.png" />
                </image>
             </ImageView>
+            <Button fx:id="validate" layoutX="15.0" layoutY="295.0" mnemonicParsing="false" onAction="#showValidationsPane" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" text="Validações" />
          </children>
       </Pane>
       <Pane fx:id="receivedPane" layoutX="200.0" prefHeight="628.0" prefWidth="1059.0" visible="false">

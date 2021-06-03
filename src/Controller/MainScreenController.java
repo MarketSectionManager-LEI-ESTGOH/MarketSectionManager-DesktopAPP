@@ -124,5 +124,16 @@ public class MainScreenController{
         }
     }
 
+    public void showValidationsPane(){
+        try {
+            Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/ValidatePane.fxml"));
+            receivedPane.getChildren().add(newLoadedPane);
+            receivedPane.setVisible(true);
+        }catch(Exception e ){
+            System.out.println("erro o loader " + e);
+            e.printStackTrace();
+        }
+    }
+
 
 }
