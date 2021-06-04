@@ -86,6 +86,7 @@ public class Main extends Application {
                 }
             } else {
                 alerts(Alert.AlertType.ERROR, "Credenciais Erradas", "O Número de Funcionário ou a Password estão errados, por favor tente novamente!").showAndWait();
+                funcNumber.requestFocus();
                 cleanFields();
             }
         } catch (NumberFormatException nfe) {
