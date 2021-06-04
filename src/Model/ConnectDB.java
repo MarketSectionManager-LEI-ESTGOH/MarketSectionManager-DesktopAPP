@@ -1,7 +1,9 @@
 package Model;
 
+import Controller.MainScreenController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 
 import java.io.*;
 import java.sql.*;
@@ -238,28 +240,27 @@ public class ConnectDB {
             int result = aStatement.executeUpdate();
             if(result == 1){
                 System.out.println("**Eliminado da Tabela com Sucesso**");
+                return  true;
             }else{
                 System.out.println("**Ocorreu um erro a Eliminar da Tabela**");
+                return false;
             }
 
-        } catch (SQLException e) {
+        } catch(com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException swe){
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+           alert.setTitle("ERRO");
+           alert.setHeaderText("Não é possível remoer este registo!");
+           alert.setContentText("Este registo está a ser utilizado por outras partes do programa!\nPara fins de Histórico é necessário a preservação deste registo, pelo que o mesmo não pode ser eliminado!\nPara informação adicional contacte os devidos serviços de apoio informático!");
+           alert.showAndWait();
+        }catch (SQLException e) {
             System.out.println("!! SQL Exception !!\n"+e);
             e.printStackTrace();
             return false;
         } catch (ClassNotFoundException e) {
-            System.out.println("!! Class Not Found. Unable to load Database Drive !!\n"+e);
+            System.out.println("!! Class Not Found. Unable to load Database Drive !!\n" + e);
             return false;
-        } finally {
-            if (conn != null) {
-                try {
-                    return true;
-                } catch (Exception e) {
-                    System.out.println("!! Exception closing DB connection !!\n"+e);
-                    return false;
-                }
-            }
-        } // end of finally
-        return false;
+        }
+        return  false;
     }
 
     /**

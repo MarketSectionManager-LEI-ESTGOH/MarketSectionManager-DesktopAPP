@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Area;
 import Model.ConnectDB;
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -39,11 +40,11 @@ public class ControlledAreaController {
     private int index = -1;
 
     @FXML
-    protected void initialize(){
+    protected void initialize() {
         areasControladasTable();
     }
 
-    public void areasControladasTable(){
+    public void areasControladasTable() {
         System.out.println("areas controladas btn clicked!!");
 
         numeroAreaContCol.setCellValueFactory(new PropertyValueFactory<Area, Integer>("numero"));
@@ -51,17 +52,18 @@ public class ControlledAreaController {
 
         listAreasCont = ConnectDB.getAllAreasCont();
         FilteredList<Area> filteredData = new FilteredList<>(listAreasCont, b -> true);
-        searchAreasContTextField.textProperty().addListener((observable, oldValue, newValue) ->{
-            filteredData.setPredicate(Area ->{
-                if(newValue == null || newValue.isEmpty()){
+        searchAreasContTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(Area -> {
+                if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
 
                 String lowerCaseFilter = newValue.toLowerCase();
 
-                if(Area.getDesignacao().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                if (Area.getDesignacao().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
-                } if(String.valueOf(Area.getNumero()).indexOf(lowerCaseFilter) != -1) {
+                }
+                if (String.valueOf(Area.getNumero()).indexOf(lowerCaseFilter) != -1) {
                     return true;
                 } else {
                     return false;
@@ -76,62 +78,70 @@ public class ControlledAreaController {
 
     /**
      * Retorna utilizador escolhido da tabela.
+     *
      * @param mouseEvent
      */
     public void getSelectedArea(javafx.scene.input.MouseEvent mouseEvent) {
-        index = areasContTable.getSelectionModel().getSelectedIndex();
-        if(index <= -1){
-            return;
-        }
-        editAreaContBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                try{
-                    EditAreaController.setThisArea(listAreasCont.get(index));
-                    Stage EditStage = new Stage();
-                    Parent root = FXMLLoader.load(getClass().getResource("/View/EditArea.fxml"));
-                    EditStage.setScene(new Scene(root));
-                    EditStage.setTitle("Editar "+listAreasCont.get(index).getNumero());
-                    EditStage.setResizable(false);
-                    EditStage.centerOnScreen();
-                    EditStage.show();
-                }catch (Exception e){
-                    System.out.println(e);
-                }
-
+        try {
+            index = areasContTable.getSelectionModel().getSelectedIndex();
+            if (index <= -1) {
+                return;
             }
-        });
-        removeAreaContBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                try{
-                    Area selected = listAreasCont.get(index);
-                    Optional<ButtonType> result = MainScreenController.alerts(Alert.AlertType.CONFIRMATION, "Remover "+selected.getNumero(), "Tem a certeza que" +
-                            " quer remover a Area Controlada "+selected.getNumero()+" com a designação "+selected.getDesignacao()
-                            +"?").showAndWait();
-                    if(!result.isPresent()){
-
-                    }else if(result.get() == ButtonType.OK){
-                        if(Area.removeAreaFromDB(selected)){
-                            MainScreenController.alerts(Alert.AlertType.INFORMATION, "Removido com sucesso", "Àrea Controlada "+selected.getNumero()
-                                    +" removido com sucesso.").showAndWait();
-                        }else{
-                            MainScreenController.alerts(Alert.AlertType.ERROR, "Falha ao remover", "Algo correu mal...").showAndWait();
-                        }
-                    }else if(result.get() == ButtonType.CANCEL){
-
+            editAreaContBtn.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    try {
+                        EditAreaController.setThisArea(listAreasCont.get(index));
+                        Stage EditStage = new Stage();
+                        Parent root = FXMLLoader.load(getClass().getResource("/View/EditArea.fxml"));
+                        EditStage.setScene(new Scene(root));
+                        EditStage.setTitle("Editar " + listAreasCont.get(index).getNumero());
+                        EditStage.setResizable(false);
+                        EditStage.centerOnScreen();
+                        EditStage.show();
+                    } catch (Exception e) {
+                        System.out.println(e);
                     }
-                }catch (Exception e){
-                    System.out.println(e);
-                }
 
-            }
-        });
+                }
+            });
+            removeAreaContBtn.setOnAction(new EventHandler<ActionEvent>() {
+
+                @Override
+                public void handle(ActionEvent event) {
+                    try {
+                        Area selected = listAreasCont.get(index);
+                        Optional<ButtonType> result = MainScreenController.alerts(Alert.AlertType.CONFIRMATION, "Remover " + selected.getNumero(), "Tem a certeza que" +
+                                " quer remover a Area Controlada " + selected.getNumero() + " com a designação " + selected.getDesignacao()
+                                + "?").showAndWait();
+                        if (!result.isPresent()) {
+                        } else if (result.get() == ButtonType.OK) {
+
+                            if (Area.removeAreaFromDB(selected)) {
+                                MainScreenController.alerts(Alert.AlertType.INFORMATION, "Removido com sucesso", "Àrea Controlada " + selected.getNumero()
+                                        + " removido com sucesso.").showAndWait();
+                            } else {
+                                MainScreenController.alerts(Alert.AlertType.ERROR, "Falha ao remover", "Algo correu mal...").showAndWait();
+                            }
+
+                        } else if (result.get() == ButtonType.CANCEL) {
+
+                        }
+                    } catch (Exception e) {
+                        System.out.println(e);
+                    }
+
+                }
+            });
+        } catch (Exception e) {
+            MainScreenController.alerts(Alert.AlertType.ERROR, "Falha ao remover", "Algo correu mal...").showAndWait();
+        }
     }
 
-    public void showAddControlledArea(){
+
+    public void showAddControlledArea() {
         System.out.println("add controlled area btn clicked!!");
-        try{
+        try {
             Stage AddControlledArea = new Stage();
             Parent rootAddControlledArea = FXMLLoader.load(getClass().getResource("/View/AddControlledArea.fxml"));
             AddControlledArea.setScene(new Scene(rootAddControlledArea));
@@ -139,7 +149,7 @@ public class ControlledAreaController {
             AddControlledArea.setResizable(false);
             AddControlledArea.centerOnScreen();
             AddControlledArea.show();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
