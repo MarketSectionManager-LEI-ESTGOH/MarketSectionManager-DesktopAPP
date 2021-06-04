@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -31,6 +32,7 @@ public class MainScreenController{
     public void start() throws Exception{
         Stage MainScreen = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
+        MainScreen.getIcons().add(new Image("/Images/logoicon.png"));
         MainScreen.setTitle("Market Section Manager");
         MainScreen.setScene(new Scene(root, 1200, 602));
         MainScreen.setResizable(false);
@@ -53,6 +55,8 @@ public class MainScreenController{
 
     protected static Alert alerts(Alert.AlertType aAlertType, String aTitle, String aText){
         Alert generalAlert = new Alert(aAlertType);
+        Stage stage = (Stage) generalAlert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image("/Images/logoicon.png"));
         generalAlert.setTitle(aTitle);
         generalAlert.setHeaderText(aTitle);
         generalAlert.setContentText(aText);

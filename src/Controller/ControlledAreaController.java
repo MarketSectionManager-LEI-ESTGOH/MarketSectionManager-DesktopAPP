@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -95,6 +96,7 @@ public class ControlledAreaController {
                         Stage EditStage = new Stage();
                         Parent root = FXMLLoader.load(getClass().getResource("/View/EditArea.fxml"));
                         EditStage.setScene(new Scene(root));
+                        EditStage.getIcons().add(new Image("/Images/logoicon.png"));
                         EditStage.setTitle("Editar " + listAreasCont.get(index).getNumero());
                         EditStage.setResizable(false);
                         EditStage.centerOnScreen();
@@ -145,6 +147,7 @@ public class ControlledAreaController {
             Stage AddControlledArea = new Stage();
             Parent rootAddControlledArea = FXMLLoader.load(getClass().getResource("/View/AddControlledArea.fxml"));
             AddControlledArea.setScene(new Scene(rootAddControlledArea));
+            AddControlledArea.getIcons().add(new Image("/Images/logoicon.png"));
             AddControlledArea.setTitle("Adicionar Área Controlada");
             AddControlledArea.setResizable(false);
             AddControlledArea.centerOnScreen();

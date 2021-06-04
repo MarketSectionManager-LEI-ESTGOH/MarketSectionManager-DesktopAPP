@@ -9,6 +9,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -26,6 +27,7 @@ public class Main extends Application {
     @Override
     public void start(Stage loginScreen) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/View/LoginScreen.fxml"));
+        loginScreen.getIcons().add(new Image("/Images/logoicon.png"));
         loginScreen.setTitle("Market Section Manager");
         loginScreen.setScene(new Scene(root, 360, 275));
         loginScreen.initStyle(StageStyle.UNDECORATED);
@@ -45,9 +47,12 @@ public class Main extends Application {
 
     /**
      * Apresenta uma cofirmação ao utilizador e se este clicar "Sim" o programa termina
+     * Fonte de Definição do Logotipo em Alerts: https://stackoverflow.com/questions/27976345/how-do-you-set-the-icon-of-a-dialog-control-java-fx-java-8
      */
     public void closeProgram() {
         Alert exitConfirmation = new Alert(Alert.AlertType.CONFIRMATION);
+        Stage stage = (Stage) exitConfirmation.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(this.getClass().getResource("/Images/logoicon.png").toString()));
         exitConfirmation.setTitle("Confirmação de Saída");
         exitConfirmation.setHeaderText("Tem a certeza que pretende sair do programa?");
         ButtonType yesBtn = new ButtonType("Sim");
@@ -114,6 +119,8 @@ public class Main extends Application {
      */
     private Alert alerts(Alert.AlertType aAlertType, String aTitle, String aText) {
         Alert generalAlert = new Alert(aAlertType);
+        Stage stage = (Stage) generalAlert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image("/Images/logoicon.png"));
         generalAlert.setTitle(aTitle);
         generalAlert.setHeaderText("Aconteceu um Erro: ");
         generalAlert.setContentText(aText);

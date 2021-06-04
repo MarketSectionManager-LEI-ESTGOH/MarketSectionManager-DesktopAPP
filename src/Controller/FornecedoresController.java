@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -112,6 +113,7 @@ public class FornecedoresController {
                     Stage EditStage = new Stage();
                     Parent root = FXMLLoader.load(getClass().getResource("/View/EditFornecedor.fxml"));
                     EditStage.setScene(new Scene(root));
+                    EditStage.getIcons().add(new Image("/Images/logoicon.png"));
                     EditStage.setTitle("Editar "+nomeFornCol.getCellData(index));
                     EditStage.setResizable(false);
                     EditStage.centerOnScreen();
@@ -158,6 +160,7 @@ public class FornecedoresController {
             Stage AddStage = new Stage();
             Parent rootAddStage = FXMLLoader.load(getClass().getResource("/View/AddFornecedor.fxml"));
             AddStage.setScene(new Scene(rootAddStage));
+            AddStage.getIcons().add(new Image("/Images/logoicon.png"));
             AddStage.setTitle("Adicionar Fornecedor");
             AddStage.setResizable(false);
             AddStage.centerOnScreen();

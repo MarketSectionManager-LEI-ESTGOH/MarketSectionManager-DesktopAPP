@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.math.BigDecimal;
@@ -58,6 +59,7 @@ public class ProdutosController {
             Stage AddProduct = new Stage();
             Parent rootAddProdut = FXMLLoader.load(getClass().getResource("/View/AddProducts.fxml"));
             AddProduct.setScene(new Scene(rootAddProdut));
+            AddProduct.getIcons().add(new Image("/Images/logoicon.png"));
             AddProduct.setTitle("Adicionar Produto");
             AddProduct.setResizable(false);
             AddProduct.centerOnScreen();
@@ -85,6 +87,7 @@ public class ProdutosController {
                     Stage EditStage = new Stage();
                     Parent root = FXMLLoader.load(getClass().getResource("/View/EditProduct.fxml"));
                     EditStage.setScene(new Scene(root));
+                    EditStage.getIcons().add(new Image("/Images/logoicon.png"));
                     EditStage.setTitle("Editar " + productNameCol.getCellData(index));
                     EditStage.setResizable(false);
                     EditStage.centerOnScreen();

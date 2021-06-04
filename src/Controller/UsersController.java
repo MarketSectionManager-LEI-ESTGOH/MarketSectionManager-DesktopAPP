@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import Model.User;
 
@@ -61,6 +62,7 @@ public class UsersController {
                     Stage EditStage = new Stage();
                     Parent root = FXMLLoader.load(getClass().getResource("/View/EditUser.fxml"));
                     EditStage.setScene(new Scene(root));
+                    EditStage.getIcons().add(new Image("/Images/logoicon.png"));
                     EditStage.setTitle("Editar "+nome_tb_users.getCellData(index));
                     EditStage.setResizable(false);
                     EditStage.centerOnScreen();
@@ -143,31 +145,6 @@ public class UsersController {
         sortedData.comparatorProperty().bind(table_users.comparatorProperty());
 
         table_users.setItems(sortedData);
-
-        /* AUTO REFRESH ANTIGO
-        if(!firstUserRun){
-            table_users.focusedProperty().addListener(new ChangeListener<Boolean>()
-            {
-                boolean refresh = false;
-                @Override
-                public void changed(ObservableValue<? extends Boolean> ov, Boolean onHidden, Boolean onShown)
-                {
-                    if(onHidden){
-                        refresh = true;
-                    }else if(onShown){
-                        if(searchTextField.getText() == null){
-                            if(refresh == true){
-                                System.out.println("REFRESH");
-                                usersTable();
-                                refresh = false;
-                            }
-                        }
-                    }
-                }
-
-            });
-            firstUserRun = true;
-        }*/
     }
 
 
@@ -177,6 +154,7 @@ public class UsersController {
             Stage AddStage = new Stage();
             Parent rootAddStage = FXMLLoader.load(getClass().getResource("/View/AddUser.fxml"));
             AddStage.setScene(new Scene(rootAddStage));
+            AddStage.getIcons().add(new Image("/Images/logoicon.png"));
             AddStage.setTitle("Adicionar Utilizador");
             AddStage.setResizable(false);
             AddStage.centerOnScreen();

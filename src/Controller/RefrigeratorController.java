@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -128,6 +129,7 @@ public class RefrigeratorController {
             Stage AddRefrigerator = new Stage();
             Parent rootAddRefrigerator = FXMLLoader.load(getClass().getResource("/View/AddRefrigerator.fxml"));
             AddRefrigerator.setScene(new Scene(rootAddRefrigerator));
+            AddRefrigerator.getIcons().add(new Image("/Images/logoicon.png"));
             AddRefrigerator.setTitle("Adicionar Arca Frigorifica");
             AddRefrigerator.setResizable(false);
             AddRefrigerator.centerOnScreen();
@@ -156,6 +158,7 @@ public class RefrigeratorController {
                     Stage EditStage = new Stage();
                     Parent root = FXMLLoader.load(getClass().getResource("/View/EditRefrigerator.fxml"));
                     EditStage.setScene(new Scene(root));
+                    EditStage.getIcons().add(new Image("/Images/logoicon.png"));
                     EditStage.setTitle("Editar Arca  " + designArcaCol.getCellData(index));
                     EditStage.setResizable(false);
                     EditStage.centerOnScreen();
