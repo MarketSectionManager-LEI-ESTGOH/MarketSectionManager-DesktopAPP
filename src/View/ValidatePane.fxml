@@ -17,14 +17,13 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button layoutX="921.0" layoutY="60.0" mnemonicParsing="false" onMouseClicked="#limpezasTable" text="Atualizar" />
-      <TabPane layoutX="14.0" layoutY="106.0" prefHeight="439.0" prefWidth="974.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="14.0" layoutY="60.0" prefHeight="487.0" prefWidth="974.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Limpezas">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="limpezasTable" prefHeight="372.0" prefWidth="974.0">
+                        <TableView fx:id="limpezasTable" prefHeight="422.0" prefWidth="974.0">
                            <columns>
                               <TableColumn fx:id="areaLimpCol" prefWidth="170.0" text="Area" />
                               <TableColumn fx:id="compLimpCol" minWidth="3.0" prefWidth="266.0" text="Componente" />
@@ -34,7 +33,8 @@
                               <TableColumn fx:id="validarLimpCol" prefWidth="63.0" text="Validar" />
                            </columns>
                         </TableView>
-                        <Button fx:id="validarLimpezasBtn" layoutX="869.0" layoutY="384.0" mnemonicParsing="false" onMouseClicked="#validateSelected" text="Validar Limpezas" />
+                        <Button fx:id="validarLimpezasBtn" layoutX="869.0" layoutY="432.0" mnemonicParsing="false" onMouseClicked="#validateSelected" text="Validar Limpezas" />
+                        <Button fx:id="limpUpdate" layoutX="738.0" layoutY="432.0" mnemonicParsing="false" onMouseClicked="#limpezasTable" text="Atualizar/Desmarcar" />
                      </children>
                   </AnchorPane>
             </content>
@@ -43,7 +43,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="rastreabilidadeTable" prefHeight="372.0" prefWidth="974.0">
+                        <TableView fx:id="rastreabilidadeTable" prefHeight="422.0" prefWidth="974.0">
                            <columns>
                               <TableColumn fx:id="loteRastCol" prefWidth="105.0" text="Lote" />
                               <TableColumn fx:id="dataEntRastCol" prefWidth="146.0" text="Data Entrada" />
@@ -54,7 +54,8 @@
                               <TableColumn fx:id="validateRastCol" prefWidth="63.0" text="Validar" />
                            </columns>
                         </TableView>
-                        <Button fx:id="validarRastreabilidadeBtn" layoutX="836.0" layoutY="384.0" mnemonicParsing="false" onMouseClicked="#validateSelectedRast" text="Validar Rastreabilidade" />
+                        <Button fx:id="validarRastreabilidadeBtn" layoutX="836.0" layoutY="432.0" mnemonicParsing="false" onMouseClicked="#validateSelectedRast" text="Validar Rastreabilidade" />
+                        <Button fx:id="rastUpdate" layoutX="703.0" layoutY="432.0" mnemonicParsing="false" onMouseClicked="#rastreabilidadeTable" text="Atualizar/Desmarcar" />
                      </children>
                   </AnchorPane>
             </content>
@@ -63,7 +64,7 @@
            <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                  <children>
-                    <TableView fx:id="temperaturasTable" prefHeight="372.0" prefWidth="974.0">
+                    <TableView fx:id="temperaturasTable" prefHeight="422.0" prefWidth="974.0">
                        <columns>
                           <TableColumn fx:id="areaTempCol" prefWidth="334.0" text="Área Frigorifica" />
                           <TableColumn fx:id="tempTempCol" prefWidth="83.0" text="Temperatura" />
@@ -72,7 +73,8 @@
                               <TableColumn fx:id="validateTemCol" prefWidth="64.0" text="Validar" />
                        </columns>
                     </TableView>
-                    <Button fx:id="validarTempBtn" layoutX="845.0" layoutY="384.0" mnemonicParsing="false" onMouseClicked="#validateSelectedTemp" text="Validar Temperaturas" />
+                    <Button fx:id="validarTempBtn" layoutX="845.0" layoutY="432.0" mnemonicParsing="false" onMouseClicked="#validateSelectedTemp" text="Validar Temperaturas" />
+                    <Button fx:id="tempUpdate" layoutX="709.0" layoutY="432.0" mnemonicParsing="false" onMouseClicked="#temperaturasTable" text="Atualizar/Desmarcar" />
                  </children>
               </AnchorPane>
            </content>
