@@ -122,7 +122,6 @@ public class ValidateController {
         listRastreabilidade = ConnectDB.getAllRastToVal();
 
         rastreabilidadeTable.setItems(listRastreabilidade);
-
     }
 
     /**
@@ -159,7 +158,6 @@ public class ValidateController {
         listTemperatura = ConnectDB.getAllTempToVal();
 
         temperaturasTable.setItems(listTemperatura);
-
     }
 
     /**
@@ -169,36 +167,42 @@ public class ValidateController {
     public void validateSelected(MouseEvent mouseEvent) {
         boolean success = false, error = false;
 
-        for(Limpeza l : listLimpezas){
-            if(l.getValidate().isSelected()){
-                try {
-                    String stmt = "UPDATE limpeza SET assinatura = (SELECT id FROM user WHERE num_interno = ?), data_assinatura = ? WHERE id = ? ";
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Validar limpezas selecionadas?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+        alert.showAndWait();
 
-                    PreparedStatement ps = ConnectDB.getConn().prepareStatement(stmt);
-                    ps.setInt(1, Main.u.getUserID());
-                    ps.setString(2, String.valueOf(java.time.LocalDate.now()));
-                    ps.setInt(3, l.getId());
-                    if(ConnectDB.updateDB(ps)){
-                        success = true;
-                    }else{
-                        error = true;
+        if (alert.getResult() == ButtonType.YES) {
+            for(Limpeza l : listLimpezas){
+                if(l.getValidate().isSelected()){
+                    try {
+                        String stmt = "UPDATE limpeza SET assinatura = (SELECT id FROM user WHERE num_interno = ?), data_assinatura = ? WHERE id = ? ";
+
+                        PreparedStatement ps = ConnectDB.getConn().prepareStatement(stmt);
+                        ps.setInt(1, Main.u.getUserID());
+                        ps.setString(2, String.valueOf(java.time.LocalDate.now()));
+                        ps.setInt(3, l.getId());
+                        if(ConnectDB.updateDB(ps)){
+                            success = true;
+                        }else{
+                            error = true;
+                        }
+                    }catch (Exception e){
+                        MainScreenController.alerts(Alert.AlertType.ERROR, "Algo correu mal...",
+                                "Algo correu mal, Sem sucesso a validar. "+e).showAndWait();
                     }
-                }catch (Exception e){
-                    MainScreenController.alerts(Alert.AlertType.ERROR, "Algo correu mal...",
-                            "Algo correu mal, Sem sucesso a validar. "+e).showAndWait();
                 }
             }
-        }
 
-        if(success){
-            MainScreenController.alerts(Alert.AlertType.INFORMATION, "Atualizado com sucesso",
-                    "Registos validados com sucesso.").showAndWait();
+            if(success){
+                MainScreenController.alerts(Alert.AlertType.INFORMATION, "Atualizado com sucesso",
+                        "Registos validados com sucesso.").showAndWait();
+                limpezasTable();
+            }else if (error){
+                MainScreenController.alerts(Alert.AlertType.ERROR, "Algo correu mal...",
+                        "Algo correu mal, Sem sucesso a validar.").showAndWait();
+            }
+        }else if(alert.getResult() == ButtonType.NO){
             limpezasTable();
-        }else if (error){
-            MainScreenController.alerts(Alert.AlertType.ERROR, "Algo correu mal...",
-                    "Algo correu mal, Sem sucesso a validar.").showAndWait();
         }
-
     }
 
     /**
@@ -208,35 +212,41 @@ public class ValidateController {
     public void validateSelectedRast(MouseEvent mouseEvent) {
         boolean success = false, error = false;
 
-        for(Rastreabilidade l : listRastreabilidade){
-            if(l.getValidate().isSelected()){
-                try {
-                    String stmt = "UPDATE rastreabilidade SET assinado_user = (SELECT id FROM user WHERE num_interno = ?) WHERE id = ? ";
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Validar rastreabilidades selecionadas?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+        alert.showAndWait();
 
-                    PreparedStatement ps = ConnectDB.getConn().prepareStatement(stmt);
-                    ps.setInt(1, Main.u.getUserID());
-                    ps.setInt(2, l.getId());
-                    if(ConnectDB.updateDB(ps)){
-                        success = true;
-                    }else{
-                        error = true;
+        if (alert.getResult() == ButtonType.YES) {
+            for(Rastreabilidade l : listRastreabilidade){
+                if(l.getValidate().isSelected()){
+                    try {
+                        String stmt = "UPDATE rastreabilidade SET assinado_user = (SELECT id FROM user WHERE num_interno = ?) WHERE id = ? ";
+
+                        PreparedStatement ps = ConnectDB.getConn().prepareStatement(stmt);
+                        ps.setInt(1, Main.u.getUserID());
+                        ps.setInt(2, l.getId());
+                        if(ConnectDB.updateDB(ps)){
+                            success = true;
+                        }else{
+                            error = true;
+                        }
+                    }catch (Exception e){
+                        MainScreenController.alerts(Alert.AlertType.ERROR, "Algo correu mal...",
+                                "Algo correu mal, Sem sucesso a validar. "+e).showAndWait();
                     }
-                }catch (Exception e){
-                    MainScreenController.alerts(Alert.AlertType.ERROR, "Algo correu mal...",
-                            "Algo correu mal, Sem sucesso a validar. "+e).showAndWait();
                 }
             }
-        }
 
-        if(success){
-            MainScreenController.alerts(Alert.AlertType.INFORMATION, "Atualizado com sucesso",
-                    "Registos validados com sucesso.").showAndWait();
+            if(success){
+                MainScreenController.alerts(Alert.AlertType.INFORMATION, "Atualizado com sucesso",
+                        "Registos validados com sucesso.").showAndWait();
+                rastreabilidadeTable();
+            }else if (error){
+                MainScreenController.alerts(Alert.AlertType.ERROR, "Algo correu mal...",
+                        "Algo correu mal, Sem sucesso a validar.").showAndWait();
+            }
+        }else if(alert.getResult() == ButtonType.NO){
             rastreabilidadeTable();
-        }else if (error){
-            MainScreenController.alerts(Alert.AlertType.ERROR, "Algo correu mal...",
-                    "Algo correu mal, Sem sucesso a validar.").showAndWait();
         }
-
     }
 
     /**
@@ -246,35 +256,41 @@ public class ValidateController {
     public void validateSelectedTemp(MouseEvent mouseEvent) {
         boolean success = false, error = false;
 
-        for(Temperatura l : listTemperatura){
-            if(l.getValidate().isSelected()){
-                try {
-                    String stmt = "UPDATE temperatura SET assinado = (SELECT id FROM user WHERE num_interno = ?) WHERE id = ? ";
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Validar temperaturas selecionadas?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+        alert.showAndWait();
 
-                    PreparedStatement ps = ConnectDB.getConn().prepareStatement(stmt);
-                    ps.setInt(1, Main.u.getUserID());
-                    ps.setInt(2, l.getId());
-                    if(ConnectDB.updateDB(ps)){
-                        success = true;
-                    }else{
-                        error = true;
+        if (alert.getResult() == ButtonType.YES) {
+            for(Temperatura l : listTemperatura){
+                if(l.getValidate().isSelected()){
+                    try {
+                        String stmt = "UPDATE temperatura SET assinado = (SELECT id FROM user WHERE num_interno = ?) WHERE id = ? ";
+
+                        PreparedStatement ps = ConnectDB.getConn().prepareStatement(stmt);
+                        ps.setInt(1, Main.u.getUserID());
+                        ps.setInt(2, l.getId());
+                        if(ConnectDB.updateDB(ps)){
+                            success = true;
+                        }else{
+                            error = true;
+                        }
+                    }catch (Exception e){
+                        MainScreenController.alerts(Alert.AlertType.ERROR, "Algo correu mal...",
+                                "Algo correu mal, Sem sucesso a validar. "+e).showAndWait();
                     }
-                }catch (Exception e){
-                    MainScreenController.alerts(Alert.AlertType.ERROR, "Algo correu mal...",
-                            "Algo correu mal, Sem sucesso a validar. "+e).showAndWait();
                 }
             }
-        }
 
-        if(success){
-            MainScreenController.alerts(Alert.AlertType.INFORMATION, "Atualizado com sucesso",
-                    "Registos validados com sucesso.").showAndWait();
+            if(success){
+                MainScreenController.alerts(Alert.AlertType.INFORMATION, "Atualizado com sucesso",
+                        "Registos validados com sucesso.").showAndWait();
+                temperaturasTable();
+            }else if (error){
+                MainScreenController.alerts(Alert.AlertType.ERROR, "Algo correu mal...",
+                        "Algo correu mal, Sem sucesso a validar.").showAndWait();
+            }
+        }else if(alert.getResult() == ButtonType.NO){
             temperaturasTable();
-        }else if (error){
-            MainScreenController.alerts(Alert.AlertType.ERROR, "Algo correu mal...",
-                    "Algo correu mal, Sem sucesso a validar.").showAndWait();
         }
-
     }
 
 }
