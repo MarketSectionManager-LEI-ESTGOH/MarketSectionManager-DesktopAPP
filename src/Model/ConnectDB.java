@@ -859,4 +859,33 @@ public class ConnectDB {
         } // end of finally
         return -1;
     }
+
+    public static String getControlledAreaComponents(PreparedStatement aPs){
+        String comps = "";
+        ResultSet rs = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            if(conn == null){
+                conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            }
+            rs = aPs.executeQuery();
+            while(rs.next()){
+                comps += " - " + rs.getString(1) + ";\n";
+            }
+        } catch (SQLException e) {
+            System.out.println("!! SQL Exception !!\n"+e);
+            e.printStackTrace();
+            return "Sem Componenentes";
+        } catch (ClassNotFoundException e) {
+            System.out.println("!! Class Not Found. Unable to load Database Drive !!\n"+e);
+            return "Sem Componenentes";
+        } catch (IllegalAccessException e) {
+            System.out.println("!! Illegal Access !!\n"+e);
+            return "Sem Componenentes";
+        } catch (InstantiationException e) {
+            System.out.println("!! Class Not Instanciaded !!\n"+e);
+            return "Sem Componenentes";
+        }
+        return comps;
+    }
 }

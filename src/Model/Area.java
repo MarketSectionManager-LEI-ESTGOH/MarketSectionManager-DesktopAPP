@@ -40,4 +40,12 @@ public class Area {
             return false;
         }
     }
+
+    @Override
+    public String toString() {
+        return "Area{" +
+                "numero=" + numero +
+                ", designacao='" + designacao + '\'' +
+                '}';
+    }
 }

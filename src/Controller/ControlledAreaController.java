@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -88,13 +89,33 @@ public class ControlledAreaController {
             if (index <= -1) {
                 return;
             }
+            areasContTable.setOnMousePressed(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    if(event.getClickCount() == 2){
+                        System.out.println("see details of section (double click on row)");
+                        int dbID = getControlledAreaDatabaseID(areasContTable.getSelectionModel().getSelectedItem().getNumero());
+                        String components = getControlledAreaComponents(dbID);
+                        if(components.equalsIgnoreCase("Sem Componentes")){
+                            MainScreenController.alerts(Alert.AlertType.INFORMATION,"Listagem de Componentes:","Esta Área Controlada não tem componentes associados!").showAndWait();
+                        }else if(components.equals(null)){
+                            MainScreenController.alerts(Alert.AlertType.INFORMATION,"Erro","Aconteceu um erro inesperado ao apresentar os componentes da área, por favor tente novamente!").showAndWait();
+                        }else{
+                            MainScreenController.alerts(Alert.AlertType.INFORMATION,"Listagem de Componentes","Esta Área tem a si associados os seguintes componentes: \n" + components).showAndWait();
+                        }
+                    }
+                }
+            });
             editAreaContBtn.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
                     try {
+                        System.out.println("edit clicked!");
                         EditAreaController.setThisArea(listAreasCont.get(index));
+                        Area a = listAreasCont.get(index);
+                        System.out.println(a);
                         Stage EditStage = new Stage();
-                        Parent root = FXMLLoader.load(getClass().getResource("/View/EditArea.fxml"));
+                        Parent root = FXMLLoader.load(getClass().getResource("/View/EditControlledArea.fxml"));
                         EditStage.setScene(new Scene(root));
                         EditStage.getIcons().add(new Image("/Images/logoicon.png"));
                         EditStage.setTitle("Editar " + listAreasCont.get(index).getNumero());
@@ -157,5 +178,30 @@ public class ControlledAreaController {
         }
     }
 
+    private int getControlledAreaDatabaseID(int aNumInterno) {
+        try {
+            String stmt = "SELECT id FROM area WHERE numero = ?";
+            PreparedStatement ps = null;
+            ps = ConnectDB.getConn().prepareStatement(stmt);
+            ps.setInt(1, aNumInterno);
+            return ConnectDB.getControlledAreaID(ps);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return -1;
+        }
+    }
+
+    private String getControlledAreaComponents(int aBdId) {
+        try {
+            String stmt = "SELECT componentes.designacao FROM area_componentes LEFT JOIN componentes ON componentes_id = componentes.id WHERE area_id = ?";
+            PreparedStatement ps = null;
+            ps = ConnectDB.getConn().prepareStatement(stmt);
+            ps.setInt(1, aBdId);
+            return ConnectDB.getControlledAreaComponents(ps);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return null;
+        }
+    }
 
 }
