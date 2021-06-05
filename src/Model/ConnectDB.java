@@ -888,4 +888,111 @@ public class ConnectDB {
         }
         return comps;
     }
+
+    /**
+     * função para obter lista com todos os componentes de uma Area
+     * @return
+     */
+    public static ObservableList<Componente> getCompFromArea(int aID){
+        String userData = "";
+        ResultSet rs = null;
+
+        ObservableList<Componente> list = FXCollections.observableArrayList();
+
+        String stmt = "SELECT area_componentes.componentes_id, componentes.designacao from area_componentes LEFT JOIN componentes ON componentes_id = componentes.id WHERE area_id = ?";
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            if(conn == null){
+                conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            }
+            PreparedStatement aPs = ConnectDB.getConn().prepareStatement(stmt);
+            aPs.setInt(1, aID);
+
+            rs = aPs.executeQuery();
+            while(rs.next()){
+                list.add(new Componente(rs.getInt(1), rs.getString(2)));
+            }
+        } catch (SQLException e) {
+            System.out.println("!! SQL Exception !!\n"+e);
+            e.printStackTrace();
+            return null;
+        } catch (ClassNotFoundException e) {
+            System.out.println("!! Class Not Found. Unable to load Database Drive !!\n"+e);
+            return null;
+
+        } catch (IllegalAccessException e) {
+            System.out.println("!! Illegal Access !!\n"+e);
+            return null;
+
+        } catch (InstantiationException e) {
+            System.out.println("!! Class Not Instanciaded !!\n"+e);
+            return null;
+
+        } finally {
+            if (conn != null) {
+                try {
+                    return list;
+                } catch (Exception e) {
+                    System.out.println("!! Exception closing DB connection !!\n"+e);
+                    return null;
+                }
+            }
+        } // end of finally
+        return null;
+    }
+
+    /**
+     * função para obter lista com todos os componentes de uma Area
+     * @return
+     */
+    public static ObservableList<Componente> getCompDispArea(int aID){
+        String userData = "";
+        ResultSet rs = null;
+
+        ObservableList<Componente> list = FXCollections.observableArrayList();
+
+        String stmt = "SELECT * FROM componentes WHERE NOT EXISTS (SELECT area_componentes.componentes_id from area_componentes WHERE area_componentes.componentes_id = componentes.id AND area_id = ?)";
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            if(conn == null){
+                conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            }
+            PreparedStatement aPs = ConnectDB.getConn().prepareStatement(stmt);
+            aPs.setInt(1, aID);
+
+            rs = aPs.executeQuery();
+            while(rs.next()){
+                list.add(new Componente(rs.getInt(1), rs.getString(2)));
+            }
+        } catch (SQLException e) {
+            System.out.println("!! SQL Exception !!\n"+e);
+            e.printStackTrace();
+            return null;
+        } catch (ClassNotFoundException e) {
+            System.out.println("!! Class Not Found. Unable to load Database Drive !!\n"+e);
+            return null;
+
+        } catch (IllegalAccessException e) {
+            System.out.println("!! Illegal Access !!\n"+e);
+            return null;
+
+        } catch (InstantiationException e) {
+            System.out.println("!! Class Not Instanciaded !!\n"+e);
+            return null;
+
+        } finally {
+            if (conn != null) {
+                try {
+                    return list;
+                } catch (Exception e) {
+                    System.out.println("!! Exception closing DB connection !!\n"+e);
+                    return null;
+                }
+            }
+        } // end of finally
+        return null;
+    }
+
 }
