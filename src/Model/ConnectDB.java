@@ -611,7 +611,7 @@ public class ConnectDB {
     }
 
     /**
-     * função para obter lista com todos os utilizadores
+     * função para obter lista com todas limpezas a aprovar
      * @return
      */
     public static ObservableList<Limpeza> getAllLimpToVal(){
@@ -664,7 +664,60 @@ public class ConnectDB {
     }
 
     /**
-     * função para obter lista com todos os utilizadores
+     * função para obter lista com todas limpezas
+     * @return
+     */
+    public static ObservableList<Limpeza> getAllLimp(){
+        String userData = "";
+        ResultSet rs = null;
+
+        ObservableList<Limpeza> list = FXCollections.observableArrayList();
+
+        String stmt = "SELECT limpeza.id, area.designacao, componentes.designacao as 'componente', data, user.nome, user.num_interno FROM limpeza LEFT JOIN area_componentes on limpeza.area_componentes_id = area_componentes.id LEFT JOIN area on area.id = area_componentes.area_id LEFT JOIN componentes on componentes.id = area_componentes.componentes_id left join user on limpeza.user_id = user.id";
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            if(conn == null){
+                conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            }
+            PreparedStatement aPs = ConnectDB.getConn().prepareStatement(stmt);
+
+            rs = aPs.executeQuery();
+            while(rs.next()){
+                list.add(new Limpeza(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getString(5), rs.getInt(6)));
+            }
+        } catch (SQLException e) {
+            System.out.println("!! SQL Exception !!\n"+e);
+            e.printStackTrace();
+            return null;
+        } catch (ClassNotFoundException e) {
+            System.out.println("!! Class Not Found. Unable to load Database Drive !!\n"+e);
+            return null;
+
+        } catch (IllegalAccessException e) {
+            System.out.println("!! Illegal Access !!\n"+e);
+            return null;
+
+        } catch (InstantiationException e) {
+            System.out.println("!! Class Not Instanciaded !!\n"+e);
+            return null;
+
+        } finally {
+            if (conn != null) {
+                try {
+                    return list;
+                } catch (Exception e) {
+                    System.out.println("!! Exception closing DB connection !!\n"+e);
+                    return null;
+                }
+            }
+        } // end of finally
+        return null;
+
+    }
+
+    /**
+     * função para obter lista com todas rastreabilidades a validar
      * @return
      */
     public static ObservableList<Rastreabilidade> getAllRastToVal(){
@@ -717,7 +770,60 @@ public class ConnectDB {
     }
 
     /**
-     * função para obter lista com todos os utilizadores
+     * função para obter lista com todas rastreabilidades a validar
+     * @return
+     */
+    public static ObservableList<Rastreabilidade> getAllRast(){
+        String userData = "";
+        ResultSet rs = null;
+
+        ObservableList<Rastreabilidade> list = FXCollections.observableArrayList();
+
+        String stmt = "SELECT rastreabilidade.id, lote, d_t_entrada, origem, produto.nome, user.nome, fornecedor.nome FROM rastreabilidade LEFT JOIN produto on rastreabilidade.produto_id = produto.id LEFT JOIN user on rastreabilidade.user_id = user.id LEFT JOIN fornecedor on rastreabilidade.fornecedor_id = fornecedor.id";
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            if(conn == null){
+                conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            }
+            PreparedStatement aPs = ConnectDB.getConn().prepareStatement(stmt);
+
+            rs = aPs.executeQuery();
+            while(rs.next()){
+                list.add(new Rastreabilidade(rs.getInt(1), rs.getInt(2), rs.getDate(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
+            }
+        } catch (SQLException e) {
+            System.out.println("!! SQL Exception !!\n"+e);
+            e.printStackTrace();
+            return null;
+        } catch (ClassNotFoundException e) {
+            System.out.println("!! Class Not Found. Unable to load Database Drive !!\n"+e);
+            return null;
+
+        } catch (IllegalAccessException e) {
+            System.out.println("!! Illegal Access !!\n"+e);
+            return null;
+
+        } catch (InstantiationException e) {
+            System.out.println("!! Class Not Instanciaded !!\n"+e);
+            return null;
+
+        } finally {
+            if (conn != null) {
+                try {
+                    return list;
+                } catch (Exception e) {
+                    System.out.println("!! Exception closing DB connection !!\n"+e);
+                    return null;
+                }
+            }
+        } // end of finally
+        return null;
+
+    }
+
+    /**
+     * função para obter lista temperaturas a validar
      * @return
      */
     public static ObservableList<Temperatura> getAllTempToVal(){
@@ -769,6 +875,58 @@ public class ConnectDB {
 
     }
 
+    /**
+     * função para obter lista com todas temperaturas
+     * @return
+     */
+    public static ObservableList<Temperatura> getAllTemp(){
+        String userData = "";
+        ResultSet rs = null;
+
+        ObservableList<Temperatura> list = FXCollections.observableArrayList();
+
+        String stmt = "SELECT temperatura.id, area_frigorifica.designacao, temperatura, data_hora, user.nome FROM `temperatura` LEFT JOIN area_frigorifica ON temperatura.area_frigorifica_id = area_frigorifica.numero LEFT JOIN user on temperatura.user_id = user.id";
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            if(conn == null){
+                conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            }
+            PreparedStatement aPs = ConnectDB.getConn().prepareStatement(stmt);
+
+            rs = aPs.executeQuery();
+            while(rs.next()){
+                list.add(new Temperatura(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDate(4), rs.getString(5)));
+            }
+        } catch (SQLException e) {
+            System.out.println("!! SQL Exception !!\n"+e);
+            e.printStackTrace();
+            return null;
+        } catch (ClassNotFoundException e) {
+            System.out.println("!! Class Not Found. Unable to load Database Drive !!\n"+e);
+            return null;
+
+        } catch (IllegalAccessException e) {
+            System.out.println("!! Illegal Access !!\n"+e);
+            return null;
+
+        } catch (InstantiationException e) {
+            System.out.println("!! Class Not Instanciaded !!\n"+e);
+            return null;
+
+        } finally {
+            if (conn != null) {
+                try {
+                    return list;
+                } catch (Exception e) {
+                    System.out.println("!! Exception closing DB connection !!\n"+e);
+                    return null;
+                }
+            }
+        } // end of finally
+        return null;
+
+    }
 
     /**
      * função para obter lista com todos os utilizadores

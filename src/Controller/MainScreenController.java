@@ -139,5 +139,15 @@ public class MainScreenController{
         }
     }
 
+    public void showAllRastData(){
+        try {
+            Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/allDataPane.fxml"));
+            receivedPane.getChildren().add(newLoadedPane);
+            receivedPane.setVisible(true);
+        }catch(Exception e ){
+            System.out.println("erro o loader " + e);
+            e.printStackTrace();
+        }
+    }
 
 }

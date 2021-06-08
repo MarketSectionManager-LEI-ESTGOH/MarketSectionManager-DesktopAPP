@@ -18,9 +18,11 @@
             </ImageView>
             <Button layoutX="15.0" layoutY="182.0" mnemonicParsing="false" onAction="#showFornecedoresTable" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" stylesheets="@../CSS/mainScreenStyles.css" text="Fornecedores" />
             <Button layoutX="15.0" layoutY="146.0" mnemonicParsing="false" onAction="#showControlledAreasTable" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" stylesheets="@../CSS/mainScreenStyles.css" text="Áreas Controladas" />
-            <Button layoutX="14.0" layoutY="109.0" mnemonicParsing="false" onAction="#showRefrigeratorsTable" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" stylesheets="@../CSS/mainScreenStyles.css" text="Arcas Frigorificas" />
+            <Button layoutX="15.0" layoutY="109.0" mnemonicParsing="false" onAction="#showRefrigeratorsTable" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" stylesheets="@../CSS/mainScreenStyles.css" text="Arcas Frigorificas" />
             <Button fx:id="editProducts" layoutX="15.0" layoutY="258.0" mnemonicParsing="false" onAction="#showProductsTable" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" text="Produtos" />
             <Button fx:id="editBTN" layoutX="15.0" layoutY="220.0" mnemonicParsing="false" onAction="#showUsersTable" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" text="Utilizadores" />
+            <Button fx:id="validate" layoutX="15.0" layoutY="295.0" mnemonicParsing="false" onAction="#showValidationsPane" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" text="Validações" />
+            <Button fx:id="allRastData" layoutX="15.0" layoutY="333.0" mnemonicParsing="false" onAction="#showAllRastData" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" text="Visuzalizar Dados" />
             <ImageView fitHeight="38.0" fitWidth="43.0" layoutX="19.0" layoutY="564.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/user_icon-icons.com_57997.png" />
@@ -34,32 +36,41 @@
                   <Image url="@../CSS/media/LogOff.jpg" />
                </image>
             </ImageView>
-            <ImageView fitHeight="38.0" fitWidth="49.0" layoutX="147.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="155.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Images/650998-200.png" />
+                  <Image url="@../Images/refIcon.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="38.0" fitWidth="49.0" layoutX="147.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="155.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Images/select-area_icon-icons.com_69919.png" />
+                  <Image url="@../Images/areaIcon.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="38.0" fitWidth="49.0" layoutX="147.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="155.0" layoutY="183.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Images/3289576-individual-man-people-person_107097.png" />
+                  <Image url="@../Images/supplierIcon.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="38.0" fitWidth="49.0" layoutX="148.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="155.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Images/user_icon-icons.com_57997.png" />
+                  <Image url="@../Images/userIcon.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="38.0" fitWidth="49.0" layoutX="147.0" layoutY="255.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="155.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Images/products_new_cube_product_design_icon_153845.png" />
+                  <Image url="@../Images/productIcon.png" />
                </image>
             </ImageView>
-            <Button fx:id="validate" layoutX="15.0" layoutY="295.0" mnemonicParsing="false" onAction="#showValidationsPane" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" text="Validações" />
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="155.0" layoutY="296.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/validateIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="155.0" layoutY="334.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/allValidateIcon.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <Pane fx:id="receivedPane" layoutX="200.0" prefHeight="628.0" prefWidth="1059.0" visible="false">
