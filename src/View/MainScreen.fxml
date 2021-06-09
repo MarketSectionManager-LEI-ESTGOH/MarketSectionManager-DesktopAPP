@@ -7,11 +7,11 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainScreenController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainScreenController">
    <children>
       <Pane prefHeight="621.0" prefWidth="200.0" styleClass="sideBar" stylesheets="@../CSS/mainScreenStyles.css">
          <children>
-            <ImageView fitHeight="101.0" fitWidth="200.0" layoutX="11.0" onMouseClicked="#collapse" pickOnBounds="true" preserveRatio="true" x="3.335" y="0.001">
+            <ImageView fitHeight="101.0" fitWidth="200.0" layoutX="11.0" onMouseClicked="#collapse" pickOnBounds="true" preserveRatio="true" styleClass="homeButton" x="3.335" y="0.001">
                <image>
                   <Image url="@../Images/MSM_main_logo.png" />
                </image>

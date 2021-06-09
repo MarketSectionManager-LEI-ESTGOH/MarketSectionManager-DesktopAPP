@@ -26,3 +26,7 @@
     -fx-border-color: #808080;
     -fx-background-image: url('media/collapse.png'); 
 }
+
+.homeButton{
+    -fx-cursor: hand;
+}
