@@ -16,8 +16,8 @@
                   <Image url="@../Images/MSM_main_logo.png" />
                </image>
             </ImageView>
-            <Button layoutX="15.0" layoutY="182.0" mnemonicParsing="false" onAction="#showFornecedoresTable" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" stylesheets="@../CSS/mainScreenStyles.css" text="Fornecedores" />
-            <Button layoutX="15.0" layoutY="146.0" mnemonicParsing="false" onAction="#showControlledAreasTable" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" stylesheets="@../CSS/mainScreenStyles.css" text="Áreas Controladas" />
+            <Button fx:id="suppliersButton" layoutX="15.0" layoutY="182.0" mnemonicParsing="false" onAction="#showFornecedoresTable" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" stylesheets="@../CSS/mainScreenStyles.css" text="Fornecedores" />
+            <Button fx:id="controlledAreasButton" layoutX="15.0" layoutY="146.0" mnemonicParsing="false" onAction="#showControlledAreasTable" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" stylesheets="@../CSS/mainScreenStyles.css" text="Áreas Controladas" />
             <Button fx:id="refrigeratorsButton" layoutX="15.0" layoutY="109.0" mnemonicParsing="false" onAction="#showRefrigeratorsTable" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" stylesheets="@../CSS/mainScreenStyles.css" text="Arcas Frigorificas" />
             <Button fx:id="editProducts" layoutX="15.0" layoutY="258.0" mnemonicParsing="false" onAction="#showProductsTable" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" text="Produtos" />
             <Button fx:id="editBTN" layoutX="15.0" layoutY="220.0" mnemonicParsing="false" onAction="#showUsersTable" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" text="Utilizadores" />
