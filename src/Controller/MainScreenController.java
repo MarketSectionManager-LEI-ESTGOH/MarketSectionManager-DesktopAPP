@@ -8,9 +8,12 @@ import javafx.scene.control.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
+import java.awt.*;
 
 
 public class MainScreenController{
@@ -84,7 +87,11 @@ public class MainScreenController{
         }
     }
 
+    @FXML
+    private Button refrigeratorsButton;
+
     public void showRefrigeratorsTable(){
+        refrigeratorsButton.setStyle("-fx-background-color: #ff0000;");
         try {
             Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/RefrigeratorsPane.fxml"));
             receivedPane.getChildren().add(newLoadedPane);
