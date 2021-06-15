@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -23,15 +24,18 @@
             <Button fx:id="editBTN" layoutX="15.0" layoutY="220.0" mnemonicParsing="false" onAction="#showUsersTable" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" text="Utilizadores" />
             <Button fx:id="validate" layoutX="15.0" layoutY="295.0" mnemonicParsing="false" onAction="#showValidationsPane" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" text="Validações" />
             <Button fx:id="allRastData" layoutX="15.0" layoutY="333.0" mnemonicParsing="false" onAction="#showAllRastData" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" text="Visuzalizar Dados" />
-            <ImageView fitHeight="38.0" fitWidth="43.0" layoutX="19.0" layoutY="564.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="38.0" fitWidth="43.0" layoutX="1.0" layoutY="564.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Images/user_icon-icons.com_57997.png" />
+                  <Image url="@../Images/userIcon.png" />
                </image>
             </ImageView>
-            <Button fx:id="editProfileBtn" layoutX="57.0" layoutY="560.0" mnemonicParsing="false" onAction="#editProfile" prefHeight="47.0" prefWidth="68.0" styleClass="editProfileBTN" stylesheets="@../CSS/mainScreenStyles.css" text="Editar &#10;Perfil" textFill="WHITE" />
+            <Button fx:id="editProfileBtn" layoutX="40.0" layoutY="577.0" mnemonicParsing="false" onAction="#editProfile" prefHeight="30.0" prefWidth="126.0" styleClass="editProfileBTN" stylesheets="@../CSS/mainScreenStyles.css" text="Editar Perfil" textFill="#6bbfa3">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
             <Line endX="100.0" layoutX="99.0" layoutY="551.0" startX="-100.0" stroke="#39ffdb" />
             <Line endX="100.0" layoutX="101.0" layoutY="98.0" startX="-100.0" stroke="#39ffdb" />
-            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="134.0" layoutY="566.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="165.0" layoutY="567.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../CSS/media/LogOff.jpg" />
                </image>
@@ -71,6 +75,7 @@
                   <Image url="@../Images/allValidateIcon.png" />
                </image>
             </ImageView>
+            <Text fx:id="usernameLBL" fill="WHITE" layoutX="40.0" layoutY="582.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-- user name --" />
          </children>
       </Pane>
       <Pane fx:id="receivedPane" layoutX="200.0" prefHeight="628.0" prefWidth="1059.0" visible="false">

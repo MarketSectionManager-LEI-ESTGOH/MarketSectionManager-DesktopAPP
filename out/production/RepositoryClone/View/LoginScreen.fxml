@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -16,7 +17,10 @@
       </ImageView>
       <TextField fx:id="funcNumber" layoutX="25.0" layoutY="164.0" prefHeight="25.0" prefWidth="277.0" promptText="Número de Funcionário" />
       <PasswordField fx:id="funcPass" layoutX="25.0" layoutY="199.0" onKeyPressed="#detectEnterPressed" prefHeight="25.0" prefWidth="277.0" promptText="Passwod" />
-      <Button fx:id="loginBtn" layoutX="119.0" layoutY="239.0" mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="141.0" styleClass="loginButton" stylesheets="@../CSS/LoginScreenStyles.css" text="Login" />
+      <Button fx:id="loginBtn" layoutX="119.0" layoutY="239.0" mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="141.0" styleClass="loginButton" stylesheets="@../CSS/LoginScreenStyles.css" text="Login">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
       <ImageView fitHeight="25.0" fitWidth="28.0" layoutX="308.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/user.png" />

@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.awt.*;
@@ -39,6 +40,8 @@ public class MainScreenController {
     private Button suppliersButton = new Button();
     @FXML
     private Pane receivedPane;
+    @FXML
+    private Text usernameLBL;
 
     /**
      * Referencia apresentação de dados: 20/04/2021
@@ -56,6 +59,13 @@ public class MainScreenController {
         MainScreen.setResizable(false);
         MainScreen.centerOnScreen();
         MainScreen.show();
+    }
+
+    @FXML
+    protected void initialize(){
+        editProfileBtn.setUnderline(true);
+        editProfileBtn.setTextFill(javafx.scene.paint.Color.valueOf("#6bbfa3"));
+        usernameLBL.setText(Main.u.getUsername());
     }
 
     public void editProfile() {

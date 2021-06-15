@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="areasControladasPane" prefHeight="628.0" prefWidth="1059.0" style="-fx-background-color: #808080;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ControlledAreaController">
+<Pane fx:id="areasControladasPane" prefHeight="628.0" prefWidth="1059.0" style="-fx-background-color: #253437;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ControlledAreaController">
    <children>
       <Label layoutX="401.0" layoutY="15.0" text="ÁREAS CONTROLADAS" textAlignment="CENTER" textFill="WHITE">
          <font>

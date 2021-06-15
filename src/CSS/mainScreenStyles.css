@@ -7,6 +7,8 @@
     -fx-border-color:#253437;
 }
 
+
+
 .logoutBTN{
     -fx-background-color: #253437;
     -fx-background-image: url('media/off.svg');
