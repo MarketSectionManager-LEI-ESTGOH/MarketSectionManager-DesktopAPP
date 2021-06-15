@@ -8,10 +8,14 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainScreenController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainScreenController">
    <children>
       <Pane prefHeight="621.0" prefWidth="200.0" styleClass="sideBar" stylesheets="@../CSS/mainScreenStyles.css">
          <children>
+            <Button fx:id="editProfileBtn" layoutX="31.0" layoutY="565.0" mnemonicParsing="false" onAction="#editProfile" prefHeight="30.0" prefWidth="81.0" styleClass="editProfileBTN" stylesheets="@../CSS/mainScreenStyles.css" text="Editar Perfil" textFill="#6bbfa3">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
             <ImageView fitHeight="101.0" fitWidth="200.0" layoutX="11.0" onMouseClicked="#collapse" pickOnBounds="true" preserveRatio="true" styleClass="homeButton" x="3.335" y="0.001">
                <image>
                   <Image url="@../Images/MSM_main_logo.png" />
@@ -24,20 +28,16 @@
             <Button fx:id="editBTN" layoutX="15.0" layoutY="220.0" mnemonicParsing="false" onAction="#showUsersTable" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" text="Utilizadores" />
             <Button fx:id="validate" layoutX="15.0" layoutY="295.0" mnemonicParsing="false" onAction="#showValidationsPane" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" text="Validações" />
             <Button fx:id="allRastData" layoutX="15.0" layoutY="333.0" mnemonicParsing="false" onAction="#showAllRastData" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" text="Visuzalizar Dados" />
-            <ImageView fitHeight="38.0" fitWidth="43.0" layoutX="1.0" layoutY="564.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="6.0" layoutY="556.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/userIcon.png" />
                </image>
             </ImageView>
-            <Button fx:id="editProfileBtn" layoutX="40.0" layoutY="577.0" mnemonicParsing="false" onAction="#editProfile" prefHeight="30.0" prefWidth="126.0" styleClass="editProfileBTN" stylesheets="@../CSS/mainScreenStyles.css" text="Editar Perfil" textFill="#6bbfa3">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Button>
-            <Line endX="100.0" layoutX="99.0" layoutY="551.0" startX="-100.0" stroke="#39ffdb" />
+            <Line endX="100.0" layoutX="101.0" layoutY="540.0" startX="-100.0" stroke="#39ffdb" />
             <Line endX="100.0" layoutX="101.0" layoutY="98.0" startX="-100.0" stroke="#39ffdb" />
-            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="165.0" layoutY="567.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="166.0" layoutY="556.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../CSS/media/LogOff.jpg" />
+                  <Image url="@../Images/logoutIcon.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="155.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
@@ -75,7 +75,7 @@
                   <Image url="@../Images/allValidateIcon.png" />
                </image>
             </ImageView>
-            <Text fx:id="usernameLBL" fill="WHITE" layoutX="40.0" layoutY="582.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-- user name --" />
+            <Text fx:id="usernameLBL" fill="WHITE" layoutX="42.0" layoutY="568.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-- user name --" />
          </children>
       </Pane>
       <Pane fx:id="receivedPane" layoutX="200.0" prefHeight="628.0" prefWidth="1059.0" visible="false">
