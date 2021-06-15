@@ -24,6 +24,22 @@ public class Temperatura {
         validate = new CheckBox();
     }
 
+    public Temperatura(int aId, String aAreaFrig, int aTemperatura, Date aDataHora, String aUtilizador, int aAssinado){
+        id = aId;
+        areaFrig = aAreaFrig;
+        temperatura = aTemperatura;
+        dataHora = aDataHora;
+        utilizador = aUtilizador;
+        validate = new CheckBox(){
+            @Override
+            public void arm() {
+            }
+        };
+        if(aAssinado>0){
+            validate.setSelected(true);
+        }
+    }
+
     public int getId() {
         return id;
     }

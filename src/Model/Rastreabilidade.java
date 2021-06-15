@@ -25,6 +25,23 @@ public class Rastreabilidade {
         fornecedor = aFornecedor;
         validate = new CheckBox();
     }
+    public Rastreabilidade(int aID, int aLote, Date aDataEntrada, String aOrigem, String aProduto, String aUtilizador, String aFornecedor, int aAssinado){
+        id = aID;
+        lote = aLote;
+        dataEntrada = aDataEntrada;
+        origem = aOrigem;
+        produto = aProduto;
+        utilizador = aUtilizador;
+        fornecedor = aFornecedor;
+        validate = new CheckBox(){
+            @Override
+            public void arm() {
+            }
+        };
+        if(aAssinado>0){
+            validate.setSelected(true);
+        }
+    }
 
     public int getId() {
         return id;

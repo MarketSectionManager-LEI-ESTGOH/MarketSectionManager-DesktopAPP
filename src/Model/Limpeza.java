@@ -25,6 +25,24 @@ public class Limpeza {
         validate = new CheckBox();
     }
 
+    public Limpeza(int aID, String aAreaName, String aCompName, Date aDataLimp, String aUserName, int aUserNumInterno, int aAssinado){
+        id=aID;
+        areaName = aAreaName;
+        compName = aCompName;
+        dataLimp=aDataLimp;
+        userName = aUserName;
+        userNumInterno = aUserNumInterno;
+        validate = new CheckBox(){
+            @Override
+            public void arm() {
+            }
+        };
+        if(aAssinado>0){
+            validate.setSelected(true);
+        }
+    }
+
+
     public int getId() {
         return id;
     }
