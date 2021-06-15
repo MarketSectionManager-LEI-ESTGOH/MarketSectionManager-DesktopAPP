@@ -314,7 +314,7 @@ public class ConnectDB {
 
         ObservableList<User> list = FXCollections.observableArrayList();
 
-        String stmt = "Select id, tipo, nome, num_interno, email from user";
+        String stmt = "Select id, tipo, nome, num_interno, email from user WHERE nome != 'ARDUINO'";
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
 
@@ -673,7 +673,7 @@ public class ConnectDB {
 
         ObservableList<Limpeza> list = FXCollections.observableArrayList();
 
-        String stmt = "SELECT limpeza.id, area.designacao, componentes.designacao as 'componente', data, user.nome, user.num_interno FROM limpeza LEFT JOIN area_componentes on limpeza.area_componentes_id = area_componentes.id LEFT JOIN area on area.id = area_componentes.area_id LEFT JOIN componentes on componentes.id = area_componentes.componentes_id left join user on limpeza.user_id = user.id";
+        String stmt = "SELECT limpeza.id, area.designacao, componentes.designacao as 'componente', data, user.nome, user.num_interno, assinatura FROM limpeza LEFT JOIN area_componentes on limpeza.area_componentes_id = area_componentes.id LEFT JOIN area on area.id = area_componentes.area_id LEFT JOIN componentes on componentes.id = area_componentes.componentes_id left join user on limpeza.user_id = user.id";
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
 
@@ -684,7 +684,7 @@ public class ConnectDB {
 
             rs = aPs.executeQuery();
             while(rs.next()){
-                list.add(new Limpeza(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getString(5), rs.getInt(6)));
+                list.add(new Limpeza(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getString(5), rs.getInt(6), rs.getInt(7)));
             }
         } catch (SQLException e) {
             System.out.println("!! SQL Exception !!\n"+e);
@@ -779,7 +779,7 @@ public class ConnectDB {
 
         ObservableList<Rastreabilidade> list = FXCollections.observableArrayList();
 
-        String stmt = "SELECT rastreabilidade.id, lote, d_t_entrada, origem, produto.nome, user.nome, fornecedor.nome FROM rastreabilidade LEFT JOIN produto on rastreabilidade.produto_id = produto.id LEFT JOIN user on rastreabilidade.user_id = user.id LEFT JOIN fornecedor on rastreabilidade.fornecedor_id = fornecedor.id";
+        String stmt = "SELECT rastreabilidade.id, lote, d_t_entrada, origem, produto.nome, user.nome, fornecedor.nome, assinado_user FROM rastreabilidade LEFT JOIN produto on rastreabilidade.produto_id = produto.id LEFT JOIN user on rastreabilidade.user_id = user.id LEFT JOIN fornecedor on rastreabilidade.fornecedor_id = fornecedor.id";
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
 
@@ -790,7 +790,7 @@ public class ConnectDB {
 
             rs = aPs.executeQuery();
             while(rs.next()){
-                list.add(new Rastreabilidade(rs.getInt(1), rs.getInt(2), rs.getDate(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
+                list.add(new Rastreabilidade(rs.getInt(1), rs.getInt(2), rs.getDate(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8)));
             }
         } catch (SQLException e) {
             System.out.println("!! SQL Exception !!\n"+e);
@@ -885,7 +885,7 @@ public class ConnectDB {
 
         ObservableList<Temperatura> list = FXCollections.observableArrayList();
 
-        String stmt = "SELECT temperatura.id, area_frigorifica.designacao, temperatura, data_hora, user.nome FROM `temperatura` LEFT JOIN area_frigorifica ON temperatura.area_frigorifica_id = area_frigorifica.numero LEFT JOIN user on temperatura.user_id = user.id";
+        String stmt = "SELECT temperatura.id, area_frigorifica.designacao, temperatura, data_hora, user.nome, assinado FROM `temperatura` LEFT JOIN area_frigorifica ON temperatura.area_frigorifica_id = area_frigorifica.numero LEFT JOIN user on temperatura.user_id = user.id";
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
 
@@ -896,7 +896,7 @@ public class ConnectDB {
 
             rs = aPs.executeQuery();
             while(rs.next()){
-                list.add(new Temperatura(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDate(4), rs.getString(5)));
+                list.add(new Temperatura(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDate(4), rs.getString(5), rs.getInt(6)));
             }
         } catch (SQLException e) {
             System.out.println("!! SQL Exception !!\n"+e);
