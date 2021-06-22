@@ -139,7 +139,18 @@ public class MainScreenController {
             e.printStackTrace();
         }
     }
-    public void showGraph2(){}
+    public void showGraph2(){
+        System.out.println("showgraph2  __ here");
+        try {
+            Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/Graph2.fxml"));
+            graph2Pane.getChildren().add(newLoadedPane);
+            graph2Pane.setVisible(true);
+
+        } catch (Exception e) {
+            System.out.println("erro o loader " + e);
+            e.printStackTrace();
+        }
+    }
     public void showTable1(){}
     public void showTable2(){}
 

@@ -49,11 +49,11 @@ public class Graph1Controller {
 
     @FXML
     public void initialize() {
+        xAxis.setLabel("Dias Anteriores");
+        yAxis.setLabel("Temperatura");
         System.out.println("AFTER: ___ randomStartGraph: " + randomStartGraph + " __ graphTitle: " + graphTitle);
         getRefrigeratorsList();
         generateGraph(randomStartGraph, graphTitle);
-
-
     }
 
     private void getRefrigeratorsList(){
