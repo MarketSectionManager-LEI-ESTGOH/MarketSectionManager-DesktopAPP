@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.StackedAreaChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import Model.ConnectDB.*;
@@ -18,6 +19,8 @@ import java.sql.PreparedStatement;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Observable;
+import java.util.Random;
 
 public class Graph1Controller {
     @FXML
@@ -28,16 +31,33 @@ public class Graph1Controller {
     private NumberAxis yAxis = new NumberAxis();
     @FXML
     private StackedAreaChart<Number, Number> sac = new StackedAreaChart<>(xAxis, yAxis);
+    @FXML
+    private ComboBox<String> refrigeratorsDesignationCB;
     private ObservableList<Float> tempsMin = FXCollections.observableArrayList();
     private ObservableList<Float> tempsMax = FXCollections.observableArrayList();
     private Date today = new Date();
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private int randomStartGraph = -1;
+    private String graphTitle = "";
 
     @FXML
     public void initialize() {
-        populateTemps(444);
-        printList();
-        sac.setTitle("Variação da Temperatura (ºC) \nArca 444");
+        getRefrigeratorsList();
+        generateGraph(randomStartGraph, graphTitle);
+
+    }
+
+    private void getRefrigeratorsList(){
+        ObservableList<String> refrigerators = ConnectDB.getRefrigeratorsIDandDesign();
+        refrigeratorsDesignationCB.setItems(refrigerators);
+        int generatedListIndex = new Random().nextInt(refrigerators.size()+1);
+        graphTitle = refrigerators.get(generatedListIndex);
+        randomStartGraph = Integer.parseInt(refrigerators.get(generatedListIndex).split(" - ")[0]);
+    }
+
+    private void generateGraph(int aID, String aGraphTitle){
+        populateTemps(aID);
+        sac.setTitle("Variação da Temperatura (ºC) \nArca: " + aGraphTitle);
         XYChart.Series<Number, Number> morningTemps = new XYChart.Series<>();
         int xMorningCounter = 1, xAfternoonCounter = 1;
         morningTemps.setName("Mínimo");
@@ -73,17 +93,6 @@ public class Graph1Controller {
             }catch(Exception e){
                 System.out.println(e);
             }
-        }
-    }
-
-    private void printList(){
-        System.out.println("MINS");
-        for(Float str : tempsMin) {
-            System.out.println("-> Min: " + str);
-        }
-        System.out.println("MAXS");
-        for(Float str : tempsMax) {
-            System.out.println("-> Max: " + str);
         }
     }
 

@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import java.io.*;
 import java.sql.*;
 import java.sql.DriverManager;
+import java.util.Observable;
 import java.util.Properties;
 
 public class ConnectDB {
@@ -1153,6 +1154,37 @@ public class ConnectDB {
         return null;
     }
 
+
+    public static ObservableList<String> getRefrigeratorsIDandDesign(){
+        ObservableList <String> list = FXCollections.observableArrayList();
+        ResultSet rs = null;
+        String stmt = "SELECT numero, designacao FROM area_frigorifica;";
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            if(conn == null){
+                conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            }
+            PreparedStatement aPs = ConnectDB.getConn().prepareStatement(stmt);
+            rs = aPs.executeQuery();
+            while(rs.next()){
+                list.add(rs.getInt(1) + " - " + rs.getString(2));
+            }
+        } catch (SQLException e) {
+            System.out.println("!! SQL Exception !!\n"+e);
+            e.printStackTrace();
+            return null;
+        } catch (ClassNotFoundException e) {
+            System.out.println("!! Class Not Found. Unable to load Database Drive !!\n"+e);
+            return null;
+        } catch (IllegalAccessException e) {
+            System.out.println("!! Illegal Access !!\n"+e);
+            return null;
+        } catch (InstantiationException e) {
+            System.out.println("!! Class Not Instanciaded !!\n"+e);
+            return null;
+        }
+        return list;
+    }
 
     public static float getTempsGrapgh1(PreparedStatement aPs){
         float temp = -9999;
