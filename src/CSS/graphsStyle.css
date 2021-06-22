@@ -1,0 +1,6 @@
+.refreshButton{
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #000000;
+     -fx-border-color: #6bbfa3;
+     -fx-cursor: hand;
+}
