@@ -1153,4 +1153,34 @@ public class ConnectDB {
         return null;
     }
 
+
+    public static float getTempsGrapgh1(PreparedStatement aPs){
+        float temp = -9999;
+        ResultSet rs = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            if(conn == null){
+                conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            }
+            rs = aPs.executeQuery();
+            while(rs.next()){
+                temp = rs.getFloat(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("!! SQL Exception !!\n"+e);
+            e.printStackTrace();
+            return -9999;
+        } catch (ClassNotFoundException e) {
+            System.out.println("!! Class Not Found. Unable to load Database Drive !!\n"+e);
+            return -9999;
+        } catch (IllegalAccessException e) {
+            System.out.println("!! Illegal Access !!\n"+e);
+            return -9999;
+        } catch (InstantiationException e) {
+            System.out.println("!! Class Not Instanciaded !!\n"+e);
+            return -9999;
+        }
+        return temp;
+    }
+
 }

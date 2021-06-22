@@ -42,6 +42,16 @@ public class MainScreenController {
     private Pane receivedPane;
     @FXML
     private Text usernameLBL;
+    @FXML
+    private Pane graph1Pane = new Pane();
+    @FXML
+    private Pane graph2Pane = new Pane();
+
+    @FXML
+    private Pane graph3Pane = new Pane();
+
+    @FXML
+    private Pane graph4Pane = new Pane();
 
     /**
      * Referencia apresentação de dados: 20/04/2021
@@ -66,6 +76,7 @@ public class MainScreenController {
         editProfileBtn.setUnderline(true);
         editProfileBtn.setTextFill(javafx.scene.paint.Color.valueOf("#6bbfa3"));
         usernameLBL.setText(Main.u.getUsername());
+        showGraph1();
     }
 
     public void editProfile() {
@@ -100,6 +111,7 @@ public class MainScreenController {
     }
 
     public void showUsersTable() {
+        collapseGraphs();
         resetButtonStyle();
         editBTN.setStyle(BUTTON_SELECTED);
         try {
@@ -114,7 +126,21 @@ public class MainScreenController {
         }
     }
 
+    public void showGraph1() {
+        System.out.println("showgraph1  __ here");
+        try {
+            Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/Graph1.fxml"));
+            graph1Pane.getChildren().add(newLoadedPane);
+            graph1Pane.setVisible(true);
+
+        } catch (Exception e) {
+            System.out.println("erro o loader " + e);
+            e.printStackTrace();
+        }
+    }
+
     public void showRefrigeratorsTable() {
+        collapseGraphs();
         resetButtonStyle();
         refrigeratorsButton.setStyle(BUTTON_SELECTED);
         try {
@@ -128,6 +154,7 @@ public class MainScreenController {
     }
 
     public void showProductsTable() {
+        collapseGraphs();
         resetButtonStyle();
         editProducts.setStyle(BUTTON_SELECTED);
         try {
@@ -141,6 +168,7 @@ public class MainScreenController {
     }
 
     public void showControlledAreasTable() {
+        collapseGraphs();
         resetButtonStyle();
         controlledAreasButton.setStyle(BUTTON_SELECTED);
         try {
@@ -154,6 +182,7 @@ public class MainScreenController {
     }
 
     public void showFornecedoresTable() {
+        collapseGraphs();
         resetButtonStyle();
         suppliersButton.setStyle(BUTTON_SELECTED);
         try {
@@ -167,6 +196,7 @@ public class MainScreenController {
     }
 
     public void showValidationsPane() {
+        collapseGraphs();
         resetButtonStyle();
         validate.setStyle(BUTTON_SELECTED);
         try {
@@ -180,6 +210,7 @@ public class MainScreenController {
     }
 
     public void showAllRastData() {
+        collapseGraphs();
         resetButtonStyle();
         allRastData.setStyle(BUTTON_SELECTED);
         try {
@@ -202,6 +233,13 @@ public class MainScreenController {
         allRastData.setStyle(originalStyle);
         editProfileBtn.setStyle(originalStyle);
         suppliersButton.setStyle(originalStyle);
+    }
+
+    private void collapseGraphs(){
+        graph1Pane.setVisible(false);
+        graph2Pane.setVisible(false);
+        graph3Pane.setVisible(false);
+        graph4Pane.setVisible(false);
     }
 
 }
