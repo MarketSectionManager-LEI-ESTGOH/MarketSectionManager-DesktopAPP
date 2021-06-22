@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="graph1_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="314.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Graph1Controller">
+<Pane fx:id="graph1_pane" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="314.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Graph1Controller">
    <children>
       <Text layoutX="247.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BAHHAHA" />
       <StackedAreaChart fx:id="sac" layoutY="37.0" legendSide="RIGHT" prefHeight="269.0" prefWidth="439.0" title="Variação de Temperatura (ºC)">

@@ -76,7 +76,7 @@ public class MainScreenController {
         editProfileBtn.setUnderline(true);
         editProfileBtn.setTextFill(javafx.scene.paint.Color.valueOf("#6bbfa3"));
         usernameLBL.setText(Main.u.getUsername());
-        showGraph1();
+        showAllGraphs();
     }
 
     public void editProfile() {
@@ -104,6 +104,7 @@ public class MainScreenController {
 
     public void collapse() {
         System.out.println("home (collapse) clicked!");
+        expandGraphs();
         resetButtonStyle();
         if (receivedPane != null) {
             receivedPane.setVisible(false);
@@ -138,6 +139,16 @@ public class MainScreenController {
             e.printStackTrace();
         }
     }
+    public void showGraph2(){}
+    public void showTable1(){}
+    public void showTable2(){}
+
+    private void showAllGraphs(){
+        showGraph1();
+        showGraph2();
+        showTable1();
+        showTable2();
+    }
 
     public void showRefrigeratorsTable() {
         collapseGraphs();
@@ -146,6 +157,7 @@ public class MainScreenController {
         try {
             Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/RefrigeratorsPane.fxml"));
             receivedPane.getChildren().add(newLoadedPane);
+
             receivedPane.setVisible(true);
         } catch (Exception e) {
             System.out.println("erro o loader " + e);
@@ -240,6 +252,13 @@ public class MainScreenController {
         graph2Pane.setVisible(false);
         graph3Pane.setVisible(false);
         graph4Pane.setVisible(false);
+    }
+
+    private void expandGraphs(){
+        graph1Pane.setVisible(true);
+        graph2Pane.setVisible(true);
+        graph3Pane.setVisible(true);
+        graph4Pane.setVisible(true);
     }
 
 }

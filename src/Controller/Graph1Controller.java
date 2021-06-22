@@ -53,6 +53,7 @@ public class Graph1Controller {
         getRefrigeratorsList();
         generateGraph(randomStartGraph, graphTitle);
 
+
     }
 
     private void getRefrigeratorsList(){
@@ -68,7 +69,7 @@ public class Graph1Controller {
     private void generateGraph(int aID, String aGraphTitle){
         System.out.println("@genrateGraph: aID: " + aID + " _ aGraphTitle: " + aGraphTitle );
         populateTemps(aID);
-        sac.setTitle("Variação da Temperatura (ºC) \nArca: " + aGraphTitle);
+        sac.setTitle("Temperatura (ºC) - Últimos 15 Dias\nÁrea Frigorífica: " + aGraphTitle);
         int xMorningCounter = 1, xAfternoonCounter = 1;
         sac.getData().removeAll(morningTemps,afternoonTemps);
         XYChart.Series<Number, Number> morningTemps = new XYChart.Series<>();
@@ -113,7 +114,7 @@ public class Graph1Controller {
     public void refreshGraph(){
        String selectedRefrigerator [] = refrigeratorsDesignationCB.getSelectionModel().getSelectedItem().split(" - ");
         randomStartGraph = Integer.parseInt(selectedRefrigerator[0]);
-        graphTitle = selectedRefrigerator[1];
+        graphTitle = selectedRefrigerator[0] + " - " +selectedRefrigerator[1];
         Pane newLoadedPane = null;
         try {
             newLoadedPane = FXMLLoader.load(getClass().getResource("/View/Graph1.fxml"));
