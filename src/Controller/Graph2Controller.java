@@ -30,7 +30,7 @@ public class Graph2Controller {
     private NumberAxis yAxis = new NumberAxis();
     @FXML
     private ScatterChart<Number, Number> scatter = new ScatterChart<Number,Number>(xAxis,yAxis);
-    private String graphTitle = "";
+    private static String graphTitle = "";
     private static int randomStartGraph = -1;
     private XYChart.Series tempDisperssion = new XYChart.Series();
     private ArrayList<ArrayList<Float>> graphData = new ArrayList<>();
@@ -41,7 +41,6 @@ public class Graph2Controller {
         xAxis.setLabel("Dias Anteriores");
         yAxis.setLabel("Temperatura");
         getRefrigeratorsList();
-        scatter.setTitle("Dispersão de Temperatura (ºC) - Últimos 15 Dias\nÁrea Frigorífica:");
         generateGraph(randomStartGraph, graphTitle);
 
     }
@@ -51,7 +50,7 @@ public class Graph2Controller {
         refrigeratorsDesignationCB.setItems(refrigerators);
         if((graphTitle.equals("")) && (randomStartGraph == -1)){
             int generatedListIndex = new Random().nextInt(refrigerators.size());
-            graphTitle = "Dispersão de Temperatura (ºC) - Últimos 15 Dias\nÁrea Frigorífica: " + refrigerators.get(generatedListIndex);
+            graphTitle = refrigerators.get(generatedListIndex);
             randomStartGraph = Integer.parseInt(refrigerators.get(generatedListIndex).split(" - ")[0]);
         }
     }
@@ -59,7 +58,7 @@ public class Graph2Controller {
     private void generateGraph(int aID, String aTitle){
         tempDisperssion.setName("Temperatura (ºC)");
         populateTemps(aID);
-        scatter.setTitle(graphTitle);
+        scatter.setTitle("Dispersão de Temperatura (ºC) - Últimos 15 Dias\nÁrea Frigorífica: " + graphTitle);
         if(graphData != null ){
             for (int i = 0; i < graphData.size(); i++) {
                 int arraySize = graphData.get(i).size();
@@ -87,6 +86,7 @@ public class Graph2Controller {
         String selectedRefrigerator [] = refrigeratorsDesignationCB.getSelectionModel().getSelectedItem().split(" - ");
         randomStartGraph = Integer.parseInt(selectedRefrigerator[0]);
         graphTitle = selectedRefrigerator[0] + " - " +selectedRefrigerator[1];
+        System.out.println("@refreshGraph2__graphTitle " + graphTitle);
         Pane newLoadedPane = null;
         try {
             newLoadedPane = FXMLLoader.load(getClass().getResource("/View/Graph2.fxml"));
