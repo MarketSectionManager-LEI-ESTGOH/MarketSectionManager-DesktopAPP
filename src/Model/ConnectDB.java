@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import java.io.*;
 import java.sql.*;
 import java.sql.DriverManager;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Properties;
 
@@ -1213,6 +1214,37 @@ public class ConnectDB {
             return -9999;
         }
         return temp;
+    }
+
+    public static ArrayList<Float> getDispersion(int aID, String aDate){
+        ArrayList <Float> list = new ArrayList<>();
+        ResultSet rs = null;
+        String stmt = "SELECT temperatura FROM temperatura WHERE data_hora LIKE '%" + aDate + "%' AND area_frigorifica_id =" + aID + ";";
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            if(conn == null){
+                conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            }
+            PreparedStatement aPs = ConnectDB.getConn().prepareStatement(stmt);
+            rs = aPs.executeQuery();
+            while(rs.next()){
+                list.add(rs.getFloat(1));
+            }
+        } catch (SQLException e) {
+            System.out.println("!! SQL Exception !!\n"+e);
+            e.printStackTrace();
+            return null;
+        } catch (ClassNotFoundException e) {
+            System.out.println("!! Class Not Found. Unable to load Database Drive !!\n"+e);
+            return null;
+        } catch (IllegalAccessException e) {
+            System.out.println("!! Illegal Access !!\n"+e);
+            return null;
+        } catch (InstantiationException e) {
+            System.out.println("!! Class Not Instanciaded !!\n"+e);
+            return null;
+        }
+        return list;
     }
 
 }

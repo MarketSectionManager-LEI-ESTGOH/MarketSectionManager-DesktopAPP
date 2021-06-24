@@ -60,7 +60,7 @@ public class Graph1Controller {
         ObservableList<String> refrigerators = ConnectDB.getRefrigeratorsIDandDesign();
         refrigeratorsDesignationCB.setItems(refrigerators);
         if((graphTitle.equals("")) && (randomStartGraph == -1)){
-            int generatedListIndex = new Random().nextInt(refrigerators.size()+1);
+            int generatedListIndex = new Random().nextInt(refrigerators.size());
             graphTitle = refrigerators.get(generatedListIndex);
             randomStartGraph = Integer.parseInt(refrigerators.get(generatedListIndex).split(" - ")[0]);
         }
@@ -94,7 +94,7 @@ public class Graph1Controller {
         Calendar cal = Calendar.getInstance();
         cal.setTime(today);
         PreparedStatement ps = null;
-        for(int i = 0; i < 15; i++){
+        for(int i = 0; i < 10; i++){
             cal.add(Calendar.DAY_OF_MONTH,-1);
             try{
                 String stmtMin = "SELECT MIN(temperatura) FROM temperatura where area_frigorifica_id = ? AND data_hora LIKE '%"+dateFormat.format(cal.getTime())+"%';";
@@ -124,8 +124,6 @@ public class Graph1Controller {
         graph1_pane.getChildren().clear();
         graph1_pane.getChildren().add(newLoadedPane);
         graph1_pane.setVisible(true);
-
-
     }
 
 }
