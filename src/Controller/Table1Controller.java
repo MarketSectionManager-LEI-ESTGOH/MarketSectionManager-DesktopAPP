@@ -63,7 +63,7 @@ public class Table1Controller {
                      stmt1 = "SELECT COUNT(n_interno) FROM validade WHERE (validade.validade > CURDATE()) AND (validade.validade <= DATE_ADD(CURDATE(), INTERVAL 10 DAY));",
                      stmt2 = "SELECT COUNT(n_interno) FROM validade WHERE (validade.validade > CURDATE()) AND (validade.validade <= DATE_ADD(CURDATE(), INTERVAL 15 DAY));",
                      stmt3 = "SELECT COUNT(n_interno) FROM validade WHERE (validade.validade > CURDATE()) AND (validade.validade <= DATE_ADD(CURDATE(), INTERVAL 20 DAY));",
-                     stmt4 = "SELECT COUNT(markdown) FROM validade WHERE markdown = 1;",
+                     stmt4 = "SELECT COUNT(markdown) FROM validade WHERE (markdown = 1) AND (validade.validade >= CURDATE());",
                      stmt5 = "SELECT COUNT(markdown) FROM validade WHERE (markdown = 0) AND  (validade.validade <= DATE_ADD(CURDATE(), INTERVAL offset DAY)) AND (validade.validade >= CURDATE());";
         try{
             switch(aTypeOfData){
