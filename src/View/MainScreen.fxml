@@ -83,17 +83,13 @@
             <Text layoutX="342.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="pane to receive the load fxml " />
          </children>
       </Pane>
-      <Pane fx:id="graph1Pane" layoutX="200.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="314.0" prefWidth="500.0">
-         <children>
-            <Text layoutX="166.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="to receive graph1" />
-         </children>
-      </Pane>
+      <Pane fx:id="graph1Pane" layoutX="200.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="314.0" prefWidth="500.0" />
       <Pane fx:id="graph2Pane" layoutX="700.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="314.0" prefWidth="517.0" visible="false">
          <children>
             <Text layoutX="166.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="to receive graph2" />
          </children>
       </Pane>
-      <Pane fx:id="graph3Pane" layoutX="200.0" layoutY="333.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="306.0" prefWidth="500.0" style="-fx-background-color: red;" visible="false">
+      <Pane fx:id="graph3Pane" layoutX="200.0" layoutY="333.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="306.0" prefWidth="500.0" visible="false">
          <children>
             <Text layoutX="166.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="to receive graph2" />
          </children>

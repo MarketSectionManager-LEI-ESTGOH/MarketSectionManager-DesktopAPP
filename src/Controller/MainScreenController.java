@@ -151,7 +151,18 @@ public class MainScreenController {
             e.printStackTrace();
         }
     }
-    public void showTable1(){}
+    public void showTable1(){
+        System.out.println("showTable1  __ here");
+        try {
+            Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/Table1.fxml"));
+            graph3Pane.getChildren().add(newLoadedPane);
+            graph3Pane.setVisible(true);
+
+        } catch (Exception e) {
+            System.out.println("erro o loader " + e);
+            e.printStackTrace();
+        }
+    }
     public void showTable2(){}
 
     private void showAllGraphs(){

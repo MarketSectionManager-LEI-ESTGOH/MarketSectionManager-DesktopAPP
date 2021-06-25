@@ -1247,4 +1247,34 @@ public class ConnectDB {
         return list;
     }
 
+    public static int getTable1Data(PreparedStatement aPs){
+        int receivedCounter = -1;
+        ResultSet rs = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            if(conn == null){
+                conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            }
+            rs = aPs.executeQuery();
+            while(rs.next()){
+                receivedCounter= rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("!! SQL Exception !!\n"+e);
+            e.printStackTrace();
+            return -1;
+        } catch (ClassNotFoundException e) {
+            System.out.println("!! Class Not Found. Unable to load Database Drive !!\n"+e);
+            return -1;
+        } catch (IllegalAccessException e) {
+            System.out.println("!! Illegal Access !!\n"+e);
+            return -1;
+        } catch (InstantiationException e) {
+            System.out.println("!! Class Not Instanciaded !!\n"+e);
+            return -1;
+        }
+        return receivedCounter;
+    }
+
+
 }

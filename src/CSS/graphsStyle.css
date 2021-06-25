@@ -4,3 +4,8 @@
      -fx-border-color: #6bbfa3;
      -fx-cursor: hand;
 }
+
+.rectangleStyle{
+    -fx-background-color: #253437;
+    -fx-border-color: #253437;
+}
