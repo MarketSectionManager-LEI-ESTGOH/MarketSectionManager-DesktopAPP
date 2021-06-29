@@ -1,4 +1,4 @@
-package Controller;
+package Model;
 
 public class TableData {
     int data = -1;

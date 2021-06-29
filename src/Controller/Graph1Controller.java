@@ -29,7 +29,7 @@ public class Graph1Controller {
     @FXML
     private Pane graph1_pane = new Pane();
     @FXML
-    private NumberAxis xAxis = new NumberAxis(1,31,1);
+    private NumberAxis xAxis = new NumberAxis(1,10,1);
     @FXML
     private NumberAxis yAxis = new NumberAxis();
     @FXML
@@ -69,7 +69,7 @@ public class Graph1Controller {
     private void generateGraph(int aID, String aGraphTitle){
         System.out.println("@genrateGraph: aID: " + aID + " _ aGraphTitle: " + aGraphTitle );
         populateTemps(aID);
-        sac.setTitle("Temperatura (ºC) - Últimos 15 Dias\nÁrea Frigorífica: " + aGraphTitle);
+        sac.setTitle("Temperatura (ºC) - Últimos 10 Dias\nÁrea Frigorífica: " + aGraphTitle);
         int xMorningCounter = 1, xAfternoonCounter = 1;
         sac.getData().removeAll(morningTemps,afternoonTemps);
         XYChart.Series<Number, Number> morningTemps = new XYChart.Series<>();
@@ -125,5 +125,6 @@ public class Graph1Controller {
         graph1_pane.getChildren().add(newLoadedPane);
         graph1_pane.setVisible(true);
     }
+
 
 }

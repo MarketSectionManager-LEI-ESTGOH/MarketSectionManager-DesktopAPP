@@ -25,7 +25,7 @@ public class Graph2Controller {
     @FXML
     private Button refreshGraph2BTN;
     @FXML
-    private NumberAxis xAxis = new NumberAxis(1,15,1);
+    private NumberAxis xAxis = new NumberAxis(1,10,1);
     @FXML
     private NumberAxis yAxis = new NumberAxis();
     @FXML
@@ -58,7 +58,7 @@ public class Graph2Controller {
     private void generateGraph(int aID, String aTitle){
         tempDisperssion.setName("Temperatura (ºC)");
         populateTemps(aID);
-        scatter.setTitle("Dispersão de Temperatura (ºC) - Últimos 15 Dias\nÁrea Frigorífica: " + graphTitle);
+        scatter.setTitle("Dispersão de Temperatura (ºC) - Últimos 10 Dias\nÁrea Frigorífica: " + graphTitle);
         if(graphData != null ){
             for (int i = 0; i < graphData.size(); i++) {
                 int arraySize = graphData.get(i).size();

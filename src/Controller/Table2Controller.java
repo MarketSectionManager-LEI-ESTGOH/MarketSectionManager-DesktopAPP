@@ -13,18 +13,14 @@ import javafx.scene.layout.Pane;
 
 import java.sql.PreparedStatement;
 
-public class Table1Controller {
-    @FXML
-    private Pane graph1_pane;
-    @FXML
-    private Button refreshGraph1BTN;
+public class Table2Controller {
     @FXML
     private TableView<TableData> table;
     @FXML
     private TableColumn<TableData, String> descCol;
     @FXML
     private TableColumn<TableData, Integer> dataCol;
-    private ObservableList<TableData> productAnalysisData = FXCollections.observableArrayList();
+    private ObservableList<TableData> registerAnalysisData = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
@@ -34,23 +30,22 @@ public class Table1Controller {
         dataCol.setStyle("-fx-background-color: #ffffff;-fx-text-fill: #000000;");
         fillTable();
         table.setSelectionModel(null);
-        //table.setStyle("-fx-background-color: #ffffff;-fx-border-color: #253437;");
     }
 
     private void fillTable(){
-        if(productAnalysisData != null){
-            productAnalysisData.add(new TableData("Validades de Produtos a acabar em 5 Dias",getData(0)));
-            productAnalysisData.add(new TableData("Validades de Produtos a acabar em 10 Dias",getData(1)));
-            productAnalysisData.add(new TableData("Validades de Produtos a acabar em 15 Dias",getData(2)));
-            productAnalysisData.add(new TableData("Validades de Produtos a acabar em 20 Dias",getData(3)));
-            productAnalysisData.add(new TableData("Markdowns Ativos",getData(4)));
-            productAnalysisData.add(new TableData("Markdowns Possiveis",getData(5)));
-            table.setItems(productAnalysisData);
+        if(registerAnalysisData != null){
+            registerAnalysisData.add(new TableData("Registos de Rastreabilidade por Validar",getData(0)));
+            registerAnalysisData.add(new TableData("Registos de Temperatura por Validar",getData(1)));
+            registerAnalysisData.add(new TableData("Registos de Limpeza por Validar",getData(2)));
+            registerAnalysisData.add(new TableData("Áreas Registadas",getData(3)));
+            registerAnalysisData.add(new TableData("Número de Administradores Registados",getData(4)));
+            registerAnalysisData.add(new TableData("Número de Funcionários Registados",getData(5)));
+            table.setItems(registerAnalysisData);
         }
     }
 
     public void refreshTable(){
-        productAnalysisData.clear();
+        registerAnalysisData.clear();
         fillTable();
     }
 
@@ -59,12 +54,12 @@ public class Table1Controller {
         PreparedStatement ps = null;
         //0 - validades a 5 dias, 1 - validades a 10 dias, 2 - validades a 15 dias, 3 - validades a 20 dias
         //4 - markdowns ativos, 5 - markdowns possiveis
-        final String stmt0 = "SELECT COUNT(n_interno) FROM validade WHERE (validade.validade > CURDATE()) AND (validade.validade <= DATE_ADD(CURDATE(), INTERVAL 5 DAY));",
-                     stmt1 = "SELECT COUNT(n_interno) FROM validade WHERE (validade.validade > CURDATE()) AND (validade.validade <= DATE_ADD(CURDATE(), INTERVAL 10 DAY));",
-                     stmt2 = "SELECT COUNT(n_interno) FROM validade WHERE (validade.validade > CURDATE()) AND (validade.validade <= DATE_ADD(CURDATE(), INTERVAL 15 DAY));",
-                     stmt3 = "SELECT COUNT(n_interno) FROM validade WHERE (validade.validade > CURDATE()) AND (validade.validade <= DATE_ADD(CURDATE(), INTERVAL 20 DAY));",
-                     stmt4 = "SELECT COUNT(markdown) FROM validade WHERE (markdown = 1) AND (validade.validade >= CURDATE());",
-                     stmt5 = "SELECT COUNT(markdown) FROM validade WHERE (markdown = 0) AND  (validade.validade <= DATE_ADD(CURDATE(), INTERVAL offset DAY)) AND (validade.validade >= CURDATE());";
+        final String stmt0 = "SELECT COUNT(id) FROM rastreabilidade WHERE assinado_user IS NULL;",
+                     stmt1 = "SELECT COUNT(id) FROM temperatura WHERE assinado IS NULL;",
+                     stmt2 = "SELECT COUNT(id) FROM limpeza WHERE assinatura IS NULL;",
+                     stmt3 = "SELECT COUNT(id) FROM area;",
+                     stmt4 = "SELECT COUNT(id) FROM user WHERE tipo = 1;",
+                     stmt5 = "SELECT COUNT(id) FROM user WHERE tipo = 0;";
         try{
             switch(aTypeOfData){
                 case 0:{

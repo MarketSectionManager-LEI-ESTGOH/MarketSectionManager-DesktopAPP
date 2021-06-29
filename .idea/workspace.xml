@@ -49,6 +49,7 @@
       <recent name="Model" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="Controller" />
       <recent name="View" />
     </key>
   </component>
@@ -69,7 +70,7 @@
       <module name="RepositoryClone" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Controller.*" />
+          <option name="PATTERN" value="Model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>

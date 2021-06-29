@@ -80,18 +80,26 @@ public class allRastDataController {
 
     @FXML
     private TableColumn<Temperatura, CheckBox> validateTemCol;
+    @FXML
+    private TabPane tabPane;
 
     private ObservableList<Limpeza> listLimpezas;
     private ObservableList<Rastreabilidade> listRastreabilidade;
     private ObservableList<Temperatura> listTemperatura;
-
     private int index = -1;
+    private static int selectReceivedTab = 0;
+
+    public static void setSelectReceivedTab(int aReceivedTab){
+        selectReceivedTab = aReceivedTab;
+    }
 
     @FXML
     protected void initialize(){
         limpezasTable();
         rastreabilidadeTable();
         temperaturasTable();
+        SelectionModel<Tab> tabSelectionModel = tabPane.getSelectionModel();
+        tabSelectionModel.select(selectReceivedTab);
     }
 
     /**

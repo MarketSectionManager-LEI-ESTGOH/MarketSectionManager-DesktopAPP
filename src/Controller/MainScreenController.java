@@ -39,7 +39,7 @@ public class MainScreenController {
     @FXML
     private Button suppliersButton = new Button();
     @FXML
-    private Pane receivedPane;
+    public Pane receivedPane;
     @FXML
     private Text usernameLBL;
     @FXML
@@ -163,7 +163,18 @@ public class MainScreenController {
             e.printStackTrace();
         }
     }
-    public void showTable2(){}
+    public void showTable2(){
+        System.out.println("showTable2  __ here");
+        try {
+            Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/Table2.fxml"));
+            graph4Pane.getChildren().add(newLoadedPane);
+            graph4Pane.setVisible(true);
+
+        } catch (Exception e) {
+            System.out.println("erro o loader " + e);
+            e.printStackTrace();
+        }
+    }
 
     private void showAllGraphs(){
         showGraph1();
@@ -256,6 +267,8 @@ public class MainScreenController {
             e.printStackTrace();
         }
     }
+
+
 
     private void resetButtonStyle() {
         String originalStyle = "-fx-background-color: #253437;";

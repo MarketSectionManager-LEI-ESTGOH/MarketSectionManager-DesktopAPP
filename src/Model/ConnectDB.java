@@ -1247,7 +1247,7 @@ public class ConnectDB {
         return list;
     }
 
-    public static int getTable1Data(PreparedStatement aPs){
+    public static int getTableData(PreparedStatement aPs){
         int receivedCounter = -1;
         ResultSet rs = null;
         try {
