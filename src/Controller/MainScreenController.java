@@ -1,8 +1,5 @@
 package Controller;
 
-import Model.*;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.fxml.FXMLLoader;
@@ -13,8 +10,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-import java.awt.*;
 
 
 public class MainScreenController {
@@ -276,7 +271,7 @@ public class MainScreenController {
         resetButtonStyle();
         allRastData.setStyle(BUTTON_SELECTED);
         try {
-            Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/allDataPane.fxml"));
+            Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/AllDataPane.fxml"));
             receivedPane.getChildren().add(newLoadedPane);
             receivedPane.setVisible(true);
         } catch (Exception e) {

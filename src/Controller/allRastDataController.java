@@ -13,7 +13,7 @@ import javafx.scene.input.MouseEvent;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 
-public class allRastDataController {
+public class AllRastDataController {
 
     @FXML
     private TextField searchTextField;
@@ -100,6 +100,7 @@ public class allRastDataController {
         temperaturasTable();
         SelectionModel<Tab> tabSelectionModel = tabPane.getSelectionModel();
         tabSelectionModel.select(selectReceivedTab);
+
     }
 
     /**
