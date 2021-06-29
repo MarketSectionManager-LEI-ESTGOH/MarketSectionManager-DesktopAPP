@@ -80,8 +80,20 @@ public class MainScreenController {
     }
 
     public void editProfile() {
-        alerts(Alert.AlertType.WARNING, "Função Indisponível", "Esta função ainda não está disponível!").showAndWait();
-
+        try{
+            EditUserController.setThisUser(Main.u);
+            EditUserController.setSelfProfile(true);
+            Stage EditStage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/View/EditUser.fxml"));
+            EditStage.setScene(new Scene(root));
+            EditStage.getIcons().add(new Image("/Images/logoicon.png"));
+            EditStage.setTitle("Editar Perfil");
+            EditStage.setResizable(false);
+            EditStage.centerOnScreen();
+            EditStage.show();
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 
     public void logout() throws Exception {

@@ -59,6 +59,11 @@ public class UsersController {
             public void handle(ActionEvent event) {
                 try{
                     EditUserController.setThisUser(listUsers.get(index));
+                    if(listUsers.get(index).getUserID() == Main.u.getUserID()){
+                        EditUserController.setSelfProfile(true);
+                    }else {
+                        EditUserController.setSelfProfile(false);
+                    }
                     Stage EditStage = new Stage();
                     Parent root = FXMLLoader.load(getClass().getResource("/View/EditUser.fxml"));
                     EditStage.setScene(new Scene(root));

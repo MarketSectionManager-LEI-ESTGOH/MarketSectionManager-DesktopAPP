@@ -1,28 +1,21 @@
 package Controller;
 
-import Model.Componente;
 import Model.ConnectDB;
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.StackedAreaChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
-import Model.ConnectDB.*;
-
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Observable;
 import java.util.Random;
 
 public class Graph1Controller {
