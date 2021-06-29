@@ -75,7 +75,12 @@ public class MainScreenController {
     protected void initialize(){
         editProfileBtn.setUnderline(true);
         editProfileBtn.setTextFill(javafx.scene.paint.Color.valueOf("#6bbfa3"));
-        usernameLBL.setText(Main.u.getUsername());
+        String username = Main.u.getUsername();
+        if(username.length() > 20){
+            usernameLBL.setText((username.substring(0,16) + "..." ));
+        }else {
+            usernameLBL.setText(username);
+        }
         showAllGraphs();
     }
 
