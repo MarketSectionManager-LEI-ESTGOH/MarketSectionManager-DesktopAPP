@@ -31,7 +31,7 @@ public class Table1Controller {
         descCol.setCellValueFactory(new PropertyValueFactory<TableData, String>("dataDesignation"));
         dataCol.setCellValueFactory(new PropertyValueFactory<TableData, Integer>("data"));
         descCol.setStyle("-fx-background-color: #253437;-fx-text-fill: #ffffff;-fx-font-weight: bold;");
-        dataCol.setStyle("-fx-background-color: #ffffff;-fx-text-fill: #000000;");
+        dataCol.setStyle("-fx-background-color: #ffffff;-fx-text-fill: #000000;-fx-alignment: CENTER;");
         fillTable();
         table.setSelectionModel(null);
         //table.setStyle("-fx-background-color: #ffffff;-fx-border-color: #253437;");
