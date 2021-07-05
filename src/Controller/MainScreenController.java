@@ -34,6 +34,8 @@ public class MainScreenController {
     @FXML
     private Button suppliersButton = new Button();
     @FXML
+    private Button allExpirationDates = new Button();
+    @FXML
     public Pane receivedPane;
     @FXML
     private Text usernameLBL;
@@ -41,10 +43,8 @@ public class MainScreenController {
     private Pane graph1Pane = new Pane();
     @FXML
     private Pane graph2Pane = new Pane();
-
     @FXML
     private Pane graph3Pane = new Pane();
-
     @FXML
     private Pane graph4Pane = new Pane();
 
@@ -280,7 +280,19 @@ public class MainScreenController {
         }
     }
 
-
+    public void showAllExpirationDates(){
+        collapseGraphs();
+        resetButtonStyle();
+        allExpirationDates.setStyle(BUTTON_SELECTED);
+        try {
+            Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/ExpirationDatesPane.fxml"));
+            receivedPane.getChildren().add(newLoadedPane);
+            receivedPane.setVisible(true);
+        } catch (Exception e) {
+            System.out.println("erro o loader " + e);
+            e.printStackTrace();
+        }
+    }
 
     private void resetButtonStyle() {
         String originalStyle = "-fx-background-color: #253437;";
@@ -292,6 +304,7 @@ public class MainScreenController {
         allRastData.setStyle(originalStyle);
         editProfileBtn.setStyle(originalStyle);
         suppliersButton.setStyle(originalStyle);
+        allExpirationDates.setStyle(originalStyle);
     }
 
     private void collapseGraphs(){

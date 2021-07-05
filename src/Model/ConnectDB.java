@@ -1276,5 +1276,58 @@ public class ConnectDB {
         return receivedCounter;
     }
 
+    public static ObservableList<ExprirationDate> getAllExpirationDates(){
+        String userData = "";
+        ResultSet rs = null;
+
+        ObservableList<ExprirationDate> list = FXCollections.observableArrayList();
+
+        String stmt = "Select ean, n_interno, nome, markdown, validade from validade";
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            if(conn == null){
+                conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            }
+            PreparedStatement aPs = ConnectDB.getConn().prepareStatement(stmt);
+
+            rs = aPs.executeQuery();
+            while(rs.next()){
+                list.add(new ExprirationDate(
+                        rs.getString("ean"),
+                        String.valueOf(rs.getInt("n_interno")),
+                        rs.getString("nome"),
+                        rs.getInt("markdown"),
+                        rs.getDate("validade")));
+            }
+        } catch (SQLException e) {
+            System.out.println("!! SQL Exception !!\n"+e);
+            e.printStackTrace();
+            return null;
+        } catch (ClassNotFoundException e) {
+            System.out.println("!! Class Not Found. Unable to load Database Drive !!\n"+e);
+            return null;
+
+        } catch (IllegalAccessException e) {
+            System.out.println("!! Illegal Access !!\n"+e);
+            return null;
+
+        } catch (InstantiationException e) {
+            System.out.println("!! Class Not Instanciaded !!\n"+e);
+            return null;
+
+        } finally {
+            if (conn != null) {
+                try {
+                    return list;
+                } catch (Exception e) {
+                    System.out.println("!! Exception closing DB connection !!\n"+e);
+                    return null;
+                }
+            }
+        } // end of finally
+        return null;
+
+    }
 
 }
