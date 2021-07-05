@@ -122,6 +122,51 @@ public class ExpirationDatesController {
 
             }
         });
+        markdownBTN.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println(" __ markdown CLICKED! __");
+                try{
+                    ExprirationDate selected = expirationDatesList.get(index);
+                    System.out.println("Is markdowned: " + selected.getMardown());
+                    if(selected.getMardown().equalsIgnoreCase("sim") || selected.getMardown().equalsIgnoreCase("sem informação")){
+                        Optional<ButtonType> result = MainScreenController.alerts(Alert.AlertType.CONFIRMATION, "Mardown "+selected.getNumInterno(),
+                                "Tem a certeza que quer Remover o Markdown do Produto  ("  +selected.getNumInterno()+")"
+                                        +selected.getEan() + " - " + selected.getNome()+ "?").showAndWait();
+                        if(!result.isPresent()){
+                        }else if(result.get() == ButtonType.OK){
+                            if(ExprirationDate.updateMarkdownInDB(selected,0)){
+                                MainScreenController.alerts(Alert.AlertType.INFORMATION, "Markdown Removido com Sucesso ",
+                                        "Markdown do Produto: ("  +selected.getNumInterno()+")"
+                                                +selected.getEan() + " - " + selected.getNome()+ " Removido com Sucesso!").showAndWait();
+                            }else{
+                                MainScreenController.alerts(Alert.AlertType.ERROR, "Falha ao remover Markdown", "Algo correu mal...").showAndWait();
+                            }
+                        }else if(result.get() == ButtonType.CANCEL){ }
+                    }else if(selected.getMardown().equalsIgnoreCase("não")){
+                        Optional<ButtonType> result = MainScreenController.alerts(Alert.AlertType.CONFIRMATION, "Mardown "+selected.getNumInterno(),
+                                "Tem a certeza que quer Adicionar Markdown ao Produto  ("  +selected.getNumInterno()+")"
+                                        +selected.getEan() + " - " + selected.getNome()+ "?").showAndWait();
+                        if(!result.isPresent()){
+                        }else if(result.get() == ButtonType.OK){
+                            if(ExprirationDate.updateMarkdownInDB(selected,1)){
+                                MainScreenController.alerts(Alert.AlertType.INFORMATION, "Markdown Adicionado com Sucesso ",
+                                        "Markdown ao Produto: ("  +selected.getNumInterno()+")"
+                                                +selected.getEan() + " - " + selected.getNome()+ " Adicionado com Sucesso!").showAndWait();
+                            }else{
+                                MainScreenController.alerts(Alert.AlertType.ERROR, "Falha ao adicionar Markdown", "Algo correu mal...").showAndWait();
+                            }
+                        }else if(result.get() == ButtonType.CANCEL){ }
+                    } else {
+                        MainScreenController.alerts(Alert.AlertType.ERROR,"Aconteu um Erro", "Acoteceu um erro, por favor tente novamente!").showAndWait();
+                    }
+                }catch (Exception e){
+                    System.out.println(e);
+                    MainScreenController.alerts(Alert.AlertType.ERROR,"Aconteu um Erro", "Acoteceu um erro ao atualizar o Markdown, por favor tente novamente!").showAndWait();
+                }
+
+            }
+        });
     }
 
     public void expirationDatesTable(){

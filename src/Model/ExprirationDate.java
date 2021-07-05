@@ -94,4 +94,16 @@ public class ExprirationDate {
         }
         return false;
     }
+
+    public static boolean updateMarkdownInDB(ExprirationDate toUpdate, int aBit){
+        try {
+            String stmt = "UPDATE validade SET markdown = ? WHERE n_interno = '" + toUpdate.getNumInterno() + "'";
+            PreparedStatement ps = ConnectDB.getConn().prepareStatement(stmt);
+            ps.setInt(1,aBit);
+            return ConnectDB.updateDB(ps);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
