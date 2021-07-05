@@ -82,4 +82,16 @@ public class ExprirationDate {
         }
         return false;
     }
+
+    public static boolean updateOffsetInDB(ExprirationDate toUpdate, int aNewOffset){
+        try {
+            String stmt = "UPDATE validade SET offset = ? WHERE n_interno = '" + toUpdate.getNumInterno() + "'";
+            PreparedStatement ps = ConnectDB.getConn().prepareStatement(stmt);
+            ps.setInt(1,aNewOffset);
+            return ConnectDB.updateDB(ps);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

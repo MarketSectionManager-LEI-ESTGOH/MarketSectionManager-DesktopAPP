@@ -11,8 +11,10 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import  Model.ExprirationDate;
+import javafx.stage.Stage;
 
 import java.util.Date;
 import java.util.Optional;
@@ -83,6 +85,39 @@ public class ExpirationDatesController {
 
                 }catch (Exception e){
                     System.out.println(e);
+                }
+
+            }
+        });
+        offsetBTN.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println(" __ offset CLICKED! __");
+                try{
+                    ExprirationDate selected = expirationDatesList.get(index);
+                    TextInputDialog offsetInputBox = new TextInputDialog();
+                    offsetInputBox.setTitle("Definição de Offset");
+                    offsetInputBox.setHeaderText("Qual o Novo Offset do Produto \n(" + selected.getNumInterno() + ") " + selected.getNome() + " com o EAN " + selected.getEan() + "?");
+                    Stage stage = (Stage) offsetInputBox.getDialogPane().getScene().getWindow();
+                    stage.getIcons().add(new Image("/Images/logoicon.png"));
+                    Optional<String> result = offsetInputBox.showAndWait();
+                    int finalOffset = 20;
+                    try{
+                        finalOffset = Integer.parseInt(offsetInputBox.getEditor().getText());
+                        System.out.println("FinalOffset = " + finalOffset);
+                    }catch(NumberFormatException nfe){
+                        nfe.printStackTrace();
+                        MainScreenController.alerts(Alert.AlertType.ERROR,"Erro","O Offset não pode ser um valor alfabético, por favor tente novamente!").showAndWait();
+                        finalOffset = 20;
+                    }
+                    if(ExprirationDate.updateOffsetInDB(selected,finalOffset)){
+                        MainScreenController.alerts(Alert.AlertType.INFORMATION, "SUCESSO", "O Offset do produto ("+selected.getNumInterno()+") " + selected.getNome() + " foi atualizado com sucesso!").showAndWait();
+                    }else{
+                        MainScreenController.alerts(Alert.AlertType.ERROR,"Aconteu um Erro", "Acoteceu um erro ao atualizar o Offset, po favor tente novamente!").showAndWait();
+                    }
+                }catch (Exception e){
+                    System.out.println(e);
+                    MainScreenController.alerts(Alert.AlertType.ERROR,"Aconteu um Erro", "Acoteceu um erro ao atualizar o Offset, po favor tente novamente!").showAndWait();
                 }
 
             }
