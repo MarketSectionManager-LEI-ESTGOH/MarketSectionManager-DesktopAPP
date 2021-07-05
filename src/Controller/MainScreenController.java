@@ -47,6 +47,8 @@ public class MainScreenController {
     private Pane graph3Pane = new Pane();
     @FXML
     private Pane graph4Pane = new Pane();
+    @FXML
+    private Tooltip nameTT = new Tooltip();
 
     /**
      * Referencia apresentação de dados: 20/04/2021
@@ -71,12 +73,17 @@ public class MainScreenController {
         editProfileBtn.setUnderline(true);
         editProfileBtn.setTextFill(javafx.scene.paint.Color.valueOf("#6bbfa3"));
         String username = Main.u.getUsername();
+        nameTT.setText(username);
         if(username.length() > 20){
             usernameLBL.setText((username.substring(0,16) + "..." ));
         }else {
             usernameLBL.setText(username);
         }
         showAllGraphs();
+    }
+
+    public void showTooltip(){
+
     }
 
     public void editProfile() {
