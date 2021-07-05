@@ -2,14 +2,14 @@ package Controller;
 
 import Model.ConnectDB;
 import Model.ExprirationDate;
+import Model.Product;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import  Model.ExprirationDate;
@@ -45,13 +45,49 @@ public class ExpirationDatesController {
     @FXML
     private Button offsetBTN;
     private ObservableList<ExprirationDate> expirationDatesList;
+    private int index;
 
     @FXML
     protected void initialize(){
         expirationDatesTable();
     }
 
-    public void getSelected(){}
+    public void getSelected(){
+        index = valTable.getSelectionModel().getSelectedIndex();
+        if(index <= -1){
+            return;
+        }
+        RemoveValBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println(" __ BTN REMOVER VALIDADE CLICKED! __");
+                try{
+                    ExprirationDate selected = expirationDatesList.get(index);
+
+                    System.out.println(selected.getNumInterno() + " - " + selected.getNome());
+                    Optional<ButtonType> result = MainScreenController.alerts(Alert.AlertType.CONFIRMATION, "Remover "+selected.getNumInterno(),
+                            "Tem a certeza que quer remover o Registo  ("  +selected.getNumInterno()+")"
+                                    +selected.getEan() + " - " + selected.getNome()+ "?").showAndWait();
+                    if(!result.isPresent()){
+                    }else if(result.get() == ButtonType.OK){
+                        if(ExprirationDate.removeExpirationDateFromDB(selected)){
+                            MainScreenController.alerts(Alert.AlertType.INFORMATION, "Removido com Sucesso "+selected.getNumInterno(),
+                                    "Registo:  ("  +selected.getNumInterno()+")"
+                                            +selected.getEan() + " - " + selected.getNome()+ " Removido com Sucesso!").showAndWait();
+                        }else{
+                            MainScreenController.alerts(Alert.AlertType.ERROR, "Falha ao remover", "Algo correu mal...").showAndWait();
+                        }
+                    }else if(result.get() == ButtonType.CANCEL){
+
+                    }
+
+                }catch (Exception e){
+                    System.out.println(e);
+                }
+
+            }
+        });
+    }
 
     public void expirationDatesTable(){
         System.out.println("products Edit btn clicked!!");
@@ -64,7 +100,6 @@ public class ExpirationDatesController {
         }catch (Exception w){
             System.out.println("------------------------ exception ----------------------"); w.printStackTrace();System.out.println("------------------------ exception ----------------------");
         }
-
         expirationDatesList = ConnectDB.getAllExpirationDates();
         FilteredList<ExprirationDate> filteredData = new FilteredList<>(expirationDatesList, b -> true);
         searchProductTextField.textProperty().addListener((observable, oldValue, newValue) ->{
@@ -72,9 +107,7 @@ public class ExpirationDatesController {
                 if(newValue == null || newValue.isEmpty()){
                     return true;
                 }
-
                 String lowerCaseFilter = newValue.toLowerCase();
-
                 if(ExprirationDate.getNome().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
                 }  if(String.valueOf(ExprirationDate.getNumInterno()).indexOf(lowerCaseFilter) != -1) {
@@ -88,11 +121,8 @@ public class ExpirationDatesController {
                 }
             });
         });
-
         SortedList<ExprirationDate> sortedData = new SortedList<>(filteredData);
-
         sortedData.comparatorProperty().bind(valTable.comparatorProperty());
-
         valTable.setItems(sortedData);
     }
 }

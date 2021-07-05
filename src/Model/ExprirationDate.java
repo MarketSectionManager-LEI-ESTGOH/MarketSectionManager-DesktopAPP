@@ -1,5 +1,6 @@
 package Model;
 
+import java.sql.PreparedStatement;
 import java.util.Date;
 
 public class ExprirationDate {
@@ -69,5 +70,16 @@ public class ExprirationDate {
 
     public void setExpirationDate(Date expirationDate) {
         this.expirationDate = expirationDate;
+    }
+
+    public static boolean removeExpirationDateFromDB(ExprirationDate toRemove){
+        try {
+            String stmt = "DELETE FROM validade WHERE n_interno = '" + toRemove.getNumInterno() + "' AND validade = '" + toRemove.getExpirationDate() + "'";
+            PreparedStatement ps = ConnectDB.getConn().prepareStatement(stmt);
+            return ConnectDB.removeFromDB(ps);
+        }catch (Exception e){
+
+        }
+        return false;
     }
 }
