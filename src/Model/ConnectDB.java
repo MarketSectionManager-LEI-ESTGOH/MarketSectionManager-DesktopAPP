@@ -1,15 +1,21 @@
 package Model;
 
-import Controller.MainScreenController;
+import com.mysql.jdbc.exceptions.MySQLDataException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
+<<<<<<< HEAD
+=======
 import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.Observable;
+>>>>>>> 9674d05a0320220c076ab0006f485a6cbd6fac7e
 import java.util.Properties;
 
 public class ConnectDB {
@@ -847,6 +853,10 @@ public class ConnectDB {
             while(rs.next()){
                 list.add(new Temperatura(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDate(4), rs.getString(5)));
             }
+        } catch (MySQLDataException e) {
+            System.out.println("!! Class Not Instanciaded !!\n"+e);
+            return null;
+
         } catch (SQLException e) {
             System.out.println("!! SQL Exception !!\n"+e);
             e.printStackTrace();
@@ -862,7 +872,6 @@ public class ConnectDB {
         } catch (InstantiationException e) {
             System.out.println("!! Class Not Instanciaded !!\n"+e);
             return null;
-
         } finally {
             if (conn != null) {
                 try {

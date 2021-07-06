@@ -6,12 +6,13 @@ import Model.Rastreabilidade;
 import Model.Temperatura;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 
 import java.sql.Date;
-import java.sql.PreparedStatement;
 
 public class AllRastDataController {
 
@@ -138,7 +139,6 @@ public class AllRastDataController {
         listLimpezas = ConnectDB.getAllLimp();
 
         limpezasDataTable.setItems(listLimpezas);
-
     }
 
     /**
