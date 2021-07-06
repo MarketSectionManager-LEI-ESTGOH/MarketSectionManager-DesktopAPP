@@ -1282,7 +1282,7 @@ public class ConnectDB {
 
         ObservableList<ExprirationDate> list = FXCollections.observableArrayList();
 
-        String stmt = "Select ean, n_interno, nome, markdown, validade from validade";
+        String stmt = "Select ean, n_interno, nome, markdown, validade, offset from validade";
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
 
@@ -1298,7 +1298,8 @@ public class ConnectDB {
                         String.valueOf(rs.getInt("n_interno")),
                         rs.getString("nome"),
                         rs.getInt("markdown"),
-                        rs.getDate("validade")));
+                        rs.getDate("validade"),
+                        rs.getInt("offset")));
             }
         } catch (SQLException e) {
             System.out.println("!! SQL Exception !!\n"+e);

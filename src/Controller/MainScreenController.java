@@ -136,7 +136,6 @@ public class MainScreenController {
         editBTN.setStyle(BUTTON_SELECTED);
         try {
             Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/AllUsersPane.fxml"));
-
             receivedPane.getChildren().add(newLoadedPane);
             receivedPane.setVisible(true);
 

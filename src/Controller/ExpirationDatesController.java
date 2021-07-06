@@ -9,6 +9,10 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.AccessibleRole;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -35,6 +39,8 @@ public class ExpirationDatesController {
     @FXML
     private TableColumn<ExprirationDate, String> markValCol;
     @FXML
+    private TableColumn<ExprirationDate, Integer> offValCol;
+    @FXML
     private Button RemoveValBtn;
     @FXML
     private TextField searchProductTextField;
@@ -48,6 +54,7 @@ public class ExpirationDatesController {
     private Button offsetBTN;
     private ObservableList<ExprirationDate> expirationDatesList;
     private int index;
+    static DatePicker d = new DatePicker();
 
     @FXML
     protected void initialize(){
@@ -93,7 +100,7 @@ public class ExpirationDatesController {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println(" __ offset CLICKED! __");
-                try{
+                try {
                     ExprirationDate selected = expirationDatesList.get(index);
                     TextInputDialog offsetInputBox = new TextInputDialog();
                     offsetInputBox.setTitle("Definição de Offset");
@@ -101,20 +108,23 @@ public class ExpirationDatesController {
                     Stage stage = (Stage) offsetInputBox.getDialogPane().getScene().getWindow();
                     stage.getIcons().add(new Image("/Images/logoicon.png"));
                     Optional<String> result = offsetInputBox.showAndWait();
-                    int finalOffset = 20;
-                    try{
+                    if (!result.isPresent()) {
+                    } else{
+                        int finalOffset = 20;
+                    try {
                         finalOffset = Integer.parseInt(offsetInputBox.getEditor().getText());
                         System.out.println("FinalOffset = " + finalOffset);
-                    }catch(NumberFormatException nfe){
+                    } catch (NumberFormatException nfe) {
                         nfe.printStackTrace();
-                        MainScreenController.alerts(Alert.AlertType.ERROR,"Erro","O Offset não pode ser um valor alfabético, por favor tente novamente!").showAndWait();
+                        MainScreenController.alerts(Alert.AlertType.ERROR, "Erro", "O Offset não pode ser um valor alfabético, por favor tente novamente!").showAndWait();
                         finalOffset = 20;
                     }
-                    if(ExprirationDate.updateOffsetInDB(selected,finalOffset)){
-                        MainScreenController.alerts(Alert.AlertType.INFORMATION, "SUCESSO", "O Offset do produto ("+selected.getNumInterno()+") " + selected.getNome() + " foi atualizado com sucesso!").showAndWait();
-                    }else{
-                        MainScreenController.alerts(Alert.AlertType.ERROR,"Aconteu um Erro", "Acoteceu um erro ao atualizar o Offset, po favor tente novamente!").showAndWait();
+                    if (ExprirationDate.updateOffsetInDB(selected, finalOffset)) {
+                        MainScreenController.alerts(Alert.AlertType.INFORMATION, "SUCESSO", "O Offset do produto (" + selected.getNumInterno() + ") " + selected.getNome() + " foi atualizado com sucesso!").showAndWait();
+                    } else {
+                        MainScreenController.alerts(Alert.AlertType.ERROR, "Aconteu um Erro", "Acoteceu um erro ao atualizar o Offset, po favor tente novamente!").showAndWait();
                     }
+                }
                 }catch (Exception e){
                     System.out.println(e);
                     MainScreenController.alerts(Alert.AlertType.ERROR,"Aconteu um Erro", "Acoteceu um erro ao atualizar o Offset, po favor tente novamente!").showAndWait();
@@ -167,6 +177,25 @@ public class ExpirationDatesController {
 
             }
         });
+        EditValBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println(" __ edit val CLICKED! __");
+                try{
+                    EditExpirationDateController.setThisED(expirationDatesList.get(index));
+                    Stage EditStage = new Stage();
+                    Parent root = FXMLLoader.load(getClass().getResource("/View/EditExpirationDate.fxml"));
+                    EditStage.setScene(new Scene(root));
+                    EditStage.getIcons().add(new Image("/Images/logoicon.png"));
+                    EditStage.setTitle("Editar Registo de Validade de " + nomeValCol.getCellData(index));
+                    EditStage.setResizable(false);
+                    EditStage.centerOnScreen();
+                    EditStage.show();
+                }catch (Exception e){
+                    System.out.println(e);
+                }
+            }
+        });
     }
 
     public void expirationDatesTable(){
@@ -177,6 +206,7 @@ public class ExpirationDatesController {
             nomeValCol.setCellValueFactory(new PropertyValueFactory<ExprirationDate, String>("nome"));
             valValCol.setCellValueFactory(new PropertyValueFactory<ExprirationDate, Date>("expirationDate"));
             markValCol.setCellValueFactory(new PropertyValueFactory<ExprirationDate, String>("mardown"));
+            offValCol.setCellValueFactory(new PropertyValueFactory<ExprirationDate, Integer>("offset"));
         }catch (Exception w){
             System.out.println("------------------------ exception ----------------------"); w.printStackTrace();System.out.println("------------------------ exception ----------------------");
         }
@@ -195,6 +225,8 @@ public class ExpirationDatesController {
                 }  if(String.valueOf(ExprirationDate.getEan()).indexOf(lowerCaseFilter) != -1) {
                     return true;
                 } if(String.valueOf(ExprirationDate.getExpirationDate()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                }if(String.valueOf(ExprirationDate.getOffset()).indexOf(lowerCaseFilter) != -1) {
                     return true;
                 }else {
                     return false;

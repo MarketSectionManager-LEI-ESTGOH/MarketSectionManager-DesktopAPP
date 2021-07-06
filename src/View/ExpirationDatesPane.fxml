@@ -19,9 +19,10 @@
          <columns>
             <TableColumn fx:id="nIntValCol" prefWidth="115.0" text="Número Interno" />
             <TableColumn fx:id="eanValCol" prefWidth="192.0" text="EAN" />
-            <TableColumn fx:id="nomeValCol" prefWidth="291.0" text="Nome" />
-            <TableColumn fx:id="valValCol" maxWidth="500.0" prefWidth="243.0" text="Validade" />
-            <TableColumn fx:id="markValCol" prefWidth="127.0" text="Markdown Ativo" />
+            <TableColumn fx:id="nomeValCol" prefWidth="231.0" text="Nome" />
+            <TableColumn fx:id="valValCol" maxWidth="500.0" prefWidth="181.0" text="Validade" />
+            <TableColumn fx:id="offValCol" minWidth="0.0" prefWidth="79.0" text="Offset" />
+            <TableColumn fx:id="markValCol" prefWidth="169.0" text="Markdown Ativo" />
          </columns>
       </TableView>
       <Button fx:id="RemoveValBtn" layoutX="921.0" layoutY="522.0" mnemonicParsing="false" text="Remover" textAlignment="CENTER" />
@@ -33,7 +34,7 @@
       <TextField fx:id="searchProductTextField" layoutX="72.0" layoutY="60.0" />
       <Button fx:id="EditValBtn" layoutX="868.0" layoutY="522.0" mnemonicParsing="false" text="Editar" textAlignment="CENTER" />
       <Button fx:id="addValBtn" layoutX="794.0" layoutY="522.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Adicionar" />
-      <Button layoutX="921.0" layoutY="60.0" mnemonicParsing="false" text="Atualizar" />
+      <Button layoutX="921.0" layoutY="60.0" mnemonicParsing="false" onMouseClicked="#expirationDatesTable" text="Atualizar" />
       <Button fx:id="markdownBTN" layoutX="712.0" layoutY="522.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Markdown" />
       <Button fx:id="offsetBTN" layoutX="637.0" layoutY="522.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Offset" />
    </children>
