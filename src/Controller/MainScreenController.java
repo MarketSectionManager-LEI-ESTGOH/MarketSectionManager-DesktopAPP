@@ -1,8 +1,5 @@
 package Controller;
 
-import Model.*;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.fxml.FXMLLoader;
@@ -13,8 +10,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-import java.awt.*;
 
 
 public class MainScreenController {
@@ -39,9 +34,21 @@ public class MainScreenController {
     @FXML
     private Button suppliersButton = new Button();
     @FXML
-    private Pane receivedPane;
+    private Button allExpirationDates = new Button();
+    @FXML
+    public Pane receivedPane;
     @FXML
     private Text usernameLBL;
+    @FXML
+    private Pane graph1Pane = new Pane();
+    @FXML
+    private Pane graph2Pane = new Pane();
+    @FXML
+    private Pane graph3Pane = new Pane();
+    @FXML
+    private Pane graph4Pane = new Pane();
+    @FXML
+    private Tooltip nameTT = new Tooltip();
 
     /**
      * Referencia apresentação de dados: 20/04/2021
@@ -65,12 +72,35 @@ public class MainScreenController {
     protected void initialize(){
         editProfileBtn.setUnderline(true);
         editProfileBtn.setTextFill(javafx.scene.paint.Color.valueOf("#6bbfa3"));
-        usernameLBL.setText(Main.u.getUsername());
+        String username = Main.u.getUsername();
+        nameTT.setText(username);
+        if(username.length() > 20){
+            usernameLBL.setText((username.substring(0,16) + "..." ));
+        }else {
+            usernameLBL.setText(username);
+        }
+        showAllGraphs();
+    }
+
+    public void showTooltip(){
+
     }
 
     public void editProfile() {
-        alerts(Alert.AlertType.WARNING, "Função Indisponível", "Esta função ainda não está disponível!").showAndWait();
-
+        try{
+            EditUserController.setThisUser(Main.u);
+            EditUserController.setSelfProfile(true);
+            Stage EditStage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/View/EditUser.fxml"));
+            EditStage.setScene(new Scene(root));
+            EditStage.getIcons().add(new Image("/Images/logoicon.png"));
+            EditStage.setTitle("Editar Perfil");
+            EditStage.setResizable(false);
+            EditStage.centerOnScreen();
+            EditStage.show();
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 
     public void logout() throws Exception {
@@ -93,6 +123,7 @@ public class MainScreenController {
 
     public void collapse() {
         System.out.println("home (collapse) clicked!");
+        expandGraphs();
         resetButtonStyle();
         if (receivedPane != null) {
             receivedPane.setVisible(false);
@@ -100,11 +131,11 @@ public class MainScreenController {
     }
 
     public void showUsersTable() {
+        collapseGraphs();
         resetButtonStyle();
         editBTN.setStyle(BUTTON_SELECTED);
         try {
             Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/AllUsersPane.fxml"));
-
             receivedPane.getChildren().add(newLoadedPane);
             receivedPane.setVisible(true);
 
@@ -114,12 +145,70 @@ public class MainScreenController {
         }
     }
 
+    public void showGraph1() {
+        System.out.println("showgraph1  __ here");
+        try {
+            Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/Graph1.fxml"));
+            graph1Pane.getChildren().add(newLoadedPane);
+            graph1Pane.setVisible(true);
+
+        } catch (Exception e) {
+            System.out.println("erro o loader " + e);
+            e.printStackTrace();
+        }
+    }
+    public void showGraph2(){
+        System.out.println("showgraph2  __ here");
+        try {
+            Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/Graph2.fxml"));
+            graph2Pane.getChildren().add(newLoadedPane);
+            graph2Pane.setVisible(true);
+
+        } catch (Exception e) {
+            System.out.println("erro o loader " + e);
+            e.printStackTrace();
+        }
+    }
+    public void showTable1(){
+        System.out.println("showTable1  __ here");
+        try {
+            Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/Table1.fxml"));
+            graph3Pane.getChildren().add(newLoadedPane);
+            graph3Pane.setVisible(true);
+
+        } catch (Exception e) {
+            System.out.println("erro o loader " + e);
+            e.printStackTrace();
+        }
+    }
+    public void showTable2(){
+        System.out.println("showTable2  __ here");
+        try {
+            Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/Table2.fxml"));
+            graph4Pane.getChildren().add(newLoadedPane);
+            graph4Pane.setVisible(true);
+
+        } catch (Exception e) {
+            System.out.println("erro o loader " + e);
+            e.printStackTrace();
+        }
+    }
+
+    private void showAllGraphs(){
+        showGraph1();
+        showGraph2();
+        showTable1();
+        showTable2();
+    }
+
     public void showRefrigeratorsTable() {
+        collapseGraphs();
         resetButtonStyle();
         refrigeratorsButton.setStyle(BUTTON_SELECTED);
         try {
             Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/RefrigeratorsPane.fxml"));
             receivedPane.getChildren().add(newLoadedPane);
+
             receivedPane.setVisible(true);
         } catch (Exception e) {
             System.out.println("erro o loader " + e);
@@ -128,6 +217,7 @@ public class MainScreenController {
     }
 
     public void showProductsTable() {
+        collapseGraphs();
         resetButtonStyle();
         editProducts.setStyle(BUTTON_SELECTED);
         try {
@@ -141,6 +231,7 @@ public class MainScreenController {
     }
 
     public void showControlledAreasTable() {
+        collapseGraphs();
         resetButtonStyle();
         controlledAreasButton.setStyle(BUTTON_SELECTED);
         try {
@@ -154,6 +245,7 @@ public class MainScreenController {
     }
 
     public void showFornecedoresTable() {
+        collapseGraphs();
         resetButtonStyle();
         suppliersButton.setStyle(BUTTON_SELECTED);
         try {
@@ -167,6 +259,7 @@ public class MainScreenController {
     }
 
     public void showValidationsPane() {
+        collapseGraphs();
         resetButtonStyle();
         validate.setStyle(BUTTON_SELECTED);
         try {
@@ -180,10 +273,25 @@ public class MainScreenController {
     }
 
     public void showAllRastData() {
+        collapseGraphs();
         resetButtonStyle();
         allRastData.setStyle(BUTTON_SELECTED);
         try {
-            Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/allDataPane.fxml"));
+            Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/AllDataPane.fxml"));
+            receivedPane.getChildren().add(newLoadedPane);
+            receivedPane.setVisible(true);
+        } catch (Exception e) {
+            System.out.println("erro o loader " + e);
+            e.printStackTrace();
+        }
+    }
+
+    public void showAllExpirationDates(){
+        collapseGraphs();
+        resetButtonStyle();
+        allExpirationDates.setStyle(BUTTON_SELECTED);
+        try {
+            Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/ExpirationDatesPane.fxml"));
             receivedPane.getChildren().add(newLoadedPane);
             receivedPane.setVisible(true);
         } catch (Exception e) {
@@ -202,6 +310,21 @@ public class MainScreenController {
         allRastData.setStyle(originalStyle);
         editProfileBtn.setStyle(originalStyle);
         suppliersButton.setStyle(originalStyle);
+        allExpirationDates.setStyle(originalStyle);
+    }
+
+    private void collapseGraphs(){
+        graph1Pane.setVisible(false);
+        graph2Pane.setVisible(false);
+        graph3Pane.setVisible(false);
+        graph4Pane.setVisible(false);
+    }
+
+    private void expandGraphs(){
+        graph1Pane.setVisible(true);
+        graph2Pane.setVisible(true);
+        graph3Pane.setVisible(true);
+        graph4Pane.setVisible(true);
     }
 
 }

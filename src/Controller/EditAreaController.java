@@ -34,7 +34,6 @@ public class EditAreaController {
     private TextArea editCACompsAtuaisTA;
     @FXML
     private Button removeCompBTN;
-
     @FXML
     private TableView<Componente> compAtuaisTable;
 

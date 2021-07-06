@@ -10,6 +10,12 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
+<<<<<<< HEAD
+=======
+import java.sql.DriverManager;
+import java.util.ArrayList;
+import java.util.Observable;
+>>>>>>> 9674d05a0320220c076ab0006f485a6cbd6fac7e
 import java.util.Properties;
 
 public class ConnectDB {
@@ -1156,6 +1162,182 @@ public class ConnectDB {
             }
         } // end of finally
         return null;
+    }
+
+
+    public static ObservableList<String> getRefrigeratorsIDandDesign(){
+        ObservableList <String> list = FXCollections.observableArrayList();
+        ResultSet rs = null;
+        String stmt = "SELECT numero, designacao FROM area_frigorifica;";
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            if(conn == null){
+                conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            }
+            PreparedStatement aPs = ConnectDB.getConn().prepareStatement(stmt);
+            rs = aPs.executeQuery();
+            while(rs.next()){
+                list.add(rs.getInt(1) + " - " + rs.getString(2));
+            }
+        } catch (SQLException e) {
+            System.out.println("!! SQL Exception !!\n"+e);
+            e.printStackTrace();
+            return null;
+        } catch (ClassNotFoundException e) {
+            System.out.println("!! Class Not Found. Unable to load Database Drive !!\n"+e);
+            return null;
+        } catch (IllegalAccessException e) {
+            System.out.println("!! Illegal Access !!\n"+e);
+            return null;
+        } catch (InstantiationException e) {
+            System.out.println("!! Class Not Instanciaded !!\n"+e);
+            return null;
+        }
+        return list;
+    }
+
+    public static float getTempsGrapgh1(PreparedStatement aPs){
+        float temp = -9999;
+        ResultSet rs = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            if(conn == null){
+                conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            }
+            rs = aPs.executeQuery();
+            while(rs.next()){
+                temp = rs.getFloat(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("!! SQL Exception !!\n"+e);
+            e.printStackTrace();
+            return -9999;
+        } catch (ClassNotFoundException e) {
+            System.out.println("!! Class Not Found. Unable to load Database Drive !!\n"+e);
+            return -9999;
+        } catch (IllegalAccessException e) {
+            System.out.println("!! Illegal Access !!\n"+e);
+            return -9999;
+        } catch (InstantiationException e) {
+            System.out.println("!! Class Not Instanciaded !!\n"+e);
+            return -9999;
+        }
+        return temp;
+    }
+
+    public static ArrayList<Float> getDispersion(int aID, String aDate){
+        ArrayList <Float> list = new ArrayList<>();
+        ResultSet rs = null;
+        String stmt = "SELECT temperatura FROM temperatura WHERE data_hora LIKE '%" + aDate + "%' AND area_frigorifica_id =" + aID + ";";
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            if(conn == null){
+                conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            }
+            PreparedStatement aPs = ConnectDB.getConn().prepareStatement(stmt);
+            rs = aPs.executeQuery();
+            while(rs.next()){
+                list.add(rs.getFloat(1));
+            }
+        } catch (SQLException e) {
+            System.out.println("!! SQL Exception !!\n"+e);
+            e.printStackTrace();
+            return null;
+        } catch (ClassNotFoundException e) {
+            System.out.println("!! Class Not Found. Unable to load Database Drive !!\n"+e);
+            return null;
+        } catch (IllegalAccessException e) {
+            System.out.println("!! Illegal Access !!\n"+e);
+            return null;
+        } catch (InstantiationException e) {
+            System.out.println("!! Class Not Instanciaded !!\n"+e);
+            return null;
+        }
+        return list;
+    }
+
+    public static int getTableData(PreparedStatement aPs){
+        int receivedCounter = -1;
+        ResultSet rs = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            if(conn == null){
+                conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            }
+            rs = aPs.executeQuery();
+            while(rs.next()){
+                receivedCounter= rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("!! SQL Exception !!\n"+e);
+            e.printStackTrace();
+            return -1;
+        } catch (ClassNotFoundException e) {
+            System.out.println("!! Class Not Found. Unable to load Database Drive !!\n"+e);
+            return -1;
+        } catch (IllegalAccessException e) {
+            System.out.println("!! Illegal Access !!\n"+e);
+            return -1;
+        } catch (InstantiationException e) {
+            System.out.println("!! Class Not Instanciaded !!\n"+e);
+            return -1;
+        }
+        return receivedCounter;
+    }
+
+    public static ObservableList<ExprirationDate> getAllExpirationDates(){
+        String userData = "";
+        ResultSet rs = null;
+
+        ObservableList<ExprirationDate> list = FXCollections.observableArrayList();
+
+        String stmt = "Select ean, n_interno, nome, markdown, validade, offset from validade";
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            if(conn == null){
+                conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
+            }
+            PreparedStatement aPs = ConnectDB.getConn().prepareStatement(stmt);
+
+            rs = aPs.executeQuery();
+            while(rs.next()){
+                list.add(new ExprirationDate(
+                        rs.getString("ean"),
+                        String.valueOf(rs.getInt("n_interno")),
+                        rs.getString("nome"),
+                        rs.getInt("markdown"),
+                        rs.getDate("validade"),
+                        rs.getInt("offset")));
+            }
+        } catch (SQLException e) {
+            System.out.println("!! SQL Exception !!\n"+e);
+            e.printStackTrace();
+            return null;
+        } catch (ClassNotFoundException e) {
+            System.out.println("!! Class Not Found. Unable to load Database Drive !!\n"+e);
+            return null;
+
+        } catch (IllegalAccessException e) {
+            System.out.println("!! Illegal Access !!\n"+e);
+            return null;
+
+        } catch (InstantiationException e) {
+            System.out.println("!! Class Not Instanciaded !!\n"+e);
+            return null;
+
+        } finally {
+            if (conn != null) {
+                try {
+                    return list;
+                } catch (Exception e) {
+                    System.out.println("!! Exception closing DB connection !!\n"+e);
+                    return null;
+                }
+            }
+        } // end of finally
+        return null;
+
     }
 
 }

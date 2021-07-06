@@ -10,14 +10,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="628.0" prefWidth="1059.0" style="-fx-background-color: #808080;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.allRastDataController">
+<Pane prefHeight="628.0" prefWidth="1059.0" style="-fx-background-color: #253437;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AllRastDataController">
    <children>
       <Label layoutX="427.0" layoutY="14.0" text="DADOS DE VALIDAÇÕES" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TabPane layoutX="14.0" layoutY="60.0" prefHeight="487.0" prefWidth="974.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tabPane" layoutX="14.0" layoutY="60.0" prefHeight="487.0" prefWidth="974.0" stylesheets="@../CSS/TabStyles.css" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Limpezas">
             <content>

@@ -38,9 +38,14 @@ public class EditUserController{
     private String currentEmail;
 
     private static User thisUser = null;
+    private static boolean selfProfile = false;
 
     protected static void setThisUser(User aThisUser) {
         thisUser = aThisUser;
+    }
+    protected static void setSelfProfile(boolean aFlag){
+        System.out.println("setSelfProfile Flag = " + aFlag  );
+        selfProfile = aFlag;
     }
 
     @FXML
@@ -59,6 +64,10 @@ public class EditUserController{
                 funcRadioBtn.setSelected(false);
                 adminRadioBtn.setSelected(false);
             }
+            if(selfProfile){
+                funcRadioBtn.setDisable(true);
+                adminRadioBtn.setDisable(true);
+            }
     }
 
     public void handleCloseButtonAction(javafx.event.ActionEvent actionEvent) {
@@ -67,6 +76,7 @@ public class EditUserController{
     }
 
     public void handleUpdateButtonAction(javafx.event.ActionEvent actionEvent) {
+        System.out.println("self = " + selfProfile);
         String newName = nameTextField.getText();
         String newEmail = emailTextField.getText();
         int newType;
@@ -92,8 +102,16 @@ public class EditUserController{
                         ps.setString(3, emailTextField.getText());
                         ps.setInt(4, thisUser.getUserID());
                         if(ConnectDB.updateDB(ps)){
-                            MainScreenController.alerts(Alert.AlertType.INFORMATION, "Atualizado com sucesso",
-                                    "O utilizador foi atualizado com sucesso.").showAndWait();
+                            if(selfProfile){
+                                Main.u.setUsername(nameTextField.getText());
+                                Main.u.setEmail(emailTextField.getText());
+                                System.out.println("is self profile");
+                                MainScreenController.alerts(Alert.AlertType.INFORMATION, "Aplicação das Modificações",
+                                        "As modificações que realizou no seu perfil apenas serão aplicadas da próxima vez que iniciar sessão!").showAndWait();
+                            }else{
+                                MainScreenController.alerts(Alert.AlertType.INFORMATION, "Atualizado com sucesso",
+                                        "O utilizador foi atualizado com sucesso.").showAndWait();
+                            }
                             Stage stage = (Stage) CancelBtn.getScene().getWindow();
                             stage.close();
                         }else{
@@ -124,8 +142,17 @@ public class EditUserController{
                 ps.setString(2, nameTextField.getText());
                 ps.setInt(3, thisUser.getUserID());
                 if(ConnectDB.updateDB(ps)){
-                    MainScreenController.alerts(Alert.AlertType.INFORMATION, "Atualizado com sucesso",
-                            "O utilizador foi atualizado com sucesso.").showAndWait();
+                    if(selfProfile){
+                        Main.u.setUsername(nameTextField.getText());
+                        Main.u.setEmail(emailTextField.getText());
+                        System.out.println("is self profile");
+                        MainScreenController.alerts(Alert.AlertType.INFORMATION, "Aplicação das Modificações",
+                                "As modificações que realizou no seu perfil foram guardadas com sucesso! " +
+                                        "Estas modificações apenas serão aplicadas da próxima vez que iniciar sessão!").showAndWait();
+                    }else{
+                        MainScreenController.alerts(Alert.AlertType.INFORMATION, "Atualizado com sucesso",
+                                "O utilizador foi atualizado com sucesso.").showAndWait();
+                    }
                     Stage stage = (Stage) CancelBtn.getScene().getWindow();
                     stage.close();
                 }else{
