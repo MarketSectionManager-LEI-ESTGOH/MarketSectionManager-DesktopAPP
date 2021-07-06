@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="138.0" prefWidth="370.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AddExpirationDateController">
+   <children>
+      <Text layoutX="14.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Código Interno / EAN: ">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
+      <Text fx:id="hidenLBLAddVal" layoutX="15.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-- Produto --" visible="false" />
+      <TextField fx:id="nIntAddValTF" layoutX="14.0" layoutY="41.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#abcfunc" prefHeight="31.0" prefWidth="161.0" />
+      <Text layoutX="193.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data de Validade:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
+      <DatePicker fx:id="valAddValDP" layoutX="193.0" layoutY="41.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="161.0" />
+      <Button fx:id="saveBtn" layoutX="265.0" layoutY="91.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="31.0" prefWidth="89.0" text="Guardar" />
+   </children>
+</AnchorPane>

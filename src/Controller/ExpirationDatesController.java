@@ -198,6 +198,22 @@ public class ExpirationDatesController {
         });
     }
 
+    public void showAddExpirationDate(){
+        try{
+            EditExpirationDateController.setThisED(expirationDatesList.get(index));
+            Stage EditStage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/View/AddExpirationDate.fxml"));
+            EditStage.setScene(new Scene(root));
+            EditStage.getIcons().add(new Image("/Images/logoicon.png"));
+            EditStage.setTitle("Adicionar Registo de Validade");
+            EditStage.setResizable(false);
+            EditStage.centerOnScreen();
+            EditStage.show();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
     public void expirationDatesTable(){
         System.out.println("products Edit btn clicked!!");
         try{

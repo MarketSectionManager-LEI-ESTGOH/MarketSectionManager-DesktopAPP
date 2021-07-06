@@ -33,7 +33,7 @@
       </Label>
       <TextField fx:id="searchProductTextField" layoutX="72.0" layoutY="60.0" />
       <Button fx:id="EditValBtn" layoutX="868.0" layoutY="522.0" mnemonicParsing="false" text="Editar" textAlignment="CENTER" />
-      <Button fx:id="addValBtn" layoutX="794.0" layoutY="522.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Adicionar" />
+      <Button fx:id="addValBtn" layoutX="794.0" layoutY="522.0" mnemonicParsing="false" onAction="#showAddExpirationDate" prefHeight="25.0" prefWidth="68.0" text="Adicionar" />
       <Button layoutX="921.0" layoutY="60.0" mnemonicParsing="false" onMouseClicked="#expirationDatesTable" text="Atualizar" />
       <Button fx:id="markdownBTN" layoutX="712.0" layoutY="522.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Markdown" />
       <Button fx:id="offsetBTN" layoutX="637.0" layoutY="522.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Offset" />
