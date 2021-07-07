@@ -586,18 +586,18 @@ public class ConnectDB {
         } catch (SQLException e) {
             System.out.println("!! SQL Exception !!\n"+e);
             e.printStackTrace();
-            return true;
+            return false;
         } catch (ClassNotFoundException e) {
             System.out.println("!! Class Not Found. Unable to load Database Drive !!\n"+e);
-            return true;
+            return false;
 
         } catch (IllegalAccessException e) {
             System.out.println("!! Illegal Access !!\n"+e);
-            return true;
+            return false;
 
         } catch (InstantiationException e) {
             System.out.println("!! Class Not Instanciaded !!\n"+e);
-            return true;
+            return false;
 
         }
         return false;

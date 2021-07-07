@@ -22,6 +22,6 @@
          </font>
       </Text>
       <DatePicker fx:id="valAddValDP" editable="false" layoutX="193.0" layoutY="41.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="161.0" promptText="Definir Validade" />
-      <Button fx:id="saveBtn" layoutX="265.0" layoutY="91.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="31.0" prefWidth="89.0" text="Guardar" />
+      <Button fx:id="saveBtn" layoutX="265.0" layoutY="91.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#saveExpirationDate" prefHeight="31.0" prefWidth="89.0" text="Guardar" />
    </children>
 </AnchorPane>

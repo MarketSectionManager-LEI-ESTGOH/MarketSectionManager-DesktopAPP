@@ -127,4 +127,17 @@ public class ExprirationDate {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "ExprirationDate{" +
+                "ean='" + ean + '\'' +
+                ", numInterno='" + numInterno + '\'' +
+                ", nome='" + nome + '\'' +
+                ", mardown='" + mardown + '\'' +
+                ", markdownState=" + markdownState +
+                ", offset=" + offset +
+                ", expirationDate=" + expirationDate +
+                '}';
+    }
 }
