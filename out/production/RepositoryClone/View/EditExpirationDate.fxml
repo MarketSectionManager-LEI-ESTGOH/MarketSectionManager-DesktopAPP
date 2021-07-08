@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane prefHeight="295.0" prefWidth="392.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EditExpirationDateController">
+<AnchorPane prefHeight="295.0" prefWidth="392.0" xmlns="http://javafx.com/javafx/16" style="-fx-background-color: #ffffff;" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EditExpirationDateController">
    <children>
       <Text layoutX="26.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Número Interno">
          <font>
