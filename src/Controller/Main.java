@@ -29,8 +29,9 @@ public class Main extends Application {
     private Stage currentStage = null;
     @FXML
     private Text capsLbl;
-    //int a = 0;
     boolean isCapsOn = false;
+    @FXML
+    private Button minimizeBTN;
 
 
     @Override
@@ -98,7 +99,12 @@ public class Main extends Application {
 
     }
 
-    ;
+
+    public void minimizePRG() {
+        System.out.println("minimized pressed!");
+        Stage stage = (Stage) minimizeBTN.getScene().getWindow();
+        stage.setIconified(true);
+    }
 
     /**
      * Login
