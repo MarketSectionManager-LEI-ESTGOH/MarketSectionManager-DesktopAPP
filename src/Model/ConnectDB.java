@@ -10,12 +10,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
-<<<<<<< HEAD
-=======
 import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.Observable;
->>>>>>> 9674d05a0320220c076ab0006f485a6cbd6fac7e
 import java.util.Properties;
 
 public class ConnectDB {
