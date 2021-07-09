@@ -16,8 +16,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -53,6 +53,9 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\joaod\Desktop\LEI\3ºAno\2º Semestre\Projeto\MarketSectionManager\Code\MarketSectionManager-DesktopAPP\src\View" />
       <recent name="E:\LEI\2semestre\Projeto\RepositoryClone\src\View" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\joaod\Desktop\LEI\3ºAno\2º Semestre\Projeto\MarketSectionManager\Code\MarketSectionManager-DesktopAPP\src\CSS" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="Controller" />

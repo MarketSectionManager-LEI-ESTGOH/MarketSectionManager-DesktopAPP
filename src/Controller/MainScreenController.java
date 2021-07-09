@@ -1,17 +1,16 @@
 package Controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-import java.awt.*;
 
 
 public class MainScreenController {
@@ -120,6 +119,7 @@ public class MainScreenController {
         generalAlert.setTitle(aTitle);
         generalAlert.setHeaderText(aTitle);
         generalAlert.setContentText(aText);
+        generalAlert.getDialogPane().setStyle("-fx-background-color: #ffffff");
         return generalAlert;
     }
 
