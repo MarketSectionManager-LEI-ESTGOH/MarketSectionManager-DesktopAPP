@@ -106,6 +106,7 @@ public class Main extends Application {
         stage.setIconified(true);
     }
 
+
     /**
      * Login
      */
