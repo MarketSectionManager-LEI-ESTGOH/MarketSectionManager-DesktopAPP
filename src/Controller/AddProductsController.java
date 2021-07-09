@@ -5,7 +5,6 @@ import Model.Product;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import java.math.BigInteger;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Random;
@@ -29,6 +28,15 @@ public class AddProductsController {
     protected void initialize(){
         productFreshNORB.setSelected(false);
         productFreshYESRB.setSelected(false);
+    }
+
+    private void cleanFields(){
+        productNameTF.setText("");
+        productPriceNS.getEditor().setText("");
+        productEANTF.setText("");
+        productBrandTF.setText("");
+        productFreshYESRB.setSelected(false);
+        productFreshNORB.setSelected(false);
     }
 
     public void addProduct(){
@@ -80,6 +88,7 @@ public class AddProductsController {
                                     MainScreenController.alerts(Alert.AlertType.INFORMATION,"Sucesso na Inserção de Produto!", "O produto " + productNameTF.getText() + " da Marca "
                                                                 + productBrandTF.getText() + " com o EAN " + productEANTF.getText() + " foi guarado com o Número Interno " + generatedNumInt).showAndWait();
                                 }
+                                cleanFields();
                             }catch(Exception e){
                                 e.printStackTrace();
                                 MainScreenController.alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um erro inesperado, por favor tente novamente!").showAndWait();

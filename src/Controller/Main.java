@@ -1,19 +1,24 @@
 package Controller;
 
-import Model.User;
 import Model.ConnectDB;
-
-import javafx.event.EventHandler;
-import javafx.scene.control.*;
+import Model.User;
 import javafx.application.Application;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
+import java.awt.*;
 
 public class Main extends Application {
 
@@ -22,6 +27,11 @@ public class Main extends Application {
     public PasswordField funcPass = new PasswordField();
     public Button loginBtn = new Button();
     private Stage currentStage = null;
+    @FXML
+    private Text capsLbl;
+    boolean isCapsOn = false;
+    @FXML
+    private Button minimizeBTN;
 
 
     @Override
@@ -34,6 +44,30 @@ public class Main extends Application {
         loginScreen.setResizable(false);
         loginScreen.centerOnScreen();
         loginScreen.show();
+    }
+
+    @FXML
+    protected void initialize() {
+        System.out.println("@ Main Initializer");
+        funcPass.setOnMouseClicked( event -> {
+            if ( Toolkit.getDefaultToolkit().getLockingKeyState(20) ) {
+                System.out.println("Caps on");
+                capsLbl.setVisible(true);
+                isCapsOn = true;
+            }
+        });
+        funcPass.setOnKeyReleased( event -> {
+            if ( event.getCode() == KeyCode.CAPS ) {
+                System.out.println("Capslock pressed");
+                if(isCapsOn){
+                    isCapsOn = false;
+                    capsLbl.setVisible(false);
+                }else{
+                    isCapsOn = true;
+                    capsLbl.setVisible(true);
+                }
+            }
+        });
     }
 
     /**
@@ -65,7 +99,12 @@ public class Main extends Application {
 
     }
 
-    ;
+
+    public void minimizePRG() {
+        System.out.println("minimized pressed!");
+        Stage stage = (Stage) minimizeBTN.getScene().getWindow();
+        stage.setIconified(true);
+    }
 
     /**
      * Login
@@ -127,7 +166,7 @@ public class Main extends Application {
         return generalAlert;
     }
 
-    public void detectEnterPressed(KeyEvent ke){
+    public void detectEnterPressed(KeyEvent ke) {
         funcPass.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent ke) {
@@ -138,5 +177,4 @@ public class Main extends Application {
             }
         });
     }
-
 }

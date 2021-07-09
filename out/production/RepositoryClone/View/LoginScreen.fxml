@@ -7,6 +7,8 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="301.0" prefWidth="362.0" style="-fx-background-color: White;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Main">
    <children>
@@ -16,7 +18,7 @@
          </image>
       </ImageView>
       <TextField fx:id="funcNumber" layoutX="25.0" layoutY="164.0" prefHeight="25.0" prefWidth="277.0" promptText="Número de Funcionário" />
-      <PasswordField fx:id="funcPass" layoutX="25.0" layoutY="199.0" onKeyPressed="#detectEnterPressed" prefHeight="25.0" prefWidth="277.0" promptText="Passwod" />
+      <PasswordField fx:id="funcPass" layoutX="25.0" layoutY="199.0" onKeyPressed="#detectEnterPressed" prefHeight="25.0" prefWidth="277.0" promptText="Password" />
       <Button fx:id="loginBtn" layoutX="119.0" layoutY="239.0" mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="141.0" styleClass="loginButton" stylesheets="@../CSS/LoginScreenStyles.css" text="Login">
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -31,6 +33,19 @@
             <Image url="@../Images/lock.png" />
          </image>
       </ImageView>
-      <Button layoutX="291.0" layoutY="14.0" mnemonicParsing="false" onAction="#closeProgram" prefHeight="25.0" prefWidth="35.0" styleClass="closeButton" stylesheets="@../CSS/LoginScreenStyles.css" />
+      <Button layoutX="291.0" layoutY="14.0" mnemonicParsing="false" onAction="#closeProgram" prefHeight="25.0" prefWidth="35.0" styleClass="closeButton" stylesheets="@../CSS/LoginScreenStyles.css">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Text fx:id="capsLbl" fill="RED" layoutX="213.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Caps Lock Ligado!" visible="false">
+         <font>
+            <Font name="System Bold" size="10.0" />
+         </font>
+      </Text>
+      <Button fx:id="minimizeBTN" layoutX="258.0" layoutY="10.0" mnemonicParsing="false" onAction="#minimizePRG" prefHeight="39.0" prefWidth="35.0" styleClass="minimizeButton" stylesheets="@../CSS/LoginScreenStyles.css">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </Pane>

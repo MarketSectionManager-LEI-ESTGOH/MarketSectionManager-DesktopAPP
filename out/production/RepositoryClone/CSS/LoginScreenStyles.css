@@ -10,3 +10,8 @@
     -fx-border-radius: 10px;
 }
 
+.minimizeButton{
+    -fx-background-color:  white;
+    -fx-background-image: url('media/minimize.png');
+}
+

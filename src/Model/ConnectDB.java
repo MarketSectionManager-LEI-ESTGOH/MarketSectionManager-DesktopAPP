@@ -10,9 +10,13 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
+<<<<<<< HEAD
 import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.Observable;
+=======
+import java.util.ArrayList;
+>>>>>>> 509cae88e7553db40ca6ba33252b83c2c21bcd17
 import java.util.Properties;
 
 public class ConnectDB {
@@ -116,7 +120,6 @@ public class ConnectDB {
 
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-
             if(conn == null){
                 conn = DriverManager.getConnection(properties.getProperty("url"), getProperties());
             }
@@ -137,17 +140,8 @@ public class ConnectDB {
         } catch (InstantiationException e) {
             System.out.println("!! Class Not Instanciaded !!\n"+e);
             return null;
-        } finally {
-            if (conn != null) {
-                try {
-                    return value;
-                } catch (Exception e) {
-                    System.out.println("!! Exception closing DB connection !!\n"+e);
-                    return null;
-                }
-            }
-        } // end of finally
-        return null;
+        }
+        return value;
     }
 
     public static String getUser(PreparedStatement aPs){
@@ -598,18 +592,18 @@ public class ConnectDB {
         } catch (SQLException e) {
             System.out.println("!! SQL Exception !!\n"+e);
             e.printStackTrace();
-            return true;
+            return false;
         } catch (ClassNotFoundException e) {
             System.out.println("!! Class Not Found. Unable to load Database Drive !!\n"+e);
-            return true;
+            return false;
 
         } catch (IllegalAccessException e) {
             System.out.println("!! Illegal Access !!\n"+e);
-            return true;
+            return false;
 
         } catch (InstantiationException e) {
             System.out.println("!! Class Not Instanciaded !!\n"+e);
-            return true;
+            return false;
 
         }
         return false;
