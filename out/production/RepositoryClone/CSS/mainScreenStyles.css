@@ -1,12 +1,15 @@
+/*Definição da Cor de Fundo da Barra Lateral da Aplicação*/
 .sideBar{
     -fx-background-color: #253437;
 }
 
+/*Para o Botão de Edição do Perfil do Utilizador*/
 .editProfileBTN{
     -fx-background-color: #253437;
     -fx-border-color:#253437;
 }
 
+/*Para o Botão de Logout da Aplicação*/
 .logoutBTN{
     -fx-background-color: #253437;
     -fx-background-image: url('media/off.svg');
@@ -15,6 +18,7 @@
     -fx-border-color: #253437;
 }
 
+/*Para os Botões da Barra lateral da aplicação*/
 .sideBarButton{
     -fx-background-color: #253437;
     -fx-text-fill: #f8fafb;
@@ -22,12 +26,14 @@
      -fx-cursor: hand;
 }
 
+/*Para o Botão "Home" da aplicação*/
 .collapseButton{
     -fx-background-color: #808080;
     -fx-border-color: #808080;
     -fx-background-image: url('media/collapse.png'); 
 }
 
+/*Para o Botão "Home" da aplicação*/
 .homeButton{
     -fx-cursor: hand;
 }

@@ -1,8 +1,10 @@
+/*Para o Botão de Fechar a Aplicação*/
 .closeButton{
     -fx-background-color:  white;
     -fx-background-image: url('media/close.png');
 }
 
+/*Para o Botão de Login*/
 .loginButton{
     -fx-background-color:  #00ffc0;
     -fx-background-radius: 10px;
@@ -10,6 +12,7 @@
     -fx-border-radius: 10px;
 }
 
+/*Para o Botão de Minimizar a Aplicação*/
 .minimizeButton{
     -fx-background-color:  white;
     -fx-background-image: url('media/minimize.png');
