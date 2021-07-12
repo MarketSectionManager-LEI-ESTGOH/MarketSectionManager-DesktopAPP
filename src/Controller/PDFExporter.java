@@ -13,22 +13,24 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class PDFExporter extends Component {
 
     public static boolean genPdf(String tableName, String path){
         try {
-            Date date = new Date();
-            Timestamp timestamp2 = new Timestamp(date.getTime());
-            String ts = timestamp2.toInstant().toString();
-            ts = ts.replace(":", "_");
-            ts = ts.replace(".", "_");
+            Date current = new Date();
+            SimpleDateFormat isoFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
+            String ts = isoFormat.format(current);
             String file = tableName+"_"+ts;
             String filename = path+"\\"+file+".pdf";
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream(filename));
+
+            SimpleDateFormat formatTitle = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            ts = formatTitle.format(current);
+
 
             document.open();
             Image imgSoc = Image.getInstance("src\\Images\\MSM_main_logo_black.png");
@@ -38,7 +40,7 @@ public class PDFExporter extends Component {
 
             switch (tableName){
                 case "utilizadores":
-                    title(document, "Tabela Utilizadores", timestamp2.toInstant().toString());
+                    title(document, "Tabela Utilizadores", ts);
                     ObservableList<User> t = ConnectDB.getAllUsers();
                     PdfPTable table = new PdfPTable(4);
                     PdfPCell c1 = new PdfPCell(new Phrase("Nome"));
@@ -59,7 +61,7 @@ public class PDFExporter extends Component {
                     document.add(table);
                     break;
                 case "arcasFrig":
-                    title(document, "Tabela Arcas Frigoríficas", timestamp2.toInstant().toString());
+                    title(document, "Tabela Arcas Frigoríficas", ts);
                     ObservableList<ArcaFrigorifica> a = ConnectDB.getAllArcas();
                     PdfPTable tableA = new PdfPTable(9);
                     PdfPCell c1a = new PdfPCell(new Phrase("Número"));
@@ -103,7 +105,7 @@ public class PDFExporter extends Component {
                     document.add(tableA);
                     break;
                 case "areasCont":
-                    title(document, "Tabela Áreas Controladas", timestamp2.toInstant().toString());
+                    title(document, "Tabela Áreas Controladas", ts);
                     ObservableList<Area> b = ConnectDB.getAllAreasCont();
                     PdfPTable tableb = new PdfPTable(2);
                     PdfPCell c1b = new PdfPCell(new Phrase("Número"));
@@ -118,7 +120,7 @@ public class PDFExporter extends Component {
                     document.add(tableb);
                     break;
                 case "fornecedores":
-                    title(document, "Tabela Fornecedores", timestamp2.toInstant().toString());
+                    title(document, "Tabela Fornecedores", ts);
                     ObservableList<Fornecedor> c = ConnectDB.getAllFornecedores();
                     PdfPTable tablec = new PdfPTable(5);
                     PdfPCell c1c = new PdfPCell(new Phrase("Identificador"));
@@ -142,7 +144,7 @@ public class PDFExporter extends Component {
                     document.add(tablec);
                     break;
                 case "produtos":
-                    title(document, "Tabela Produtos", timestamp2.toInstant().toString());
+                    title(document, "Tabela Produtos", ts);
                     ObservableList<Product> d = ConnectDB.getAllProducts();
                     PdfPTable tabled = new PdfPTable(6);
                     PdfPCell c1d = new PdfPCell(new Phrase("Num. Interno"));
@@ -169,7 +171,7 @@ public class PDFExporter extends Component {
                     document.add(tabled);
                     break;
                 case "limpezas":
-                    title(document, "Tabela Limpezas", timestamp2.toInstant().toString());
+                    title(document, "Tabela Limpezas", ts);
                     ObservableList<Limpeza> e = ConnectDB.getAllLimp();
                     PdfPTable tablee = new PdfPTable(6);
                     PdfPCell c1e = new PdfPCell(new Phrase("Área"));
@@ -200,7 +202,7 @@ public class PDFExporter extends Component {
                     document.add(tablee);
                     break;
                 case "rastreabilidade":
-                    title(document, "Tabela Rastreabilidade", timestamp2.toInstant().toString());
+                    title(document, "Tabela Rastreabilidade", ts);
                     ObservableList<Rastreabilidade> f = ConnectDB.getAllRast();
                     PdfPTable tablef = new PdfPTable(7);
                     PdfPCell c1f = new PdfPCell(new Phrase("Lote"));
@@ -238,7 +240,7 @@ public class PDFExporter extends Component {
                     document.add(tablef);
                     break;
                 case "temperaturas":
-                    title(document, "Tabela Temperaturas", timestamp2.toInstant().toString());
+                    title(document, "Tabela Temperaturas", ts);
                     ObservableList<Temperatura> g = ConnectDB.getAllTemp();
                     PdfPTable tableg = new PdfPTable(5);
                     PdfPCell c1g = new PdfPCell(new Phrase("Área Frig."));
@@ -266,7 +268,7 @@ public class PDFExporter extends Component {
                     document.add(tableg);
                     break;
                 case "validades":
-                    title(document, "Tabela Validades", timestamp2.toInstant().toString());
+                    title(document, "Tabela Validades", ts);
                     ObservableList<ExprirationDate> h = ConnectDB.getAllExpirationDates();
                     PdfPTable tableh = new PdfPTable(6);
                     PdfPCell c1h = new PdfPCell(new Phrase("Num. Interno"));
@@ -312,7 +314,7 @@ public class PDFExporter extends Component {
     }
 
     private static void title(Document aD, String aType, String aTime){
-        Paragraph para = new Paragraph(aType);
+        Paragraph para = new Paragraph("                "+aType);
         try {
             aD.add(para);
             aD.add(new Paragraph(" "));
