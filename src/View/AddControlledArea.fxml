@@ -27,7 +27,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Text>
-      <Button fx:id="addCABTN" layoutX="213.0" layoutY="186.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#insertControlledArea" prefHeight="40.0" prefWidth="114.0" text="Adicionar" />
+      <Button fx:id="addCABTN" layoutX="213.0" layoutY="186.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#insertControlledArea" prefHeight="40.0" prefWidth="114.0" styleClass="alterDataButton" stylesheets="@../CSS/ButtonStyles.css" text="Adicionar" />
       <TableView fx:id="compsTbl" layoutX="94.0" layoutY="77.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="102.0" prefWidth="331.0">
         <columns>
             <TableColumn fx:id="compID" maxWidth="34.0" minWidth="34.0" prefWidth="34.0" resizable="false" text="ID" />

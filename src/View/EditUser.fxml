@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="491.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EditUserController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="491.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EditUserController">
    <children>
       <Text layoutX="35.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo:" />
       <Text fx:id="text_ID" layoutX="35.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Número Interno:" />
@@ -15,8 +15,8 @@
       <Text layoutX="35.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome:" />
       <TextField fx:id="emailTextField" layoutX="79.0" layoutY="150.0" prefHeight="25.0" prefWidth="373.0" />
       <Text layoutX="37.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" />
-      <Button fx:id="CancelBtn" layoutX="390.0" layoutY="195.0" mnemonicParsing="false" onAction="#handleCloseButtonAction" text="Cancelar" />
-      <Button fx:id="udpateBtn" layoutX="313.0" layoutY="195.0" mnemonicParsing="false" onAction="#handleUpdateButtonAction" text="Atualizar" />
+      <Button fx:id="CancelBtn" layoutX="390.0" layoutY="195.0" mnemonicParsing="false" onAction="#handleCloseButtonAction" styleClass="alterDataButton" stylesheets="@../CSS/ButtonStyles.css" text="Cancelar" />
+      <Button fx:id="udpateBtn" layoutX="313.0" layoutY="195.0" mnemonicParsing="false" onAction="#handleUpdateButtonAction" styleClass="alterDataButton" stylesheets="@../CSS/ButtonStyles.css" text="Atualizar" />
       <RadioButton fx:id="funcRadioBtn" layoutX="79.0" layoutY="66.0" mnemonicParsing="false" text="Funcionário">
          <toggleGroup>
             <ToggleGroup fx:id="typeGroup" />

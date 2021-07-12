@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="628.0" prefWidth="1059.0" style="-fx-background-color: #253437;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AllRastDataController">
+<Pane prefHeight="628.0" prefWidth="1059.0" style="-fx-background-color: #253437;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AllRastDataController">
    <children>
       <Label layoutX="420.0" layoutY="15.0" text="DADOS DE VALIDAÇÕES" textAlignment="CENTER" textFill="WHITE">
          <font>
@@ -21,7 +21,7 @@
         <tabs>
           <Tab text="Limpezas">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="494.0" prefWidth="974.0">
                      <children>
                         <TableView fx:id="limpezasDataTable" prefHeight="422.0" prefWidth="974.0">
                            <columns>
@@ -33,8 +33,8 @@
                               <TableColumn fx:id="validarLimpCol" prefWidth="63.0" text="Validado" />
                            </columns>
                         </TableView>
-                        <Button fx:id="limpUpdate" layoutX="911.0" layoutY="432.0" mnemonicParsing="false" onMouseClicked="#limpezasTable" text="Atualizar" />
-                        <Button fx:id="exportPDF" layoutY="432.0" mnemonicParsing="false" onAction="#exportPDFActionLimp" text="Exportar PDF" />
+                        <Button fx:id="limpUpdate" layoutX="907.0" layoutY="429.0" mnemonicParsing="false" onMouseClicked="#limpezasTable" styleClass="generalButton" stylesheets="@../CSS/ButtonStyles.css" text="Atualizar" />
+                        <Button fx:id="exportPDF" layoutY="429.0" mnemonicParsing="false" onAction="#exportPDFActionLimp" styleClass="generalButton" stylesheets="@../CSS/ButtonStyles.css" text="Exportar PDF" />
                      </children>
                   </AnchorPane>
             </content>
@@ -54,8 +54,8 @@
                               <TableColumn fx:id="validateRastCol" prefWidth="63.0" text="Validado" />
                            </columns>
                         </TableView>
-                        <Button fx:id="rastUpdate" layoutX="911.0" layoutY="432.0" mnemonicParsing="false" onMouseClicked="#rastreabilidadeTable" text="Atualizar" />
-                        <Button fx:id="exportPDF1" layoutY="432.0" mnemonicParsing="false" onAction="#exportPDFActionRast" text="Exportar PDF" />
+                        <Button fx:id="rastUpdate" layoutX="908.0" layoutY="429.0" mnemonicParsing="false" onMouseClicked="#rastreabilidadeTable" styleClass="generalButton" stylesheets="@../CSS/ButtonStyles.css" text="Atualizar" />
+                        <Button fx:id="exportPDF1" layoutY="429.0" mnemonicParsing="false" onAction="#exportPDFActionRast" styleClass="generalButton" stylesheets="@../CSS/ButtonStyles.css" text="Exportar PDF" />
                      </children>
                   </AnchorPane>
             </content>
@@ -73,8 +73,8 @@
                               <TableColumn fx:id="validateTemCol" prefWidth="64.0" text="Validado" />
                        </columns>
                     </TableView>
-                    <Button fx:id="tempUpdate" layoutX="911.0" layoutY="432.0" mnemonicParsing="false" onMouseClicked="#temperaturasTable" text="Atualizar" />
-                        <Button fx:id="exportPDF2" layoutY="432.0" mnemonicParsing="false" onAction="#exportPDFActionTemp" text="Exportar PDF" />
+                    <Button fx:id="tempUpdate" layoutX="908.0" layoutY="429.0" mnemonicParsing="false" onMouseClicked="#temperaturasTable" styleClass="generalButton" stylesheets="@../CSS/ButtonStyles.css" text="Atualizar" />
+                        <Button fx:id="exportPDF2" layoutY="429.0" mnemonicParsing="false" onAction="#exportPDFActionTemp" styleClass="generalButton" stylesheets="@../CSS/ButtonStyles.css" text="Exportar PDF" />
                  </children>
               </AnchorPane>
            </content>

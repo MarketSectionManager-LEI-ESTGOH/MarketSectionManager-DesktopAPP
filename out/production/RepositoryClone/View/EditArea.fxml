@@ -6,21 +6,21 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="491.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EditAreaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="491.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EditAreaController">
    <children>
       <Text layoutX="62.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Número:">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Text>
-      <TextField fx:id="areaNumTextField" layoutX="62.0" layoutY="42.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="161.0" />
+      <TextField fx:id="areaNumTextField" layoutX="62.0" layoutY="42.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="373.0" />
       <Text layoutX="62.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Designação:">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Text>
       <TextField fx:id="designAreaTextField" layoutX="62.0" layoutY="97.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="63.0" prefWidth="373.0" />
-      <Button fx:id="editBTN" layoutX="155.0" layoutY="168.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleUpdateButtonAction" prefHeight="40.0" prefWidth="114.0" text="Editar" />
-      <Button fx:id="cancelBTN" layoutX="277.0" layoutY="168.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleCloseButtonAction" prefHeight="40.0" prefWidth="114.0" text="Cancelar" />
+      <Button fx:id="editBTN" layoutX="199.0" layoutY="167.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleUpdateButtonAction" prefHeight="40.0" prefWidth="114.0" styleClass="alterDataButton" stylesheets="@../CSS/ButtonStyles.css" text="Editar" />
+      <Button fx:id="cancelBTN" layoutX="321.0" layoutY="167.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleCloseButtonAction" prefHeight="40.0" prefWidth="114.0" styleClass="alterDataButton" stylesheets="@../CSS/ButtonStyles.css" text="Cancelar" />
    </children>
 </AnchorPane>

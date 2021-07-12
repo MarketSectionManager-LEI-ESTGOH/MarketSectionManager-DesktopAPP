@@ -46,7 +46,7 @@
             <ToggleGroup fx:id="typeGroup" />
          </toggleGroup></RadioButton>
       <RadioButton fx:id="productFreshNORB" layoutX="308.0" layoutY="143.0" mnemonicParsing="false" onAction="#eanFieldControl" text="Não" toggleGroup="$typeGroup" />
-      <Button fx:id="editProductBTN" layoutX="185.0" layoutY="178.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#editProduct" prefHeight="40.0" prefWidth="114.0" text="Editar" />
+      <Button fx:id="editProductBTN" layoutX="185.0" layoutY="178.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#editProduct" prefHeight="40.0" prefWidth="114.0" styleClass="alterDataButton" stylesheets="@../CSS/ButtonStyles.css" text="Editar" />
       <TextField fx:id="productNumIntTF" layoutX="81.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="161.0" />
       <Text layoutX="81.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Número Interno">
          <font>

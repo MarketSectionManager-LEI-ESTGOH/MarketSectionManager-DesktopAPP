@@ -6,10 +6,10 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="491.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EditFornecedorController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="491.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EditFornecedorController">
    <children>
-      <Button fx:id="CancelBtn" layoutX="361.0" layoutY="195.0" mnemonicParsing="false" onAction="#handleCloseButtonAction" text="Cancelar" />
-      <Button fx:id="udpateBtn" layoutX="285.0" layoutY="195.0" mnemonicParsing="false" onAction="#handleUpdateButtonAction" text="Atualizar" />
+      <Button fx:id="CancelBtn" layoutX="361.0" layoutY="195.0" mnemonicParsing="false" onAction="#handleCloseButtonAction" styleClass="alterDataButton" stylesheets="@../CSS/ButtonStyles.css" text="Cancelar" />
+      <Button fx:id="udpateBtn" layoutX="285.0" layoutY="195.0" mnemonicParsing="false" onAction="#handleUpdateButtonAction" styleClass="alterDataButton" stylesheets="@../CSS/ButtonStyles.css" text="Atualizar" />
       <Text layoutX="85.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome do Fornecedor:">
          <font>
             <Font name="System Bold" size="12.0" />

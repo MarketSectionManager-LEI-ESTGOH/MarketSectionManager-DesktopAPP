@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="areasControladasPane" prefHeight="628.0" prefWidth="1059.0" style="-fx-background-color: #253437;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ControlledAreaController">
+<Pane fx:id="areasControladasPane" prefHeight="628.0" prefWidth="1059.0" style="-fx-background-color: #253437;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ControlledAreaController">
    <children>
       <Label layoutX="425.0" layoutY="15.0" text="ÁREAS CONTROLADAS" textAlignment="CENTER" textFill="WHITE">
          <font>
@@ -21,16 +21,16 @@
             <TableColumn fx:id="desginacaoAreaContCol" prefWidth="764.0" text="Designação" />
          </columns>
       </TableView>
-      <Button fx:id="removeAreaContBtn" layoutX="921.0" layoutY="522.0" mnemonicParsing="false" text="Remover" textAlignment="CENTER" />
+      <Button fx:id="removeAreaContBtn" layoutX="921.0" layoutY="522.0" mnemonicParsing="false" styleClass="generalButton" stylesheets="@../CSS/ButtonStyles.css" text="Remover" textAlignment="CENTER" />
       <Label layoutX="14.0" layoutY="64.0" text="Procurar" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
       <TextField fx:id="searchAreasContTextField" layoutX="72.0" layoutY="60.0" />
-      <Button fx:id="editAreaContBtn" layoutX="867.0" layoutY="522.0" mnemonicParsing="false" text="Editar" textAlignment="CENTER" />
-      <Button fx:id="addAreasContBtn" layoutX="792.0" layoutY="522.0" mnemonicParsing="false" onAction="#showAddControlledArea" prefHeight="25.0" prefWidth="68.0" text="Adicionar" />
-      <Button layoutX="921.0" layoutY="60.0" mnemonicParsing="false" onMouseClicked="#areasControladasTable" text="Atualizar" />
-      <Button fx:id="exportPDF" layoutX="14.0" layoutY="522.0" mnemonicParsing="false" onAction="#exportPDFAction" text="Exportar PDF" />
+      <Button fx:id="editAreaContBtn" layoutX="867.0" layoutY="522.0" mnemonicParsing="false" styleClass="generalButton" stylesheets="@../CSS/ButtonStyles.css" text="Editar" textAlignment="CENTER" />
+      <Button fx:id="addAreasContBtn" layoutX="788.0" layoutY="522.0" mnemonicParsing="false" onAction="#showAddControlledArea" prefHeight="27.0" prefWidth="72.0" styleClass="generalButton" stylesheets="@../CSS/ButtonStyles.css" text="Adicionar" />
+      <Button layoutX="921.0" layoutY="60.0" mnemonicParsing="false" onMouseClicked="#areasControladasTable" styleClass="generalButton" stylesheets="@../CSS/ButtonStyles.css" text="Atualizar" />
+      <Button fx:id="exportPDF" layoutX="14.0" layoutY="522.0" mnemonicParsing="false" onAction="#exportPDFAction" styleClass="generalButton" stylesheets="@../CSS/ButtonStyles.css" text="Exportar PDF" />
    </children>
 </Pane>

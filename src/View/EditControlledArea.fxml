@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="377.0" prefWidth="491.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EditAreaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="377.0" prefWidth="491.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EditAreaController">
    <children>
       <Text layoutX="94.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Número:">
          <font>
@@ -27,7 +27,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Text>
-      <Button fx:id="editCABTN" layoutX="349.0" layoutY="33.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleUpdateButtonAction" prefHeight="25.0" prefWidth="68.0" text="Editar" />
+      <Button fx:id="editCABTN" layoutX="349.0" layoutY="33.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleUpdateButtonAction" prefHeight="25.0" prefWidth="74.0" styleClass="alterDataButton" stylesheets="@../CSS/ButtonStyles.css" text="Editar" />
       <TableView fx:id="compsTbl" layoutX="97.0" layoutY="213.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="102.0" prefWidth="247.0">
         <columns>
             <TableColumn fx:id="compID" maxWidth="34.0" minWidth="34.0" prefWidth="34.0" resizable="false" text="ID" />
@@ -40,7 +40,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Text>
-      <Button fx:id="removeCompBTN" layoutX="349.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#removeFromArea" prefHeight="102.0" prefWidth="68.0" text="Remover &#10;  Comp." />
+      <Button fx:id="removeCompBTN" layoutX="349.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#removeFromArea" prefHeight="102.0" prefWidth="74.0" styleClass="alterDataButton" stylesheets="@../CSS/ButtonStyles.css" text="Remover &#10;  Comp." />
       <TableView fx:id="compAtuaisTable" layoutX="97.0" layoutY="88.0" prefHeight="102.0" prefWidth="247.0">
         <columns>
           <TableColumn fx:id="idCompAtuaisCol" prefWidth="35.0" text="ID" />
@@ -48,6 +48,6 @@
             <TableColumn fx:id="removerCol" prefWidth="63.0" text="Remover" />
         </columns>
       </TableView>
-      <Button fx:id="adcionarBtn" layoutX="349.0" layoutY="213.0" mnemonicParsing="false" onMouseClicked="#addToArea" prefHeight="102.0" prefWidth="68.0" text="Adicionar" />
+      <Button fx:id="adcionarBtn" layoutX="349.0" layoutY="213.0" mnemonicParsing="false" onMouseClicked="#addToArea" prefHeight="102.0" prefWidth="74.0" styleClass="alterDataButton" stylesheets="@../CSS/ButtonStyles.css" text="Adicionar&#10;  Comp." />
    </children>
 </AnchorPane>

@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="productsPane" prefHeight="628.0" prefWidth="1059.0" style="-fx-background-color: #253437;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ExpirationDatesController">
+<Pane fx:id="productsPane" prefHeight="628.0" prefWidth="1059.0" style="-fx-background-color: #253437;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ExpirationDatesController">
    <children>
-      <Label layoutX="460.0" layoutY="15.0" text="PRODUTOS" textAlignment="CENTER" textFill="WHITE">
+      <Label layoutX="410.0" layoutY="14.0" text="VALIDADES / MARKDOWNS" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -25,18 +25,18 @@
             <TableColumn fx:id="markValCol" prefWidth="169.0" text="Markdown Ativo" />
          </columns>
       </TableView>
-      <Button fx:id="RemoveValBtn" layoutX="921.0" layoutY="522.0" mnemonicParsing="false" text="Remover" textAlignment="CENTER" />
+      <Button fx:id="RemoveValBtn" layoutX="921.0" layoutY="522.0" mnemonicParsing="false" styleClass="generalButton" stylesheets="@../CSS/ButtonStyles.css" text="Remover" textAlignment="CENTER" />
       <Label layoutX="14.0" layoutY="64.0" text="Procurar" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
       <TextField fx:id="searchProductTextField" layoutX="72.0" layoutY="60.0" />
-      <Button fx:id="EditValBtn" layoutX="868.0" layoutY="522.0" mnemonicParsing="false" text="Editar" textAlignment="CENTER" />
-      <Button fx:id="addValBtn" layoutX="794.0" layoutY="522.0" mnemonicParsing="false" onAction="#showAddExpirationDate" prefHeight="25.0" prefWidth="68.0" text="Adicionar" />
-      <Button layoutX="921.0" layoutY="60.0" mnemonicParsing="false" onMouseClicked="#expirationDatesTable" text="Atualizar" />
-      <Button fx:id="markdownBTN" layoutX="712.0" layoutY="522.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Markdown" />
-      <Button fx:id="offsetBTN" layoutX="637.0" layoutY="522.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Offset" />
-      <Button fx:id="exportPDF" layoutX="14.0" layoutY="522.0" mnemonicParsing="false" onAction="#exportPDFAction" text="Exportar PDF" />
+      <Button fx:id="EditValBtn" layoutX="868.0" layoutY="522.0" mnemonicParsing="false" styleClass="generalButton" stylesheets="@../CSS/ButtonStyles.css" text="Editar" textAlignment="CENTER" />
+      <Button fx:id="addValBtn" layoutX="785.0" layoutY="522.0" mnemonicParsing="false" onAction="#showAddExpirationDate" prefHeight="27.0" prefWidth="77.0" styleClass="generalButton" stylesheets="@../CSS/ButtonStyles.css" text="Adicionar" />
+      <Button layoutX="921.0" layoutY="60.0" mnemonicParsing="false" onMouseClicked="#expirationDatesTable" styleClass="generalButton" stylesheets="@../CSS/ButtonStyles.css" text="Atualizar" />
+      <Button fx:id="markdownBTN" layoutX="704.0" layoutY="522.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" styleClass="generalButton" stylesheets="@../CSS/ButtonStyles.css" text="Markdown" />
+      <Button fx:id="offsetBTN" layoutX="631.0" layoutY="522.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" styleClass="generalButton" stylesheets="@../CSS/ButtonStyles.css" text="Offset" />
+      <Button fx:id="exportPDF" layoutX="14.0" layoutY="522.0" mnemonicParsing="false" onAction="#exportPDFAction" styleClass="generalButton" stylesheets="@../CSS/ButtonStyles.css" text="Exportar PDF" />
    </children>
 </Pane>

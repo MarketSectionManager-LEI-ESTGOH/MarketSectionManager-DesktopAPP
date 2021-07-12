@@ -6,7 +6,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="491.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EditRefrigeratorController">
    <children>
       <Text layoutX="62.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Designação:">
@@ -39,7 +38,7 @@
       </Text>
       <TextField fx:id="tMaxTF" layoutX="62.0" layoutY="128.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="161.0" />
       <TextField fx:id="tMinTF" layoutX="227.0" layoutY="128.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="161.0" />
-      <Button fx:id="editBTN" layoutX="155.0" layoutY="168.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleUpdateButtonAction" prefHeight="40.0" prefWidth="114.0" text="Editar" />
-      <Button fx:id="cancelBTN" layoutX="277.0" layoutY="168.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleCloseButtonAction" prefHeight="40.0" prefWidth="114.0" text="Cancelar" />
+      <Button fx:id="editBTN" layoutX="155.0" layoutY="168.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleUpdateButtonAction" prefHeight="40.0" prefWidth="114.0" styleClass="alterDataButton" stylesheets="@../CSS/ButtonStyles.css" text="Editar" />
+      <Button fx:id="cancelBTN" layoutX="277.0" layoutY="168.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleCloseButtonAction" prefHeight="40.0" prefWidth="114.0" styleClass="alterDataButton" stylesheets="@../CSS/ButtonStyles.css" text="Cancelar" />
    </children>
 </AnchorPane>

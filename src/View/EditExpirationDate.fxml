@@ -7,8 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="295.0" prefWidth="392.0" xmlns="http://javafx.com/javafx/16" style="-fx-background-color: #ffffff;" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EditExpirationDateController">
+<AnchorPane prefHeight="295.0" prefWidth="392.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EditExpirationDateController">
    <children>
       <Text layoutX="26.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Número Interno">
          <font>
@@ -52,6 +51,6 @@
       <TextField fx:id="markEdValTF" layoutX="25.0" layoutY="151.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="161.0" />
       <TextField fx:id="antValEdValTF" layoutX="205.0" layoutY="151.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="161.0" />
       <DatePicker fx:id="newValEdValDP" editable="false" layoutX="25.0" layoutY="207.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="340.0" promptText="Clique para Definir a Nova Validade" />
-      <Button layoutX="304.0" layoutY="250.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#saveChanges" prefHeight="31.0" prefWidth="64.0" text="Guardar" />
+      <Button layoutX="304.0" layoutY="250.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#saveChanges" prefHeight="31.0" prefWidth="64.0" styleClass="alterDataButton" stylesheets="@../CSS/ButtonStyles.css" text="Guardar" />
    </children>
 </AnchorPane>
