@@ -1,0 +1,31 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="MSM_App">
+    <output-path>$PROJECT_DIR$/out/artifacts/MSM_App</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="Controller.Main" />
+        <option name="description" value="" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="icons">
+          <JavaFxApplicationIcons>
+            <option name="windowsIcon" value="$PROJECT_DIR$/src/Images/msm_main_logo_black_vertical_5Dc_icon.ico" />
+          </JavaFxApplicationIcons>
+        </option>
+        <option name="nativeBundle" value="msi" />
+        <option name="title" value="MSM_App" />
+        <option name="vendor" value="MSM_LEI" />
+        <option name="version" value="1.0" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="RepositoryClone.jar">
+        <element id="module-output" name="RepositoryClone" />
+        <element id="library" level="project" name="itextpdf-5.4.0" />
+        <element id="library" level="project" name="kernel-7.1.15" />
+        <element id="library" level="project" name="mysql-connector-java-5.1.47-bin" />
+      </element>
+      <element id="file-copy" path="$PROJECT_DIR$/dbconn.dat" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/Images/MSM_main_logo_black.png" />
+    </root>
+  </artifact>
+</component>

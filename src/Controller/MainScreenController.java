@@ -279,11 +279,12 @@ public class MainScreenController {
         resetButtonStyle();
         allRastData.setStyle(BUTTON_SELECTED);
         try {
-            Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/AllDataPane.fxml"));
+            Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/allDataPane.fxml"));
             receivedPane.getChildren().add(newLoadedPane);
             receivedPane.setVisible(true);
         } catch (Exception e) {
             System.out.println("erro o loader " + e);
+            MainScreenController.alerts(Alert.AlertType.ERROR, "AMA", " "+e).showAndWait();
             e.printStackTrace();
         }
     }

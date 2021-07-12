@@ -12,8 +12,6 @@ import java.io.InputStream;
 import java.sql.*;
 import java.sql.DriverManager;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.ArrayList;
 import java.util.Properties;
 
 public class ConnectDB {

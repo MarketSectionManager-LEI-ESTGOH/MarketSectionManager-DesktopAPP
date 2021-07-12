@@ -7,6 +7,7 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 
 import java.awt.*;
 import java.io.FileNotFoundException;
@@ -24,7 +25,7 @@ public class PDFExporter extends Component {
             SimpleDateFormat isoFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
             String ts = isoFormat.format(current);
             String file = tableName+"_"+ts;
-            String filename = path+"\\"+file+".pdf";
+            String filename = path+"/"+file+".pdf";
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream(filename));
 
@@ -33,7 +34,7 @@ public class PDFExporter extends Component {
 
 
             document.open();
-            Image imgSoc = Image.getInstance("src\\Images\\MSM_main_logo_black.png");
+            Image imgSoc = Image.getInstance("src/Images/MSM_main_logo_black.png");
             imgSoc.scaleToFit(200,200);
             imgSoc.setAbsolutePosition(350, 720);
             document.add(imgSoc);
@@ -299,15 +300,19 @@ public class PDFExporter extends Component {
             document.close();
             return true;
         } catch (DocumentException e) {
+            MainScreenController.alerts(Alert.AlertType.ERROR, "DU", " "+e).showAndWait();
             e.printStackTrace();
             return false;
         } catch (FileNotFoundException e) {
+            MainScreenController.alerts(Alert.AlertType.ERROR, "DU", " "+e).showAndWait();
             e.printStackTrace();
             return false;
         } catch (MalformedURLException e) {
+            MainScreenController.alerts(Alert.AlertType.ERROR, "DU", " "+e).showAndWait();
             e.printStackTrace();
             return false;
         } catch (IOException e) {
+            MainScreenController.alerts(Alert.AlertType.ERROR, "DU", " "+e).showAndWait();
             e.printStackTrace();
             return false;
         }
