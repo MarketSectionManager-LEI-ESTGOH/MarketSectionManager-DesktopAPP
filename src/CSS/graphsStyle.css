@@ -1,3 +1,4 @@
+/*Para os Botões de Atualização dos Gráficos*/
 .refreshButton{
     -fx-background-color: #ffffff;
     -fx-text-fill: #000000;
@@ -5,6 +6,7 @@
      -fx-cursor: hand;
 }
 
+/*Para os cabeçalhos das tabelas do Dashboard*/
 .rectangleStyle{
     -fx-background-color: #253437;
     -fx-border-color: #253437;
