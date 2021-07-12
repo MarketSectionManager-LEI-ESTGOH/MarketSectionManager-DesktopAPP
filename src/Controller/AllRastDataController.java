@@ -5,10 +5,13 @@ import Model.Limpeza;
 import Model.Rastreabilidade;
 import Model.Temperatura;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.DirectoryChooser;
 
+import java.io.File;
 import java.sql.Date;
 
 public class AllRastDataController {
@@ -153,6 +156,51 @@ public class AllRastDataController {
         listTemperatura = ConnectDB.getAllTemp();
 
         temperaturasDataTable.setItems(listTemperatura);
+    }
+
+    @FXML
+    private void exportPDFActionLimp(ActionEvent event){
+        final DirectoryChooser dirChooser = new DirectoryChooser();
+        File file = dirChooser.showDialog(null);
+
+        if(file != null){
+            String path = file.getAbsolutePath();
+            if(PDFExporter.genPdf("limpezas", path)){
+                MainScreenController.alerts(Alert.AlertType.INFORMATION, "Exportado", "Exportado com Sucesso.").showAndWait();
+            }else{
+                MainScreenController.alerts(Alert.AlertType.ERROR, "Erro", "Algo correu mal ao exportar...").showAndWait();
+            }
+        }
+    }
+
+    @FXML
+    private void exportPDFActionRast(ActionEvent event){
+        final DirectoryChooser dirChooser = new DirectoryChooser();
+        File file = dirChooser.showDialog(null);
+
+        if(file != null){
+            String path = file.getAbsolutePath();
+            if(PDFExporter.genPdf("rastreabilidade", path)){
+                MainScreenController.alerts(Alert.AlertType.INFORMATION, "Exportado", "Exportado com Sucesso.").showAndWait();
+            }else{
+                MainScreenController.alerts(Alert.AlertType.ERROR, "Erro", "Algo correu mal ao exportar...").showAndWait();
+            }
+        }
+    }
+
+    @FXML
+    private void exportPDFActionTemp(ActionEvent event){
+        final DirectoryChooser dirChooser = new DirectoryChooser();
+        File file = dirChooser.showDialog(null);
+
+        if(file != null){
+            String path = file.getAbsolutePath();
+            if(PDFExporter.genPdf("temperaturas", path)){
+                MainScreenController.alerts(Alert.AlertType.INFORMATION, "Exportado", "Exportado com Sucesso.").showAndWait();
+            }else{
+                MainScreenController.alerts(Alert.AlertType.ERROR, "Erro", "Algo correu mal ao exportar...").showAndWait();
+            }
+        }
     }
 
 }

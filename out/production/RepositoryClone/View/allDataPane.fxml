@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="628.0" prefWidth="1059.0" style="-fx-background-color: #253437;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AllRastDataController">
+<Pane prefHeight="628.0" prefWidth="1059.0" style="-fx-background-color: #253437;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AllRastDataController">
    <children>
-      <Label layoutX="427.0" layoutY="14.0" text="DADOS DE VALIDAÇÕES" textAlignment="CENTER" textFill="WHITE">
+      <Label layoutX="420.0" layoutY="15.0" text="DADOS DE VALIDAÇÕES" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -34,6 +34,7 @@
                            </columns>
                         </TableView>
                         <Button fx:id="limpUpdate" layoutX="911.0" layoutY="432.0" mnemonicParsing="false" onMouseClicked="#limpezasTable" text="Atualizar" />
+                        <Button fx:id="exportPDF" layoutY="432.0" mnemonicParsing="false" onAction="#exportPDFActionLimp" text="Exportar PDF" />
                      </children>
                   </AnchorPane>
             </content>
@@ -54,6 +55,7 @@
                            </columns>
                         </TableView>
                         <Button fx:id="rastUpdate" layoutX="911.0" layoutY="432.0" mnemonicParsing="false" onMouseClicked="#rastreabilidadeTable" text="Atualizar" />
+                        <Button fx:id="exportPDF1" layoutY="432.0" mnemonicParsing="false" onAction="#exportPDFActionRast" text="Exportar PDF" />
                      </children>
                   </AnchorPane>
             </content>
@@ -72,6 +74,7 @@
                        </columns>
                     </TableView>
                     <Button fx:id="tempUpdate" layoutX="911.0" layoutY="432.0" mnemonicParsing="false" onMouseClicked="#temperaturasTable" text="Atualizar" />
+                        <Button fx:id="exportPDF2" layoutY="432.0" mnemonicParsing="false" onAction="#exportPDFActionTemp" text="Exportar PDF" />
                  </children>
               </AnchorPane>
            </content>

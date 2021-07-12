@@ -2,7 +2,6 @@ package Controller;
 
 import Model.ConnectDB;
 import Model.ExprirationDate;
-import Model.Product;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -10,16 +9,16 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.AccessibleRole;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
-import  Model.ExprirationDate;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.util.Date;
 import java.util.Optional;
 
@@ -253,4 +252,20 @@ public class ExpirationDatesController {
         sortedData.comparatorProperty().bind(valTable.comparatorProperty());
         valTable.setItems(sortedData);
     }
+
+    @FXML
+    private void exportPDFAction(ActionEvent event){
+        final DirectoryChooser dirChooser = new DirectoryChooser();
+        File file = dirChooser.showDialog(null);
+
+        if(file != null){
+            String path = file.getAbsolutePath();
+            if(PDFExporter.genPdf("validades", path)){
+                MainScreenController.alerts(Alert.AlertType.INFORMATION, "Exportado", "Exportado com Sucesso.").showAndWait();
+            }else{
+                MainScreenController.alerts(Alert.AlertType.ERROR, "Erro", "Algo correu mal ao exportar...").showAndWait();
+            }
+        }
+    }
+
 }

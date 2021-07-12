@@ -10,7 +10,7 @@
 
 <Pane fx:id="areasControladasPane" prefHeight="628.0" prefWidth="1059.0" style="-fx-background-color: #253437;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ControlledAreaController">
    <children>
-      <Label layoutX="401.0" layoutY="15.0" text="ÁREAS CONTROLADAS" textAlignment="CENTER" textFill="WHITE">
+      <Label layoutX="425.0" layoutY="15.0" text="ÁREAS CONTROLADAS" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -31,5 +31,6 @@
       <Button fx:id="editAreaContBtn" layoutX="867.0" layoutY="522.0" mnemonicParsing="false" text="Editar" textAlignment="CENTER" />
       <Button fx:id="addAreasContBtn" layoutX="792.0" layoutY="522.0" mnemonicParsing="false" onAction="#showAddControlledArea" prefHeight="25.0" prefWidth="68.0" text="Adicionar" />
       <Button layoutX="921.0" layoutY="60.0" mnemonicParsing="false" onMouseClicked="#areasControladasTable" text="Atualizar" />
+      <Button fx:id="exportPDF" layoutX="14.0" layoutY="522.0" mnemonicParsing="false" onAction="#exportPDFAction" text="Exportar PDF" />
    </children>
 </Pane>

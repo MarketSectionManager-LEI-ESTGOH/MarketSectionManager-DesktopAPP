@@ -1,8 +1,7 @@
 package Controller;
 
-import Model.*;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import Model.ConnectDB;
+import Model.User;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -15,9 +14,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
-import Model.User;
 
+import java.io.File;
 import java.util.Optional;
 
 public class UsersController {
@@ -166,6 +166,21 @@ public class UsersController {
             AddStage.show();
         }catch (Exception e){
             System.out.println(e);
+        }
+    }
+
+    @FXML
+    private void exportPDFAction(ActionEvent event){
+        final DirectoryChooser dirChooser = new DirectoryChooser();
+        File file = dirChooser.showDialog(null);
+
+        if(file != null){
+            String path = file.getAbsolutePath();
+            if(PDFExporter.genPdf("utilizadores", path)){
+                MainScreenController.alerts(Alert.AlertType.INFORMATION, "Exportado", "Exportado com Sucesso.").showAndWait();
+            }else{
+                MainScreenController.alerts(Alert.AlertType.ERROR, "Erro", "Algo correu mal ao exportar...").showAndWait();
+            }
         }
     }
 

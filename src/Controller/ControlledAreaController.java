@@ -2,7 +2,6 @@ package Controller;
 
 import Model.Area;
 import Model.ConnectDB;
-import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -17,8 +16,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Optional;
@@ -201,6 +202,21 @@ public class ControlledAreaController {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return null;
+        }
+    }
+
+    @FXML
+    private void exportPDFAction(ActionEvent event){
+        final DirectoryChooser dirChooser = new DirectoryChooser();
+        File file = dirChooser.showDialog(null);
+
+        if(file != null){
+            String path = file.getAbsolutePath();
+            if(PDFExporter.genPdf("areasCont", path)){
+                MainScreenController.alerts(Alert.AlertType.INFORMATION, "Exportado", "Exportado com Sucesso.").showAndWait();
+            }else{
+                MainScreenController.alerts(Alert.AlertType.ERROR, "Erro", "Algo correu mal ao exportar...").showAndWait();
+            }
         }
     }
 

@@ -15,13 +15,11 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.math.BigDecimal;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
 
@@ -198,4 +196,20 @@ public class RefrigeratorController {
             }
         });
     }
+
+    @FXML
+    private void exportPDFAction(ActionEvent event){
+        final DirectoryChooser dirChooser = new DirectoryChooser();
+        File file = dirChooser.showDialog(null);
+
+        if(file != null){
+            String path = file.getAbsolutePath();
+            if(PDFExporter.genPdf("arcasFrig", path)){
+                MainScreenController.alerts(Alert.AlertType.INFORMATION, "Exportado", "Exportado com Sucesso.").showAndWait();
+            }else{
+                MainScreenController.alerts(Alert.AlertType.ERROR, "Erro", "Algo correu mal ao exportar...").showAndWait();
+            }
+        }
+    }
+
 }
