@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.StackedAreaChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.Pane;
@@ -41,14 +42,19 @@ public class Graph1Controller {
     private XYChart.Series<Number, Number> morningTemps = null;
 
     @FXML
+    /**
+     * Define os Labels dos Eixos dos Gráficos, obtém a lista das áreas frigoríficas e gera o gráfico
+     */
     public void initialize() {
         xAxis.setLabel("Dias Anteriores");
         yAxis.setLabel("Temperatura");
-        System.out.println("AFTER: ___ randomStartGraph: " + randomStartGraph + " __ graphTitle: " + graphTitle);
         getRefrigeratorsList();
         generateGraph(randomStartGraph, graphTitle);
     }
 
+    /**
+     * Obtém a Lista das Áreas Frigoríficas registadas na base de dados
+     */
     private void getRefrigeratorsList(){
         ObservableList<String> refrigerators = ConnectDB.getRefrigeratorsIDandDesign();
         refrigeratorsDesignationCB.setItems(refrigerators);
@@ -59,8 +65,12 @@ public class Graph1Controller {
         }
     }
 
+    /**
+     * Gera o Gráfico
+     * @param aID ID da Área Frigorífica a que se refere o gráfico
+     * @param aGraphTitle Título do Gráfico
+     */
     private void generateGraph(int aID, String aGraphTitle){
-        System.out.println("@genrateGraph: aID: " + aID + " _ aGraphTitle: " + aGraphTitle );
         populateTemps(aID);
         sac.setTitle("Temperatura (ºC) - Últimos 10 Dias\nÁrea Frigorífica: " + aGraphTitle);
         int xMorningCounter = 1, xAfternoonCounter = 1;
@@ -83,6 +93,10 @@ public class Graph1Controller {
         graphTitle = "";
     }
 
+    /**
+     * Obtém as temperaturas de uma determinada área frigorífica, necessárias para a construção do gráfico
+     * @param aID ID da área frigorífica
+     */
     private void populateTemps(int aID){
         Calendar cal = Calendar.getInstance();
         cal.setTime(today);
@@ -99,11 +113,14 @@ public class Graph1Controller {
                 ps.setInt(1, aID);
                 tempsMax.add(ConnectDB.getTempsGrapgh1(ps));
             }catch(Exception e){
-                System.out.println(e);
+                MainScreenController.alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um erro inesperado, por favor tente novamente!").showAndWait();
             }
         }
     }
 
+    /**
+     * Atualiza o gráfico
+     */
     public void refreshGraph(){
        String selectedRefrigerator [] = refrigeratorsDesignationCB.getSelectionModel().getSelectedItem().split(" - ");
         randomStartGraph = Integer.parseInt(selectedRefrigerator[0]);
@@ -112,7 +129,7 @@ public class Graph1Controller {
         try {
             newLoadedPane = FXMLLoader.load(getClass().getResource("/View/Graph1.fxml"));
         } catch (IOException e) {
-            e.printStackTrace();
+            MainScreenController.alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um erro inesperado, por favor tente novamente!").showAndWait();
         }
         graph1_pane.getChildren().clear();
         graph1_pane.getChildren().add(newLoadedPane);

@@ -5,11 +5,10 @@ import Model.TableData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.Pane;
 
 import java.sql.PreparedStatement;
 
@@ -23,6 +22,9 @@ public class Table2Controller {
     private ObservableList<TableData> registerAnalysisData = FXCollections.observableArrayList();
 
     @FXML
+    /**
+     * Define o tipo de dados de cada coluna, aplica os estilos necessários e gera a tabela
+     */
     public void initialize() {
         descCol.setCellValueFactory(new PropertyValueFactory<TableData, String>("dataDesignation"));
         dataCol.setCellValueFactory(new PropertyValueFactory<TableData, Integer>("data"));
@@ -32,6 +34,9 @@ public class Table2Controller {
         table.setSelectionModel(null);
     }
 
+    /**
+     * Preenche a tabela
+     */
     private void fillTable(){
         if(registerAnalysisData != null){
             registerAnalysisData.add(new TableData("Registos de Rastreabilidade por Validar",getData(0)));
@@ -44,16 +49,28 @@ public class Table2Controller {
         }
     }
 
+    /**
+     * Atualiza a tabela
+     */
     public void refreshTable(){
         registerAnalysisData.clear();
         fillTable();
     }
 
+    /**
+     * Obtém da base de dados os dados necessários à construção da tabela
+     * @param aTypeOfData Tipo de dados que são necessários, sendo:
+     *                    0 - Validades a Terminar dentro de 5 dias,
+     *                    1 - Validades a Terminar dentro de 10 dias,
+     *                    2 - Validades a Terminar dentro de 15 dias,
+     *                    3 - Validade a Terminar dentro de 20 dias,
+     *                    4 - Markdowns Ativos e
+     *                    5 - Markdowns Possíveis
+     * @return Int com o resultado da Query desejada
+     */
     private int getData(int aTypeOfData){
         int finalNumber = -1;
         PreparedStatement ps = null;
-        //0 - validades a 5 dias, 1 - validades a 10 dias, 2 - validades a 15 dias, 3 - validades a 20 dias
-        //4 - markdowns ativos, 5 - markdowns possiveis
         final String stmt0 = "SELECT COUNT(id) FROM rastreabilidade WHERE assinado_user IS NULL;",
                      stmt1 = "SELECT COUNT(id) FROM temperatura WHERE assinado IS NULL;",
                      stmt2 = "SELECT COUNT(id) FROM limpeza WHERE assinatura IS NULL;",
@@ -99,7 +116,7 @@ public class Table2Controller {
             }
 
         }catch(Exception e){
-            e.printStackTrace();
+            MainScreenController.alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um erro inesperado, por favor tente novamente!").showAndWait();
         }
         return finalNumber;
     }

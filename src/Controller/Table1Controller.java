@@ -5,6 +5,7 @@ import Model.TableData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -27,6 +28,9 @@ public class Table1Controller {
     private ObservableList<TableData> productAnalysisData = FXCollections.observableArrayList();
 
     @FXML
+    /**
+     * Define os tipo de dados de cada coluna da tabela, aplica os estilos necessários e gera a tabela
+     */
     public void initialize() {
         descCol.setCellValueFactory(new PropertyValueFactory<TableData, String>("dataDesignation"));
         dataCol.setCellValueFactory(new PropertyValueFactory<TableData, Integer>("data"));
@@ -34,9 +38,11 @@ public class Table1Controller {
         dataCol.setStyle("-fx-background-color: #ffffff;-fx-text-fill: #000000;-fx-alignment: CENTER;");
         fillTable();
         table.setSelectionModel(null);
-        //table.setStyle("-fx-background-color: #ffffff;-fx-border-color: #253437;");
     }
 
+    /**
+     * Preenche a tabela
+     */
     private void fillTable(){
         if(productAnalysisData != null){
             productAnalysisData.add(new TableData("Validades de Produtos a acabar em 5 Dias",getData(0)));
@@ -49,16 +55,28 @@ public class Table1Controller {
         }
     }
 
+    /**
+     * Atualiza a tabela
+     */
     public void refreshTable(){
         productAnalysisData.clear();
         fillTable();
     }
 
+    /**
+     * Obtém da base de dados os dados necessários à construção da tabela
+     * @param aTypeOfData Tipo de dados que são necessários, sendo:
+     *                    0 - Validades a Terminar dentro de 5 dias,
+     *                    1 - Validade a Terminar dentro de 10 dias,
+     *                    2 - Validades a Terminar dentro de 15 dias,
+     *                    3 - Validades a Terminar dentro de 20 dias,
+     *                    4 - Markdowns Ativos e
+     *                    5 - Markdowns Possíveis
+     * @return Int com o Resultado da Query desejada
+     */
     private int getData(int aTypeOfData){
         int finalNumber = -1;
         PreparedStatement ps = null;
-        //0 - validades a 5 dias, 1 - validades a 10 dias, 2 - validades a 15 dias, 3 - validades a 20 dias
-        //4 - markdowns ativos, 5 - markdowns possiveis
         final String stmt0 = "SELECT COUNT(n_interno) FROM validade WHERE (validade.validade > CURDATE()) AND (validade.validade <= DATE_ADD(CURDATE(), INTERVAL 5 DAY));",
                      stmt1 = "SELECT COUNT(n_interno) FROM validade WHERE (validade.validade > CURDATE()) AND (validade.validade <= DATE_ADD(CURDATE(), INTERVAL 10 DAY));",
                      stmt2 = "SELECT COUNT(n_interno) FROM validade WHERE (validade.validade > CURDATE()) AND (validade.validade <= DATE_ADD(CURDATE(), INTERVAL 15 DAY));",
@@ -104,7 +122,7 @@ public class Table1Controller {
             }
 
         }catch(Exception e){
-            e.printStackTrace();
+            MainScreenController.alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um erro inesperado, por favor tente novamente!").showAndWait();
         }
         return finalNumber;
     }
