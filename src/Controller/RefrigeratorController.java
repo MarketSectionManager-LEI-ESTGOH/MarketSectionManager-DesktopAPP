@@ -54,10 +54,16 @@ public class RefrigeratorController {
     ObservableList<ArcaFrigorifica> listArcas;
 
     @FXML
+    /**
+     * Gera a tabela
+     */
     protected void initialize(){
         arcasTable();
     }
 
+    /**
+     * Obtem a informação e gera a tabela;
+     */
     public void arcasTable(){
         System.out.println("arcas Edit btn clicked!!");
 
@@ -121,6 +127,9 @@ public class RefrigeratorController {
         arcasTable.setItems(sortedData);
     }
 
+    /**
+     * Mostra a pane de inserção de novas áreas frigoríficas
+     */
     public void showAddRefrigerator(){
         System.out.println("add refrigerator btn clicked!!");
         try{
@@ -139,7 +148,7 @@ public class RefrigeratorController {
 
     /**
      * Editar ou Remover Arcas
-     * @param mouseEvent
+     * @param mouseEvent MouseEvent
      */
     public void getSelectedRefrigerator(javafx.scene.input.MouseEvent mouseEvent) {
         System.out.println("in getSelectedRefrigerator");
@@ -198,6 +207,9 @@ public class RefrigeratorController {
     }
 
     @FXML
+    /**
+     * Exportar Tabela para PDF
+     */
     private void exportPDFAction(ActionEvent event){
         final DirectoryChooser dirChooser = new DirectoryChooser();
         File file = dirChooser.showDialog(null);

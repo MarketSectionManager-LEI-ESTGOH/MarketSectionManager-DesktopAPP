@@ -49,11 +49,17 @@ public class ProdutosController {
 
 
     @FXML
+    /**
+     * Gera a tabela
+     */
     protected void initialize(){
         productsTable();
     }
 
 
+    /**
+     * Mostra a Pane de inserção de novos produtos
+     */
     public void showAddProduct(){
         System.out.println("add prod btn clicked!!");
         try{
@@ -73,7 +79,7 @@ public class ProdutosController {
 
     /**
      * Retorna produto escolhido da tabela.
-     * @param mouseEvent
+     * @param mouseEvent MouseEvent
      */
     public void getSelected(javafx.scene.input.MouseEvent mouseEvent) {
         index = productTable.getSelectionModel().getSelectedIndex();
@@ -131,7 +137,9 @@ public class ProdutosController {
         });
     }
 
-
+    /**
+     * Obtem a informação e gera a tabela
+     */
     public void productsTable(){
         System.out.println("products Edit btn clicked!!");
         try{
@@ -185,6 +193,9 @@ public class ProdutosController {
     }
 
     @FXML
+    /**
+     * Exporta a tabela para PDF
+     */
     private void exportPDFAction(ActionEvent event){
         final DirectoryChooser dirChooser = new DirectoryChooser();
         File file = dirChooser.showDialog(null);

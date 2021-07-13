@@ -19,6 +19,12 @@ import java.util.Date;
 
 public class PDFExporter extends Component {
 
+    /**
+     * Gerar o PDF
+     * @param tableName Nome da Tabela
+     * @param path Caminho para guardar ficheiro
+     * @return True/False
+     */
     public static boolean genPdf(String tableName, String path){
         try {
             Date current = new Date();
@@ -318,6 +324,12 @@ public class PDFExporter extends Component {
         }
     }
 
+    /**
+     * Gera novo parágrafo
+     * @param aD Document
+     * @param aType Tipo de documento
+     * @param aTime Data e Hora de Geração
+     */
     private static void title(Document aD, String aType, String aTime){
         Paragraph para = new Paragraph("                "+aType);
         try {
