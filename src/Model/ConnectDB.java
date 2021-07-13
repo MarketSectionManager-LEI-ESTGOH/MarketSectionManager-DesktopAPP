@@ -60,6 +60,10 @@ public class ConnectDB {
      */
     public static String getUrl(){ return properties.getProperty("url");}
 
+    /**
+     * Obtem a conexão
+     * @return Connection
+     */
     public static Connection getConn() { return conn; }
 
     /**
@@ -139,6 +143,11 @@ public class ConnectDB {
         return value;
     }
 
+    /**
+     * Obter Utilizador
+     * @param aPs PreparedStatement com a Query para Base de Dados
+     * @return String
+     */
     public static String getUser(PreparedStatement aPs){
         String userData = "";
         ResultSet rs = null;
@@ -977,6 +986,11 @@ public class ConnectDB {
         return null;
     }
 
+    /**
+     * Obter ID de uma área Controlada
+     * @param aPs PreparedStatement com a Query para Base de Dados
+     * @return Int
+     */
     public static int getControlledAreaID(PreparedStatement aPs){
         int areaID = -1;
         ResultSet rs = null;
@@ -1015,6 +1029,11 @@ public class ConnectDB {
         return -1;
     }
 
+    /**
+     * Obter Componentes de uma áerea Controlada
+     * @param aPs PreparedStatement com a Query para Base de Dados
+     * @return String
+     */
     public static String getControlledAreaComponents(PreparedStatement aPs){
         String comps = "";
         ResultSet rs = null;
@@ -1150,7 +1169,10 @@ public class ConnectDB {
         return null;
     }
 
-
+    /**
+     * Obter IDs e Designações de Áreas Frigoríficas
+     * @return ObservableList de Strings
+     */
     public static ObservableList<String> getRefrigeratorsIDandDesign(){
         ObservableList <String> list = FXCollections.observableArrayList();
         ResultSet rs = null;
@@ -1182,6 +1204,11 @@ public class ConnectDB {
         return list;
     }
 
+    /**
+     * Obter Dados para o gráfico do canto superior esquerdo da Dashboard
+     * @param aPs PreparedStatement com a Query para Base de Dados
+     * @return Float
+     */
     public static float getTempsGrapgh1(PreparedStatement aPs){
         float temp = -9999;
         ResultSet rs = null;
@@ -1211,6 +1238,12 @@ public class ConnectDB {
         return temp;
     }
 
+    /**
+     * Obter dados para o gráfico do canto superior direito da Dashboard
+     * @param aID ID da Área Frogorífica
+     * @param aDate Data da temperatiura que se quer obter
+     * @return ArrayList de floats
+     */
     public static ArrayList<Float> getDispersion(int aID, String aDate){
         ArrayList <Float> list = new ArrayList<>();
         ResultSet rs = null;
@@ -1242,6 +1275,11 @@ public class ConnectDB {
         return list;
     }
 
+    /**
+     * Obter dados para as tabelas da Dashboard
+     * @param aPs PreparedStatement com a Query para Base de Dados
+     * @return Int
+     */
     public static int getTableData(PreparedStatement aPs){
         int receivedCounter = -1;
         ResultSet rs = null;
@@ -1271,6 +1309,10 @@ public class ConnectDB {
         return receivedCounter;
     }
 
+    /**
+     * Obter todos os registos de validade da base de dados
+     * @return ObservableList de ExpirationDates
+     */
     public static ObservableList<ExprirationDate> getAllExpirationDates(){
         String userData = "";
         ResultSet rs = null;
