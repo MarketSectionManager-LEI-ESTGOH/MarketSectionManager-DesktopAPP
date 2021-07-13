@@ -52,6 +52,7 @@ public class MainScreenController {
     private Tooltip nameTT = new Tooltip();
 
     /**
+     * Apresenta o Ecrã principal da aplicação
      * Referencia apresentação de dados: 20/04/2021
      * https://www.youtube.com/watch?v=tw_NXq08NUE
      * <p>
@@ -70,6 +71,11 @@ public class MainScreenController {
     }
 
     @FXML
+    /**
+     * Define o nome do utilizador no campo para o mesmo especificado e avalia o comprimento do nome para
+     * que este não se sobreponha a outros elementos gráficos (se o nome for extenso, apenas apresenta parte
+     * do mesmo)
+     */
     protected void initialize(){
         editProfileBtn.setUnderline(true);
         editProfileBtn.setTextFill(javafx.scene.paint.Color.valueOf("#6bbfa3"));
@@ -83,10 +89,9 @@ public class MainScreenController {
         showAllGraphs();
     }
 
-    public void showTooltip(){
-
-    }
-
+    /**
+     * Mostra a Pane de Edição do Perfil de Utilizador
+     */
     public void editProfile() {
         try{
             EditUserController.setThisUser(Main.u);
@@ -100,10 +105,14 @@ public class MainScreenController {
             EditStage.centerOnScreen();
             EditStage.show();
         }catch (Exception e){
-            System.out.println(e);
+            alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um Erro Inesperado, por favor tente novamente!").showAndWait();
         }
     }
 
+    /**
+     * Permite ao utilizador realizar o LogOut da Aplicação
+     * @throws Exception
+     */
     public void logout() throws Exception {
         currentStage = (Stage) editProfileBtn.getScene().getWindow();
         currentStage.close();
@@ -112,6 +121,13 @@ public class MainScreenController {
 
     }
 
+    /**
+     * Permite lançar diversos tipos de Alertas em forma de um PopUp
+     * @param aAlertType Objeto do Tipo Alert.AlertType.xxxx que define o tipo de popup em questão (ERROR, INFORMATION, WARNING, ...)
+     * @param aTitle     Título do PopUp
+     * @param aText      Texto Descritivo do PopUp
+     * @return Alert (é necessária a utilização de «-showAndWait()» para a visualização do popup.
+     */
     protected static Alert alerts(Alert.AlertType aAlertType, String aTitle, String aText) {
         Alert generalAlert = new Alert(aAlertType);
         Stage stage = (Stage) generalAlert.getDialogPane().getScene().getWindow();
@@ -123,8 +139,10 @@ public class MainScreenController {
         return generalAlert;
     }
 
+    /**
+     * Minimiza as Panes que se encontrarem abertas no ecrã principal da aplicação
+     */
     public void collapse() {
-        System.out.println("home (collapse) clicked!");
         expandGraphs();
         resetButtonStyle();
         if (receivedPane != null) {
@@ -132,6 +150,9 @@ public class MainScreenController {
         }
     }
 
+    /**
+     * Mostra a Pane dos Utilizadores da Aplicação
+     */
     public void showUsersTable() {
         collapseGraphs();
         resetButtonStyle();
@@ -140,62 +161,69 @@ public class MainScreenController {
             Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/AllUsersPane.fxml"));
             receivedPane.getChildren().add(newLoadedPane);
             receivedPane.setVisible(true);
-
         } catch (Exception e) {
-            System.out.println("erro o loader " + e);
-            e.printStackTrace();
+            alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um Erro Inesperado, por favor tente novamente!").showAndWait();
         }
     }
 
+    /**
+     * Mostra o Gráfico do Canto Superior Esquerdo da Dashboard
+     */
     public void showGraph1() {
-        System.out.println("showgraph1  __ here");
         try {
             Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/Graph1.fxml"));
             graph1Pane.getChildren().add(newLoadedPane);
             graph1Pane.setVisible(true);
-
         } catch (Exception e) {
-            System.out.println("erro o loader " + e);
-            e.printStackTrace();
+            alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um Erro Inesperado, por favor tente novamente!").showAndWait();
         }
     }
+
+    /**
+     * Mostra o Gráfico do Canto Superior Direito da Dashboard
+     */
     public void showGraph2(){
-        System.out.println("showgraph2  __ here");
         try {
             Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/Graph2.fxml"));
             graph2Pane.getChildren().add(newLoadedPane);
             graph2Pane.setVisible(true);
 
         } catch (Exception e) {
-            System.out.println("erro o loader " + e);
-            e.printStackTrace();
+            alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um Erro Inesperado, por favor tente novamente!").showAndWait();
         }
     }
+
+    /**
+     * Mostra a Tabela do Canto Inferior Esquerdo da Dashboard
+     */
     public void showTable1(){
-        System.out.println("showTable1  __ here");
         try {
             Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/Table1.fxml"));
             graph3Pane.getChildren().add(newLoadedPane);
             graph3Pane.setVisible(true);
 
         } catch (Exception e) {
-            System.out.println("erro o loader " + e);
-            e.printStackTrace();
+            alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um Erro Inesperado, por favor tente novamente!").showAndWait();
         }
     }
+
+    /**
+     * Mostra a Tabela do Canto Inferior Direito da Dashboard
+     */
     public void showTable2(){
-        System.out.println("showTable2  __ here");
         try {
             Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/View/Table2.fxml"));
             graph4Pane.getChildren().add(newLoadedPane);
             graph4Pane.setVisible(true);
 
         } catch (Exception e) {
-            System.out.println("erro o loader " + e);
-            e.printStackTrace();
+            alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um Erro Inesperado, por favor tente novamente!").showAndWait();
         }
     }
 
+    /**
+     * Mostra todos os elementos da Dashboard
+     */
     private void showAllGraphs(){
         showGraph1();
         showGraph2();
@@ -203,6 +231,9 @@ public class MainScreenController {
         showTable2();
     }
 
+    /**
+     * Mostra a Pane das Áreas Refrigeradas
+     */
     public void showRefrigeratorsTable() {
         collapseGraphs();
         resetButtonStyle();
@@ -213,11 +244,13 @@ public class MainScreenController {
 
             receivedPane.setVisible(true);
         } catch (Exception e) {
-            System.out.println("erro o loader " + e);
-            e.printStackTrace();
+            alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um Erro Inesperado, por favor tente novamente!").showAndWait();
         }
     }
 
+    /**
+     * Mostra a Pane dos Produtos
+     */
     public void showProductsTable() {
         collapseGraphs();
         resetButtonStyle();
@@ -227,11 +260,13 @@ public class MainScreenController {
             receivedPane.getChildren().add(newLoadedPane);
             receivedPane.setVisible(true);
         } catch (Exception e) {
-            System.out.println("erro o loader " + e);
-            e.printStackTrace();
+            alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um Erro Inesperado, por favor tente novamente!").showAndWait();
         }
     }
 
+    /**
+     * Mostra a Pane das Áreas Controladas
+     */
     public void showControlledAreasTable() {
         collapseGraphs();
         resetButtonStyle();
@@ -241,11 +276,13 @@ public class MainScreenController {
             receivedPane.getChildren().add(newLoadedPane);
             receivedPane.setVisible(true);
         } catch (Exception e) {
-            System.out.println("erro o loader " + e);
-            e.printStackTrace();
+            alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um Erro Inesperado, por favor tente novamente!").showAndWait();
         }
     }
 
+    /**
+     * Mostra a Pane dos Fornecedores
+     */
     public void showFornecedoresTable() {
         collapseGraphs();
         resetButtonStyle();
@@ -255,11 +292,13 @@ public class MainScreenController {
             receivedPane.getChildren().add(newLoadedPane);
             receivedPane.setVisible(true);
         } catch (Exception e) {
-            System.out.println("erro o loader " + e);
-            e.printStackTrace();
+            alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um Erro Inesperado, por favor tente novamente!").showAndWait();
         }
     }
 
+    /**
+     * Mostra a Pane das Validações (Rastreabilidades, Temperaturas e Limpezas)
+     */
     public void showValidationsPane() {
         collapseGraphs();
         resetButtonStyle();
@@ -269,11 +308,13 @@ public class MainScreenController {
             receivedPane.getChildren().add(newLoadedPane);
             receivedPane.setVisible(true);
         } catch (Exception e) {
-            System.out.println("erro o loader " + e);
-            e.printStackTrace();
+            alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um Erro Inesperado, por favor tente novamente!").showAndWait();
         }
     }
 
+    /**
+     * Mostra a Pane dos dados sujeitos a validação (Rastreabilidades, Temperaturas e Limpezas)
+     */
     public void showAllRastData() {
         collapseGraphs();
         resetButtonStyle();
@@ -283,12 +324,13 @@ public class MainScreenController {
             receivedPane.getChildren().add(newLoadedPane);
             receivedPane.setVisible(true);
         } catch (Exception e) {
-            System.out.println("erro o loader " + e);
-            MainScreenController.alerts(Alert.AlertType.ERROR, "AMA", " "+e).showAndWait();
-            e.printStackTrace();
+            alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um Erro Inesperado, por favor tente novamente!").showAndWait();
         }
     }
 
+    /**
+     * Mostra a Pane das Datas de Validade (onde é possivel alterar/adicionar datas de validades, offset e markdowns
+     */
     public void showAllExpirationDates(){
         collapseGraphs();
         resetButtonStyle();
@@ -298,11 +340,13 @@ public class MainScreenController {
             receivedPane.getChildren().add(newLoadedPane);
             receivedPane.setVisible(true);
         } catch (Exception e) {
-            System.out.println("erro o loader " + e);
-            e.printStackTrace();
+            alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um Erro Inesperado, por favor tente novamente!").showAndWait();
         }
     }
 
+    /**
+     * Restaurar o estilo original dos botões do ecrã principal
+     */
     private void resetButtonStyle() {
         String originalStyle = "-fx-background-color: #253437;";
         controlledAreasButton.setStyle(originalStyle);
@@ -316,6 +360,9 @@ public class MainScreenController {
         allExpirationDates.setStyle(originalStyle);
     }
 
+    /**
+     * Minimizar todos os elemnetos da Dashboard
+     */
     private void collapseGraphs(){
         graph1Pane.setVisible(false);
         graph2Pane.setVisible(false);
@@ -323,6 +370,9 @@ public class MainScreenController {
         graph4Pane.setVisible(false);
     }
 
+    /**
+     * Maximizar todos os elementos da Dashboard
+     */
     private void expandGraphs(){
         graph1Pane.setVisible(true);
         graph2Pane.setVisible(true);
