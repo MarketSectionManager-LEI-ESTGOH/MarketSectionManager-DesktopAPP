@@ -43,10 +43,16 @@ public class ControlledAreaController {
     private int index = -1;
 
     @FXML
+    /**
+     * Gerar a tabela de áreas controladas
+     */
     protected void initialize() {
         areasControladasTable();
     }
 
+    /**
+     * Definição e geração da tabela
+     */
     public void areasControladasTable() {
         System.out.println("areas controladas btn clicked!!");
 
@@ -82,7 +88,7 @@ public class ControlledAreaController {
     /**
      * Retorna utilizador escolhido da tabela.
      *
-     * @param mouseEvent
+     * @param mouseEvent MouseEvent
      */
     public void getSelectedArea(javafx.scene.input.MouseEvent mouseEvent) {
         try {
@@ -162,7 +168,9 @@ public class ControlledAreaController {
         }
     }
 
-
+    /**
+     * Mostra a Pane de Inserção de áreas Controladas
+     */
     public void showAddControlledArea() {
         System.out.println("add controlled area btn clicked!!");
         try {
@@ -179,6 +187,11 @@ public class ControlledAreaController {
         }
     }
 
+    /**
+     * Obter o Id de base de dados da área controlada recebida por paraâmetro
+     * @param aNumInterno Número Interno da Área Controlada
+     * @return Int
+     */
     private int getControlledAreaDatabaseID(int aNumInterno) {
         try {
             String stmt = "SELECT id FROM area WHERE numero = ?";
@@ -192,6 +205,11 @@ public class ControlledAreaController {
         }
     }
 
+    /**
+     * Obter os componentes de uma árera controlada
+     * @param aBdId ID da base de dados da área controlada
+     * @return String
+     */
     private String getControlledAreaComponents(int aBdId) {
         try {
             String stmt = "SELECT componentes.designacao FROM area_componentes LEFT JOIN componentes ON componentes_id = componentes.id WHERE area_id = ?";
@@ -206,6 +224,9 @@ public class ControlledAreaController {
     }
 
     @FXML
+    /**
+     * Exportar tabela para PDF
+     */
     private void exportPDFAction(ActionEvent event){
         final DirectoryChooser dirChooser = new DirectoryChooser();
         File file = dirChooser.showDialog(null);

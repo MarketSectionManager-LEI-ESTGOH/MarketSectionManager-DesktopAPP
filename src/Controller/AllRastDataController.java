@@ -18,25 +18,18 @@ public class AllRastDataController {
 
     @FXML
     private TextField searchTextField;
-
     @FXML
     private TableView<Limpeza> limpezasDataTable;
-
     @FXML
     private TableColumn<Limpeza, String> areaLimpCol;
-
     @FXML
     private TableColumn<Limpeza, String> compLimpCol;
-
     @FXML
     private TableColumn<Limpeza, Date> dataLimpCol;
-
     @FXML
     private TableColumn<Limpeza, String> utilLimpCol;
-
     @FXML
     private TableColumn<Limpeza, Integer> nInternoLimp;
-
     @FXML
     private TableColumn<Limpeza, CheckBox> validarLimpCol;
 
@@ -90,11 +83,18 @@ public class AllRastDataController {
     private int index = -1;
     private static int selectReceivedTab = 0;
 
+    /**
+     * --
+     * @param aReceivedTab --
+     */
     public static void setSelectReceivedTab(int aReceivedTab){
         selectReceivedTab = aReceivedTab;
     }
 
     @FXML
+    /**
+     * Gerar tabelaS: Rastreabilidades, Temperaturas e Limpezas e definir aspetos dos elementos gráficos
+     */
     protected void initialize(){
         limpezasTable();
         rastreabilidadeTable();
@@ -159,6 +159,9 @@ public class AllRastDataController {
     }
 
     @FXML
+    /**
+     * Exportar tabela  de limpezas para PDF
+     */
     private void exportPDFActionLimp(ActionEvent event){
         final DirectoryChooser dirChooser = new DirectoryChooser();
         File file = dirChooser.showDialog(null);
@@ -174,6 +177,9 @@ public class AllRastDataController {
     }
 
     @FXML
+    /**
+     * Exportar tabela de rastreabilidades para PDF
+     */
     private void exportPDFActionRast(ActionEvent event){
         final DirectoryChooser dirChooser = new DirectoryChooser();
         File file = dirChooser.showDialog(null);
@@ -189,6 +195,9 @@ public class AllRastDataController {
     }
 
     @FXML
+    /**
+     * Exportar tabela de temperaturas para PDF
+     */
     private void exportPDFActionTemp(ActionEvent event){
         final DirectoryChooser dirChooser = new DirectoryChooser();
         File file = dirChooser.showDialog(null);
