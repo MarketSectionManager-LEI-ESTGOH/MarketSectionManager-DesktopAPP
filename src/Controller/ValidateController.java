@@ -99,6 +99,9 @@ public class ValidateController {
     private int index = -1;
 
     @FXML
+    /**
+     * Gera as tablelas de limpezas, temperaturas e rastreabilidades
+     */
     protected void initialize(){
         limpezasTable();
         rastreabilidadeTable();
@@ -162,7 +165,7 @@ public class ValidateController {
 
     /**
      * Valida as rows selecionadas nas Limpezas
-     * @param mouseEvent
+     * @param mouseEvent MouseEvent
      */
     public void validateSelected(MouseEvent mouseEvent) {
         boolean success = false, error = false;
@@ -207,7 +210,7 @@ public class ValidateController {
 
     /**
      * Valida as rows selecionadas nas Rastreabilidade
-     * @param mouseEvent
+     * @param mouseEvent MouseEvent
      */
     public void validateSelectedRast(MouseEvent mouseEvent) {
         boolean success = false, error = false;
@@ -251,7 +254,7 @@ public class ValidateController {
 
     /**
      * Valida as rows selecionadas nas Temperaturas
-     * @param mouseEvent
+     * @param mouseEvent MouseEvent
      */
     public void validateSelectedTemp(MouseEvent mouseEvent) {
         boolean success = false, error = false;

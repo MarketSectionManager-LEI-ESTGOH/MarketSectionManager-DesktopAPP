@@ -41,13 +41,16 @@ public class UsersController {
     private int index = -1;
 
     @FXML
+    /**
+     * Gera a tabela
+     */
     protected void initialize(){
         usersTable();
     }
 
     /**
      * Retorna utilizador escolhido da tabela.
-     * @param mouseEvent
+     * @param mouseEvent MouseEvent
      */
     public void getSelected(javafx.scene.input.MouseEvent mouseEvent) {
         index = table_users.getSelectionModel().getSelectedIndex();
@@ -112,6 +115,9 @@ public class UsersController {
         });
     }
 
+    /**
+     * Obtem a informação e gera a tabela
+     */
     public void usersTable(){
         System.out.println("usersTable Edit btn clicked!!");
         try {
@@ -152,7 +158,9 @@ public class UsersController {
         table_users.setItems(sortedData);
     }
 
-
+    /**
+     * Mostra a pane de registo de novos utilizadores
+     */
     public void register(){
         System.out.println("register btn clicked!!");
         try{
@@ -170,6 +178,9 @@ public class UsersController {
     }
 
     @FXML
+    /**
+     * Exporta a tabela para PDF
+     */
     private void exportPDFAction(ActionEvent event){
         final DirectoryChooser dirChooser = new DirectoryChooser();
         File file = dirChooser.showDialog(null);
