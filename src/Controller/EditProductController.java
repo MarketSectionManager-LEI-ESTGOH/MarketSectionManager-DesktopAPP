@@ -1,6 +1,5 @@
 package Controller;
 
-import Model.ArcaFrigorifica;
 import Model.ConnectDB;
 import Model.Product;
 import javafx.fxml.FXML;
@@ -31,11 +30,18 @@ public class EditProductController {
     private TextField productNumIntTF;
     private static Product thisProduct = null;
 
+    /**
+     * Definir o registo sobre o qual se está a trabalhar
+     * @param aThisProduct Objeto do tipo Product
+     */
     protected static void setThisProduct(Product aThisProduct) {
         thisProduct = aThisProduct;
     }
 
     @FXML
+    /**
+     * Definir propriedades de elementos gráficos
+     */
     protected void initialize(){
         System.out.println("edit product initialize");
         productNumIntTF.setEditable(false);
@@ -59,6 +65,9 @@ public class EditProductController {
     }
 
 
+    /**
+     * controlo do campo EAN consoante a definição se o produto é fresco (tem EAN) ou se não é fresco (não tem EAN)
+     */
     public void eanFieldControl(){
         if(productFreshYESRB.isSelected()){
             productEANTF.setEditable(false);
@@ -70,6 +79,9 @@ public class EditProductController {
         }
     }
 
+    /**
+     * Guardar Alterações feitas sobre o registo
+     */
     public void editProduct(){
         boolean cont = true;
         boolean contEan = true;

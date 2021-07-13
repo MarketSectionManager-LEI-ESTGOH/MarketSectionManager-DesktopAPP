@@ -33,12 +33,19 @@ public class EditRefrigeratorController {
 
     private static ArcaFrigorifica thisRefrigerator = null;
 
+    /**
+     * Definir o registo sobre o qual se está a trabalhar
+     * @param aThisRefrigerator Objeto do tipo ArcaFrigorifica
+     */
     protected static void setThisRefrigerator(ArcaFrigorifica aThisRefrigerator) {
         thisRefrigerator = aThisRefrigerator;
     }
 
 
     @FXML
+    /**
+     * Definição de propriedade dos elementso visuais e preenchimento dos mesmo com dados do registo
+     */
     protected void initialize(){
         System.out.println("edit vrefriogerator initialize");
        designTF.setText(thisRefrigerator.getDesignacao());
@@ -49,11 +56,19 @@ public class EditRefrigeratorController {
        tMinTF.setText(String.valueOf(thisRefrigerator.getTempMin()));
     }
 
+    /**
+     * Fechar janela de edição da área frigorífica
+     * @param actionEvent
+     */
     public void handleCloseButtonAction(javafx.event.ActionEvent actionEvent) {
         Stage stage = (Stage) cancelBTN.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Guardar alterações feitas sobre o registo
+     * @param actionEvent
+     */
     public void handleUpdateButtonAction(javafx.event.ActionEvent actionEvent) {
         String newDesign = designTF.getText();
         int number = Integer.valueOf(numberTF.getText());

@@ -40,15 +40,27 @@ public class EditUserController{
     private static User thisUser = null;
     private static boolean selfProfile = false;
 
+    /**
+     * Definir o registo sobre o qual se está a trabalhar
+     * @param aThisUser Objeto do tipo User
+     */
     protected static void setThisUser(User aThisUser) {
         thisUser = aThisUser;
     }
+
+    /**
+     * Definir se i utilizador está a tentar o seu próprio perfil
+     * @param aFlag Boolean - True se for o perfil do utilizador, False se for o perfil de outro utilizador
+     */
     protected static void setSelfProfile(boolean aFlag){
         System.out.println("setSelfProfile Flag = " + aFlag  );
         selfProfile = aFlag;
     }
 
     @FXML
+    /**
+     * Definição e preenchimento com dados do registo de elementos visuais
+     */
     protected void initialize(){
             text_ID.setText("Número Interno: "+thisUser.getUserID());
             nameTextField.setText(thisUser.getUsername());
@@ -70,11 +82,19 @@ public class EditUserController{
             }
     }
 
+    /**
+     * Fechar janela de edição de perfil
+     * @param actionEvent
+     */
     public void handleCloseButtonAction(javafx.event.ActionEvent actionEvent) {
         Stage stage = (Stage) CancelBtn.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * guardar alterações ao utilizador
+     * @param actionEvent
+     */
     public void handleUpdateButtonAction(javafx.event.ActionEvent actionEvent) {
         System.out.println("self = " + selfProfile);
         String newName = nameTextField.getText();
