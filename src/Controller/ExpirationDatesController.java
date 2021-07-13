@@ -56,10 +56,16 @@ public class ExpirationDatesController {
     static DatePicker d = new DatePicker();
 
     @FXML
+    /**
+     * Gerar e preencher tabela de registos de validade
+     */
     protected void initialize(){
         expirationDatesTable();
     }
 
+    /**
+     * Obter registo da tabela selecionada pelo utilizador e trata dos eventos dos botões de editar, remover, offset e markdown
+     */
     public void getSelected(){
         index = valTable.getSelectionModel().getSelectedIndex();
         if(index <= -1){
@@ -197,6 +203,9 @@ public class ExpirationDatesController {
         });
     }
 
+    /**
+     * Mostra a Pane de registo de novas balidades em produtos
+     */
     public void showAddExpirationDate(){
         try{
             EditExpirationDateController.setThisED(expirationDatesList.get(index));
@@ -213,6 +222,9 @@ public class ExpirationDatesController {
         }
     }
 
+    /**
+     * Obter dados e gerar a tabela das validades
+     */
     public void expirationDatesTable(){
         System.out.println("products Edit btn clicked!!");
         try{
@@ -254,6 +266,9 @@ public class ExpirationDatesController {
     }
 
     @FXML
+    /**
+     * Exportar tabela para PDF
+     */
     private void exportPDFAction(ActionEvent event){
         final DirectoryChooser dirChooser = new DirectoryChooser();
         File file = dirChooser.showDialog(null);

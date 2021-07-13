@@ -50,10 +50,16 @@ public class FornecedoresController {
     private int index = -1;
 
     @FXML
+    /**
+     * Gerar tabela
+     */
     protected void initialize(){
         fornecedorTable();
     }
 
+    /**
+     * Obtenção de dados para geração de tabela
+     */
     public void fornecedorTable(){
         System.out.println("fornecedores btn clicked!!");
 
@@ -99,7 +105,7 @@ public class FornecedoresController {
 
     /**
      * Retorna fornecedor escolhido da tabela.
-     * @param mouseEvent
+     * @param mouseEvent MouseEvent
      */
     public void getSelected(javafx.scene.input.MouseEvent mouseEvent) {
         index = fornecedoresTable.getSelectionModel().getSelectedIndex();
@@ -155,6 +161,9 @@ public class FornecedoresController {
         });
     }
 
+    /**
+     * Mostra a Pane de Inserção de Fornecedores
+     */
     public void registerForn(){
         System.out.println("register Fornecedor btn clicked!!");
         try{
@@ -172,6 +181,9 @@ public class FornecedoresController {
     }
 
     @FXML
+    /**
+     * Exportar tabela para PDF
+     */
     private void exportPDFAction(ActionEvent event){
         final DirectoryChooser dirChooser = new DirectoryChooser();
         File file = dirChooser.showDialog(null);
