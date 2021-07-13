@@ -22,6 +22,9 @@ public class AddRefrigeratorController {
     private static DateFormat timstampRefrigerator = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");
 
 
+    /**
+     * Adicionar Área Refrigerada
+     */
     public void insertRefrigerator(){
         System.out.println("insert refrigerator in db button clicked!");
         if((!refrigeratorDesign.getText().toString().isEmpty()) && (!refrigeratorNumber.getText().toString().isEmpty())
@@ -44,6 +47,9 @@ public class AddRefrigeratorController {
         }
     }
 
+    /**
+     * Limpar Campos de inserção da área refrigerada após o término da mesma operação
+     */
     private void clearRefrigeratorFields(){
         refrigeratorManufacturer.setText("");
         refrigeratorMinTemp.setText("");
@@ -52,6 +58,16 @@ public class AddRefrigeratorController {
         refrigeratorDesign.setText("");
     }
 
+    /**
+     * Registar área Refrigerada na base de dados
+     * @param aNumber Número da Área Refrigerada
+     * @param aDesignation Designação da Área Refrigerada
+     * @param aManufacturer Fabricante da Área Refrigerada
+     * @param aInsertionDate Date de Inserção da Área Refrigerada
+     * @param aMinTemp Temperatura Minima da Área Refrigerada
+     * @param aMaxTemp Temperatura Máxima da Área Refrigerada
+     * @return True/False
+     */
     public static boolean registerRefrigerator(int aNumber, String aDesignation, String aManufacturer, String aInsertionDate, float aMinTemp, float aMaxTemp){
         try {
             String stmt = "INSERT INTO area_frigorifica (numero, designacao, fabricante, d_t_adicao, tem_min, tem_max) VALUES (?, ?, ?, ?, ?, ?)";

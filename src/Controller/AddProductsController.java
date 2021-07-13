@@ -25,11 +25,17 @@ public class AddProductsController {
     private RadioButton productFreshNORB;
 
     @FXML
+    /**
+     * Defenoção de elementos visuais importantes
+     */
     protected void initialize(){
         productFreshNORB.setSelected(false);
         productFreshYESRB.setSelected(false);
     }
 
+    /**
+     * Limpa os campos de inserção de produtos após o término da mesma
+     */
     private void cleanFields(){
         productNameTF.setText("");
         productPriceNS.getEditor().setText("");
@@ -39,6 +45,9 @@ public class AddProductsController {
         productFreshNORB.setSelected(false);
     }
 
+    /**
+     * Adicionar Produto
+     */
     public void addProduct(){
         boolean cont = true;
         boolean contEan = true;
@@ -110,7 +119,16 @@ public class AddProductsController {
         }
     }
 
-
+    /**
+     * Registar Produto na Base de Dados
+     * @param aNumber Número Interno do Produto
+     * @param aName Nome do Produto
+     * @param aFresco Se o Produto é (ou não) fresco
+     * @param aPreco Preço do Produto
+     * @param aEAN EAN do Produto
+     * @param aMarca Marca do Produto
+     * @return True/False
+     */
     public static boolean registerProduct(int aNumber, String aName, int aFresco, double aPreco, String aEAN, String aMarca){
         try {
             String stmt = "INSERT INTO produto (n_interno, nome, fresco, preco, ean, marca) VALUES (?, ?, ?, ?, ?, ?)";
@@ -128,6 +146,9 @@ public class AddProductsController {
         return false;
     }
 
+    /**
+     * Controla o Campo do EAN consoante a definição de se o Produto é fresco (não tem EAN) ou não é Fresco (tem EAN)
+     */
     public void eanFieldControl(){
         if(productFreshYESRB.isSelected()){
             productEANTF.setEditable(false);

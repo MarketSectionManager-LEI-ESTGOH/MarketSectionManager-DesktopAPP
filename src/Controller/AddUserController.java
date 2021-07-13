@@ -15,6 +15,9 @@ public class AddUserController {
     public Button addCAComponentsBTN;
     public Button addCABTN;
 
+    /**
+     * Adicionar Utilizador
+     */
     public void addUser(){
         System.out.println("add user btn clicked!!");
         ConnectDB.loadProperties();
@@ -43,6 +46,9 @@ public class AddUserController {
         clearUserRegistrationFileds();
     }
 
+    /**
+     * Limpar o campos de inserção do utilizador após o término da mesma operação
+     */
     private void clearUserRegistrationFileds(){
         userTypeCombo.getSelectionModel().select(-1);
         userNameTF.setText("");
