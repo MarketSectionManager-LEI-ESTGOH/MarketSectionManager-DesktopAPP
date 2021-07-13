@@ -35,6 +35,9 @@ public class Main extends Application {
 
 
     @Override
+    /**
+     * Dá Load ao ecrã de Login
+     */
     public void start(Stage loginScreen) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/View/LoginScreen.fxml"));
         loginScreen.getIcons().add(new Image("/Images/logoicon.png"));
@@ -47,18 +50,19 @@ public class Main extends Application {
     }
 
     @FXML
+    /**
+     * Inicializa os componentes gráficos da aplicação, de modo a providenciar
+     * um alerta de Caps Lock ativo/inativo na PasswordField
+     */
     protected void initialize() {
-        System.out.println("@ Main Initializer");
         funcPass.setOnMouseClicked( event -> {
             if ( Toolkit.getDefaultToolkit().getLockingKeyState(20) ) {
-                System.out.println("Caps on");
                 capsLbl.setVisible(true);
                 isCapsOn = true;
             }
         });
         funcPass.setOnKeyReleased( event -> {
             if ( event.getCode() == KeyCode.CAPS ) {
-                System.out.println("Capslock pressed");
                 if(isCapsOn){
                     isCapsOn = false;
                     capsLbl.setVisible(false);
@@ -71,8 +75,7 @@ public class Main extends Application {
     }
 
     /**
-     * Main Function
-     *
+     * Main Function - Lança a Aplicação
      * @param args
      */
     public static void main(String[] args) {
@@ -80,7 +83,7 @@ public class Main extends Application {
     }
 
     /**
-     * Apresenta uma cofirmação ao utilizador e se este clicar "Sim" o programa termina
+     * Apresenta uma confirmação ao utilizador e se este clicar "Sim" o programa termina
      * Fonte de Definição do Logotipo em Alerts: https://stackoverflow.com/questions/27976345/how-do-you-set-the-icon-of-a-dialog-control-java-fx-java-8
      */
     public void closeProgram() {
@@ -99,9 +102,10 @@ public class Main extends Application {
 
     }
 
-
+    /**
+     * Minimiza o Ecrã de Login
+     */
     public void minimizePRG() {
-        System.out.println("minimized pressed!");
         Stage stage = (Stage) minimizeBTN.getScene().getWindow();
         stage.setIconified(true);
     }
@@ -138,7 +142,6 @@ public class Main extends Application {
             alerts(Alert.AlertType.ERROR, "ERRO", "O Campo Número de Funcionário apenas aceita números, por favor tente novamente!").showAndWait();
             cleanFields();
         } catch (Exception e) {
-            System.out.println(e);
             alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um erro inesperado, por favor tente novamente!").showAndWait();
             cleanFields();
         }
@@ -167,12 +170,17 @@ public class Main extends Application {
         return generalAlert;
     }
 
+    /**
+     * Evento do tipo KeyEvent que é aplicado ao campo de palavra-passe do ecrã de
+     * login e que permite que o utilizador confirme a "inteção de fazer login" com
+     * apenas um clique no enter deste campo (PasswordField)
+     * @param ke
+     */
     public void detectEnterPressed(KeyEvent ke) {
         funcPass.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent ke) {
                 if (ke.getCode().equals(KeyCode.ENTER)) {
-                    System.out.println("enter pressed!");
                     login();
                 }
             }
