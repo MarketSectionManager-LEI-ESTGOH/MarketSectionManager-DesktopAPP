@@ -10,10 +10,18 @@ public class User {
     private String username, email, userTypeConv;
     private int userID, userType;
 
-    public User(){
+    /**
+     * Construtor Vazio da Classe
+     */
+    public User(){}
 
-    }
-
+    /**
+     * Construtor da Classe
+     * @param aUsername Nome do Utilizador
+     * @param aEmail Email do Utilizador
+     * @param aUserID ID do Utilizador
+     * @param aUserType Tipo do Utilizador
+     */
     public User(String aUsername, String aEmail, int aUserID, int aUserType){
         username = aUsername;
         email = aEmail;
@@ -32,32 +40,52 @@ public class User {
         }
     }
 
+    /**
+     * Obter o ID do Utilizador
+     * @return Int
+     */
     public int getUserID() {
         return userID;
     }
 
+    /**
+     * Obter o tipo do Utilizador
+     * @return Int
+     */
     public int getUserType() {
         return userType;
     }
 
+    /**
+     * Obter Tipo do Utilizador (String)
+     * @return String
+     */
     public String getUserTypeConv() { return userTypeConv;}
 
+    /**
+     * Obter o Email do Utilizador
+     * @return String
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * Obter o Nome do Utilizador
+     * @return String
+     */
     public String getUsername() {
         return username;
     }
 
     /**
      * Regista um novo utilizador apenas para teste.
-     * @param aType
-     * @param aUsername
-     * @param aNumInt
-     * @param aPassword
-     * @param aEmail
-     * @return
+     * @param aType Tipo do Utilizador
+     * @param aUsername Nome do Utilizador
+     * @param aNumInt Número Interno do Utilizador
+     * @param aPassword Password do Utilizador
+     * @param aEmail Email do Utilizador
+     * @return True/False
      */
     public boolean registerUser(int aType, String aUsername, int aNumInt, String aPassword, String aEmail){
         aPassword = Encryption.encrypt(aPassword);
@@ -78,9 +106,9 @@ public class User {
 
     /**
      * Verifica o login do utilizador.
-     * @param aNumInt
-     * @param aPassword
-     * @return
+     * @param aNumInt Múmero Interno do Utilizador
+     * @param aPassword Password do Utilizador
+     * @return True/False
      */
     public static boolean checkLogin(int aNumInt, String aPassword){
         aPassword = Encryption.encrypt(aPassword);
@@ -95,6 +123,11 @@ public class User {
         return false;
     }
 
+    /**
+     * Remove Utilizador da Base de Dados
+     * @param toRemove Objeto do Tipo User que irá ser removido
+     * @return True/False
+     */
     public static boolean removeUserFromDB(User toRemove){
         try {
             String stmt = "DELETE FROM user WHERE num_interno = ?";
@@ -107,6 +140,11 @@ public class User {
         return false;
     }
 
+    /**
+     * Cria um objeto do tipo User a partir de dados da Base de Dados
+     * @param aUserID ID do Utilizador
+     * @return User
+     */
     public static User createObjUser(int aUserID){
         ConnectDB.loadProperties();
         try{
@@ -126,8 +164,8 @@ public class User {
     /**
      *Check if email exists in DB
      * true = exists, false = is free
-     * @param aEmail
-     * @return
+     * @param aEmail Email do Utilizador
+     * @return True/False
      */
     public static boolean checkEmailExists(String aEmail){
         try {
@@ -144,8 +182,8 @@ public class User {
     /**
      * Check if emails is correct
      * https://howtodoinjava.com/java/regex/java-regex-validate-email-address/
-     * @param aEmail
-     * @return
+     * @param aEmail Email do Utilizador
+     * @return True/False
      */
     public static boolean checkEmail(String aEmail){
         String regex = "^(.+)@(.+)[\\w]$";
@@ -154,15 +192,26 @@ public class User {
         return matcher.matches();
     }
 
+    /**
+     * Definir Nome do Utilizador
+     * @param username String - Nome do Utilizador
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
+    /**
+     * Definir Email do Utilizador
+     * @param email String - Email do Utilizador
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
     @Override
+    /**
+     * Imprime a Classe no Ecrã
+     */
     public String toString() {
         return "User{" +
                 "username='" + username + '\'' +

@@ -10,14 +10,17 @@ public class Encryption {
 
     private static String saltStr = "MSM2021";
     private static int key = 27;
-    Encryption(){
 
+    /**
+     * Construtor vazio da Classe
+     */
+    Encryption(){
     }
 
     /**
      * Encripta password
      * Source: https://howtodoinjava.com/java/java-security/how-to-generate-secure-password-hash-md5-sha-pbkdf2-bcrypt-examples/
-     * @param aToEncrypt
+     * @param aToEncrypt Password para encriptar
      * @return
      */
     public static String encrypt(String aToEncrypt){
@@ -40,8 +43,8 @@ public class Encryption {
     /**
      * Altera string para valores hexadecimais.
      * Source: https://howtodoinjava.com/java/java-security/how-to-generate-secure-password-hash-md5-sha-pbkdf2-bcrypt-examples/
-     * @param array
-     * @return
+     * @param array Byte [] array
+     * @return String
      * @throws NoSuchAlgorithmException
      */
     private static String toHex(byte[] array) throws NoSuchAlgorithmException
@@ -60,8 +63,8 @@ public class Encryption {
     /**
      * Altera de hexadecimal para string.
      * Source: https://howtodoinjava.com/java/java-security/how-to-generate-secure-password-hash-md5-sha-pbkdf2-bcrypt-examples/
-     * @param hex
-     * @return
+     * @param hex String
+     * @return Byte[]
      * @throws NoSuchAlgorithmException
      */
     private static byte[] fromHex(String hex) throws NoSuchAlgorithmException
@@ -77,9 +80,9 @@ public class Encryption {
     /**
      * Valida uma string com outra string encriptada.
      * Source: https://howtodoinjava.com/java/java-security/how-to-generate-secure-password-hash-md5-sha-pbkdf2-bcrypt-examples/
-     * @param originalPassword
-     * @param storedPassword
-     * @return
+     * @param originalPassword Password Original
+     * @param storedPassword Stored Password
+     * @return True/False
      */
     public static boolean validatePassword(String originalPassword, String storedPassword)
     {
@@ -108,8 +111,8 @@ public class Encryption {
 
     /**
      * Utilizado para encriptar os valores do ficheiro de propriedades da BD.
-     * @param aToEncrypt
-     * @return
+     * @param aToEncrypt String Para Encriptar
+     * @return String
      */
     public static String encryptDBProperties(String aToEncrypt){
         char[] stringToChar = aToEncrypt.toCharArray();
@@ -120,9 +123,9 @@ public class Encryption {
     }
 
     /**
-     * Utilizado para desincriptar os valores do ficheiro de propriedades da BD.
-     * @param aToDecrypt
-     * @return
+     * Utilizado para desencriptar os valores do ficheiro de propriedades da BD.
+     * @param aToDecrypt String para decriptar
+     * @return String
      */
     public static String decryptDBProperties(String aToDecrypt){
         char[] stringToChar = aToDecrypt.toCharArray();
