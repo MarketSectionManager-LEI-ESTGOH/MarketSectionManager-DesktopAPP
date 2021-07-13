@@ -60,7 +60,6 @@ public class Area {
             PreparedStatement ps = ConnectDB.getConn().prepareStatement(stmt);
             ps.setInt(1, toRemove.getNumero());
             boolean bb = ConnectDB.removeFromDB(ps);
-            System.out.println("from dbconn to areea: "+ bb);
             return bb;
         }catch (Exception e){
             return false;

@@ -54,42 +54,30 @@ public class AddExpirationDateController {
     public void checkIfProductExists(){
         int inputedCode = -1;
         String prodName;
-        System.out.println("Verifying if Product exists ...");
-        System.out.println(" nIntAddValTF @ the Moment = " + nIntAddValTF.getText() + "_ Lenght: " + nIntAddValTF.getText().length() + ";; ");
         try{
-            System.out.println("::: TRY ::: ");
             if(nIntAddValTF.getText().length() > 0){
                 inputedCode = Integer.parseInt(nIntAddValTF.getText());
             }
-            System.out.println(">> passou o parse");
             if(nIntAddValTF.getText().equalsIgnoreCase("") || nIntAddValTF.getText().length() == 0){
-                System.out.println("Entrou no nIntAddValTF.getText().length() == 0");
                 prodName = null;
             }else{
-                System.out.println("Entrou no __ELSE__ nIntAddValTF.getText().length() == 0");
                 prodName = ConnectDB.getString(ps(inputedCode));
             }
 
             if( prodName != null){
-                System.out.println("prodName != null");
                 hidenLBLAddVal.setText(ConnectDB.getString(ps(inputedCode)));
                 hidenLBLAddVal.setVisible(true);
                 saveBtn.setDisable(false);
                 auxED.setNome(hidenLBLAddVal.getText());
                 usedCode = inputedCode;
-                System.out.println("__ Produto Encontrado !!");
             }else{
-                System.out.println(" prodName = null; ");
                 prodName = null;
                 hidenLBLAddVal.setVisible(false);
                 saveBtn.setDisable(true);
-                System.out.println("__ Produto Não Encontrado !!");
             }
             if(nIntAddValTF.getText().equalsIgnoreCase("")){
-                System.out.println("__ nIntAddValTF.getText().equalsIgnoreCase __");
                 hidenLBLAddVal.setText("");
                 prodName = null;
-                System.out.println("__ Produto Não Encontrado !!");
                 hidenLBLAddVal.setVisible(false);
                 saveBtn.setDisable(true);
             }
@@ -145,7 +133,6 @@ public class AddExpirationDateController {
      */
     public void saveExpirationDate(){
         fillExpirationDetails();
-        System.out.println(auxED);
         if(registerExpirationDate()){
             MainScreenController.alerts(Alert.AlertType.INFORMATION, "Sucesso", "A validade para o produto ("+auxED.getNumInterno()+") " + auxED.getNome() + " - " + auxED.getNumInterno() + "" +
                     " foi registada com sucesso para " + auxED.getExpirationDate()).showAndWait();

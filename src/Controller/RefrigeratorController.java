@@ -65,8 +65,6 @@ public class RefrigeratorController {
      * Obtem a informação e gera a tabela;
      */
     public void arcasTable(){
-        System.out.println("arcas Edit btn clicked!!");
-
         numArcaCol.setCellValueFactory(new PropertyValueFactory<ArcaFrigorifica, Integer>("numero"));
         designArcaCol.setCellValueFactory(new PropertyValueFactory<ArcaFrigorifica, String>("designacao"));
         fabricanteArcaCol.setCellValueFactory(new PropertyValueFactory<ArcaFrigorifica, String>("fabricante"));
@@ -131,7 +129,6 @@ public class RefrigeratorController {
      * Mostra a pane de inserção de novas áreas frigoríficas
      */
     public void showAddRefrigerator(){
-        System.out.println("add refrigerator btn clicked!!");
         try{
             Stage AddRefrigerator = new Stage();
             Parent rootAddRefrigerator = FXMLLoader.load(getClass().getResource("/View/AddRefrigerator.fxml"));
@@ -142,7 +139,7 @@ public class RefrigeratorController {
             AddRefrigerator.centerOnScreen();
             AddRefrigerator.show();
         }catch (Exception e){
-            System.out.println(e);
+            MainScreenController.alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um erro inesperado, por favor tente novamente!").showAndWait();
         }
     }
 
@@ -151,7 +148,6 @@ public class RefrigeratorController {
      * @param mouseEvent MouseEvent
      */
     public void getSelectedRefrigerator(javafx.scene.input.MouseEvent mouseEvent) {
-        System.out.println("in getSelectedRefrigerator");
         index = arcasTable.getSelectionModel().getSelectedIndex();
         if(index <= -1){
             return;
@@ -159,7 +155,6 @@ public class RefrigeratorController {
         EditArcaBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("edit refrigerator btn clicked!");
                 try{
                     EditRefrigeratorController.setThisRefrigerator(listArcas.get(index));
                     Stage EditStage = new Stage();
@@ -171,7 +166,7 @@ public class RefrigeratorController {
                     EditStage.centerOnScreen();
                     EditStage.show();
                 }catch (Exception e){
-                    System.out.println(e);
+                    MainScreenController.alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um erro inesperado, por favor tente novamente!").showAndWait();
                 }
 
             }
@@ -181,8 +176,6 @@ public class RefrigeratorController {
             public void handle(ActionEvent event) {
                 try{
                     ArcaFrigorifica selected = listArcas.get(index);
-
-                    System.out.println(selected.getNumero());
                     Optional<ButtonType> result = MainScreenController.alerts(Alert.AlertType.CONFIRMATION, "Remover "+selected.getDesignacao(), "Tem a certeza que" +
                             " quer remover a Arca Frigorifica "+selected.getDesignacao()+" com o número interno "+selected.getNumero()
                             +"?").showAndWait();
@@ -199,7 +192,7 @@ public class RefrigeratorController {
                     }
 
                 }catch (Exception e){
-                    System.out.println(e);
+                    MainScreenController.alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um erro inesperado, por favor tente novamente!").showAndWait();
                 }
 
             }

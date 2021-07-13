@@ -47,7 +47,6 @@ public class EditRefrigeratorController {
      * Definição de propriedade dos elementso visuais e preenchimento dos mesmo com dados do registo
      */
     protected void initialize(){
-        System.out.println("edit vrefriogerator initialize");
        designTF.setText(thisRefrigerator.getDesignacao());
        numberTF.setText(String.valueOf(thisRefrigerator.getNumero()));
        numberTF.setEditable(false);

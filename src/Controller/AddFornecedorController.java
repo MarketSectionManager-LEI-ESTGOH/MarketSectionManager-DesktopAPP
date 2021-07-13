@@ -32,7 +32,6 @@ public class AddFornecedorController {
      * Adiciona novo Fornecedor.
      */
     public void addForn(){
-        System.out.println("add Forn btn clicked!!");
         ConnectDB.loadProperties();
         if(NameFornTF.getText()!= null){
             if(User.checkEmail(emailFornTF.getText())){

@@ -53,7 +53,6 @@ public class EditUserController{
      * @param aFlag Boolean - True se for o perfil do utilizador, False se for o perfil de outro utilizador
      */
     protected static void setSelfProfile(boolean aFlag){
-        System.out.println("setSelfProfile Flag = " + aFlag  );
         selfProfile = aFlag;
     }
 
@@ -96,7 +95,6 @@ public class EditUserController{
      * @param actionEvent
      */
     public void handleUpdateButtonAction(javafx.event.ActionEvent actionEvent) {
-        System.out.println("self = " + selfProfile);
         String newName = nameTextField.getText();
         String newEmail = emailTextField.getText();
         int newType;
@@ -125,7 +123,6 @@ public class EditUserController{
                             if(selfProfile){
                                 Main.u.setUsername(nameTextField.getText());
                                 Main.u.setEmail(emailTextField.getText());
-                                System.out.println("is self profile");
                                 MainScreenController.alerts(Alert.AlertType.INFORMATION, "Aplicação das Modificações",
                                         "As modificações que realizou no seu perfil apenas serão aplicadas da próxima vez que iniciar sessão!").showAndWait();
                             }else{
@@ -165,7 +162,6 @@ public class EditUserController{
                     if(selfProfile){
                         Main.u.setUsername(nameTextField.getText());
                         Main.u.setEmail(emailTextField.getText());
-                        System.out.println("is self profile");
                         MainScreenController.alerts(Alert.AlertType.INFORMATION, "Aplicação das Modificações",
                                 "As modificações que realizou no seu perfil foram guardadas com sucesso! " +
                                         "Estas modificações apenas serão aplicadas da próxima vez que iniciar sessão!").showAndWait();

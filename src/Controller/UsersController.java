@@ -76,7 +76,7 @@ public class UsersController {
                     EditStage.centerOnScreen();
                     EditStage.show();
                 }catch (Exception e){
-                    System.out.println(e);
+                    MainScreenController.alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um erro inesperado, por favor tente novamente!").showAndWait();
                 }
 
             }
@@ -90,7 +90,6 @@ public class UsersController {
                         MainScreenController.alerts(Alert.AlertType.ERROR, "Falha ao remover", "Não pode remover a conta que está" +
                                 " a utilizar.").showAndWait();
                     }else{
-                        System.out.println(selected.getUserID());
                         Optional<ButtonType> result = MainScreenController.alerts(Alert.AlertType.CONFIRMATION, "Remover "+selected.getUsername(), "Tem a certeza que" +
                                 " quer remover o utilizador "+selected.getUsername()+" com o número interno "+selected.getUserID()
                                 +"?").showAndWait();
@@ -108,7 +107,7 @@ public class UsersController {
                         }
                     }
                 }catch (Exception e){
-                    System.out.println(e);
+                    MainScreenController.alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um erro inesperado, por favor tente novamente!").showAndWait();
                 }
 
             }
@@ -119,15 +118,14 @@ public class UsersController {
      * Obtem a informação e gera a tabela
      */
     public void usersTable(){
-        System.out.println("usersTable Edit btn clicked!!");
         try {
-            System.out.println("-------------------------- no try ---------------------------");
             tipo_tb_users.setCellValueFactory(new PropertyValueFactory<Model.User, String>("userTypeConv"));
             nome_tb_users.setCellValueFactory(new PropertyValueFactory<Model.User, String>("username"));
             email_tb_users.setCellValueFactory(new PropertyValueFactory<Model.User, String>("email"));
             numint_tb_users.setCellValueFactory(new PropertyValueFactory<Model.User, Integer>("userID"));
         }catch(Exception w){
-            System.out.println("------------------------ exception ----------------------"); w.printStackTrace();System.out.println("------------------------ exception ----------------------");}
+            MainScreenController.alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um erro inesperado, por favor tente novamente!").showAndWait();
+        }
         listUsers = ConnectDB.getAllUsers();
         FilteredList<User> filteredData = new FilteredList<>(listUsers, b -> true);
         searchTextField.textProperty().addListener((observable, oldValue, newValue) ->{
@@ -162,7 +160,6 @@ public class UsersController {
      * Mostra a pane de registo de novos utilizadores
      */
     public void register(){
-        System.out.println("register btn clicked!!");
         try{
             Stage AddStage = new Stage();
             Parent rootAddStage = FXMLLoader.load(getClass().getResource("/View/AddUser.fxml"));
@@ -173,7 +170,7 @@ public class UsersController {
             AddStage.centerOnScreen();
             AddStage.show();
         }catch (Exception e){
-            System.out.println(e);
+            MainScreenController.alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um erro inesperado, por favor tente novamente!").showAndWait();
         }
     }
 

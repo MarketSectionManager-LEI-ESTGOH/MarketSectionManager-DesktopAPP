@@ -67,7 +67,6 @@ public class EditAreaController {
      * de componentes ainda disponíveis para essa área
      */
     protected void initialize(){
-        System.out.println("edit controlled area initialize");
         editCANumberTF.setEditable(false);
         editCANumberTF.setDisable(true);
         editCANumberTF.setText(String.valueOf(thisArea.getNumero()));

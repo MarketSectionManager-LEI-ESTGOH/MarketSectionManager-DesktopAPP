@@ -19,7 +19,6 @@ public class AddUserController {
      * Adicionar Utilizador
      */
     public void addUser(){
-        System.out.println("add user btn clicked!!");
         ConnectDB.loadProperties();
         if(userTypeCombo.getSelectionModel().getSelectedIndex() != -1){
             if(userPassPF.getText().equals(userPassConfPF.getText())){

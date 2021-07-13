@@ -54,7 +54,7 @@ public class ControlledAreaController {
      * Definição e geração da tabela
      */
     public void areasControladasTable() {
-        System.out.println("areas controladas btn clicked!!");
+
 
         numeroAreaContCol.setCellValueFactory(new PropertyValueFactory<Area, Integer>("numero"));
         desginacaoAreaContCol.setCellValueFactory(new PropertyValueFactory<Area, String>("designacao"));
@@ -100,7 +100,6 @@ public class ControlledAreaController {
                 @Override
                 public void handle(MouseEvent event) {
                     if(event.getClickCount() == 2){
-                        System.out.println("see details of section (double click on row)");
                         int dbID = getControlledAreaDatabaseID(areasContTable.getSelectionModel().getSelectedItem().getNumero());
                         String components = getControlledAreaComponents(dbID);
                         if(components.equalsIgnoreCase("Sem Componentes")){
@@ -117,10 +116,7 @@ public class ControlledAreaController {
                 @Override
                 public void handle(ActionEvent event) {
                     try {
-                        System.out.println("edit clicked!");
                         EditAreaController.setThisArea(listAreasCont.get(index));
-                        Area a = listAreasCont.get(index);
-                        System.out.println(a);
                         Stage EditStage = new Stage();
                         Parent root = FXMLLoader.load(getClass().getResource("/View/EditControlledArea.fxml"));
                         EditStage.setScene(new Scene(root));
@@ -130,7 +126,7 @@ public class ControlledAreaController {
                         EditStage.centerOnScreen();
                         EditStage.show();
                     } catch (Exception e) {
-                        System.out.println(e);
+                        MainScreenController.alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um Erro inesperado, por favor tente novamente!").showAndWait();
                     }
 
                 }
@@ -158,7 +154,7 @@ public class ControlledAreaController {
 
                         }
                     } catch (Exception e) {
-                        System.out.println(e);
+                        MainScreenController.alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um Erro inesperado, por favor tente novamente!").showAndWait();
                     }
 
                 }
@@ -172,7 +168,6 @@ public class ControlledAreaController {
      * Mostra a Pane de Inserção de áreas Controladas
      */
     public void showAddControlledArea() {
-        System.out.println("add controlled area btn clicked!!");
         try {
             Stage AddControlledArea = new Stage();
             Parent rootAddControlledArea = FXMLLoader.load(getClass().getResource("/View/AddControlledArea.fxml"));
@@ -183,7 +178,7 @@ public class ControlledAreaController {
             AddControlledArea.centerOnScreen();
             AddControlledArea.show();
         } catch (Exception e) {
-            System.out.println(e);
+            MainScreenController.alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um Erro inesperado, por favor tente novamente!").showAndWait();
         }
     }
 

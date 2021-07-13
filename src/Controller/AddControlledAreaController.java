@@ -40,7 +40,6 @@ public class AddControlledAreaController {
      * Permite Introduzir uma Área Contrtolada
      */
     public void insertControlledArea() {
-        System.out.println(" -- @ insertControllerArea() --");
         try {
             int areaNumber = -1;
             if (!addCANumberTF.getText().isEmpty()) {
@@ -105,11 +104,9 @@ public class AddControlledAreaController {
                         MainScreenController.alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um erro inseperado, por favor tente novamente!").showAndWait();
                     }
                 } else {
-                    System.out.println("design empty");
                     MainScreenController.alerts(Alert.AlertType.ERROR, "ERRO", "A Designação da Área Controlada é de Preenchimento Obrigatório!").showAndWait();
                 }
             } else {
-                System.out.println("number empty");
                 MainScreenController.alerts(Alert.AlertType.ERROR, "ERRO", "O número da Área Controlada é de Preenchimento Obrigatório!").showAndWait();
             }
         } catch (Exception e) {

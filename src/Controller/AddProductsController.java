@@ -90,7 +90,6 @@ public class AddProductsController {
                             while(whileControl){
                                 generatedNumInt = new Random().nextInt(9999999);
                                 whileControl = Product.checkNumInt(generatedNumInt);
-                                System.out.println("no while\n geberated: " + generatedNumInt);
                             }
                             try{
                                 if(registerProduct(generatedNumInt,productNameTF.getText(),freshState,productPriceNS.getValue(), productEANTF.getText(),productBrandTF.getText())){

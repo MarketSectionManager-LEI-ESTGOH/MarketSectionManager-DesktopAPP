@@ -74,11 +74,8 @@ public class ExpirationDatesController {
         RemoveValBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println(" __ BTN REMOVER VALIDADE CLICKED! __");
                 try{
                     ExprirationDate selected = expirationDatesList.get(index);
-
-                    System.out.println(selected.getNumInterno() + " - " + selected.getNome());
                     Optional<ButtonType> result = MainScreenController.alerts(Alert.AlertType.CONFIRMATION, "Remover "+selected.getNumInterno(),
                             "Tem a certeza que quer remover o Registo  ("  +selected.getNumInterno()+")"
                                     +selected.getEan() + " - " + selected.getNome()+ "?").showAndWait();
@@ -96,7 +93,7 @@ public class ExpirationDatesController {
                     }
 
                 }catch (Exception e){
-                    System.out.println(e);
+                    MainScreenController.alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um erro inesperado, por favor tente novamente!").showAndWait();
                 }
 
             }
@@ -104,7 +101,6 @@ public class ExpirationDatesController {
         offsetBTN.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println(" __ offset CLICKED! __");
                 try {
                     ExprirationDate selected = expirationDatesList.get(index);
                     TextInputDialog offsetInputBox = new TextInputDialog();
@@ -118,7 +114,6 @@ public class ExpirationDatesController {
                         int finalOffset = 20;
                     try {
                         finalOffset = Integer.parseInt(offsetInputBox.getEditor().getText());
-                        System.out.println("FinalOffset = " + finalOffset);
                     } catch (NumberFormatException nfe) {
                         nfe.printStackTrace();
                         MainScreenController.alerts(Alert.AlertType.ERROR, "Erro", "O Offset não pode ser um valor alfabético, por favor tente novamente!").showAndWait();
@@ -131,7 +126,6 @@ public class ExpirationDatesController {
                     }
                 }
                 }catch (Exception e){
-                    System.out.println(e);
                     MainScreenController.alerts(Alert.AlertType.ERROR,"Aconteu um Erro", "Acoteceu um erro ao atualizar o Offset, po favor tente novamente!").showAndWait();
                 }
 
@@ -140,10 +134,8 @@ public class ExpirationDatesController {
         markdownBTN.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println(" __ markdown CLICKED! __");
                 try{
                     ExprirationDate selected = expirationDatesList.get(index);
-                    System.out.println("Is markdowned: " + selected.getMardown());
                     if(selected.getMardown().equalsIgnoreCase("sim") || selected.getMardown().equalsIgnoreCase("sem informação")){
                         Optional<ButtonType> result = MainScreenController.alerts(Alert.AlertType.CONFIRMATION, "Mardown "+selected.getNumInterno(),
                                 "Tem a certeza que quer Remover o Markdown do Produto  ("  +selected.getNumInterno()+")"
@@ -176,7 +168,6 @@ public class ExpirationDatesController {
                         MainScreenController.alerts(Alert.AlertType.ERROR,"Aconteu um Erro", "Acoteceu um erro, por favor tente novamente!").showAndWait();
                     }
                 }catch (Exception e){
-                    System.out.println(e);
                     MainScreenController.alerts(Alert.AlertType.ERROR,"Aconteu um Erro", "Acoteceu um erro ao atualizar o Markdown, por favor tente novamente!").showAndWait();
                 }
 
@@ -185,7 +176,6 @@ public class ExpirationDatesController {
         EditValBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println(" __ edit val CLICKED! __");
                 try{
                     EditExpirationDateController.setThisED(expirationDatesList.get(index));
                     Stage EditStage = new Stage();
@@ -197,7 +187,7 @@ public class ExpirationDatesController {
                     EditStage.centerOnScreen();
                     EditStage.show();
                 }catch (Exception e){
-                    System.out.println(e);
+                    MainScreenController.alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um erro inesperado, por favor tente novamente!").showAndWait();
                 }
             }
         });
@@ -218,7 +208,7 @@ public class ExpirationDatesController {
             EditStage.centerOnScreen();
             EditStage.show();
         }catch (Exception e){
-            System.out.println(e);
+            MainScreenController.alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um erro inesperado, por favor tente novamente!").showAndWait();
         }
     }
 
@@ -226,7 +216,6 @@ public class ExpirationDatesController {
      * Obter dados e gerar a tabela das validades
      */
     public void expirationDatesTable(){
-        System.out.println("products Edit btn clicked!!");
         try{
             nIntValCol.setCellValueFactory(new PropertyValueFactory<ExprirationDate, String>("numInterno"));
             eanValCol.setCellValueFactory(new PropertyValueFactory<ExprirationDate, String>("ean"));
@@ -235,7 +224,7 @@ public class ExpirationDatesController {
             markValCol.setCellValueFactory(new PropertyValueFactory<ExprirationDate, String>("mardown"));
             offValCol.setCellValueFactory(new PropertyValueFactory<ExprirationDate, Integer>("offset"));
         }catch (Exception w){
-            System.out.println("------------------------ exception ----------------------"); w.printStackTrace();System.out.println("------------------------ exception ----------------------");
+            MainScreenController.alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um erro inesperado, por favor tente novamente!").showAndWait();
         }
         expirationDatesList = ConnectDB.getAllExpirationDates();
         FilteredList<ExprirationDate> filteredData = new FilteredList<>(expirationDatesList, b -> true);

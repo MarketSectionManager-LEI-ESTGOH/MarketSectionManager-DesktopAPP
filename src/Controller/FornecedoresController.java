@@ -61,14 +61,11 @@ public class FornecedoresController {
      * Obtenção de dados para geração de tabela
      */
     public void fornecedorTable(){
-        System.out.println("fornecedores btn clicked!!");
-
         identFornCol.setCellValueFactory(new PropertyValueFactory<Fornecedor, String>("identificador"));
         nomeFornCol.setCellValueFactory(new PropertyValueFactory<Fornecedor, String>("nome"));
         contactoFornCol.setCellValueFactory(new PropertyValueFactory<Fornecedor, Integer>("contacto"));
         emailFornCol.setCellValueFactory(new PropertyValueFactory<Fornecedor, String>("email"));
         moradaFornCol.setCellValueFactory(new PropertyValueFactory<Fornecedor, String>("morada"));
-
         listFornecedores = ConnectDB.getAllFornecedores();
         FilteredList<Fornecedor> filteredData = new FilteredList<>(listFornecedores, b -> true);
         searchFornecedorTextField.textProperty().addListener((observable, oldValue, newValue) ->{
@@ -126,7 +123,7 @@ public class FornecedoresController {
                     EditStage.centerOnScreen();
                     EditStage.show();
                 }catch (Exception e){
-                    System.out.println(e);
+                    MainScreenController.alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um erro inesperado, por favor tente novamente!").showAndWait();
                 }
 
             }
@@ -154,7 +151,7 @@ public class FornecedoresController {
                     }
 
                 }catch (Exception e){
-                    System.out.println(e);
+                    MainScreenController.alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um erro inesperado, por favor tente novamente!").showAndWait();
                 }
 
             }
@@ -165,7 +162,6 @@ public class FornecedoresController {
      * Mostra a Pane de Inserção de Fornecedores
      */
     public void registerForn(){
-        System.out.println("register Fornecedor btn clicked!!");
         try{
             Stage AddStage = new Stage();
             Parent rootAddStage = FXMLLoader.load(getClass().getResource("/View/AddFornecedor.fxml"));
@@ -176,7 +172,7 @@ public class FornecedoresController {
             AddStage.centerOnScreen();
             AddStage.show();
         }catch (Exception e){
-            System.out.println(e);
+            MainScreenController.alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um erro inesperado, por favor tente novamente!").showAndWait();
         }
     }
 

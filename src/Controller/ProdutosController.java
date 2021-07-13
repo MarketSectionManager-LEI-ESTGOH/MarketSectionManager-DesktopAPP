@@ -61,7 +61,6 @@ public class ProdutosController {
      * Mostra a Pane de inserção de novos produtos
      */
     public void showAddProduct(){
-        System.out.println("add prod btn clicked!!");
         try{
             Stage AddProduct = new Stage();
             Parent rootAddProdut = FXMLLoader.load(getClass().getResource("/View/AddProducts.fxml"));
@@ -72,7 +71,7 @@ public class ProdutosController {
             AddProduct.centerOnScreen();
             AddProduct.show();
         }catch (Exception e){
-            System.out.println(e);
+            MainScreenController.alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um erro inesperado, por favor tente novamente!").showAndWait();
         }
     }
 
@@ -100,7 +99,7 @@ public class ProdutosController {
                     EditStage.centerOnScreen();
                     EditStage.show();
                 }catch (Exception e){
-                    System.out.println(e);
+                    MainScreenController.alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um erro inesperado, por favor tente novamente!").showAndWait();
                 }
 
             }
@@ -110,9 +109,6 @@ public class ProdutosController {
             public void handle(ActionEvent event) {
                 try{
                     Product selected = listProducts.get(index);
-
-
-                        System.out.println(selected.getNum_int() + " - " + selected.getName());
                         Optional<ButtonType> result = MainScreenController.alerts(Alert.AlertType.CONFIRMATION, "Remover "+selected.getNum_int(),
                                                                                      "Tem a certeza que quer remover o Produto  ("  +selected.getNum_int()+")"
                                                                                     +selected.getEan() + " - " + selected.getName()+ "?").showAndWait();
@@ -130,7 +126,7 @@ public class ProdutosController {
                         }
 
                 }catch (Exception e){
-                    System.out.println(e);
+                    MainScreenController.alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um erro inesperado, por favor tente novamente!").showAndWait();
                 }
 
             }
@@ -141,7 +137,6 @@ public class ProdutosController {
      * Obtem a informação e gera a tabela
      */
     public void productsTable(){
-        System.out.println("products Edit btn clicked!!");
         try{
             numIntProfuctsCol.setCellValueFactory(new PropertyValueFactory<Model.Product, Integer>("num_int"));
             productNameCol.setCellValueFactory(new PropertyValueFactory<Model.Product, String>("name"));
@@ -150,7 +145,7 @@ public class ProdutosController {
             eanProductCol.setCellValueFactory(new PropertyValueFactory<Model.Product, String>("ean"));
             brandProductCol.setCellValueFactory(new PropertyValueFactory<Model.Product, String>("brand"));
         }catch (Exception w){
-            System.out.println("------------------------ exception ----------------------"); w.printStackTrace();System.out.println("------------------------ exception ----------------------");
+            MainScreenController.alerts(Alert.AlertType.ERROR, "ERRO", "Aconteceu um erro inesperado, por favor tente novamente!").showAndWait();
         }
 
         listProducts = ConnectDB.getAllProducts();

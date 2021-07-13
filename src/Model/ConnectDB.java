@@ -235,6 +235,7 @@ public class ConnectDB {
     public static boolean removeFromDB(PreparedStatement aStatement){
 
         try {
+
             Class.forName("com.mysql.jdbc.Driver");
 
             if(conn == null){

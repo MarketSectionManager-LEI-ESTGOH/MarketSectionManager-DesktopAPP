@@ -43,7 +43,6 @@ public class EditProductController {
      * Definir propriedades de elementos gráficos
      */
     protected void initialize(){
-        System.out.println("edit product initialize");
         productNumIntTF.setEditable(false);
         productNumIntTF.setText(String.valueOf(String.valueOf(thisProduct.getNum_int())));
         productNameTF.setText(thisProduct.getName());
@@ -124,7 +123,6 @@ public class EditProductController {
                             while(whileControl){
                                 generatedNumInt = new Random().nextInt(9999999);
                                 whileControl = Product.checkNumInt(generatedNumInt);
-                                System.out.println("no while\n geberated: " + generatedNumInt);
                             }
                             try {
                                 String stmt = "UPDATE produto SET nome = ?, fresco = ?, preco = ?, ean = ?, marca = ? WHERE n_interno = ?";

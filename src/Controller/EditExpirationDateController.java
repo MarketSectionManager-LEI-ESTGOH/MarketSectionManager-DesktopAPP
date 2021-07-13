@@ -38,7 +38,6 @@ public class EditExpirationDateController {
      * Definir propriedades de elementos visuais
      */
     protected void initialize(){
-        System.out.println("edit expiration date initialize");
         nIntEdValTF.setText(thisED.getNumInterno());
         nIntEdValTF.setEditable(false);
         eanEdValTF.setText(thisED.getEan());
@@ -57,7 +56,6 @@ public class EditExpirationDateController {
      * guardar alterações feitas a um registo de validade
      */
     public void saveChanges(){
-        System.out.println(" save changes btn clicked");
         LocalDate result = newValEdValDP.getValue();
         if(result != null){
             if(ExprirationDate.updateExpDateInDB(thisED, String.valueOf(result))){

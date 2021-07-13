@@ -26,7 +26,6 @@ public class AddRefrigeratorController {
      * Adicionar Área Refrigerada
      */
     public void insertRefrigerator(){
-        System.out.println("insert refrigerator in db button clicked!");
         if((!refrigeratorDesign.getText().toString().isEmpty()) && (!refrigeratorNumber.getText().toString().isEmpty())
                 && (!refrigeratorManufacturer.getText().toString().isEmpty())
                 && (!refrigeratorMaxTemp.getText().toString().isEmpty())
