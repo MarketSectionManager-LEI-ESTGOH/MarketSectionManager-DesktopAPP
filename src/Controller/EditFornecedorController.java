@@ -36,11 +36,18 @@ public class EditFornecedorController {
     private static Fornecedor thisForn = null;
     private String currentEmail;
 
+    /**
+     * Definir o registo sobre o qual se está a "trabalhar"
+     * @param aThisForn Objeto do tipo Fornecedor
+     */
     protected static void setThisForn(Fornecedor aThisForn) {
         thisForn = aThisForn;
     }
 
     @FXML
+    /**
+     * Definir propriedades de elementos visuais
+     */
     protected void initialize(){
             IDshowTF.setText(thisForn.getIdentificador());
             NameFornTF.setText(thisForn.getNome());
@@ -50,11 +57,19 @@ public class EditFornecedorController {
             currentEmail = thisForn.getEmail();
     }
 
+    /**
+     * Fechar janela de edição de fornecedor
+     * @param actionEvent
+     */
     public void handleCloseButtonAction(javafx.event.ActionEvent actionEvent) {
         Stage stage = (Stage) CancelBtn.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * guardar alterações no fornecedor
+     * @param actionEvent ActionEvent
+     */
     public void handleUpdateButtonAction(javafx.event.ActionEvent actionEvent) {
         String newName = NameFornTF.getText();
         String newEmail = emailFornTF.getText();

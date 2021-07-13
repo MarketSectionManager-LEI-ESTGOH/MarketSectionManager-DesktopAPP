@@ -3,7 +3,6 @@ package Controller;
 import Model.Area;
 import Model.Componente;
 import Model.ConnectDB;
-import Model.Limpeza;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -11,7 +10,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -54,12 +52,20 @@ public class EditAreaController {
     private ObservableList<Componente> listCompAtuais;
     private ObservableList<Componente> listCompDisp;
 
+    /**
+     * Definir o registo sobre o qual se está a "trabalhar"
+     * @param aThisArea Objeto do tipo Area
+     */
     protected static void setThisArea(Area aThisArea) {
         thisArea = aThisArea;
     }
     private int dbID = -1;
 
     @FXML
+    /**
+     * Definir propriedades de elementos gráficos e obter os componentes atuais de uma área controlada e obter a lista
+     * de componentes ainda disponíveis para essa área
+     */
     protected void initialize(){
         System.out.println("edit controlled area initialize");
         editCANumberTF.setEditable(false);
@@ -72,7 +78,10 @@ public class EditAreaController {
     }
 
 
-
+    /**
+     * Adicionar guardar alterações na Área Controlada
+     * @param actionEvent
+     */
     public void handleUpdateButtonAction(javafx.event.ActionEvent actionEvent) {
         String newDesign = "";
         newDesign = editCADesignTF.getText();
@@ -101,6 +110,11 @@ public class EditAreaController {
         }
     }
 
+    /**
+     * Obter o Id de base de dados de uma área Controlada
+     * @param aNumInterno Número Interno da área controlada
+     * @return Int
+     */
     private int getControlledAreaDatabaseID(int aNumInterno) {
         try {
             String stmt = "SELECT id FROM area WHERE numero = ?";
@@ -114,6 +128,9 @@ public class EditAreaController {
         }
     }
 
+    /**
+     * Obter os componentes atuais de uma área atual e preencher a respetivatabela
+     */
     public void componentesAtuaisTable(){
         idCompAtuaisCol.setCellValueFactory(new PropertyValueFactory<Model.Componente, Integer>("id"));
         compAtuaisCol.setCellValueFactory(new PropertyValueFactory<Model.Componente, String>("nome"));
@@ -124,6 +141,9 @@ public class EditAreaController {
         compAtuaisTable.setItems(listCompAtuais);
     }
 
+    /**
+     * Obter os componentes disponiveis para uma área e preencher a respetiva tabela
+     */
     public void componentesDispTable(){
         compID.setCellValueFactory(new PropertyValueFactory<Model.Componente, Integer>("id"));
         compColumn.setCellValueFactory(new PropertyValueFactory<Model.Componente, String>("nome"));
@@ -136,7 +156,7 @@ public class EditAreaController {
 
     /**
      * Remove as rows selecionadas na tabela de componentes
-     * @param mouseEvent
+     * @param mouseEvent MouseEvent
      */
     public void removeFromArea(MouseEvent mouseEvent) {
         boolean success = false, error = false;
@@ -182,7 +202,7 @@ public class EditAreaController {
 
     /**
      * Adiciona as rows selecionadas na tabela de componentes
-     * @param mouseEvent
+     * @param mouseEvent MouseEvent
      */
     public void addToArea(MouseEvent mouseEvent) {
         boolean success = false, error = false;

@@ -1,6 +1,5 @@
 package Controller;
 
-import Model.Area;
 import Model.ExprirationDate;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -26,11 +25,18 @@ public class EditExpirationDateController {
     private DatePicker newValEdValDP;
     private static ExprirationDate thisED = null;
 
+    /**
+     * Definir regist sobre o qual se está "a trabalhar"
+     * @param aThisED Objheto do Tipo Expirationdate
+     */
     protected static void setThisED(ExprirationDate aThisED) {
         thisED = aThisED;
     }
 
     @FXML
+    /**
+     * Definir propriedades de elementos visuais
+     */
     protected void initialize(){
         System.out.println("edit expiration date initialize");
         nIntEdValTF.setText(thisED.getNumInterno());
@@ -47,6 +53,9 @@ public class EditExpirationDateController {
         antValEdValTF.setEditable(false);
     }
 
+    /**
+     * guardar alterações feitas a um registo de validade
+     */
     public void saveChanges(){
         System.out.println(" save changes btn clicked");
         LocalDate result = newValEdValDP.getValue();
