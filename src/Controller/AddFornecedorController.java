@@ -4,11 +4,9 @@ import Model.ConnectDB;
 import Model.Fornecedor;
 import Model.User;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
-
-import java.sql.PreparedStatement;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
 public class AddFornecedorController {
 
@@ -56,6 +54,9 @@ public class AddFornecedorController {
         }
     }
 
+    /**
+     * Limpa os campos de inserção de fornecedor após o término da mesma
+     */
     private void clearFornRegistrationFileds(){
         idFornTF.setText("");
         NameFornTF.setText("");

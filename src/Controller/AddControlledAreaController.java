@@ -2,15 +2,12 @@ package Controller;
 
 import Model.Componente;
 import Model.ConnectDB;
-import Model.Limpeza;
-import Model.Rastreabilidade;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -32,10 +29,16 @@ public class AddControlledAreaController {
     private ObservableList<Componente> listComponentes;
 
     @FXML
+    /**
+     * Gera a tabela
+     */
     protected void initialize() {
         componentesTable();
     }
 
+    /**
+     * Permite Introduzir uma Área Contrtolada
+     */
     public void insertControlledArea() {
         System.out.println(" -- @ insertControllerArea() --");
         try {
@@ -83,6 +86,7 @@ public class AddControlledAreaController {
                                 if (success) {
                                     MainScreenController.alerts(Alert.AlertType.INFORMATION, "Área Intorduzida com Sucesso",
                                             "A Área " + addCADesignTF.getText() + " com o Número Interno " + areaNumber + " e os\ncomponentes " + componentDenomination + " foi inserida com sucesso!").showAndWait();
+                                    cleanControlledAreaFields();
                                     Stage currentStage = (Stage) addCABTN.getScene().getWindow();
                                     currentStage.close();
                                 } else if (error) {
@@ -114,11 +118,20 @@ public class AddControlledAreaController {
         }
     }
 
+    /**
+     * Limpar os Campos de Introdução depois da inserção de uma Área Controlada
+     */
     private void cleanControlledAreaFields() {
         addCANumberTF.setText("");
         addCADesignTF.setText("");
     }
 
+    /**
+     * Inserir Área Controlada na Base de Dados
+     * @param aNumber Número Interno da Área Controlada
+     * @param aDesign Designação da Área Controlada
+     * @return True/False
+     */
     private boolean registerControlledArea(int aNumber, String aDesign) {
         try {
             String stmt = "INSERT INTO area (numero, designacao) VALUES (?, ?)";
@@ -132,6 +145,11 @@ public class AddControlledAreaController {
         return false;
     }
 
+    /**
+     * Obter o ID de Base de Dados da Área Controlada cuja Número Interno é recebido por Parâmetro
+     * @param aNumInterno Número Interno da Área Controlada
+     * @return Int
+     */
     private int getControlledAreaDatabaseID(int aNumInterno) {
         try {
             String stmt = "SELECT id FROM area WHERE numero = ?";

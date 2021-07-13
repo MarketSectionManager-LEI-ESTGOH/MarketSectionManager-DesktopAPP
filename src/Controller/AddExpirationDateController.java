@@ -28,11 +28,17 @@ public class AddExpirationDateController {
     private int usedCode = -1, pID = -1;
 
     @FXML
+    /**
+     * Define Propriedades visuais de alguns componentes
+     */
     protected void initialize(){
         saveBtn.setDisable(true);
         hidenLBLAddVal.setVisible(false);
     }
 
+    /**
+     * Limpa os campos de Inserção após a mesma
+     */
     private void clearFields(){
        hidenLBLAddVal.setText("");
        hidenLBLAddVal.setVisible(false);
@@ -42,6 +48,9 @@ public class AddExpirationDateController {
       pID = -1;
     }
 
+    /**
+     * Verifica se o Produto ao qual está a ser registada uma validade existe na base de dados
+     */
     public void checkIfProductExists(){
         int inputedCode = -1;
         String prodName;
@@ -94,8 +103,14 @@ public class AddExpirationDateController {
         }
     }
 
+    /**
+     * Prepared statement para o preenchimento de detalhes do registo de validade
+     * @param aCmd Coamndo que se quer receber da base de Dados
+     * @param aKnownCmd Comando que servirá de chave de obtenção
+     * @param aCode Igualizador ao comando de obtenção
+     * @return PreparedStatement
+     */
     private PreparedStatement ps2(String aCmd, String aKnownCmd, int aCode){
-
         String stmt = "SELECT " + aCmd + " FROM produto WHERE " + aKnownCmd + " = ?";
         try {
             PreparedStatement prepSt = ConnectDB.getConn().prepareStatement(stmt);
@@ -107,6 +122,11 @@ public class AddExpirationDateController {
         return null;
     }
 
+    /**
+     * Preparedstatement para a verificação de existência do Produto
+     * @param aCode Código do Produto
+     * @return Preparedstatement
+     */
     private PreparedStatement ps(int aCode){
         String stmt = "SELECT nome FROM produto WHERE n_interno = ? OR ean = ?";
         try {
@@ -120,6 +140,9 @@ public class AddExpirationDateController {
         return null;
     }
 
+    /**
+     * Guardar Registo de Validade
+     */
     public void saveExpirationDate(){
         fillExpirationDetails();
         System.out.println(auxED);
@@ -132,6 +155,10 @@ public class AddExpirationDateController {
         }
     }
 
+    /**
+     * Inserir Registo de Validade na Base de Dados
+     * @return
+     */
     private boolean registerExpirationDate(){
         try {
             String stmt = "INSERT INTO validade (ean, validade, n_interno, nome, offset, markdown, produto_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -151,6 +178,9 @@ public class AddExpirationDateController {
         return false;
     }
 
+    /**
+     * Preencher detalhes de um registo de validade
+     */
     private void fillExpirationDetails(){
         try {
             LocalDate result = valAddValDP.getValue();
