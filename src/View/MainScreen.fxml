@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainScreenController">
+   <children>
+      <Pane prefHeight="621.0" prefWidth="200.0" styleClass="sideBar" stylesheets="@../CSS/mainScreenStyles.css">
+         <children>
+            <Button layoutX="37.0" layoutY="544.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="126.0" styleClass="sideBar" stylesheets="@../CSS/mainScreenStyles.css">
+               <tooltip>
+                  <Tooltip fx:id="nameTT" text="-- full name --" />
+               </tooltip>
+            </Button>
+            <Button fx:id="editProfileBtn" layoutX="31.0" layoutY="565.0" mnemonicParsing="false" onAction="#editProfile" prefHeight="30.0" prefWidth="81.0" styleClass="editProfileBTN" stylesheets="@../CSS/mainScreenStyles.css" text="Editar Perfil" textFill="#6bbfa3">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <ImageView fitHeight="101.0" fitWidth="200.0" layoutX="11.0" onMouseClicked="#collapse" pickOnBounds="true" preserveRatio="true" styleClass="homeButton" x="3.335" y="0.001">
+               <image>
+                  <Image url="@../Images/MSM_main_logo.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="suppliersButton" layoutX="15.0" layoutY="182.0" mnemonicParsing="false" onAction="#showFornecedoresTable" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" stylesheets="@../CSS/mainScreenStyles.css" text="Fornecedores">
+               <tooltip>
+                  <Tooltip text="Adicionar, Editar e Remover Fornecedores" />
+               </tooltip></Button>
+            <Button fx:id="controlledAreasButton" layoutX="15.0" layoutY="146.0" mnemonicParsing="false" onAction="#showControlledAreasTable" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" stylesheets="@../CSS/mainScreenStyles.css" text="Áreas Controladas">
+               <tooltip>
+                  <Tooltip text="Adicionar, Editar e Remover Áreas Controladas" />
+               </tooltip></Button>
+            <Button fx:id="refrigeratorsButton" layoutX="15.0" layoutY="109.0" mnemonicParsing="false" onAction="#showRefrigeratorsTable" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" stylesheets="@../CSS/mainScreenStyles.css" text="Arcas Frigorificas">
+               <tooltip>
+                  <Tooltip text="Adicionar, Editar e Remover Arcas Frigoríficas" />
+               </tooltip></Button>
+            <Button fx:id="editProducts" layoutX="15.0" layoutY="258.0" mnemonicParsing="false" onAction="#showProductsTable" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" text="Produtos">
+               <tooltip>
+                  <Tooltip text="Adicionar, Editar e Remover Produtos" />
+               </tooltip></Button>
+            <Button fx:id="editBTN" layoutX="15.0" layoutY="220.0" mnemonicParsing="false" onAction="#showUsersTable" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" text="Utilizadores">
+               <tooltip>
+                  <Tooltip text="Adicionar, Editar e Remover Utilizadores (Fucnionários e Administradores)" />
+               </tooltip></Button>
+            <Button fx:id="validate" layoutX="15.0" layoutY="295.0" mnemonicParsing="false" onAction="#showValidationsPane" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" text="Validações">
+               <tooltip>
+                  <Tooltip text="Validar Registos de Limpeza, Rastreabilidade ou Temperatura registados por Funcionários" />
+               </tooltip></Button>
+            <Button fx:id="allRastData" layoutX="15.0" layoutY="333.0" mnemonicParsing="false" onAction="#showAllRastData" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" text="Visualizar Dados">
+               <tooltip>
+                  <Tooltip text="Visualizar todos os dados de Rastreabilidades, Limpezas e/ou Temperaturas" />
+               </tooltip></Button>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="6.0" layoutY="556.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/userIcon.png" />
+               </image>
+            </ImageView>
+            <Line endX="100.0" layoutX="101.0" layoutY="540.0" startX="-100.0" stroke="#39ffdb" />
+            <Line endX="100.0" layoutX="101.0" layoutY="98.0" startX="-100.0" stroke="#39ffdb" />
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="166.0" layoutY="556.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/logoutIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="155.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/refIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="155.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/areaIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="155.0" layoutY="183.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/supplierIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="155.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/userIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="155.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/productIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="155.0" layoutY="296.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/validateIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="155.0" layoutY="334.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/allValidateIcon.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="usernameLBL" fill="WHITE" layoutX="42.0" layoutY="568.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-- user name --" />
+            <Button fx:id="allExpirationDates" layoutX="16.0" layoutY="371.0" mnemonicParsing="false" onAction="#showAllExpirationDates" prefHeight="32.0" prefWidth="126.0" styleClass="sideBarButton" text="Validades">
+               <tooltip>
+                  <Tooltip text="Adicionar, Editar e Remover Validades de Produtos, Ativar ou Desativar Markdowns e Editar Offset" />
+               </tooltip></Button>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="156.0" layoutY="370.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/experieDateIcon.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="receivedPane" layoutX="200.0" prefHeight="628.0" prefWidth="1059.0" visible="false">
+         <children>
+            <Text layoutX="342.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="pane to receive the load fxml " />
+         </children>
+      </Pane>
+      <Pane fx:id="graph1Pane" layoutX="200.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="314.0" prefWidth="500.0" visible="false" />
+      <Pane fx:id="graph2Pane" layoutX="700.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="314.0" prefWidth="517.0" visible="false" />
+      <Pane fx:id="graph3Pane" layoutX="200.0" layoutY="333.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="306.0" prefWidth="500.0" visible="false" />
+      <Pane fx:id="graph4Pane" layoutX="700.0" layoutY="333.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="306.0" prefWidth="517.0" visible="false" />
+   </children>
+</Pane>

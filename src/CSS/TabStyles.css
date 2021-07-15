@@ -1,0 +1,4 @@
+/*Define o Cabçalho das Tabs de algumas panes de apresentação de dados*/
+.tab-header-background {
+    -fx-background-color: #253437;
+}

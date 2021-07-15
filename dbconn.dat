@@ -1,0 +1,6 @@
+#Mon Mar 29 17:04:58 BST 2021
+autoReconnect=true
+user=\u0088\u008E\u0088
+password=hnhMKML
+url=jdbc\:mysql\://msm.hopto.org\:3306/msmDB
+useSSL=false

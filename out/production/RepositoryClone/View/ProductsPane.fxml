@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="productsPane" prefHeight="628.0" prefWidth="1059.0" style="-fx-background-color: #253437;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProdutosController">
+   <children>
+      <Label layoutX="460.0" layoutY="15.0" text="PRODUTOS" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <TableView fx:id="productTable" layoutX="11.0" layoutY="96.0" onMouseClicked="#getSelected" prefHeight="414.0" prefWidth="974.0">
+         <columns>
+            <TableColumn fx:id="numIntProfuctsCol" prefWidth="115.0" text="Número Interno" />
+            <TableColumn fx:id="productNameCol" prefWidth="266.0" text="Nome" />
+            <TableColumn fx:id="freshProductCol" prefWidth="98.0" text="Fresco" />
+            <TableColumn fx:id="priceProductCol" minWidth="0.0" prefWidth="89.0" text="Preço" />
+            <TableColumn fx:id="eanProductCol" maxWidth="500.0" prefWidth="173.0" text="EAN" />
+            <TableColumn fx:id="brandProductCol" prefWidth="232.0" text="Marca" />
+         </columns>
+      </TableView>
+      <Button fx:id="RemoveProductBtn" layoutX="921.0" layoutY="522.0" mnemonicParsing="false" styleClass="generalButton" stylesheets="@../CSS/ButtonStyles.css" text="Remover" textAlignment="CENTER" />
+      <Label layoutX="14.0" layoutY="64.0" text="Procurar" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="searchProductTextField" layoutX="72.0" layoutY="60.0" />
+      <Button fx:id="EditProductBtn" layoutX="867.0" layoutY="522.0" mnemonicParsing="false" styleClass="generalButton" stylesheets="@../CSS/ButtonStyles.css" text="Editar" textAlignment="CENTER" />
+      <Button fx:id="addProductBtn" layoutX="787.0" layoutY="522.0" mnemonicParsing="false" onAction="#showAddProduct" prefHeight="27.0" prefWidth="73.0" styleClass="generalButton" stylesheets="@../CSS/ButtonStyles.css" text="Adicionar" />
+      <Button layoutX="921.0" layoutY="60.0" mnemonicParsing="false" onMouseClicked="#productsTable" styleClass="generalButton" stylesheets="@../CSS/ButtonStyles.css" text="Atualizar" />
+      <Button fx:id="exportPDF" layoutX="14.0" layoutY="522.0" mnemonicParsing="false" onAction="#exportPDFAction" styleClass="generalButton" stylesheets="@../CSS/ButtonStyles.css" text="Exportar PDF" />
+   </children>
+</Pane>
